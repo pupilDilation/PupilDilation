@@ -4,21 +4,21 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
 
 function Slider(props) {
-  const currentConcert = async () => {
-    let response = await fetch("../data/movies.json");
-    let movie = await response.json();
-    return movie;
-  };
-
   const [concerts, setConcerts] = useState([]);
 
-  useEffect(() => {
-    setConcerts(currentConcert());
+  async function getMovies() {
+    const json = await (await fetch("dummyData/movies.json")).json();
+    setConcerts([json]);
     console.log(concerts);
+  }
+
+  useEffect(() => {
+    getMovies();
   }, []);
 
   return (
     <Swiper
+      observer={true}
       modules={[Navigation, Pagination, Autoplay]}
       navigation
       autoplay={{ delay: 2000 }}
@@ -31,7 +31,12 @@ function Slider(props) {
         console.log(swiper);
       }}
     >
-      {}
+      {concerts.map((item, index) => {
+        <SwiperSlide>
+          <h3>{item.title}</h3>
+          <p>{item.plot}</p>
+        </SwiperSlide>;
+      })}
     </Swiper>
   );
 }
