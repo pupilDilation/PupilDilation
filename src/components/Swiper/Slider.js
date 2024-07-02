@@ -1,12 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Navigation, Pagination, Virtual } from "swiper/modules";
 import { useEffect, useState } from "react";
+import styles from "./slider.module.css";
+import Slide from "./Slide";
 
 /**
  * [Component] Slider : 공연 포스터 auto play 캐러셀
  */
-function Slider(props) {
+function Slider() {
   // 현재 공연 일정이 얼마 남지 않은 공연 리스트 저장하는 state
   const [concerts, setConcerts] = useState([]);
 
@@ -17,30 +19,22 @@ function Slider(props) {
   }
   useEffect(() => {
     getMovies();
-    console.log(concerts);
   }, []);
 
   return (
     <Swiper
-      modules={[Navigation, Pagination, Autoplay]}
-      navigation
-      autoplay={{ delay: 2000 }}
-      spaceBetween={50}
+      modules={[Navigation, Pagination]}
+      autoHeight
+      spaceBetween={15}
       slidesPerView={3}
+      className={styles.swiper}
       onSwiper={(swiper) => {
         console.log(swiper);
       }}
     >
       {concerts.map((item, index) => (
-        <SwiperSlide key={item.title}>
-          {item.url != null ? (
-            <img src={item.url} alt="url" />
-          ) : (
-            <img width={"100px"} src={"/img/loadImage.png"} alt="" />
-          )}
-          <h3>
-            {item.title} ({item.year})
-          </h3>
+        <SwiperSlide key={item.title} className={styles.swiperSlide}>
+          <Slide item={item}></Slide>
         </SwiperSlide>
       ))}
     </Swiper>

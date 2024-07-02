@@ -1,0 +1,32 @@
+/* Swiper styles */
+.swiper {
+}
+
+.swiperSlide {
+}
+
+/* SwiperSlide styles */
+.swiperSlide {
+  width: 50%;
+}
+.sliderContainer {
+  width: 100%;
+}
+.sliderContainer img {
+  width: 100%;
+}
+.sliderLink {
+  text-decoration: none;
+  color: black;
+}
+
+/* SwiperSlide content styles */
+.slideContent {
+  width: 100%;
+  text-align: left;
+}
+.slideImg {
+}
+.slideContent:nth-child(2) {
+  margin: 0;
+}
