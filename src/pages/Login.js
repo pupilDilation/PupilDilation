@@ -2,12 +2,12 @@ import Header from "../components/Header/Header";
 import Slider from "../components/Swiper/Slider";
 import useClassNameJoin from "../hooks/useClassName";
 
-function Main() {
+function LoginPage() {
   return (
     <div>
-      <Slider></Slider>
+      <h1>Login Page</h1>
     </div>
   );
 }
 
-export default Main;
+export default LoginPage;
