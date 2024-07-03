@@ -25,6 +25,7 @@ function Slider() {
   const SWIPER_STYLE = {
     width: "100%",
     marginTop: "15px",
+    height: "auto",
   };
 
   return (
