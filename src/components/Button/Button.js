@@ -1,16 +1,16 @@
-// export default function Button(props) {
-//   return <button>hihi</button>;
-// }
-import { styled } from "styled-components";
-import { Link } from "react-router-dom";
+import React from "react";
 
-const Button = styled.button`
-  background-color: white;
-  color: red;
-`;
-
-function LinkButton() {
-  return <Link></Link>;
+function Button(props) {
+  return (
+    <button 
+      type={props.type} 
+      onClick={props.onClick} 
+      className={props.className} // Apply the passed className
+      disabled={props.disabled}
+    >
+      {props.children}
+    </button>
+  );
 }
 
 export default Button;
