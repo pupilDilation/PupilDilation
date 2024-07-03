@@ -1,14 +1,14 @@
 /* Swiper styles */
-.swiper {
-  width: 100%;
-}
 
-.swiperSlide {
+/* SwiperSlide 컴포넌트 첫번째 요소 margin-left 적용  */
+.swiperSlide:nth-of-type(1) {
+  margin-left: 15px;
 }
 
 /* SwiperSlide styles */
 .swiperSlide {
   width: 40%;
+  height: auto;
 }
 .sliderContainer {
   width: 100%;
@@ -23,6 +23,7 @@
 
 /* SwiperSlide content styles */
 .sliderImgContainer img {
+  width: 100%;
   border-radius: 15px;
 }
 
