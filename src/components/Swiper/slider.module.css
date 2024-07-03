@@ -21,12 +21,26 @@
 }
 
 /* SwiperSlide content styles */
-.slideContent {
+.sliderImgContainer img {
+  border-radius: 15px;
+}
+
+.slideInfo {
   width: 100%;
+  margin: 0;
   text-align: left;
 }
-.slideImg {
-}
-.slideContent:nth-child(2) {
+
+.slideInfo dt {
   margin: 0;
+  font-size: 15px;
+}
+
+.slideInfo dd {
+  margin: 0;
+  font-size: 13px;
+}
+
+.slideInfo dd:nth-of-type(2) {
+  color: gray;
 }
