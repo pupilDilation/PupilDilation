@@ -26,7 +26,7 @@ function Slider() {
       modules={[Navigation, Pagination]}
       autoHeight
       spaceBetween={15}
-      slidesPerView={3}
+      // slidesPerView={3}
       className={styles.swiper}
       onSwiper={(swiper) => {
         console.log(swiper);

@@ -1,5 +1,6 @@
 /* Swiper styles */
 .swiper {
+  width: 100%;
 }
 
 .swiperSlide {
@@ -7,7 +8,7 @@
 
 /* SwiperSlide styles */
 .swiperSlide {
-  width: 50%;
+  width: 40%;
 }
 .sliderContainer {
   width: 100%;
