@@ -1,6 +1,4 @@
 import React from "react";
-import Button from "./components/Button/Button";
-import styles from "./components/Button/Button.module.css";
 import Main from "./pages/Main";
 import LoginPage from "./pages/Login";
 import Header from "./components/Header/Header";
@@ -12,14 +10,14 @@ function App() {
   return (
     <div className="App">
       <Router>
-      <Header/>
+        <Header />
         <Routes>
-          <Route path="/" element={<Main/>}></Route>
-          <Route path="/login" element={<LoginPage/>}></Route>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/detail" element={<div>Detail Page</div>}></Route>
         </Routes>
       </Router>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
