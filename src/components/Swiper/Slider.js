@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 import { Navigation, Pagination, Virtual } from "swiper/modules";
-import { useEffect, useState } from "react";
+import "swiper/css";
 import styles from "./slider.module.css";
 import Slide from "./Slide";
+import { useEffect, useState } from "react";
 
 /**
  * [Component] Slider : 공연 포스터 auto play 캐러셀
@@ -21,16 +21,23 @@ function Slider() {
     getMovies();
   }, []);
 
+  // module.css 적용이 불가능한 Swiper 컴포넌트의 스타일 obj
+  const SWIPER_STYLE = {
+    width: "100%",
+    marginTop: "15px",
+    height: "auto",
+  };
+
   return (
     <Swiper
       modules={[Navigation, Pagination]}
       autoHeight
       spaceBetween={15}
-      // slidesPerView={3}
-      className={styles.swiper}
+      slidesPerView={3}
       onSwiper={(swiper) => {
         console.log(swiper);
       }}
+      style={SWIPER_STYLE}
     >
       {concerts.map((item, index) => (
         <SwiperSlide key={item.title} className={styles.swiperSlide}>

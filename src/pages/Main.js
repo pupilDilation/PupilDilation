@@ -1,6 +1,6 @@
 import Header from "../components/Header/Header";
 import Slider from "../components/Swiper/Slider";
-import useClassNameJoin from "../hooks/useClassName";
+import useClassNameJoin from "../hooks/useClassNameJoin";
 
 function Main() {
   return (
