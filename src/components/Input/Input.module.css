@@ -1,0 +1,33 @@
+/*
+====모바일 버전 input (아이디, 비밀번호)====
+*/
+.input1 {
+  width: calc(100vw * 380 / 400);
+
+  margin-top: 0.5em;
+  font-size: calc(100vw * 32 / 400);
+}
+
+/*
+====로그인 페이지 전체 wrapper====
+*/
+.inputWrapper {
+  margin-top: 1em;
+}
+
+/*
+====로그인 텍스트====
+*/
+.loginText {
+  color: black;
+  font-size: calc(100vw * 30 / 400);
+  text-align: center;
+}
+
+/*
+====아이디 비밀번호, 아이디 저장 wrapper====
+*/
+.loginWrapper {
+  margin-left: calc(100vw * 10 / 400);
+  margin-right: calc(100vw * 10 / 400);
+}
