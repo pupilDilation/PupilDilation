@@ -1,4 +1,4 @@
-.headerBtn{
+.headerBtn {
   border: none;
   background-color: transparent;
   width: calc(100vw * 60 / 400);
@@ -9,6 +9,33 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-left: calc(100vw * 5/400);
-  margin-right: calc(100vw * 5/400);
+  margin-left: calc(100vw * 5 / 400);
+  margin-right: calc(100vw * 5 / 400);
+}
+
+/*
+==== 로그인 회원가입 버튼 ====
+*/
+.loginBtn {
+  margin-top: 1em;
+  border: none;
+  background-color: var(--theme-yellow, #fad744);
+  border-radius: 34px;
+  width: calc(100vw * 320 / 400);
+  height: calc(100vh * 70 / 930);
+  font-family: Noto Sans KR;
+  margin-left: calc(100vw * 40 / 400);
+  margin-right: calc(100vw * 40 / 400);
+}
+
+.signUpBtn {
+  margin-top: 1em;
+  border: none;
+  width: calc(100vw * 320 / 400);
+  height: calc(100vh * 70 / 930);
+  flex-shrink: 0;
+  border-radius: 34px;
+  background: var(--theme-navy, #2b3252);
+  margin-left: calc(100vw * 40 / 400);
+  margin-right: calc(100vw * 40 / 400);
 }

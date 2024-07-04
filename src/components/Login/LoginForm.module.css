@@ -1,0 +1,65 @@
+/*
+==== 모바일 버전 input (아이디, 비밀번호) ====
+*/
+.input1 {
+  padding: 5px;
+  width: calc(100vw * 380 / 400);
+  margin-top: 0.5em;
+  font-size: calc(100vw * 32 / 400);
+}
+
+/*
+==== 로그인 페이지 전체 wrapper====
+*/
+.loginWrapper {
+  margin-top: 1em;
+}
+
+/*
+==== 로그인 텍스트 ====
+*/
+.loginText {
+  color: black;
+  font-size: calc(100vw * 30 / 400);
+  text-align: center;
+}
+
+/*
+==== 아이디 비밀번호, 아이디 저장 wrapper ====
+*/
+.inputWrapper {
+  margin-left: calc(100vw * 10 / 400);
+  margin-right: calc(100vw * 10 / 400);
+}
+
+/*
+==== 아이디 확인 체크박스 ====
+*/
+.saveIdCheckBox {
+  margin-top: 1em;
+  text-align: right;
+}
+
+/*
+==== 로그인 회원가입 버튼 텍스트 ====
+*/
+.loginBtnText {
+  color: var(--theme-red, #ef5455);
+  font-size: calc(100vw * 30 / 400);
+  font-family: Noto Sans KR;
+  font-weight: 700;
+}
+.signUpBtnText {
+  color: var(--theme-yellow, #fad744);
+  font-size: calc(100vw * 30 / 400);
+  font-family: Noto Sans KR;
+}
+
+/*
+==== placeholder 스타일 설정 ====
+*/
+.input1::placeholder {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: calc(100vw * 25 / 400);
+  font-family: Noto Sans KR;
+}

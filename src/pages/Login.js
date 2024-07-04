@@ -1,13 +1,12 @@
-import Header from "../components/Header/Header";
-import Slider from "../components/Swiper/Slider";
-import useClassNameJoin from "../hooks/useClassNameJoin";
+import Input from "../components/Input/Input";
+import LoginForm from "../components/Login/LoginForm";
 
-function LoginPage() {
+function Login() {
   return (
     <div>
-      <h1>Login Page</h1>
+      <LoginForm />
     </div>
   );
 }
 
-export default LoginPage;
+export default Login;
