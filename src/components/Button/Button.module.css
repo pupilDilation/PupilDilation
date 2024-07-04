@@ -12,3 +12,11 @@
   margin-left: calc(100vw * 5/400);
   margin-right: calc(100vw * 5/400);
 }
+
+.myPageBtnContainer{
+  width: calc(100vw * 50 / 400);
+  height: calc(100vw * 25 / 400);
+  display:flex;
+  align-items: center;
+  margin-right: calc(100vw * 60 / 400);
+}
