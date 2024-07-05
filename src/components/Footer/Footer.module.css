@@ -46,14 +46,21 @@
 
 /* credit */
 .footerCredit {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
 .creditBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
 }
 
 .creditBox p {
+  margin-bottom: 4px;
+  text-align: center;
   font-size: 11px;
   color: #707070;
 }
