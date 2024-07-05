@@ -38,11 +38,31 @@
 /*
 ==== 아이디 확인 체크박스 ====
 */
-.saveIdCheckBox {
+.saveId {
   margin-top: 1em;
+  margin-bottom: 0.8em;
   font-size: calc(100vw * 20 / 400);
+  box-sizing: border-box;
+  position: relative;
 }
-
+/*
+==== 아이디저장 텍스트 ====
+*/
+.saveIdCheckBoxText {
+  position: absolute;
+  top: 15%;
+}
+/*
+==== 아이디저장 체크박스 ====
+*/
+.saveIdCheckBox {
+  border: none;
+  width: calc(100vw * 25 / 400);
+  height: calc(100vw * 25 / 400);
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
+}
 /*
 ==== 로그인 회원가입 버튼 텍스트 ====
 */

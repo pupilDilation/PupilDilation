@@ -14,9 +14,18 @@ function LoginForm() {
       <div className={LoginFormStyles.inputWrapper}>
         <Input className={LoginFormStyles.input1} placeholder={"아이디"} />
         <Input className={LoginFormStyles.input1} placeholder={"비밀번호"} />
-        <div className={LoginFormStyles.saveIdCheckBox}>
-          <input type="checkbox" id="saveIdCheckBox" />
-          <label htmlFor="saveIdCheckBox">아이디 저장</label>
+        <div className={LoginFormStyles.saveId}>
+          <input
+            type="checkbox"
+            id="saveIdCheckBox"
+            className={LoginFormStyles.saveIdCheckBox}
+          />
+          <label
+            htmlFor="saveIdCheckBox"
+            className={LoginFormStyles.saveIdCheckBoxText}
+          >
+            아이디 저장
+          </label>
         </div>
       </div>
       <Button
@@ -26,6 +35,14 @@ function LoginForm() {
         )}
       >
         <div className={LoginFormStyles.loginBtnText}>로그인</div>
+      </Button>
+      <Button
+        className={useClassNameJoin(
+          Buttonstyles.buttonCommon,
+          Buttonstyles.signUpBtn
+        )}
+      >
+        <div className={LoginFormStyles.signUpBtnText}>회원가입</div>
       </Button>
     </div>
   );
