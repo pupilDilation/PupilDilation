@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../Input/Input";
 import LoginFormStyles from "../Login/LoginForm.module.css";
 import Button from "../Button/Button";
-import Buttonstyles from "../Button/Button.module.css";
+import ButtonStyles from "../Button/Button.module.css";
 import useClassNameJoin from "../../hooks/useClassNameJoin";
 
 function LoginForm() {
@@ -30,16 +30,16 @@ function LoginForm() {
       </div>
       <Button
         className={useClassNameJoin(
-          Buttonstyles.buttonCommon,
-          Buttonstyles.loginBtn
+          ButtonStyles.buttonCommon,
+          ButtonStyles.loginBtn
         )}
       >
         <div className={LoginFormStyles.loginBtnText}>로그인</div>
       </Button>
       <Button
         className={useClassNameJoin(
-          Buttonstyles.buttonCommon,
-          Buttonstyles.signUpBtn
+          ButtonStyles.buttonCommon,
+          ButtonStyles.signUpBtn
         )}
       >
         <div className={LoginFormStyles.signUpBtnText}>회원가입</div>

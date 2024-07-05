@@ -1,0 +1,67 @@
+/*
+==== 회원가입 전체 wrapper ====
+*/
+.signUpFormWrapper {
+  margin-top: 0.8em;
+  margin-left: calc(100vw * 15 / 400);
+}
+
+/*
+==== 회원가입 위쪽 박스(회원가입 텍스트) ====
+*/
+.signUpTopWrapper {
+  justify-content: space-between;
+  margin-left: calc(100vw * 120 / 400);
+}
+/*
+==== 회원가입 텍스트 ====
+*/
+.signUpText {
+  color: black;
+  font-size: calc(100vw * 30 / 400);
+}
+
+/*
+==== input 박스 스타일 ====
+*/
+.signUpInputs {
+  padding: 5px;
+  width: calc(100vw * 350 / 400);
+  margin-bottom: 0.8em;
+  font-size: calc(100vw * 20 / 400);
+  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 7px;
+}
+/*
+==== placeholder 스타일 ====
+*/
+.signUpInputs::placeholder {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: calc(100vw * 15 / 400);
+  font-family: Noto Sans KR;
+}
+
+/*
+==== label 스타일 ====
+*/
+.signUpLabels {
+  margin-bottom: 0.2em;
+}
+
+/*
+==== 가입완료 텍스트 ====
+*/
+.signUpCompleteText {
+  text-shadow: 6px 2px 6px rgb(224, 171, 171);
+  color: var(--theme-red, #ef5455);
+  font-size: calc(100vw * 20 / 400);
+  font-weight: 700;
+}
+
+/*
+==== 버튼들 위치 조정 ====
+*/
+.signUpBtns {
+  text-align: center;
+  margin-right: calc(100vw * 20 / 400);
+}
