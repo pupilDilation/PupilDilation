@@ -2,17 +2,18 @@ import useClassNameJoin from "../hooks/useClassNameJoin";
 import Button from "../components/Button/Button";
 import ButtonStyles from "../components/Button/Button.module.css";
 import UserInfo from "../components/UserInfo/UserInfo";
+import Wrapper from "../components/Wrapper/Wrapper";
+import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
 
 function MyPage() {
   return (
-    <div>
-      <h1>MyPage</h1>
+    <Wrapper className={WrapperStyles.myPageContainer}>
       <div className={ButtonStyles.myPageBtnContainer}>
         <Button className={ButtonStyles.headerBtn}>회원정보 아이콘</Button>
         <Button className={ButtonStyles.headerBtn}>예매내역</Button>
       </div>
       <UserInfo />
-    </div>
+    </Wrapper>
   );
 }
 

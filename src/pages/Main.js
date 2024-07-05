@@ -1,11 +1,13 @@
 import Slider from "../components/Swiper/Slider";
 import useClassNameJoin from "../hooks/useClassNameJoin";
+import Wrapper from "../components/Wrapper/Wrapper";
+import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
 
 function Main() {
   return (
-    <div>
+    <Wrapper>
       <Slider></Slider>
-    </div>
+    </Wrapper>
   );
 }
 
