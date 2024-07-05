@@ -3,16 +3,18 @@
 */
 .input1 {
   padding: 5px;
-  width: calc(100vw * 380 / 400);
-  margin-top: 0.5em;
+  width: calc(100vw * 350 / 400);
+  margin-top: 0.8em;
   font-size: calc(100vw * 32 / 400);
+  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 7px;
 }
 
 /*
 ==== 로그인 페이지 전체 wrapper====
 */
 .loginWrapper {
-  margin-top: 1em;
+  margin-top: 3em;
 }
 
 /*
@@ -22,14 +24,15 @@
   color: black;
   font-size: calc(100vw * 30 / 400);
   text-align: center;
+  margin-bottom: 0.5em;
 }
 
 /*
-==== 아이디 비밀번호, 아이디 저장 wrapper ====
+==== 아이디, 비밀번호, 아이디 저장 wrapper ====
 */
 .inputWrapper {
   margin-left: calc(100vw * 10 / 400);
-  margin-right: calc(100vw * 10 / 400);
+  margin-right: calc(100vw * 20 / 400);
 }
 
 /*
@@ -37,7 +40,7 @@
 */
 .saveIdCheckBox {
   margin-top: 1em;
-  text-align: right;
+  font-size: calc(100vw * 20 / 400);
 }
 
 /*
@@ -48,11 +51,13 @@
   font-size: calc(100vw * 30 / 400);
   font-family: Noto Sans KR;
   font-weight: 700;
+  text-shadow: 6px 2px 4px rgb(224, 171, 171);
 }
 .signUpBtnText {
   color: var(--theme-yellow, #fad744);
   font-size: calc(100vw * 30 / 400);
   font-family: Noto Sans KR;
+  text-shadow: 6px 2px 4px rgb(146, 150, 111);
 }
 
 /*

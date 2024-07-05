@@ -16,26 +16,22 @@
 /*
 ==== 로그인 회원가입 버튼 ====
 */
-.loginBtn {
+.buttonCommon {
   margin-top: 1em;
   border: none;
-  background-color: var(--theme-yellow, #fad744);
   border-radius: 34px;
   width: calc(100vw * 320 / 400);
   height: calc(100vh * 70 / 930);
-  font-family: Noto Sans KR;
   margin-left: calc(100vw * 40 / 400);
   margin-right: calc(100vw * 40 / 400);
 }
 
+.loginBtn {
+  background-color: var(--theme-yellow, #fad744);
+  font-family: Noto Sans KR;
+}
+
 .signUpBtn {
-  margin-top: 1em;
-  border: none;
-  width: calc(100vw * 320 / 400);
-  height: calc(100vh * 70 / 930);
-  flex-shrink: 0;
-  border-radius: 34px;
   background: var(--theme-navy, #2b3252);
-  margin-left: calc(100vw * 40 / 400);
-  margin-right: calc(100vw * 40 / 400);
+  flex-shrink: 0;
 }
