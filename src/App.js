@@ -1,6 +1,7 @@
 import React from "react";
 import Main from "./pages/Main";
 import LoginPage from "./pages/Login";
+import SignUpPage from "./pages/SignUp";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/signup" element={<SignUpPage />}></Route>
           <Route path="/detail" element={<div>Detail Page</div>}></Route>
         </Routes>
       </Router>
