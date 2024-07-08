@@ -25,7 +25,7 @@ function Footer() {
         <div className={FooterStyles.creditBox}>
           <p>Developer</p>
           <p>Obsun wor__yth EastBean chanhk</p>
-          <p></p>
+          <p>248Kobe hhaminlee hwanhojoung Jangmyun</p>
         </div>
         <div className={FooterStyles.creditBox}>
           <p>Designer</p>
