@@ -9,6 +9,8 @@
   width: 100%;
   gap: 16px;
   border-top: 3px solid #bfbfbf;
+
+  height: 300px;
 }
 
 /* footer content */
@@ -67,10 +69,6 @@
 
 .creditBox p:nth-of-type(1) {
   width: 22%;
-}
-
-.creditBox p:nth-of-type(2) {
-  margin-left: 15px;
 }
 
 /* break point - 1024px */
