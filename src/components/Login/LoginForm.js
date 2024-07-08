@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../Input/Input";
 import LoginFormStyles from "../Login/LoginForm.module.css";
 import Button from "../Button/Button";
@@ -6,6 +6,7 @@ import ButtonStyles from "../Button/Button.module.css";
 import useClassNameJoin from "../../hooks/useClassNameJoin";
 
 function LoginForm() {
+  const [password, setPassword] = React.useState("");
   return (
     <div className={LoginFormStyles.loginWrapper}>
       <div className={LoginFormStyles.loginText}>
@@ -13,7 +14,13 @@ function LoginForm() {
       </div>
       <div className={LoginFormStyles.inputWrapper}>
         <Input className={LoginFormStyles.input1} placeholder={"아이디"} />
-        <Input className={LoginFormStyles.input1} placeholder={"비밀번호"} />
+        <Input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className={LoginFormStyles.input1}
+          placeholder={"비밀번호"}
+        />
         <div className={LoginFormStyles.saveId}>
           <input
             type="checkbox"
