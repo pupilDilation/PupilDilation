@@ -5,6 +5,7 @@
   font-family: Noto Sans KR;
   font-size: calc(100vw * 12 / 400);
   font-weight: 700;
+  line-height: normal;
   margin-left: calc(100vw * 5 / 400);
   margin-right: calc(100vw * 5 / 400);
 }
@@ -23,4 +24,39 @@
   display: flex;
   align-items: left;
   margin-right: calc(100vw * 60 / 400);
+}
+/*
+버튼 공통요소 묶음 (loginForm)
+*/
+.buttonCommon {
+  margin-top: 1em;
+  border: none;
+  border-radius: 34px;
+  width: calc(100vw * 320 / 400);
+  height: calc(100vh * 70 / 930);
+  margin-left: calc(100vw * 40 / 400);
+  margin-right: calc(100vw * 40 / 400);
+}
+/*
+==== 로그인 회원가입 버튼 (loginForm)====
+*/
+.loginBtn {
+  background-color: var(--theme-yellow, #fad744);
+  font-family: Noto Sans KR;
+}
+
+.signUpBtn {
+  background: var(--theme-navy, #2b3252);
+  flex-shrink: 0;
+}
+
+/*
+==== 가입완료 버튼(signUpForm) ====
+*/
+.signUpComplete {
+  background-color: var(--theme-yellow, #fad744);
+  border-radius: 20px;
+  width: calc(100vw * 200 / 400);
+  height: calc(100vh * 50 / 930);
+  border: none;
 }

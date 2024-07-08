@@ -20,7 +20,10 @@ function Header() {
     dispatch(toggleLogin());
     console.log(isLoggedIn);
   };
-  const handleSignupClick = () => {};
+
+  const handleSignupClick = () => {
+    navigate("/signup");
+  };
 
   return (
     <div classNAme={HeaderStyles.headerContainer}>

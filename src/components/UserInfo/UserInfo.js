@@ -4,8 +4,16 @@ import ButtonStyles from "../Button/Button.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import UserInfoStyles from "./UserInfo.module.css";
 
-function UserInfo() {
+function UserInfo(props) {
   const navigate = useNavigate();
+
+  /*const name
+  const id
+  const email
+  const phonenumber
+  const profilePic
+  */
+
   const changePasswordClick = () => {
     navigate("/");
   };
@@ -21,7 +29,7 @@ function UserInfo() {
         />
         <div className={UserInfoStyles.profileContent}>
           <div className={UserInfoStyles.lineContent}>
-            <h1>정은찬님</h1>
+            <h1>{props.name}</h1>
             <Button
               className={ButtonStyles.changePasswordBtn}
               onClick={changePasswordClick}
@@ -32,15 +40,15 @@ function UserInfo() {
           <hr className={UserInfoStyles.hr}></hr>
           <div className={UserInfoStyles.lineContent}>
             <h1>아이디 </h1>
-            <h1>chany077</h1>
+            <h1>{props.id}</h1>
           </div>
           <div className={UserInfoStyles.lineContent}>
             <h1>이메일 </h1>
-            <h1>chany077@gmail.com</h1>
+            <h1>{props.email}</h1>
           </div>
           <div className={UserInfoStyles.lineContent}>
             <h1>전화번호 </h1>
-            <h1>01040494663</h1>
+            <h1>{props.phonenumber}</h1>
           </div>
         </div>
       </div>

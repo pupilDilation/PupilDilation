@@ -35,6 +35,7 @@
   flex-direction: column;
   width: 90%;
   justify-content: space-between;
+  margin-left: calc(100vw * 5 / 400);
 }
 
 .lineContent {
