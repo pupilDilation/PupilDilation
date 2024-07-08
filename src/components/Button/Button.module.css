@@ -29,12 +29,12 @@
 ==== 로그인 회원가입 버튼 (loginForm)====
 */
 .loginBtn {
-  background-color: var(--theme-yellow, #fad744);
+  background-color: #fad744;
   font-family: Noto Sans KR;
 }
 
 .signUpBtn {
-  background: var(--theme-navy, #2b3252);
+  background: #2b3252;
   flex-shrink: 0;
 }
 
@@ -42,9 +42,21 @@
 ==== 가입완료 버튼(signUpForm) ====
 */
 .signUpComplete {
-  background-color: var(--theme-yellow, #fad744);
+  background-color: #fad744;
   border-radius: 20px;
   width: calc(100vw * 200 / 400);
   height: calc(100vh * 50 / 930);
   border: none;
+  color: #ef5455;
+  font-size: calc(100vw * 20 / 400);
+  font-weight: 700;
+}
+
+/*
+==== 버튼 활성화 전(signUpFrom) ====
+*/
+.disabledBtn {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
