@@ -52,7 +52,7 @@ function DetailForm() {
         <div className="third-detail-mobile">
           <div>
             <p className="content-intro">소개</p>
-            <p className="intro-text">{show.introduction}</p>
+            <p className="intro-text">{show.introductions}</p>
           </div>
           <div style={{ marginBottom }}>
             <p className="content-title">공연일정</p>
