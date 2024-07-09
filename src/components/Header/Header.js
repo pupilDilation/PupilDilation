@@ -4,7 +4,7 @@ import Buttonstyles from "../Button/Button.module.css";
 import HeaderStyles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toggleLogin } from "../../slice/auth/authSlice";
+import { toggleLogin } from "../../slice/authSlice";
 
 function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -25,7 +25,8 @@ function Header() {
   };
 
   return (
-    <div classNAme={HeaderStyles.headerContainer}>
+    // classNAme={HeaderStyles.headerContainer}
+    <div className={HeaderStyles.headerContainer}>
       <div className={HeaderStyles.firstHeader}>
         {isLoggedIn ? (
           <div className={HeaderStyles.firstHeaderBtnContainer}>
