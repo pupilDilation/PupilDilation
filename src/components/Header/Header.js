@@ -26,7 +26,7 @@ function Header() {
   };
 
   return (
-    <div classNAme={HeaderStyles.headerContainer}>
+    <div className={HeaderStyles.headerContainer}>
       <div className={HeaderStyles.firstHeader}>
         {isLoggedIn ? (
           <div className={HeaderStyles.firstHeaderBtnContainer}>

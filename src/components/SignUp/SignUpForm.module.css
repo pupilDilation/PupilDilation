@@ -2,15 +2,17 @@
 ==== 회원가입 전체 wrapper ====
 */
 .signUpFormWrapper {
-  margin-top: 0.8em;
+  margin: 2em 0;
   margin-left: calc(100vw * 15 / 400);
+  margin-right: calc(100vw * 20 / 400);
+  display: flex;
+  flex-direction: column;
 }
 
 /*
 ==== 회원가입 위쪽 박스(회원가입 텍스트) ====
 */
 .signUpTopWrapper {
-  justify-content: space-between;
   margin-left: calc(100vw * 120 / 400);
 }
 /*
@@ -48,20 +50,11 @@
   margin-bottom: 0.2em;
 }
 
-/*
-==== 가입완료 텍스트 ====
+/* 
+==== 버튼 스타일 ====
 */
-.signUpCompleteText {
-  text-shadow: 6px 2px 6px rgb(224, 171, 171);
-  color: var(--theme-red, #ef5455);
-  font-size: calc(100vw * 20 / 400);
-  font-weight: 700;
-}
-
-/*
-==== 버튼들 위치 조정 ====
-*/
-.signUpBtns {
-  text-align: center;
-  margin-right: calc(100vw * 20 / 400);
+.completeBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
 }
