@@ -28,7 +28,7 @@ const signUpSlice = createSlice({
     setPhone(state, action) {
       state.email = action.payload;
     },
-    isValidForm(state) {
+    setIsValidForm(state) {
       if (
         /^[A-Za-z0-9]{4,12}$/.test(state.id) &&
         /^[A-Za-z0-9!@#$%^&*(),.?":{}|<>]{8,20}$/.test(state.password) &&
@@ -45,6 +45,12 @@ const signUpSlice = createSlice({
   },
 });
 
-export const { setId, setPassword, setPasswordChk, setEmail, setPhone } =
-  signUpSlice.actions;
+export const {
+  setId,
+  setPassword,
+  setPasswordChk,
+  setEmail,
+  setPhone,
+  setIsValidForm,
+} = signUpSlice.actions;
 export default signUpSlice.reducer;
