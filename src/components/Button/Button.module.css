@@ -1,0 +1,62 @@
+.headerBtn {
+  border: none;
+  background-color: transparent;
+  width: calc(100vw * 60 / 400);
+  height: 23px;
+  color: #ffffff;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 12 / 400);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: calc(100vw * 5 / 400);
+  margin-right: calc(100vw * 5 / 400);
+}
+
+/*
+버튼 공통요소 묶음 (loginForm)
+*/
+.buttonCommon {
+  margin-top: 1em;
+  border: none;
+  border-radius: 34px;
+  width: calc(100vw * 320 / 400);
+  height: calc(100vh * 70 / 930);
+  margin-left: calc(100vw * 40 / 400);
+  margin-right: calc(100vw * 40 / 400);
+}
+/*
+==== 로그인 회원가입 버튼 (loginForm)====
+*/
+.loginBtn {
+  background-color: #fad744;
+  font-family: Noto Sans KR;
+}
+
+.signUpBtn {
+  background: #2b3252;
+  flex-shrink: 0;
+}
+
+/*
+==== 가입완료 버튼(signUpForm) ====
+*/
+.signUpComplete {
+  background-color: #fad744;
+  border-radius: 20px;
+  width: calc(100vw * 200 / 400);
+  height: calc(100vh * 50 / 930);
+  border: none;
+  color: #ef5455;
+  font-size: calc(100vw * 20 / 400);
+  font-weight: 700;
+}
+
+/*
+==== 버튼 활성화 전(signUpFrom) ====
+*/
+.disabledBtn {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}

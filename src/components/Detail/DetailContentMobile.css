@@ -1,0 +1,103 @@
+.detail-container-mobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.event-title-mobile {
+  display: flex;
+  justify-content: start;
+  width: calc(100vw * 350 / 400);
+  height: calc(100vw * 51 / 400);
+  flex-shrink: 0;
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 32 / 400);
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.event-image-mobile {
+  width: calc(100vw * 169 / 400);
+  height: calc(100vw * 238 / 400);
+  margin-right: 16px;
+  border-radius: 8px;
+}
+
+.first-detail-mobile {
+  display: flex;
+}
+
+.second-detail-mobile {
+  width: calc(100vw * 169 / 400);
+  height: calc(100vw * 238 / 400);
+}
+
+.second-detail-mobile p {
+  display: flex;
+  justify-content: start;
+}
+
+.content-title {
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 20 / 400);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: calc(100vw * 12 / 400);
+}
+
+.content-text {
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 14 / 400);
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.63px;
+  display: flex;
+  text-align: left;
+}
+
+.third-detail-mobile p {
+  display: flex;
+  justify-content: start;
+  text-align: left;
+}
+
+.content-intro {
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 20 / 400);
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: calc(100vw * 2 / 400);
+}
+
+.intro-text {
+  width: calc(100vw * 353 / 400);
+  height: calc(100vw * 80 / 400);
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 14 / 400);
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.63px;
+}
+
+.schedule-text {
+  color: #000;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 14 / 400);
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  letter-spacing: -0.63px;
+  display: flex;
+  flex-direction: column;
+}

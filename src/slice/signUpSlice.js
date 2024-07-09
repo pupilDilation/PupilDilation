@@ -44,3 +44,7 @@ const signUpSlice = createSlice({
     },
   },
 });
+
+export const { setId, setPassword, setPasswordChk, setEmail, setPhone } =
+  signUpSlice.actions;
+export default signUpSlice.reducer;
