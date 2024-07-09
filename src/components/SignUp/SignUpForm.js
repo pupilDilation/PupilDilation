@@ -28,7 +28,7 @@ function SignUpForm() {
     if (phoneNum.length === 10) {
       setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
     }
-    if (phoneNum.length === 13) {
+    if (phoneNum.length === 11) {
       setPhoneNum(
         phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
       );
@@ -43,7 +43,7 @@ function SignUpForm() {
   /* 전화번호 포맷 지정 후 13자리가 넘어가지 않게 하고 포맷에 맞도록 함 */
   const handlePhoneNumChange = (e) => {
     const value = e.target.value.replace(/[^0-9]/g, ""); // Only allow numbers
-    if (value.length <= 13) {
+    if (value.length <= 11) {
       setPhoneNum(value);
     }
   };
