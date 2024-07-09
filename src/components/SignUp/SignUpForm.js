@@ -5,15 +5,35 @@ import ButtonStyles from "../Button/Button.module.css";
 import SignUpFormStyles from "../SignUp/SignUpForm.module.css";
 import Input from "../Input/Input";
 import useClassNameJoin from "../../hooks/useClassNameJoin";
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setEmail,
+  setId,
+  setPassword,
+  setPasswordChk,
+  setPhone,
+  setIsValidForm,
+} from "../../slice/signUpSlice";
 
 function SignUpForm() {
+  const dispatch = useDispatch();
+  const id = useSelector((state) => state.signUp.id);
+  const pw = useSelector((state) => state.signUp.password);
+  const pwChk = useSelector((state) => state.signUp.passwordChk);
+  const email = useSelector((state) => state.signUp.email);
+  const phone = useSelector((state) => state.signUp.phone);
+  const isValidForm = useSelector((state) => state.signUp.isValidForm);
+
+  console.log(phone);
+
   //가입완료 버튼 -> 조건 충족시 활성화 되도록
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [passwordChk, setPasswordChk] = useState("");
-  const [id, setId] = useState("");
-  const [isFormValid, setIsFormValid] = useState(false);
+  // const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phoneNum, setPhoneNum] = useState("");
+  // const [passwordChk, setPasswordChk] = useState("");
+  // const [id, setId] = useState("");
+  // const [isFormValid, setIsFormValid] = useState(false);
 
   const passwordRegEx = /^[A-Za-z0-9!@#$%^&*(),.?":{}|<>]{8,20}$/; //8~20자리 비밀번호 정규식(대소문자, 숫자, 특수문자) 체크
   const idRegEx = /^[A-Za-z0-9]{4,12}$/; //4~12자리 아이디 정규식 체크
@@ -24,55 +44,55 @@ function SignUpForm() {
   /* 전화번호 체크, 하이픈 자동생성
   10자리 전화번호 포맷, 13자리 전화번호 포맷 지정하여 사용
   */
-  useEffect(() => {
-    if (phoneNum.length === 10) {
-      setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-    }
-    if (phoneNum.length === 11) {
-      setPhoneNum(
-        phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-      );
-    }
-  }, [phoneNum]);
+  // useEffect(() => {
+  //   if (phoneNum.length === 10) {
+  //     setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
+  //   }
+  //   if (phoneNum.length === 11) {
+  //     setPhoneNum(
+  //       phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
+  //     );
+  //   }
+  // }, [phoneNum]);
 
   /* 이메일 정규식 체크 */
-  const emailCheck = (email) => {
-    return emailRegEx.test(email); //형식에 맞을 경우, true 리턴
-  };
+  // const emailCheck = (email) => {
+  //   return emailRegEx.test(email); //형식에 맞을 경우, true 리턴
+  // };
 
-  /* 전화번호 포맷 지정 후 13자리가 넘어가지 않게 하고 포맷에 맞도록 함 */
-  const handlePhoneNumChange = (e) => {
-    const value = e.target.value.replace(/[^0-9]/g, ""); // Only allow numbers
-    if (value.length <= 11) {
-      setPhoneNum(value);
-    }
-  };
+  // /* 전화번호 포맷 지정 후 13자리가 넘어가지 않게 하고 포맷에 맞도록 함 */
+  // const handlePhoneNumChange = (e) => {
+  //   const value = e.target.value.replace(/[^0-9]/g, ""); // Only allow numbers
+  //   if (value.length <= 11) {
+  //     setPhoneNum(value);
+  //   }
+  // };
 
-  /* 아이디 포맷 체크 */
-  const idCheck = (id) => {
-    return idRegEx.test(id);
-  };
+  // /* 아이디 포맷 체크 */
+  // const idCheck = (id) => {
+  //   return idRegEx.test(id);
+  // };
 
-  /* 비밀번호 포맷 체크 */
-  const passwordCheck = (password) => {
-    return passwordRegEx.test(password);
-  };
+  // /* 비밀번호 포맷 체크 */
+  // const passwordCheck = (password) => {
+  //   return passwordRegEx.test(password);
+  // };
 
-  /* 비밀번호 더블체크 확인 -> 비밀번호와 다르면 체크 */
-  const passwordDoubleCheck = (password, passwordChk) => {
-    return password === passwordChk;
-  };
+  // /* 비밀번호 더블체크 확인 -> 비밀번호와 다르면 체크 */
+  // const passwordDoubleCheck = (password, passwordChk) => {
+  //   return password === passwordChk;
+  // };
 
   /* 폼 체크하고 버튼 disable */
-  useEffect(() => {
-    const isFormValid =
-      idCheck(id) &&
-      passwordCheck(password) &&
-      emailCheck(email) &&
-      passwordDoubleCheck(password, passwordChk) &&
-      phoneNum.length <= 13;
-    setIsFormValid(isFormValid);
-  }, [password, id, email, passwordChk, phoneNum]);
+  // useEffect(() => {
+  //   const isFormValid =
+  //     idCheck(id) &&
+  //     passwordCheck(password) &&
+  //     emailCheck(email) &&
+  //     passwordDoubleCheck(password, passwordChk) &&
+  //     phoneNum.length <= 13;
+  //   setIsFormValid(isFormValid);
+  // }, [password, id, email, passwordChk, phoneNum]);
 
   return (
     <div className={SignUpFormStyles.signUpFormWrapper}>
@@ -88,17 +108,18 @@ function SignUpForm() {
 
         <div className={SignUpFormStyles.signUpLabels}>전화번호</div>
         <Input
-          onChange={handlePhoneNumChange}
+          onChange={(e) => {
+            dispatch(setPhone(e.target.value));
+          }}
           className={SignUpFormStyles.signUpInputs}
-          value={phoneNum}
+          value={phone}
           placeholder={"휴대전화 번호를 입력하세요"}
         />
 
         <div className={SignUpFormStyles.signUpLabels}>이메일</div>
         <Input
           onChange={(e) => {
-            setEmail(e.target.value);
-            emailCheck(e.target.value);
+            console.log(e.target.value);
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"EX) gildong@example.com"}
@@ -107,8 +128,7 @@ function SignUpForm() {
         <div className={SignUpFormStyles.signUpLabels}>아이디</div>
         <Input
           onChange={(e) => {
-            setId(e.target.value);
-            idCheck(e.target.value);
+            console.log(e.target.value);
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"4~12자리 영소문자, 숫자"}
@@ -117,10 +137,9 @@ function SignUpForm() {
         <div className={SignUpFormStyles.signUpLabels}>비밀번호</div>
         <Input
           type="password"
-          value={password}
+          // value={password}
           onChange={(e) => {
-            setPassword(e.target.value);
-            passwordCheck(e.target.value);
+            console.log(e.target.value);
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"8~20자리 영문 대소문자, 숫자, 특수문자 포함"}
@@ -130,19 +149,18 @@ function SignUpForm() {
         <Input
           type="password"
           onChange={(e) => {
-            setPasswordChk(e.target.value);
-            passwordDoubleCheck(password, e.target.value);
+            console.log(e.target.value);
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"비밀번호 확인"}
         />
       </div>
       <div className={SignUpFormStyles.completeBtn}>
-        {isFormValid ? (
+        {isValidForm ? (
           <Link to="/login">
             <Button
               className={[ButtonStyles.signUpComplete].join(" ")}
-              disabled={!isFormValid}
+              disabled={!isValidForm}
             >
               가입 완료
             </Button>
@@ -153,7 +171,7 @@ function SignUpForm() {
               ButtonStyles.signUpComplete,
               ButtonStyles.disabledBtn,
             ].join(" ")}
-            disabled={!isFormValid}
+            disabled={!isValidForm}
           >
             가입 완료
           </Button>
