@@ -1,5 +1,8 @@
 .headerContainer {
   width: calc(100vw * 400 / 400);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .firstHeader {

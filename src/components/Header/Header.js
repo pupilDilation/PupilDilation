@@ -1,28 +1,19 @@
 import React from "react";
 import Button from "../Button/Button";
-import Buttonstyles from "../Button/Button.module.css";
+import ButtonStyles from "../Button/Button.module.css";
 import HeaderStyles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toggleLogin } from "../../slice/auth/authSlice";
+import { logout } from "../../slice/loginSlice";
 
 function Header() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleLoginClick = () => {
-    if (isLoggedIn) {
-      navigate("/login");
-    } else {
-      navigate("/");
-    }
-    dispatch(toggleLogin());
-    console.log(isLoggedIn);
-  };
-
-  const handleSignupClick = () => {
-    navigate("/signup");
+  const handleLogoutClick = () => {
+    dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -31,8 +22,8 @@ function Header() {
         {isLoggedIn ? (
           <div className={HeaderStyles.firstHeaderBtnContainer}>
             <Button
-              className={Buttonstyles.headerBtn}
-              onClick={handleLoginClick}
+              className={ButtonStyles.headerBtn}
+              onClick={handleLogoutClick}
             >
               로그아웃
             </Button>
@@ -40,14 +31,14 @@ function Header() {
         ) : (
           <div className={HeaderStyles.firstHeaderBtnContainer}>
             <Button
-              className={Buttonstyles.headerBtn}
-              onClick={handleLoginClick}
+              className={ButtonStyles.headerBtn}
+              onClick={() => navigate("/login")}
             >
               로그인
             </Button>
             <Button
-              className={Buttonstyles.headerBtn}
-              onClick={handleSignupClick}
+              className={ButtonStyles.headerBtn}
+              onClick={() => navigate("/signup")}
             >
               회원가입
             </Button>
