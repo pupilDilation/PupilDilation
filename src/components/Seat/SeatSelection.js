@@ -22,12 +22,16 @@ const SeatSelection = () => {
 
   return (
     <div className={SeatStyle.seatWrapper}>
-      <div className={SeatStyle.screen} />
-      <h2>STAGE</h2>
+      <div className={SeatStyle.seatTitle}>좌석 선택</div>
+      <div className={SeatStyle.stageTitle}>ANH 오디토리움</div>
+      <div className={SeatStyle.screen}>
+        <h2>STAGE</h2>
+      </div>
       <div className={SeatStyle.seatSection}>
         <div className={SeatStyle.seatGrid}>{generateSeats()}</div>
         <div className={SeatStyle.selected}>
           {selectedSeats.length} Selected Seats: {selectedSeats.join(", ")}
+          <p>Total {selectedSeats.length * 12000} </p>
         </div>
       </div>
     </div>
