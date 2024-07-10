@@ -7,6 +7,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
+import Seat from "./components/Seat/SeatSelection";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -22,6 +23,7 @@ function App() {
               <Route path="/login" element={<LoginPage />}></Route>
               <Route path="/signup" element={<SignUpPage />}></Route>
               <Route path="/detail" element={<div>Detail Page</div>}></Route>
+              <Route path="/seat" element={<Seat />}></Route>
             </Routes>
           </Wrapper>
           <Footer />
