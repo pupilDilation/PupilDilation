@@ -16,11 +16,12 @@
 }
 /* 좌석 선택시 */
 .reserved {
-  background-color: #6feaf6;
+  background-color: #fad744;
 }
 
 /* seatSection */
 .seatWrapper {
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +41,7 @@
   }
 }
 
+/* 좌석 부분 그리드 */
 .seatGrid {
   display: grid;
   grid-template-columns: repeat(5, 50px);
@@ -56,10 +58,19 @@
 }
 
 .screen {
-  background-color: black;
+  background-color: gray;
   height: 70px;
   width: 50%;
   margin: 15px 0;
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  justify-content: center;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 0.1em;
 }
