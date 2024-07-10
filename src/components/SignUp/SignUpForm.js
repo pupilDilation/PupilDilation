@@ -29,11 +29,19 @@ function SignUpForm() {
 
   console.log(name, phone, email, id, pw, pwChk);
 
-  const passwordRegEx = /^[A-Za-z0-9!@#$%^&*(),.?":{}|<>]{8,20}$/; //8~20자리 비밀번호 정규식(대소문자, 숫자, 특수문자) 체크
-  const idRegEx = /^[A-Za-z0-9]{4,12}$/; //4~12자리 아이디 정규식 체크
-  const emailRegEx =
-    /^[A-Za-z0-9]([._%+-]?[A-Za-z0-9])*@[A-Za-z0-9]([.-]?[A-Za-z0-9])*\.[A-Za-z]{2,}$/i;
-  //메일 정규식 체크
+  useEffect(() => {
+    if (phone.length === 11) {
+      const formattedPhone = phone.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
+      dispatch(setPhone(formattedPhone));
+    }
+  }, [phone]);
+
+  // const handlePhoneNumChange = (e) => {
+  //   const value = e.target.value.replace(/[^0-9]/g, ""); // Only allow numbers
+  //   if (value.length <= 11) {
+  //     setPhoneNum(value);
+  //   }
+  // };
 
   useEffect(() => {
     dispatch(setIsValidForm());
@@ -60,7 +68,7 @@ function SignUpForm() {
             dispatch(setPhone(e.target.value));
           }}
           className={SignUpFormStyles.signUpInputs}
-          // value={phone}
+          value={phone}
           placeholder={"휴대전화 번호를 입력하세요"}
         />
 

@@ -27,6 +27,9 @@ const signUpSlice = createSlice({
       state.email = action.payload;
     },
     setPhone(state, action) {
+      if (state.phone.length === 13) {
+        return;
+      }
       state.phone = action.payload;
     },
     setName(state, action) {
