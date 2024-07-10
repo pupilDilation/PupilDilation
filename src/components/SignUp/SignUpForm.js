@@ -14,6 +14,7 @@ import {
   setPasswordChk,
   setPhone,
   setIsValidForm,
+  setName,
 } from "../../slice/signUpSlice";
 
 function SignUpForm() {
@@ -23,17 +24,10 @@ function SignUpForm() {
   const pwChk = useSelector((state) => state.signUp.passwordChk);
   const email = useSelector((state) => state.signUp.email);
   const phone = useSelector((state) => state.signUp.phone);
+  const name = useSelector((state) => state.signUp.name);
   const isValidForm = useSelector((state) => state.signUp.isValidForm);
 
-  console.log(phone);
-
-  //가입완료 버튼 -> 조건 충족시 활성화 되도록
-  // const [password, setPassword] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNum, setPhoneNum] = useState("");
-  // const [passwordChk, setPasswordChk] = useState("");
-  // const [id, setId] = useState("");
-  // const [isFormValid, setIsFormValid] = useState(false);
+  console.log(name, phone, email, id, pw, pwChk);
 
   const passwordRegEx = /^[A-Za-z0-9!@#$%^&*(),.?":{}|<>]{8,20}$/; //8~20자리 비밀번호 정규식(대소문자, 숫자, 특수문자) 체크
   const idRegEx = /^[A-Za-z0-9]{4,12}$/; //4~12자리 아이디 정규식 체크
@@ -41,58 +35,9 @@ function SignUpForm() {
     /^[A-Za-z0-9]([._%+-]?[A-Za-z0-9])*@[A-Za-z0-9]([.-]?[A-Za-z0-9])*\.[A-Za-z]{2,}$/i;
   //메일 정규식 체크
 
-  /* 전화번호 체크, 하이픈 자동생성
-  10자리 전화번호 포맷, 13자리 전화번호 포맷 지정하여 사용
-  */
-  // useEffect(() => {
-  //   if (phoneNum.length === 10) {
-  //     setPhoneNum(phoneNum.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3"));
-  //   }
-  //   if (phoneNum.length === 11) {
-  //     setPhoneNum(
-  //       phoneNum.replace(/-/g, "").replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3")
-  //     );
-  //   }
-  // }, [phoneNum]);
-
-  /* 이메일 정규식 체크 */
-  // const emailCheck = (email) => {
-  //   return emailRegEx.test(email); //형식에 맞을 경우, true 리턴
-  // };
-
-  // /* 전화번호 포맷 지정 후 13자리가 넘어가지 않게 하고 포맷에 맞도록 함 */
-  // const handlePhoneNumChange = (e) => {
-  //   const value = e.target.value.replace(/[^0-9]/g, ""); // Only allow numbers
-  //   if (value.length <= 11) {
-  //     setPhoneNum(value);
-  //   }
-  // };
-
-  // /* 아이디 포맷 체크 */
-  // const idCheck = (id) => {
-  //   return idRegEx.test(id);
-  // };
-
-  // /* 비밀번호 포맷 체크 */
-  // const passwordCheck = (password) => {
-  //   return passwordRegEx.test(password);
-  // };
-
-  // /* 비밀번호 더블체크 확인 -> 비밀번호와 다르면 체크 */
-  // const passwordDoubleCheck = (password, passwordChk) => {
-  //   return password === passwordChk;
-  // };
-
-  /* 폼 체크하고 버튼 disable */
-  // useEffect(() => {
-  //   const isFormValid =
-  //     idCheck(id) &&
-  //     passwordCheck(password) &&
-  //     emailCheck(email) &&
-  //     passwordDoubleCheck(password, passwordChk) &&
-  //     phoneNum.length <= 13;
-  //   setIsFormValid(isFormValid);
-  // }, [password, id, email, passwordChk, phoneNum]);
+  useEffect(() => {
+    dispatch(setIsValidForm());
+  }, [name, phone, email, id, pw, pwChk]);
 
   return (
     <div className={SignUpFormStyles.signUpFormWrapper}>
@@ -102,6 +47,9 @@ function SignUpForm() {
       <div className={SignUpFormStyles.signUpBottomWrapper}>
         <div className={SignUpFormStyles.signUpLabels}>이름</div>
         <Input
+          onChange={(e) => {
+            dispatch(setName(e.target.value));
+          }}
           placeholder={"이름을 입력해주세요."}
           className={SignUpFormStyles.signUpInputs}
         />
@@ -112,15 +60,16 @@ function SignUpForm() {
             dispatch(setPhone(e.target.value));
           }}
           className={SignUpFormStyles.signUpInputs}
-          value={phone}
+          // value={phone}
           placeholder={"휴대전화 번호를 입력하세요"}
         />
 
         <div className={SignUpFormStyles.signUpLabels}>이메일</div>
         <Input
           onChange={(e) => {
-            console.log(e.target.value);
+            dispatch(setEmail(e.target.value));
           }}
+          value={email}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"EX) gildong@example.com"}
         />
@@ -128,7 +77,7 @@ function SignUpForm() {
         <div className={SignUpFormStyles.signUpLabels}>아이디</div>
         <Input
           onChange={(e) => {
-            console.log(e.target.value);
+            dispatch(setId(e.target.value));
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"4~12자리 영소문자, 숫자"}
@@ -139,7 +88,7 @@ function SignUpForm() {
           type="password"
           // value={password}
           onChange={(e) => {
-            console.log(e.target.value);
+            dispatch(setPassword(e.target.value));
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"8~20자리 영문 대소문자, 숫자, 특수문자 포함"}
@@ -149,7 +98,7 @@ function SignUpForm() {
         <Input
           type="password"
           onChange={(e) => {
-            console.log(e.target.value);
+            dispatch(setPasswordChk(e.target.value));
           }}
           className={SignUpFormStyles.signUpInputs}
           placeholder={"비밀번호 확인"}
