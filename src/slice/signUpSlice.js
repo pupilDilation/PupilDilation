@@ -26,7 +26,7 @@ const signUpSlice = createSlice({
       state.email = action.payload;
     },
     setPhone(state, action) {
-      state.email = action.payload;
+      state.phone = action.payload;
     },
     setIsValidForm(state) {
       if (
