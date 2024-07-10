@@ -16,7 +16,7 @@
 }
 /* 좌석 선택시 */
 .reserved {
-  background-color: #6feaf6;
+  background-color: #fad744;
 }
 
 /* seatSection */
@@ -72,4 +72,5 @@ h2 {
   justify-content: center;
   text-align: center;
   font-size: 50px;
+  padding-top: 0.1em;
 }
