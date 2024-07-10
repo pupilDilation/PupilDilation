@@ -1,5 +1,5 @@
 .headerContainer {
-  width: 100%;
+  width: calc(100vw * 400 / 400);
 }
 
 .firstHeader {

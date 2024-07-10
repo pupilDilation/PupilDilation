@@ -11,3 +11,7 @@
 .routesWrapper {
   min-height: calc(100% - 300px);
 }
+
+.wrapper h1 {
+  font-weight: bold;
+}
