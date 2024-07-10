@@ -6,14 +6,6 @@ import UserInfoStyles from "./UserInfo.module.css";
 
 function UserInfo(props) {
   const navigate = useNavigate();
-
-  /*const name
-  const id
-  const email
-  const phonenumber
-  const profilePic
-  */
-
   const changePasswordClick = () => {
     navigate("/");
   };
