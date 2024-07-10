@@ -6,6 +6,7 @@ const initialState = {
   passwordChk: "",
   email: "",
   phone: "",
+  name: "",
   isValidForm: false,
 };
 
@@ -27,6 +28,9 @@ const signUpSlice = createSlice({
     },
     setPhone(state, action) {
       state.phone = action.payload;
+    },
+    setName(state, action) {
+      state.name = action.payload;
     },
     setIsValidForm(state) {
       if (
@@ -52,5 +56,6 @@ export const {
   setEmail,
   setPhone,
   setIsValidForm,
+  setName,
 } = signUpSlice.actions;
 export default signUpSlice.reducer;
