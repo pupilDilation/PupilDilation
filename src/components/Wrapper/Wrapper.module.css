@@ -1,0 +1,7 @@
+.routerWrapper {
+  height: 100vh;
+}
+
+.routesWrapper {
+  min-height: calc(100% - 300px);
+}
