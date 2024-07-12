@@ -12,7 +12,8 @@
 
 /* 예매가능한 좌석 */
 .available {
-  background-color: #fff;
+  background-color: #727272;
+  cursor: pointer;
 }
 /* 좌석 선택시 */
 .reserved {
@@ -26,6 +27,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: auto;
+  margin: 10px;
 }
 
 .seatSection {
@@ -39,31 +42,33 @@
   .seatSection {
     flex-direction: row;
   }
+  .reserveSection {
+    margin-left: 2em;
+  }
+  .seatGrid {
+    margin-bottom: 2em;
+  }
 }
 
 /* 좌석 부분 그리드 */
 .seatGrid {
   display: grid;
   grid-template-columns: repeat(5, 50px);
-  gap: 10px;
+  gap: calc(100vw * 4 / 400);
   flex-wrap: wrap;
-  overflow: auto;
+  position: relative;
   box-sizing: border-box;
   max-width: 100%;
 }
 
-.selected {
-  margin-top: 20px;
-  font-weight: bold;
-}
-
+/* 스테이지 부분 */
 .screen {
   background-color: gray;
   height: 70px;
   width: 50%;
   margin: 15px 0;
   transform: rotateX(-45deg);
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+  box-shadow: 0 3px 10px rgba(2, 1, 1, 0.7);
   justify-content: center;
 }
 
