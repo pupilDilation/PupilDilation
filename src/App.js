@@ -1,6 +1,7 @@
 import React from "react";
 import Main from "./pages/Main";
 import LoginPage from "./pages/Login";
+import MyPage from "./pages/MyPage";
 import SignUpPage from "./pages/SignUp";
 import DetailPage from "./pages/DetailPage";
 import Header from "./components/Header/Header";

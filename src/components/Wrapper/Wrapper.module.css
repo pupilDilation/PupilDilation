@@ -1,7 +1,17 @@
+.myPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .routerWrapper {
   height: 100vh;
 }
 
 .routesWrapper {
   min-height: calc(100% - 300px);
+}
+
+.wrapper h1 {
+  font-weight: bold;
 }

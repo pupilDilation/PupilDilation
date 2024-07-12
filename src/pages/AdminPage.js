@@ -4,36 +4,18 @@ import ButtonStyles from "../components/Button/Button.module.css";
 import UserInfo from "../components/UserInfo/UserInfo";
 import Wrapper from "../components/Wrapper/Wrapper";
 import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
-import Ticket from "../components/Ticket/Ticket";
 
-function MyPage() {
+function AdminPage() {
   return (
-    <Wrapper className={WrapperStyles.myPageContainer}>
+    <Wrapper>
+      <h1>AdminPage</h1>
       <div className={ButtonStyles.myPageBtnContainer}>
         <Button className={ButtonStyles.headerBtn}>회원정보 아이콘</Button>
         <Button className={ButtonStyles.headerBtn}>예매내역</Button>
       </div>
-      <UserInfo
-        name="정은찬"
-        id="chany077"
-        email="chany077@gmail.com"
-        phonenumber="01040494663"
-      />
-      <Wrapper className={WrapperStyles.wrapper}>
-        <h1>예매 내역</h1>
-      </Wrapper>
-      <Ticket
-        title="제목"
-        date="날짜"
-        payment="결제상태"
-        location="학관104호"
-        seat="A열8번"
-        enterTime="시작시간"
-      />
+      <UserInfo />
     </Wrapper>
   );
 }
 
-//Use .map() in the future
-
-export default MyPage;
+export default AdminPage;
