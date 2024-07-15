@@ -2,7 +2,7 @@ import React from "react";
 import Main from "./pages/Main";
 import LoginPage from "./pages/Login";
 import SignUpPage from "./pages/SignUp";
-import DetailPage from "./pages/DetailPage"
+import DetailPage from "./pages/DetailPage";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
