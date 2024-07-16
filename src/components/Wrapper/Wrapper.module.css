@@ -1,3 +1,9 @@
+.myPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .routerWrapper {
   height: 100vh;
 }
@@ -8,4 +14,6 @@
 
 .dummyWrapper {
   width: 100%;
+.wrapper h1 {
+  font-weight: bold;
 }

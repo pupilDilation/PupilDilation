@@ -1,0 +1,73 @@
+.ticketContainer {
+  width: calc(100vw * 330 / 400);
+  height: calc(100vw * 120 / 400);
+  padding: calc(100vw * 10 / 400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  margin-top: calc(100vw * 15 / 400);
+  background-color: transparent;
+}
+
+.ticketPicture {
+  background-image: url("../../../public/img/ticket.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: calc(100vw * 128 / 400);
+  height: calc(100vw * 80 / 400);
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-top: calc(100vw * 15 / 400);
+  margin-right: calc(100vw * 30 / 400);
+}
+
+.ticketInfo {
+  width: calc(100vw * 50 / 400);
+  margin: calc(100vw * 10 / 400) calc(100vw * 50 / 400) calc(100vw * 5 / 400) 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: calc(100vw * 12 / 400);
+}
+.showInfoLink {
+  margin-left: calc(100vw * 10 / 400);
+  font-size: calc(100vw * 11 / 400);
+}
+
+.ticketQRButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100vw * 50 / 400);
+}
+
+.showPoster {
+  width: calc(100vw * 40 / 400);
+  margin-left: calc(100vw * 25 / 400);
+}
+.seatNumber {
+  margin-left: calc(100vw * 15 / 400);
+}
+
+.labels {
+  font-weight: bold;
+}
+.firstLine {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  border-color: black;
+  border-bottom-width: thick;
+  font-size: calc(100vw * 12 / 400);
+}
+
+.secondLine {
+  width: calc(100vw * 320 / 400);
+  height: calc(100vw * 120 / 400);
+  display: flex;
+  justify-content: left;
+}

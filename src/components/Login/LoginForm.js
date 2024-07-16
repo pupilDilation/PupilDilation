@@ -37,6 +37,8 @@ function LoginForm() {
       if (data[i].username === id && data[i].password === password) {
         dispatch(loginSuccess());
         navigate("/");
+        dispatch(setId(""));
+        dispatch(setPassword(""));
       }
     }
   };

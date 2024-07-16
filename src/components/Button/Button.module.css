@@ -1,18 +1,30 @@
 .headerBtn {
   border: none;
   background-color: transparent;
-  width: calc(100vw * 60 / 400);
-  height: 23px;
   color: #ffffff;
   font-family: Noto Sans KR;
   font-size: calc(100vw * 12 / 400);
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin-left: calc(100vw * 5 / 400);
   margin-right: calc(100vw * 5 / 400);
 }
 
+.changePasswordBtn {
+  border: none;
+  background-color: transparent;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 10 / 400);
+  font-weight: 900;
+}
+
+.myPageBtnContainer {
+  width: calc(100vw * 50 / 400);
+  height: calc(100vw * 25 / 400);
+  display: flex;
+  align-items: left;
+  margin-right: calc(100vw * 60 / 400);
+}
 /*
 버튼 공통요소 묶음 (loginForm)
 */

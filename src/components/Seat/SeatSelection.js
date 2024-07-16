@@ -2,6 +2,8 @@ import React from "react";
 import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
 import { useSelector } from "react-redux";
+import SeatSelectSection from "../SeatSelectInfo/SeatSelectSection";
+import SeatType from "../SeatTypeInfo/SeatTypeInfo";
 
 const SeatSelection = () => {
   const rows = 5; // 행의 수
@@ -27,12 +29,11 @@ const SeatSelection = () => {
       <div className={SeatStyle.screen}>
         <h2>STAGE</h2>
       </div>
+      <SeatType />
       <div className={SeatStyle.seatSection}>
         <div className={SeatStyle.seatGrid}>{generateSeats()}</div>
-        <div className={SeatStyle.selected}>
-          {selectedSeats.length} Selected Seats: {selectedSeats.join(", ")}
-          <p>Total {selectedSeats.length * 12000} </p>
-        </div>
+        <SeatSelectSection />
+        <div className={SeatStyle.seatTypeGrid}></div>
       </div>
     </div>
   );
