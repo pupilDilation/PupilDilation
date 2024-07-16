@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
 import Seat from "./components/Seat/SeatSelection";
+import Scanner from "./pages/Scanner";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="/my-page" element={<MyPage />}></Route>
               <Route path="/detail" element={<div>Detail Page</div>}></Route>
               <Route path="/seat" element={<Seat />}></Route>
+              <Route path="/scanner" element={<Scanner></Scanner>}></Route>
             </Routes>
           </Wrapper>
           <Footer />

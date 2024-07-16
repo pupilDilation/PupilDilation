@@ -12,6 +12,8 @@
   min-height: calc(100% - 300px);
 }
 
+.dummyWrapper {
+  width: 100%;
 .wrapper h1 {
   font-weight: bold;
 }
