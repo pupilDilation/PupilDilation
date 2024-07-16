@@ -5,3 +5,7 @@
 .routesWrapper {
   min-height: calc(100% - 300px);
 }
+
+.dummyWrapper {
+  width: 100%;
+}
