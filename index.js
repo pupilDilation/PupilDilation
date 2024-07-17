@@ -14,6 +14,10 @@ const db = require("./models");
 // Routers
 const userRouter = require("./routes/Users");
 app.use("/users", userRouter);
+
+const concertRouter = require("./routes/Concerts");
+app.use("/concert", concertRouter);
+
 app.use(express.static(path.join(__dirname, "pupil/build")));
 
 app.get("/", function (req, res) {
