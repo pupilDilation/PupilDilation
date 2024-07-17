@@ -1,5 +1,6 @@
 // express rest api 생성을 위한 템플릿
 const express = require("express");
+const path = require("path");
 const app = express();
 const port = 3001;
 
@@ -13,6 +14,11 @@ const db = require("./models");
 // Routers
 const userRouter = require("./routes/Users");
 app.use("/users", userRouter);
+app.use(express.static(path.join(__dirname, "pupil/build")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "pupil/build/index.html"));
+});
 
 db.sequelize.sync().then(() => {
   app.listen(port, () => {
