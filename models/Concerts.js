@@ -1,29 +1,56 @@
+const { FOREIGNKEYS } = require("sequelize/lib/query-types");
+
 module.exports = (sequelize, DataTypes) => {
   const Concerts = sequelize.define("Concerts", {
     concertId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    title: {
+    concertTitle: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    content: {
+    concertLocation: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    price: {
-      type: DataTypes.STRING,
+    concertPrice: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    explain: {
-      type: DataTypes.STRING,
+    concertRow: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
-    people: {
+    concertCol: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    concertImg: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    concertPlot: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    userId: {
       type: DataTypes.STRING,
       allowNull: false,
+      //FK
     },
   });
 
