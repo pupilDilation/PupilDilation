@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     seatId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      //FK
+      //FK make need
     },
     createdAt: {
       type: DataTypes.DATE,
