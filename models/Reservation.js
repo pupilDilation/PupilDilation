@@ -1,29 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-  const Users = sequelize.define("User", {
-    userId: {
-      type: DataTypes.STRING,
+  const Reservation = sequelize.define("Reservation", {
+    rsvId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    userName: {
+    userId: {
       type: DataTypes.STRING,
       allowNull: false,
+      //FK
     },
-    userPw: {
-      type: DataTypes.STRING,
+    sessionId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      //FK
     },
-    userEmail: {
-      type: DataTypes.STRING,
+    seatId: {
+      type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    userPhone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    userType: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      //FK
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -39,5 +34,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  return Users;
+  return Reservation;
 };
