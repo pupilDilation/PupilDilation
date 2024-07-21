@@ -9,3 +9,7 @@ const getCurrentConcerts = async () => {
   );
   return rows;
 };
+
+module.exports = {
+  getCurrentConcerts,
+};
