@@ -35,6 +35,50 @@ const getCurrentConcerts = async () => {
   return rows;
 };
 
+const addConcert = async (concertData) => {
+  const {
+    concert_id,
+    concert_title,
+    concert_location,
+    concert_price,
+    concert_row,
+    concert_col,
+    concert_img,
+    concert_plot,
+    user_id,
+  } = concertData;
+  const [result] = await db.query(
+    `
+    INSERT INTO concert (concert_id, concert_title, concert_location, concert_price, concert_row, concert_col, concert_img, concert_plot, user_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    [
+      concert_id,
+      concert_title,
+      concert_location,
+      concert_price,
+      concert_row,
+      concert_col,
+      concert_img,
+      concert_plot,
+      user_id,
+    ]
+  );
+  return result;
+};
+
+const addSession = async (sessionData) => {
+  const { session_id, session_date, concert_id } = sessionData;
+  const [result] = await db.query(
+    `
+    INSERT INTO session (session_id, session_date, concert_id)
+    VALUES (?, ?, ?)`,
+    [session_id, session_date, concert_id]
+  );
+  return result;
+};
+
 module.exports = {
   getCurrentConcerts,
+  addConcert,
+  addSession,
 };
