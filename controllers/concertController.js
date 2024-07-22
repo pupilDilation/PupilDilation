@@ -9,20 +9,20 @@ const getUpcomingConcerts = async (req, res) => {
   }
 };
 
-const addConcert = async (req, res) => {
+const postConcert = async (req, res) => {
   try {
     const concertData = req.body;
-    const result = await concertModel.addConcert(concertData);
+    const result = await concertModel.postConcert(concertData);
     res.status(201).json({ message: "Concert added successfully.", result });
   } catch (error) {
     res.status(500).json({ error: "Failed to add concert." });
   }
 };
 
-const addSession = async (req, res) => {
+const postSession = async (req, res) => {
   try {
     const sessionData = req.body;
-    const result = await concertModel.addSession(sessionData);
+    const result = await concertModel.postSession(sessionData);
     res.status(201).json({ message: "Session added successfully.", result });
   } catch (error) {
     res
@@ -31,8 +31,38 @@ const addSession = async (req, res) => {
   }
 };
 
+const putConcert = async (req, res) => {
+  try {
+    const concertId = req.params.concert_id;
+    const concertData = req.body;
+
+    const result = await concertModel.putConcert(concertId, concertData);
+    res.status(200).json({ message: "Concert updated successfully.", result });
+  } catch (error) {
+    console.error("Error updating concert:", error); // Log error details
+    res
+      .status(500)
+      .json({ error: "Failed to update concert.", details: error.message });
+  }
+};
+
+const deleteConcert = async (req, res) => {
+  try {
+    const concertId = req.params.concert_id;
+    const result = await concertModel.deleteConcert(concertId);
+    res.status(200).json({ message: "Concert deleted successfully.", result });
+  } catch (error) {
+    console.error("Error deleting concert:", error); // Log error details
+    res
+      .status(500)
+      .json({ error: "Failed to delete concert.", details: error.message });
+  }
+};
+
 module.exports = {
   getUpcomingConcerts,
-  addConcert,
-  addSession,
+  postConcert,
+  postSession,
+  putConcert,
+  deleteConcert,
 };

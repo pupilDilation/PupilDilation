@@ -35,7 +35,7 @@ const getCurrentConcerts = async () => {
   return rows;
 };
 
-const addConcert = async (concertData) => {
+const postConcert = async (concertData) => {
   const {
     concert_id,
     concert_title,
@@ -66,7 +66,52 @@ const addConcert = async (concertData) => {
   return result;
 };
 
-const addSession = async (sessionData) => {
+const putConcert = async (concertId, concertData) => {
+  const {
+    concert_title,
+    concert_location,
+    concert_price,
+    concert_row,
+    concert_col,
+    concert_img,
+    concert_plot,
+    user_id,
+  } = concertData;
+
+  try {
+    const [result] = await db.query(
+      `
+      UPDATE concert 
+      SET 
+        concert_title = ?,
+        concert_location = ?,
+        concert_price = ?,
+        concert_row = ?,
+        concert_col = ?,
+        concert_img = ?,
+        concert_plot = ?,
+        user_id = ?
+      WHERE concert_id = ?`,
+      [
+        concert_title,
+        concert_location,
+        concert_price,
+        concert_row,
+        concert_col,
+        concert_img,
+        concert_plot,
+        user_id,
+        concertId,
+      ]
+    );
+    return result;
+  } catch (error) {
+    console.error("Database error:", error); // Log error details
+    throw error; // Rethrow to be caught by the controller
+  }
+};
+
+const postSession = async (sessionData) => {
   const { session_id, session_date, concert_id } = sessionData;
   const [result] = await db.query(
     `
@@ -77,8 +122,26 @@ const addSession = async (sessionData) => {
   return result;
 };
 
+const deleteConcert = async (concertId) => {
+  try {
+    const [result] = await db.query(
+      `
+      UPDATE concert 
+      SET deleted_at = NOW()
+      WHERE concert_id = ?`,
+      [concertId]
+    );
+    return result;
+  } catch (error) {
+    console.error("Database error:", error); // Log error details
+    throw error; // Rethrow to be caught by the controller
+  }
+};
+
 module.exports = {
   getCurrentConcerts,
-  addConcert,
-  addSession,
+  postConcert,
+  postSession,
+  putConcert,
+  deleteConcert,
 };
