@@ -15,7 +15,9 @@ const postConcert = async (req, res) => {
     const result = await concertModel.postConcert(concertData);
     res.status(201).json({ message: "Concert added successfully.", result });
   } catch (error) {
-    res.status(500).json({ error: "Failed to add concert." });
+    res
+      .status(500)
+      .json({ error: "Failed to add concert.", details: error.message });
   }
 };
 
