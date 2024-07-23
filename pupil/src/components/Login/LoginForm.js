@@ -7,7 +7,7 @@ import useClassNameJoin from "../../hooks/useClassNameJoin";
 import { loginSuccess, setId, setPassword } from "../../slice/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 function LoginForm() {
   const id = useSelector((state) => state.login.id);
@@ -17,31 +17,31 @@ function LoginForm() {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("/users")
-      .then((response) => {
-        console.log("Fetched data: ", response.data);
-        setData(response.data);
-      })
-      .catch((error) => console.error("Error fetching the JSON data:", error));
-    console.log(data);
-  }, []);
-
   // useEffect(() => {
-  //   fetch("/user")
+  //   axios
+  //     .get("/users")
   //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! Status: ${response.status}`);
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       console.log("Fetched data: ", data);
-  //       setData(data);
+  //       console.log("Fetched data: ", response.data);
+  //       setData(response.data);
   //     })
   //     .catch((error) => console.error("Error fetching the JSON data:", error));
+  //   console.log(data);
   // }, []);
+
+  useEffect(() => {
+    fetch("/user")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Fetched data: ", data);
+        setData(data);
+      })
+      .catch((error) => console.error("Error fetching the JSON data:", error));
+  }, []);
 
   const handleLoginClick = () => {
     const User = data.find(

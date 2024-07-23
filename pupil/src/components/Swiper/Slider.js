@@ -13,12 +13,12 @@ function Slider() {
   const [concerts, setConcerts] = useState([]);
 
   // async await 로 concert 데이터 가져오기
-  async function getMovies() {
-    const json = await (await fetch("dummyData/movies.json")).json();
+  async function getConcerts() {
+    const json = await (await fetch("http://localhost:3001/concerts")).json();
     setConcerts(json);
   }
   useEffect(() => {
-    getMovies();
+    getConcerts();
   }, []);
 
   // module.css 적용이 불가능한 Swiper 컴포넌트의 스타일 obj
@@ -40,7 +40,7 @@ function Slider() {
       style={SWIPER_STYLE}
     >
       {concerts.map((item, index) => (
-        <SwiperSlide key={item.title} className={styles.swiperSlide}>
+        <SwiperSlide key={item.concert_id} className={styles.swiperSlide}>
           <Slide item={item}></Slide>
         </SwiperSlide>
       ))}
