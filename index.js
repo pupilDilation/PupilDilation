@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const path = require("path");
 const app = express();
 const port = 3001;
+const cors = require("cors");
 
 // sequelize db models configuration files
 // const db = require("./models");
@@ -16,6 +17,7 @@ const db1 = require("./config/dbConfig");
 // client가 서버로 보내는 요청이 json 형식일 때
 // javascript 오브젝트로 변환해서 req.body 에 저장
 app.use(express.json());
+app.use(cors());
 app.use("/concerts", concertRoutes);
 app.use("/users", userRoutes);
 

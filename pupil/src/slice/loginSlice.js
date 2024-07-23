@@ -4,6 +4,7 @@ const initialState = {
   isLoggedIn: false,
   id: "",
   password: "",
+  userType: "",
   isValidForm: false,
 };
 
@@ -27,6 +28,9 @@ const loginSlice = createSlice({
         state.isValidForm = false;
       }
     },
+    setUserType(state, action) {
+      state.userType = action.payload;
+    },
 
     loginSuccess: (state) => {
       state.isLoggedIn = true;
@@ -37,6 +41,12 @@ const loginSlice = createSlice({
   },
 });
 
-export const { loginSuccess, logout, setId, setPassword, setIsValidForm } =
-  loginSlice.actions;
+export const {
+  loginSuccess,
+  logout,
+  setUserType,
+  setId,
+  setPassword,
+  setIsValidForm,
+} = loginSlice.actions;
 export default loginSlice.reducer;

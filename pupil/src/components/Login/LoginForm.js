@@ -29,19 +29,26 @@ function LoginForm() {
   // }, []);
 
   useEffect(() => {
-    fetch("/user")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Fetched data: ", data);
-        setData(data);
-      })
+    fetch("/dummyData/userData.json")
+      .then((response) => response.json())
+      .then((data) => setData(data))
       .catch((error) => console.error("Error fetching the JSON data:", error));
   }, []);
+
+  // useEffect(() => {
+  //   fetch("/user")
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       console.log("Fetched data: ", data);
+  //       setData(data);
+  //     })
+  //     .catch((error) => console.error("Error fetching the JSON data:", error));
+  // }, []);
 
   const handleLoginClick = () => {
     const User = data.find(
