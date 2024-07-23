@@ -7,4 +7,11 @@ const pool = mysql.createPool({
   database: "pupildilation_test",
 });
 
+// const pool = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   password: "4784",
+//   database: "pupildilation_test",
+// });
+
 module.exports = pool.promise();
