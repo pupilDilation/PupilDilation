@@ -4,6 +4,7 @@ import "swiper/css";
 import styles from "./slider.module.css";
 import Slide from "./Slide";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 /**
  * [Component] Slider : 공연 포스터 auto play 캐러셀
@@ -13,12 +14,18 @@ function Slider() {
   const [concerts, setConcerts] = useState([]);
 
   // async await 로 concert 데이터 가져오기
-  async function getMovies() {
-    const json = await (await fetch("dummyData/movies.json")).json();
-    setConcerts(json);
+  async function getConcerts() {
+    try {
+      const response = await axios.get("http://localhost:3001/concerts");
+      console.log("API Response:", response.data);
+      setConcerts(response.data);
+    } catch (error) {
+      console.error("Error fetching the JSON data:", error);
+    }
   }
+
   useEffect(() => {
-    getMovies();
+    getConcerts();
   }, []);
 
   // module.css 적용이 불가능한 Swiper 컴포넌트의 스타일 obj
@@ -39,9 +46,9 @@ function Slider() {
       }}
       style={SWIPER_STYLE}
     >
-      {concerts.map((item, index) => (
-        <SwiperSlide key={item.title} className={styles.swiperSlide}>
-          <Slide item={item}></Slide>
+      {concerts.map((item) => (
+        <SwiperSlide key={item.concert_id} className={styles.swiperSlide}>
+          <Slide item={item} />
         </SwiperSlide>
       ))}
     </Swiper>

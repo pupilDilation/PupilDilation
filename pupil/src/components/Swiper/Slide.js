@@ -6,16 +6,16 @@ function Slide({ item }) {
     <Link to={"/detail"} className={styles.sliderLink}>
       <div className={styles.sliderContainer}>
         <div className={styles.sliderImgContainer}>
-          {item.imgURL != null ? (
-            <img src={item.imgURL} alt={item.title} />
+          {item.concert_img ? (
+            <img src={item.concert_img} alt={item.concert_title} />
           ) : (
-            <img src={"/img/loadImage.png"} alt={item.title} />
+            <img src={"/img/loadImage.png"} alt={item.concert_title} />
           )}
         </div>
         <dl className={styles.slideInfo}>
-          <dt>{item.title}</dt>
-          <dd>{item.venue}</dd>
-          <dd>{item.screening_period}</dd>
+          <dt>{item.concert_title}</dt>
+          <dd>{item.concert_location}</dd>
+          <dd>{item.session_date}</dd>
         </dl>
       </div>
     </Link>
