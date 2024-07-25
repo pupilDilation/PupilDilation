@@ -1,0 +1,72 @@
+[
+  {
+    "title": "Inception",
+    "year": 2010,
+    "plot": "A skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state.",
+    "venue": "Dreamscape Theater",
+    "screening_period": "2024.7.1 ~ 8.30"
+  },
+  {
+    "title": "The Matrix",
+    "year": 1999,
+    "plot": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+    "venue": "Cyberworld Cinema",
+    "screening_period": "2024.8.15 ~ 10.5"
+  },
+  {
+    "title": "The Godfather",
+    "year": 1972,
+    "plot": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    "venue": "Corleone Theater",
+    "screening_period": "2024.6.7 ~ 9.29"
+  },
+  {
+    "title": "The Dark Knight",
+    "year": 2008,
+    "plot": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+    "venue": "Gotham City Cinema",
+    "screening_period": "2024.7.10 ~ 9.20"
+  },
+  {
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "plot": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "venue": "Retro Film House",
+    "screening_period": "2024.8.1 ~ 10.10"
+  },
+  {
+    "title": "Forrest Gump",
+    "year": 1994,
+    "plot": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal, and other historical events unfold from the perspective of an Alabama man with an IQ of 75.",
+    "venue": "Historic View Cinema",
+    "screening_period": "2024.7.5 ~ 9.15"
+  },
+  {
+    "title": "Fight Club",
+    "year": 1999,
+    "plot": "An insomniac office worker and a devil-may-care soapmaker form an underground fight club that evolves into much more.",
+    "venue": "Rebel Screen Theater",
+    "screening_period": "2024.8.20 ~ 11.1"
+  },
+  {
+    "title": "Interstellar",
+    "year": 2014,
+    "plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "venue": "Cosmos Cinema",
+    "screening_period": "2024.9.1 ~ 11.30"
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "plot": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    "venue": "Redemption Theater",
+    "screening_period": "2024.7.15 ~ 9.25"
+  },
+  {
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "year": 2001,
+    "plot": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
+    "venue": "Middle-earth Cinema",
+    "screening_period": "2024.6.20 ~ 9.10"
+  }
+]
