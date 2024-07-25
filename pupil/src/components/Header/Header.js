@@ -5,20 +5,29 @@ import HeaderStyles from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../slice/loginSlice";
+import { setUserType } from "../../slice/loginSlice";
 
 function Header() {
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  const userType = useSelector((state) => state.login.userType);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogoutClick = () => {
     dispatch(logout());
+    dispatch(setUserType(""));
     navigate("/");
   };
 
   return (
     <div className={HeaderStyles.headerContainer}>
-      <div className={HeaderStyles.firstHeader}>
+      <div
+        className={
+          !(userType === "admin" || userType === "super")
+            ? HeaderStyles.firstUserHeader
+            : HeaderStyles.firstAdminHeader
+        }
+      >
         {isLoggedIn ? (
           <div className={HeaderStyles.firstHeaderBtnContainer}>
             <Button

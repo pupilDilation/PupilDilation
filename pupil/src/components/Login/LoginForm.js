@@ -7,6 +7,7 @@ import useClassNameJoin from "../../hooks/useClassNameJoin";
 import { loginSuccess, setId, setPassword } from "../../slice/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { setUserType } from "../../slice/loginSlice";
 // import axios from "axios";
 
 function LoginForm() {
@@ -35,31 +36,17 @@ function LoginForm() {
       .catch((error) => console.error("Error fetching the JSON data:", error));
   }, []);
 
-  // useEffect(() => {
-  //   fetch("/user")
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! Status: ${response.status}`);
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       console.log("Fetched data: ", data);
-  //       setData(data);
-  //     })
-  //     .catch((error) => console.error("Error fetching the JSON data:", error));
-  // }, []);
-
   const handleLoginClick = () => {
-    const User = data.find(
-      (User) => User.user_id === id && User.user_pw === password
+    const user = data.find(
+      (user) => user.username === id && user.password === password
     );
-    if (User) {
+    if (user) {
       dispatch(loginSuccess());
+      dispatch(setUserType(user.userType));
+      console.log(user.userType);
       navigate("/");
       dispatch(setId(""));
       dispatch(setPassword(""));
-      console.log(id, password);
     } else {
       console.error("Invalid username or password");
     }
@@ -72,21 +59,19 @@ function LoginForm() {
       </div>
       <div className={LoginFormStyles.inputWrapper}>
         <Input
-          type="text"
+          type="id"
           value={id}
           onChange={(e) => {
             dispatch(setId(e.target.value));
-            console.log(id);
           }}
           className={LoginFormStyles.input1}
           placeholder={"아이디"}
         />
         <Input
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => {
             dispatch(setPassword(e.target.value));
-            console.log(id);
           }}
           className={LoginFormStyles.input1}
           placeholder={"비밀번호"}
