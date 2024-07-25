@@ -1,5 +1,6 @@
 // express rest api 생성을 위한 템플릿
 const express = require("express");
+// Routes
 const concertRoutes = require("./routes/concertRoutes");
 const userRoutes = require("./routes/userRoutes");
 const path = require("path");
