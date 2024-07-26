@@ -2,7 +2,7 @@ import React from "react";
 import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
 import { useSelector } from "react-redux";
-import SeatSelectSection from "../SeatSelectInfo/SeatSelectSection";
+import SeatSelectSection from "./SeatSelectSection";
 import SeatType from "../SeatTypeInfo/SeatTypeInfo";
 
 const SeatSelection = () => {
