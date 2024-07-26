@@ -3,7 +3,7 @@ const db = require("../config/dbConfig");
 /**
  * 상영 예정이 7일 이내로 남은 session의 concert_id와 session_date 가져오기
  */
-const getCurrentConcerts = async () => {
+const getConcerts = async () => {
   const [rows] = await db.query(`
     SELECT 
       c.concert_id,
@@ -26,13 +26,21 @@ const getCurrentConcerts = async () => {
         session s ON c.concert_id = s.concert_id
     WHERE 
         s.session_date >= NOW()
-        AND s.session_date <= DATE_ADD(NOW(), INTERVAL 1 WEEK)
+        AND s.session_date <= DATE_ADD(NOW(), INTERVAL 4 WEEK)
         AND c.deleted_at IS NULL
         AND s.deleted_at IS NULL
     ORDER BY 
         s.session_date;
     `);
   return rows;
+};
+
+const getConcertById = async (concertId) => {
+  const [concert] = await db.query(
+    `SELECT * FROM tbconcert WHERE concert_id = ?`,
+    [concertId]
+  );
+  return concert;
 };
 
 const postConcert = async (concertData) => {
@@ -139,9 +147,10 @@ const deleteConcert = async (concertId) => {
 };
 
 module.exports = {
-  getCurrentConcerts,
+  getConcerts,
   postConcert,
   postSession,
   putConcert,
   deleteConcert,
+  getConcertById,
 };
