@@ -3,7 +3,7 @@ import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
 import { useSelector } from "react-redux";
 import SeatSelectSection from "./SeatSelectSection";
-import SeatType from "../SeatTypeInfo/SeatTypeInfo";
+import SeatType from "./SeatSelectSection.module.css";
 
 const SeatSelection = () => {
   const rows = 5; // 행의 수
