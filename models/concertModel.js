@@ -1,10 +1,33 @@
 const db = require("../config/dbConfig");
 
-/**
- * 상영 예정이 7일 이내로 남은 session의 concert_id와 session_date 가져오기
- */
 const getConcerts = async () => {
   const [rows] = await db.query(`
+    SELECT 
+      concert_id,
+      concert_title, 
+      concert_location,
+      concert_price,
+      concert_row,
+      concert_col, 
+      concert_img,
+      concert_plot, 
+      created_at, 
+      updated_at, 
+      deleted_at, 
+      user_id
+    FROM 
+        concert
+    WHERE 
+        deleted_at IS NULL
+    ORDER BY 
+        created_at;
+  `);
+  return rows;
+};
+
+const getConcertsInRange = async (endDays) => {
+  const [rows] = await db.query(
+    `
     SELECT 
       c.concert_id,
       c.concert_title, 
@@ -18,26 +41,31 @@ const getConcerts = async () => {
       c.updated_at, 
       c.deleted_at, 
       c.user_id,
-      s.session_id,
-      s.session_date
+      MIN(s.session_date) as earliest_session_date
     FROM 
         concert c
     JOIN 
         session s ON c.concert_id = s.concert_id
     WHERE 
         s.session_date >= NOW()
-        AND s.session_date <= DATE_ADD(NOW(), INTERVAL 4 WEEK)
+        AND s.session_date <= DATE_ADD(NOW(), INTERVAL ? DAY)
         AND c.deleted_at IS NULL
         AND s.deleted_at IS NULL
+    GROUP BY 
+        c.concert_id
+    HAVING 
+        MAX(s.session_date) <= DATE_ADD(NOW(), INTERVAL ? DAY)
     ORDER BY 
-        s.session_date;
-    `);
+        earliest_session_date;
+  `,
+    [endDays, endDays]
+  );
   return rows;
 };
 
 const getConcertById = async (concertId) => {
   const [concert] = await db.query(
-    `SELECT * FROM tbconcert WHERE concert_id = ?`,
+    `SELECT * FROM concert WHERE concert_id = ?`,
     [concertId]
   );
   return concert;
@@ -119,17 +147,6 @@ const putConcert = async (concertId, concertData) => {
   }
 };
 
-const postSession = async (sessionData) => {
-  const { session_id, session_date, concert_id } = sessionData;
-  const [result] = await db.query(
-    `
-    INSERT INTO session (session_id, session_date, concert_id)
-    VALUES (?, ?, ?)`,
-    [session_id, session_date, concert_id]
-  );
-  return result;
-};
-
 const deleteConcert = async (concertId) => {
   try {
     const [result] = await db.query(
@@ -149,8 +166,8 @@ const deleteConcert = async (concertId) => {
 module.exports = {
   getConcerts,
   postConcert,
-  postSession,
   putConcert,
   deleteConcert,
   getConcertById,
+  getConcertsInRange,
 };
