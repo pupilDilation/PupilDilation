@@ -7,6 +7,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../slice/loginSlice";
 import { setUserType } from "../../slice/loginSlice";
 
+/**
+ * @author: 248Kobe
+ * @returns: 헤더 컴포넌트
+ * @description:
+ * 로그인, 로그아웃, 회원가입, 마이페이지, 검색 버튼 포함
+ * 로그인 상태 관리: admin, superadmin 일 때 파란색, user 일 때 빨간색
+ */
 function Header() {
   const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
   const userType = useSelector((state) => state.login.userType);
@@ -23,7 +30,7 @@ function Header() {
     <div className={HeaderStyles.headerContainer}>
       <div
         className={
-          !(userType === "admin" || userType === "super")
+          !(userType === "admin" || userType === "super") //userType입 admin or super 일 경우 헤더 변경
             ? HeaderStyles.firstUserHeader
             : HeaderStyles.firstAdminHeader
         }
