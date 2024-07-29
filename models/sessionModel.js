@@ -2,7 +2,7 @@ const db = require("../config/dbConfig");
 
 const getSessions = async (concertId) => {
   const [rows] = await db.query(
-    `SELECT * FROM tbsession WHERE concert_id = ? AND deleted_at IS NULL`,
+    `SELECT * FROM session WHERE concert_id = ? AND deleted_at IS NULL`,
     [concertId]
   );
   return rows;
@@ -10,7 +10,7 @@ const getSessions = async (concertId) => {
 
 const getSessionById = async (concertId, sessionId) => {
   const [rows] = await db.query(
-    `SELECT * FROM tbsession WHERE concert_id = ? AND session_id = ? AND deleted_at IS NULL`,
+    `SELECT * FROM session WHERE concert_id = ? AND session_id = ? AND deleted_at IS NULL`,
     [concertId, sessionId]
   );
   return rows[0];

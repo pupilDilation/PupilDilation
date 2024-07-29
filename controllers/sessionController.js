@@ -1,4 +1,4 @@
-const concertModel = require("../models/sessionModel");
+const sessionModel = require("../models/sessionModel");
 
 const getSessions = async (req, res) => {
   const concertId = req.params.concert_id;
@@ -20,7 +20,11 @@ const getSessionById = async (req, res) => {
       res.status(404).json({ error: "Session not found." });
     }
   } catch (error) {
-    res.status(500).json({ error: "Failed to fetch the session." });
+    res.status(500).json({
+      error: error.message,
+      concert_id,
+      session_id,
+    }); //debugging
   }
 };
 

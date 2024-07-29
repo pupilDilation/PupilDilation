@@ -17,6 +17,4 @@ router.post("/:concert_id/session", sessionController.postSession);
 router.put("/:concert_id/:session_id", sessionController.putSession);
 router.delete("/:concert_id/:session_id", sessionController.deleteSession);
 
-router.get("/concertByDate");
-
 module.exports = router;
