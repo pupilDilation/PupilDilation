@@ -10,6 +10,13 @@ import { useNavigate } from "react-router-dom";
 import { setUserType } from "../../slice/loginSlice";
 // import axios from "axios";
 
+/**
+ * @author: 248Kobe
+ * @return: 로그인 페이지에 들어갈 로그인 폼
+ * @description:
+ * handleLoginClick 온클릭 함수에서 유저 정보 확인 후 로그인 관리
+ * 로그인 시 로그인 상태 설정, 유저 타입 설정
+ */
 function LoginForm() {
   const id = useSelector((state) => state.login.id);
   const password = useSelector((state) => state.login.password);
@@ -41,10 +48,10 @@ function LoginForm() {
       (user) => user.username === id && user.password === password
     );
     if (user) {
-      dispatch(loginSuccess());
-      dispatch(setUserType(user.userType));
+      dispatch(loginSuccess()); //로그인 상태 변경
+      dispatch(setUserType(user.userType)); //유저 타입 설정
       console.log(user.userType);
-      navigate("/");
+      navigate("/"); //메인페이지로 이동
       dispatch(setId(""));
       dispatch(setPassword(""));
     } else {
