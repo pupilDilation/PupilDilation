@@ -15,34 +15,49 @@ router.post("/login", async (req, res) => {
       const user = rows[0]; // username은 unique 하기 때문에 0번째 원소가 user가 될 것
 
       // password 올바른지 체크 (bcrypt로 암호화된 password에 대해 user.password와 비교)
-      const isPwMatch = await bcrypt.compare(password, user.password);
+      const isPwMatch = await bcrypt.compare(password, user.user_password);
       if (isPwMatch) {
         req.session.userId = user.user_id;
         return res.json({ success: true });
       }
-      res.status(401).json({ success: false, message: "Invalid password" });
+      res.status(401).json({
+        success: false,
+        message: "Invalid password",
+        detail: error.message,
+      });
     }
     res.status(401).json({ success: false, message: "Invalid username" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, message: "Internal server error" });
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      detail: error.message,
+    });
+    console.error(error.message);
   }
 });
 
 router.post("/register", async (req, res) => {
-  const { id, name, password, email, phone } = JSON.stringify(req.body);
+  const { id, name, password, email, phone } = req.body;
 
   // password hash
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
+    const [ids] = await db.query("SELECT * FROM user WHERE user_id = ?", [id]);
+    if (ids.length > 0) {
+      res
+        .status(409)
+        .json({ success: false, message: "Id already exist error" });
+    }
+
     await db.query(
       "INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)",
       [id, name, hashedPassword, email, phone, "user"]
     );
     res.json({ success: true });
   } catch (error) {
-    error.message();
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
   }
