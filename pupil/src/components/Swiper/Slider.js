@@ -13,20 +13,27 @@ function Slider() {
   // 현재 공연 일정이 얼마 남지 않은 공연 리스트 저장하는 state
   const [concerts, setConcerts] = useState([]);
 
-  // async await 로 concert 데이터 가져오기
-  async function getConcerts() {
-    try {
-      const response = await axios.get("http://localhost:3001/concerts");
-      console.log("API Response:", response.data);
-      setConcerts(response.data);
-    } catch (error) {
-      console.error("Error fetching the JSON data:", error);
-    }
-  }
-
   useEffect(() => {
-    getConcerts();
+    async function fetchConcerts() {
+      try {
+        const response = await axios.get("http://localhost:3001/concerts");
+        setConcerts(response.data.concerts); // Adjust based on actual response structure
+      } catch (error) {
+        console.error("Error fetching the JSON data:", error);
+      }
+    }
+
+    fetchConcerts();
   }, []);
+  // async function getConcerts() {
+  //   try {
+  //     const response = await axios.get("http://localhost:3001/concerts");
+  //     console.log("API Response:", response.data);
+  //     setConcerts(response.data);
+  //   } catch (error) {
+  //     console.error("Error fetching the JSON data:", error);
+  //   }
+  // }
 
   // module.css 적용이 불가능한 Swiper 컴포넌트의 스타일 obj
   const SWIPER_STYLE = {
@@ -41,9 +48,6 @@ function Slider() {
       autoHeight
       spaceBetween={15}
       slidesPerView={3}
-      onSwiper={(swiper) => {
-        console.log(swiper);
-      }}
       style={SWIPER_STYLE}
     >
       {concerts.map((item) => (

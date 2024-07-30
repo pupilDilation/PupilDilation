@@ -5,11 +5,20 @@
   width: 100%;
 }
 
-.firstHeader {
+.firstUserHeader {
   display: flex;
   width: calc(100vw * 370 / 400);
   height: calc(100vw * 20 / 400);
   background: var(--theme-red, #ef5455);
+  padding: calc(100vw * 8 / 400) calc(100vw * 15 / 400);
+  justify-content: flex-end;
+}
+
+.firstAdminHeader {
+  display: flex;
+  width: calc(100vw * 370 / 400);
+  height: calc(100vw * 20 / 400);
+  background: var(--theme-blue, #2b3252);
   padding: calc(100vw * 8 / 400) calc(100vw * 15 / 400);
   justify-content: flex-end;
 }

@@ -1,5 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/**
+ * @author: 248Kobe
+ * @description: 로그인 때 필요한 정보 관리
+ * 로그인 상태, 유저 타입 관리
+ */
 const initialState = {
   isLoggedIn: false,
   id: "",
@@ -29,13 +34,16 @@ const loginSlice = createSlice({
       }
     },
     setUserType(state, action) {
+      //유저 정보에 맞는 타입 설정
       state.userType = action.payload;
     },
 
     loginSuccess: (state) => {
+      //로그인 성공 시 로그인 상태 변경
       state.isLoggedIn = true;
     },
     logout: (state) => {
+      //로그아웃 시 로그인 상태 변경
       state.isLoggedIn = false;
     },
   },
