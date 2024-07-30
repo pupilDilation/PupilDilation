@@ -28,6 +28,7 @@ function App() {
               <Route path="/signup" element={<SignUpPage />}></Route>
               <Route path="/my-page" element={<MyPage />}></Route>
               <Route path="/detail" element={<DetailPage />}></Route>
+              <Route path="/details/:concertId" element={<DetailPage />} />
               <Route path="/seat" element={<Seat />}></Route>
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
               <Route path="/clublist" element={<ClubList />}></Route>
