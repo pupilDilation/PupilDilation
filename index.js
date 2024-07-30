@@ -3,6 +3,7 @@ const express = require("express");
 // Routes
 const concertRoutes = require("./routes/concertRoutes");
 const userRoutes = require("./routes/userRoutes");
+const clubRoutes = require("./routes/clubRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 const path = require("path");
@@ -47,6 +48,14 @@ app.use(cors());
 app.use("/concerts", concertRoutes);
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
+app.use("/club", clubRoutes);
+
+// Routers
+// const userRouter = require("./routes/Users");
+// app.use("/users", userRouter);
+
+// const concertRouter = require("./routes/Concerts");
+// app.use("/concert", concertRouter);
 
 app.use(express.static(path.join(__dirname, "pupil/build")));
 
