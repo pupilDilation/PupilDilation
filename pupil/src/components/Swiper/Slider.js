@@ -17,7 +17,7 @@ function Slider() {
     async function fetchConcerts() {
       try {
         const response = await axios.get("http://localhost:3001/concerts");
-        setConcerts(response.data.concerts || []); // Adjust based on actual response structure
+        setConcerts(response.data || []); // Adjust based on actual response structure
       } catch (error) {
         console.error("Error fetching the JSON data:", error);
       }
