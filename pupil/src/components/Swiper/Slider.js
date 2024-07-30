@@ -17,7 +17,9 @@ function Slider() {
   useEffect(() => {
     async function fetchConcerts() {
       try {
-        const response = await axios.get("http://localhost:3001/concerts");
+        const response = await axios.get(
+          "http://localhost:3001/concerts/range?endDays=60"
+        );
         setConcerts(response.data || []); // Adjust based on actual response structure
       } catch (error) {
         console.error("Error fetching the JSON data:", error);
