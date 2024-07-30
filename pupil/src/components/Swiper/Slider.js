@@ -17,7 +17,7 @@ function Slider() {
     async function fetchConcerts() {
       try {
         const response = await axios.get("http://localhost:3001/concerts");
-        setConcerts(response.data.concerts); // Adjust based on actual response structure
+        setConcerts(response.data.concerts || []); // Adjust based on actual response structure
       } catch (error) {
         console.error("Error fetching the JSON data:", error);
       }
@@ -50,11 +50,15 @@ function Slider() {
       slidesPerView={3}
       style={SWIPER_STYLE}
     >
-      {concerts.map((item) => (
-        <SwiperSlide key={item.concert_id} className={styles.swiperSlide}>
-          <Slide item={item} />
-        </SwiperSlide>
-      ))}
+      {concerts.length > 0 ? (
+        concerts.map((item) => (
+          <SwiperSlide key={item.concert_id} className={styles.swiperSlide}>
+            <Slide item={item} />
+          </SwiperSlide>
+        ))
+      ) : (
+        <div>No concerts available</div>
+      )}
     </Swiper>
   );
 }
