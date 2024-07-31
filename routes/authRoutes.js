@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
         req.session.userId = user.user_id;
         return res.json({ success: true });
       }
-      res.status(401).json({
+      return res.status(401).json({
         success: false,
         message: "Invalid password",
         detail: error.message,
@@ -45,15 +45,20 @@ router.post("/register", async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
-    const [ids] = await db.query("SELECT * FROM user WHERE user_id = ?", [id]);
+    const [ids] = await db.query(
+      `
+      SELECT * FROM user WHERE user_id = ?
+      `,
+      [id]
+    );
     if (ids.length > 0) {
-      res
+      return res
         .status(409)
         .json({ success: false, message: "Id already exist error" });
     }
 
     await db.query(
-      "INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)",
+      `INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)`,
       [id, name, hashedPassword, email, phone, "user"]
     );
     res.json({ success: true });
