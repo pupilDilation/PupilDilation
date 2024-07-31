@@ -1,0 +1,68 @@
+.headerContainer {
+  width: calc(100vw * 400 / 400);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.firstUserHeader {
+  display: flex;
+  width: calc(100vw * 370 / 400);
+  height: calc(100vw * 20 / 400);
+  background: var(--theme-red, #ef5455);
+  padding: calc(100vw * 8 / 400) calc(100vw * 15 / 400);
+  justify-content: flex-end;
+}
+
+.firstAdminHeader {
+  display: flex;
+  width: calc(100vw * 370 / 400);
+  height: calc(100vw * 20 / 400);
+  background: var(--theme-blue, #2b3252);
+  padding: calc(100vw * 8 / 400) calc(100vw * 15 / 400);
+  justify-content: flex-end;
+}
+
+.firstHeaderBtnContainer {
+  display: flex;
+}
+
+.secondHeader {
+  display: flex;
+  width: 100vw;
+  height: calc(100vw * 70 / 400);
+
+  justify-content: space-between;
+  align-items: center;
+
+  background: #fff;
+  border-bottom: solid rgba(0, 0, 0, 0.25);
+}
+
+.secondHeaderLogoContainer {
+  width: calc(100vw * 93 / 400);
+  height: calc(100vw * 27 / 400);
+  display: flex;
+  align-items: center;
+  margin-left: calc(100vw * 10 / 400);
+}
+
+.secondHeaderLogo {
+  width: calc(100vw * 93 / 400);
+  height: calc(100vw * 27 / 400);
+}
+
+.secondHeaderBtnContainer {
+  width: calc(100vw * 50 / 400);
+  height: calc(100vw * 25 / 400);
+  display: flex;
+  align-items: center;
+  margin-right: calc(100vw * 60 / 400);
+}
+
+.secondHeaderBtn {
+  width: calc(100vw * 20 / 400);
+  height: calc(100vw * 20 / 400);
+  cursor: pointer;
+  padding: calc(100vw * 10 / 400) calc(100vw * 15 / 400);
+}

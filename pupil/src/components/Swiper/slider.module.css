@@ -1,0 +1,55 @@
+/* Swiper styles */
+
+/* SwiperSlide 컴포넌트 첫번째 요소 margin-left 적용  */
+.swiperSlide:nth-of-type(1) {
+  margin-left: 15px;
+}
+
+/* SwiperSlide styles */
+.swiperSlide {
+  width: 40%;
+  height: auto;
+}
+.sliderContainer {
+  width: 100%;
+}
+.sliderContainer img {
+  width: 100%;
+}
+.sliderLink {
+  text-decoration: none;
+  color: black;
+}
+
+/* SwiperSlide content styles */
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sliderImgContainer img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.slideInfo {
+  padding: 0 4px 0 4px;
+  width: 100%;
+  text-align: left;
+}
+
+.slideInfo dt {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.slideInfo dd {
+  font-size: 13px;
+}
+
+.slideInfo dd:nth-of-type(2) {
+  color: gray;
+}

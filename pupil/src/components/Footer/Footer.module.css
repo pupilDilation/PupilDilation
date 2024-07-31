@@ -1,0 +1,80 @@
+/* footerContainer */
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  gap: 16px;
+  border-top: 3px solid #bfbfbf;
+
+  height: 300px;
+}
+
+/* footer content */
+/* Footer Menu */
+
+.footerMenu {
+}
+
+.footerMenuList {
+  justify-content: space-between;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.footerMenuList li {
+  padding: 0 15px 0 15px;
+  position: relative;
+}
+
+.footerMenuList li:not(:first-child)::before {
+  content: "|";
+  position: absolute;
+  top: 1.5px;
+  left: 0;
+  color: #707070;
+}
+
+.footerMenuList li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 11px;
+}
+
+/* credit */
+.footerCredit {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.creditBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.creditBox p {
+  margin-bottom: 4px;
+  text-align: center;
+  font-size: 11px;
+  color: #707070;
+}
+
+.creditBox p:nth-of-type(1) {
+  width: 22%;
+}
+
+/* break point - 1024px */
+@media screen and (min-width: 1024px) {
+  .creditBox p {
+    font-size: 30px;
+    color: #707070;
+  }
+}

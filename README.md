@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# 폴더 구조
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##### 메인 폴더 내에 `client`, `server` 폴더 생성
 
-## Available Scripts
+```bash
+$ npm install express cors mysql2
+```
 
-In the project directory, you can run:
+##### express, cors, mysql2 설치
 
-### `npm start`
+#### sequelize 세팅
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+$ npm install sequelize sequelize-cli
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+$ npx sequelize-cli init
+```
 
-### `npm test`
+##### migrations와 seeders 폴더는 필요없다고 함 (나중에 알아볼 것)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# JS 코드를 통한 Table 생성
 
-### `npm run build`
+### Table 정보 생성
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+module.exports = (sequelize, DataTypes) => {
+  const Posts = sequelize.define("Posts", {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  });
+  return Posts;
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `index.js`에 import
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```javascript
+const db = require("./models");
 
-### `npm run eject`
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Server Running on Port ${port}`);
+  });
+});
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `/config/config.json` 세팅
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```json
+{
+  "development": {
+    "username": "tester",
+    "password": "1234",
+    "database": "schema_name",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+##### development 만 세팅하면 될듯
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 라우팅
 
-## Learn More
+##### `./routes` 디렉토리에 router 생성
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+// Posts.js
+const express = require("express");
+const router = express.Router();
+const { Posts } = require("../models");
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+router.get("/", (req, res) => {
+  res.send("Hello World");
+});
 
-### Code Splitting
+// async keyword 사용
+router.post("/", async (req, res) => {
+  const post = req.body;
+  await Posts.create(post);
+});
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+module.exports = router;
+```
