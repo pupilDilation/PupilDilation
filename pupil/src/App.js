@@ -12,6 +12,7 @@ import Seat from "./components/Seat/SeatSelection";
 import Scanner from "./pages/Scanner";
 import ClubList from "./components/Club/ClubList";
 import ClubDetail from "./components/Club/ClubDetail";
+import CreateConcert from "./components/CreateConcert/CreateConcertForm";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/detail" element={<DetailPage />}></Route>
               <Route path="/details/:concertId" element={<DetailPage />} />
               <Route path="/seat" element={<Seat />}></Route>
+              <Route path="/createdetail" element={<CreateConcert />}></Route>
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
               <Route path="/clublist" element={<ClubList />}></Route>
               <Route path="/club/:clubId" element={<ClubDetail />}></Route>
