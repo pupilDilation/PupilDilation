@@ -4,7 +4,7 @@ import "./CreateConcert.css"; // Import the CSS file
 
 function CreateConcertForm() {
   const [concertTitle, setConcertTitle] = useState("");
-  const [concertImg, setConcertImg] = useState("");
+  const [concertImg, setConcertImg] = useState(null);
   const [concertPrice, setConcertPrice] = useState("");
   const [concertLocation, setConcertLocation] = useState("");
   const [concertPlot, setConcertPlot] = useState("");
@@ -12,6 +12,10 @@ function CreateConcertForm() {
     { sessionDate: "", sessionTime: "" },
   ]);
   const [error, setError] = useState(null);
+
+  const handleFileChange = (e) => {
+    setConcertImg(e.target.files[0]);
+  };
 
   const handleAddSession = () => {
     setSessions([...sessions, { sessionDate: "", sessionTime: "" }]);
@@ -29,24 +33,27 @@ function CreateConcertForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const concertData = {
-        concert_title: concertTitle,
-        concert_img: concertImg,
-        concert_price: concertPrice,
-        concert_location: concertLocation,
-        concert_plot: concertPlot,
-        sessions: sessions.map((session) => ({
-          session_date: session.sessionDate,
-          session_time: session.sessionTime,
-        })),
-      };
+    const formData = new FormData();
+    formData.append("concert_title", concertTitle);
+    formData.append("concert_img", concertImg);
+    formData.append("concert_price", concertPrice);
+    formData.append("concert_location", concertLocation);
+    formData.append("concert_plot", concertPlot);
+    sessions.forEach((session, index) => {
+      formData.append(`sessions[${index}][session_date]`, session.sessionDate);
+      formData.append(`sessions[${index}][session_time]`, session.sessionTime);
+    });
 
-      await axios.post("http://localhost:3001/admin/concerts", concertData);
+    try {
+      await axios.post("http://localhost:3001/admin/concerts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       alert("Concert added successfully!");
       // Clear form
       setConcertTitle("");
-      setConcertImg("");
+      setConcertImg(null);
       setConcertPrice("");
       setConcertLocation("");
       setConcertPlot("");
@@ -63,11 +70,11 @@ function CreateConcertForm() {
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className="admin-form-top-wrapper">
-          <label className="admin-form-labels">Concert Image URL:</label>
+          <label className="admin-form-labels">Concert Image:</label>
           <input
-            type="text"
-            value={concertImg}
-            onChange={(e) => setConcertImg(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
             required
             className="admin-form-inputs"
           />
@@ -133,6 +140,9 @@ function CreateConcertForm() {
                 required
                 className="admin-form-inputs"
               />
+              {index < sessions.length - 1 && (
+                <hr className="session-divider" />
+              )}
             </div>
           ))}
           <div className="complete-btn-container">

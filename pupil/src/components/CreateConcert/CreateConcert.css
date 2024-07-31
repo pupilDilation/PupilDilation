@@ -10,15 +10,15 @@
 }
 
 /*
-  ==== 위쪽 박스 (텍스트) ====
-  */
+    ==== 위쪽 박스 (텍스트) ====
+    */
 .admin-form-top-wrapper {
   margin-left: calc(100vw * 120 / 400);
 }
 
 /*
-  ==== 텍스트 ====
-  */
+    ==== 텍스트 ====
+    */
 .admin-form-text {
   color: black;
   font-size: calc(100vw * 30 / 400);
@@ -28,11 +28,12 @@
 }
 
 /*
-  ==== input 박스 스타일 ====
-  */
+    ==== input 박스 스타일 ====
+    */
 .admin-form-inputs {
   padding: 5px;
-  width: calc(100vw * 350 / 400);
+  width: 100%;
+  max-width: calc(100vw * 350 / 400);
   margin-bottom: 0.8em;
   font-size: calc(100vw * 20 / 400);
   box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
@@ -41,8 +42,8 @@
 }
 
 /*
-  ==== placeholder 스타일 ====
-  */
+    ==== placeholder 스타일 ====
+    */
 .admin-form-inputs::placeholder {
   color: rgba(0, 0, 0, 0.55);
   font-size: calc(100vw * 15 / 400);
@@ -50,8 +51,8 @@
 }
 
 /*
-  ==== label 스타일 ====
-  */
+    ==== label 스타일 ====
+    */
 .admin-form-labels {
   margin-bottom: 0.2em;
   font-size: calc(100vw * 15 / 400);
@@ -59,9 +60,9 @@
   font-weight: 500;
 }
 
-/* 
-  ==== 버튼 스타일 ====
-  */
+/*
+    ==== 버튼 스타일 ====
+    */
 .complete-btn-container {
   display: flex;
   flex-direction: column;
@@ -87,10 +88,19 @@
 }
 
 /*
-  ==== 오류 메시지 스타일 ====
-  */
+    ==== 오류 메시지 스타일 ====
+    */
 .error {
   color: red;
   font-size: calc(100vw * 14 / 400);
   margin-bottom: calc(100vw * 20 / 400);
+}
+
+/*
+    ==== 세션 구분선 스타일 ====
+    */
+.session-divider {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
 }
