@@ -8,7 +8,7 @@ function SeatSelectSection() {
   return (
     <div className={SeatSelectionSectionStyle.sectionWrapper}>
       <div className={SeatSelectionSectionStyle.reserveSection}>
-        <p>관람인원 {selectedSeats.length}</p>
+        <p>관람인원원 {selectedSeats.length}</p>
         Selected Seats: {selectedSeats.join(", ")}
         <p>Total {selectedSeats.length * 12000} </p>
       </div>

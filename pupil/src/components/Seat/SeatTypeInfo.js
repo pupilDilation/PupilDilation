@@ -12,7 +12,7 @@ function SeatTypeInfo() {
             SeatTypeStyle.boxCommon
           )}
         ></div>
-        <div>선택한 좌석</div>
+        <div>선택한 좌석이오</div>
       </div>
       <div className={SeatTypeStyle.seatTypeContent}>
         <div
