@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  padding-bottom: calc(
+    100vw * 40 / 400
+  ); /* Increased padding to accommodate the button */
 }
 
 .event-title-mobile {
@@ -75,12 +78,13 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-top: calc(100vw * 2 / 400);
+  margin-top: calc(100vw * 10 / 400); /* Increased margin for spacing */
+  margin-bottom: calc(100vw * 10 / 400); /* Added bottom margin for spacing */
 }
 
 .intro-text {
-  width: calc(100vw * 353 / 400);
-  height: calc(100vw * 80 / 400);
+  width: calc(100vw * 353 / 400); /* Adjusted width */
+  max-height: none; /* Remove fixed height */
   color: #000;
   font-family: Noto Sans KR;
   font-size: calc(100vw * 14 / 400);
@@ -88,16 +92,59 @@
   font-weight: 300;
   line-height: normal;
   letter-spacing: -0.63px;
+  overflow-wrap: break-word; /* Ensure long words wrap */
+  word-break: break-word; /* Break long words if necessary */
+  text-align: left;
 }
 
-.schedule-text {
-  color: #000;
+.schedule-container {
+  margin-top: calc(
+    100vw * 20 / 400
+  ); /* Add margin to space from previous content */
+  margin-bottom: calc(100vw * 20 / 400); /* Add margin to space from button */
+}
+
+.schedule-dropdown {
+  width: 100%;
+  padding: calc(100vw * 8 / 400) calc(100vw * 12 / 400); /* Padding for dropdown */
   font-family: Noto Sans KR;
   font-size: calc(100vw * 14 / 400);
   font-style: normal;
   font-weight: 300;
-  line-height: normal;
-  letter-spacing: -0.63px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+}
+
+.book-now-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  margin-top: calc(100vw * 20 / 400); /* Add margin to space from dropdown */
+}
+
+.book-now-button {
+  background-color: #ef5454b8;
+  color: #fff;
+  font-family: Noto Sans KR;
+  font-size: calc(100vw * 16 / 400);
+  font-style: normal;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400);
+  cursor: pointer;
+}
+
+.book-now-button:hover {
+  background-color: #ef5455;
+}
+
+.footer {
+  margin-top: calc(100vw * 40 / 400); /* Adjusted to make space for button */
+  padding: calc(100vw * 20 / 400);
+  background-color: #f8f8f8;
+  text-align: center;
+  color: #000;
 }

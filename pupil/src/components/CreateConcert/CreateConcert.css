@@ -1,0 +1,96 @@
+/*
+==== 전체 wrapper ====
+*/
+.admin-form-container {
+  margin: 2em 0;
+  margin-left: calc(100vw * 15 / 400);
+  margin-right: calc(100vw * 20 / 400);
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+  ==== 위쪽 박스 (텍스트) ====
+  */
+.admin-form-top-wrapper {
+  margin-left: calc(100vw * 120 / 400);
+}
+
+/*
+  ==== 텍스트 ====
+  */
+.admin-form-text {
+  color: black;
+  font-size: calc(100vw * 30 / 400);
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.8em;
+}
+
+/*
+  ==== input 박스 스타일 ====
+  */
+.admin-form-inputs {
+  padding: 5px;
+  width: calc(100vw * 350 / 400);
+  margin-bottom: 0.8em;
+  font-size: calc(100vw * 20 / 400);
+  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
+  border-radius: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+}
+
+/*
+  ==== placeholder 스타일 ====
+  */
+.admin-form-inputs::placeholder {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: calc(100vw * 15 / 400);
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/*
+  ==== label 스타일 ====
+  */
+.admin-form-labels {
+  margin-bottom: 0.2em;
+  font-size: calc(100vw * 15 / 400);
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+}
+
+/* 
+  ==== 버튼 스타일 ====
+  */
+.complete-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.complete-btn {
+  display: inline-block;
+  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400);
+  font-size: calc(100vw * 14 / 400);
+  font-family: "Noto Sans KR", sans-serif;
+  color: #fad744;
+  background-color: #2b3252;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-top: calc(100vw * 10 / 400);
+}
+
+.complete-btn:hover {
+  background-color: #231f20;
+  color: white;
+}
+
+/*
+  ==== 오류 메시지 스타일 ====
+  */
+.error {
+  color: red;
+  font-size: calc(100vw * 14 / 400);
+  margin-bottom: calc(100vw * 20 / 400);
+}

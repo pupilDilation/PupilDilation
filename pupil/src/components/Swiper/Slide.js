@@ -15,7 +15,6 @@ function Slide({ item }) {
         <dl className={styles.slideInfo}>
           <dt>{item.concert_title}</dt>
           <dd>{item.concert_location}</dd>
-          <dd>{item.session_date}</dd>
         </dl>
       </div>
     </Link>
