@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Main from "./pages/Main";
 import LoginPage from "./pages/Login";
 import MyPage from "./pages/MyPage";
@@ -10,12 +10,18 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
 import Seat from "./components/Seat/SeatSelection";
 import Scanner from "./pages/Scanner";
-
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { checkAuth } from "./slice/loginSlice";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
   return (
     <div className="App">
       <Wrapper className={WrapperStyles.routerWrapper}>
