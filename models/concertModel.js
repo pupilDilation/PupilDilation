@@ -73,7 +73,6 @@ const getConcertById = async (concertId) => {
 
 const postConcert = async (concertData) => {
   const {
-    concert_id,
     concert_title,
     concert_location,
     concert_price,
@@ -85,10 +84,9 @@ const postConcert = async (concertData) => {
   } = concertData;
   const [result] = await db.query(
     `
-    INSERT INTO concert (concert_id, concert_title, concert_location, concert_price, concert_row, concert_col, concert_img, concert_plot, user_id)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    INSERT INTO concert (concert_title, concert_location, concert_price, concert_row, concert_col, concert_img, concert_plot, user_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     [
-      concert_id,
       concert_title,
       concert_location,
       concert_price,

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 /**
  * @author: 248Kobe
@@ -44,6 +45,8 @@ const loginSlice = createSlice({
     },
     logout: (state) => {
       //로그아웃 시 로그인 상태 변경
+      state.id = "";
+      state.userType = "";
       state.isLoggedIn = false;
     },
   },
@@ -57,4 +60,21 @@ export const {
   setPassword,
   setIsValidForm,
 } = loginSlice.actions;
+
+export const checkAuth = () => async (dispatch) => {
+  try {
+    const response = await axios.get("http://localhost:3001/auth/checkAuth", {
+      withCredentials: true,
+    });
+    if (response.data.authenticated) {
+      console.log("auth");
+      dispatch(loginSuccess({ userType: response.data.userType }));
+    } else {
+      dispatch(logout());
+    }
+  } catch (error) {
+    console.error("Error checking authentication", error);
+  }
+};
+
 export default loginSlice.reducer;
