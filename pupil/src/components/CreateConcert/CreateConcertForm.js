@@ -1,37 +1,30 @@
 import React, { useState } from "react";
 import "./CreateConcert.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function CreateConcertForm() {
   const [imageUpload, setImageUpload] = useState(null);
   const [newShowInfo, setNewShowInfo] = useState({
-    title: "샘플 공연 제목",
-    introduction: "샘플 공연 소개",
-    place: "그레이스",
-    price: "50000",
-    bankName: "샘플은행",
-    bankNumber: "123-456-789",
+    title: "",
+    introduction: "",
+    place: "",
+    price: "",
   });
   const [scheduleCount, setScheduleCount] = useState(1);
   const [timeInfo, setTimeInfo] = useState({
     start: {
-      year: 2023,
-      month: 7,
-      day: 15,
-      time: "18:00",
+      date: "",
+      time: "",
     },
     end: {
-      year: 2023,
-      month: 7,
-      day: 16,
-      time: "21:00",
+      date: "",
+      time: "",
     },
     schedule: [
       {
-        year: 2023,
-        month: 7,
-        day: 15,
-        time: "19:00",
+        date: "",
+        time: "",
       },
     ],
   });
@@ -87,74 +80,10 @@ function CreateConcertForm() {
 
   const onButtonClick = () => {
     // Placeholder for actual submission logic
-    console.log("등록된 정보:", {
-      ...newShowInfo,
-      schedule: timeInfo.schedule,
-      startDate: timeInfo.start,
-      endDate: timeInfo.end,
-    });
-    navigate("/host");
+    register();
   };
 
-  const days = [];
-  const months = [];
-  const dayOfWeeks = [];
-  const places = [];
-  const halls = ["그레이스", "학관", "올네"];
-  const weeks = ["월", "화", "수", "목", "금", "토", "일"];
   const schedules = [];
-
-  days.push(
-    <option value={0} key="day-0">
-      선택&emsp;
-    </option>
-  );
-  for (let i = 1; i <= 31; i += 1) {
-    days.push(
-      <option value={i} key={`day-${i}`}>
-        {i}
-      </option>
-    );
-  }
-
-  months.push(
-    <option value={0} key="month-0">
-      선택&emsp;
-    </option>
-  );
-  for (let i = 1; i <= 12; i += 1) {
-    months.push(
-      <option value={i} key={`month-${i}`}>
-        {i}
-      </option>
-    );
-  }
-
-  dayOfWeeks.push(
-    <option value={0} key="dayOfWeek-0">
-      선택&emsp;
-    </option>
-  );
-  for (let i = 1; i <= 7; i += 1) {
-    dayOfWeeks.push(
-      <option value={i} key={`dayOfWeek-${i}`}>
-        {weeks[i - 1]}
-      </option>
-    );
-  }
-
-  places.push(
-    <option value={0} key="place-0">
-      장소선택&emsp;&emsp;&emsp;&emsp;&emsp;
-    </option>
-  );
-  for (let i = 1; i <= 3; i += 1) {
-    places.push(
-      <option value={halls[i - 1]} key={`place-${i}`}>
-        {halls[i - 1]}
-      </option>
-    );
-  }
 
   for (let i = 0; i < scheduleCount; i += 1) {
     schedules.push(
@@ -163,44 +92,25 @@ function CreateConcertForm() {
           {i + 1}공&nbsp;&nbsp;
         </div>
         <div className="host-create-date-end-month">
-          <select
-            name="month"
+          <input
+            type="date"
+            name="date"
             className="select-slection"
             onChange={onChangeSchedule}
             id={i}
-            value={timeInfo.schedule[i]?.month || 0}
-          >
-            {months}
-          </select>
-          <div className="host-create-ticket-start-text">월</div>
+            value={timeInfo.schedule[i]?.date || ""}
+          />
         </div>
-        <div className="host-create-date-end-day">
-          <select
-            name="day"
+        <div className="host-create-date-end-time">
+          <input
+            type="time"
+            name="time"
             className="select-slection"
             onChange={onChangeSchedule}
             id={i}
-            value={timeInfo.schedule[i]?.day || 0}
-          >
-            {days}
-          </select>
-          <div className="host-create-ticket-start-text">일</div>
+            value={timeInfo.schedule[i]?.time || ""}
+          />
         </div>
-        <div className="host-create-date-end-dayOfWeek">
-          <select name="dayOfWeek-end" className="select-slection">
-            {dayOfWeeks}
-          </select>
-          <div className="host-create-ticket-start-text">요일</div>
-        </div>
-        <input
-          type="text"
-          className="host-create-date-start-time"
-          placeholder="시간 입력(24:00)"
-          name="time"
-          onChange={onChangeSchedule}
-          id={i}
-          value={timeInfo.schedule[i]?.time || ""}
-        />
       </div>
     );
   }
@@ -248,14 +158,14 @@ function CreateConcertForm() {
           <div className="host-create-right-2-right">
             <div className="host-create-place">
               <div className="host-create-input-title">장소</div>
-              <select
+              <input
+                type="text"
                 name="place"
-                className="select-place"
+                className="host-create-price-content"
+                placeholder="장소 입력"
                 onChange={onChangeAccount}
                 value={newShowInfo.place}
-              >
-                {places}
-              </select>
+              />
             </div>
             <div className="host-create-price">
               <div className="host-create-input-title">가격</div>
@@ -269,27 +179,6 @@ function CreateConcertForm() {
                 value={newShowInfo.price}
               />
             </div>
-            <div className="host-create-bank">
-              <div className="host-create-input-title">입금계좌</div>
-              <div className="host-create-bank-set">
-                <input
-                  className="host-create-bank-name"
-                  type="text"
-                  placeholder="은행명 입력"
-                  name="bankName"
-                  onChange={onChangeAccount}
-                  value={newShowInfo.bankName}
-                />
-                <input
-                  className="host-create-price-content"
-                  type="text"
-                  placeholder='"-"포함 계좌번호 입력'
-                  name="bankNumber"
-                  onChange={onChangeAccount}
-                  value={newShowInfo.bankNumber}
-                />
-              </div>
-            </div>
           </div>
         </div>
         <div className="host-create-right-3">
@@ -297,81 +186,49 @@ function CreateConcertForm() {
             <div className="host-create-input-title">예매일정</div>
             <div className="host-create-ticket-date-end">
               <div className="host-create-ticket-start-text2">시작</div>
-              <div className="host-create-date-start-month">
-                <select
-                  name="month"
+              <div className="host-create-date-start">
+                <input
+                  type="date"
+                  name="date"
                   className="select-slection"
                   onChange={onChangeStartDate}
-                  value={timeInfo.start.month}
-                >
-                  {months}
-                </select>
-                <div className="host-create-ticket-start-text">월</div>
+                  value={timeInfo.start.date}
+                />
+                <div className="host-create-ticket-start-text">날짜</div>
               </div>
-              <div className="host-create-date-start-day">
-                <select
-                  name="day"
+              <div className="host-create-date-start-time">
+                <input
+                  type="time"
+                  name="time"
                   className="select-slection"
                   onChange={onChangeStartDate}
-                  value={timeInfo.start.day}
-                >
-                  {days}
-                </select>
-                <div className="host-create-ticket-start-text">일</div>
+                  value={timeInfo.start.time}
+                />
+                <div className="host-create-ticket-start-text">시간</div>
               </div>
-              <div className="host-create-date-start-dayOfWeek">
-                <select name="dayOfWeek-start" className="select-slection">
-                  {dayOfWeeks}
-                </select>
-                <div className="host-create-ticket-start-text">요일</div>
-              </div>
-              <input
-                type="text"
-                className="host-create-date-start-time"
-                placeholder="시간 입력(24:00)"
-                name="time"
-                onChange={onChangeStartDate}
-                value={timeInfo.start.time}
-              />
             </div>
             <div className="host-create-ticket-date-end">
               <div className="host-create-ticket-start-text2">마감</div>
-              <div className="host-create-date-end-month">
-                <select
-                  name="month"
+              <div className="host-create-date-end">
+                <input
+                  type="date"
+                  name="date"
                   className="select-slection"
                   onChange={onChangeEndDate}
-                  value={timeInfo.end.month}
-                >
-                  {months}
-                </select>
-                <div className="host-create-ticket-start-text">월</div>
+                  value={timeInfo.end.date}
+                />
+                <div className="host-create-ticket-start-text">날짜</div>
               </div>
-              <div className="host-create-date-end-day">
-                <select
-                  name="day"
+              <div className="host-create-date-end-time">
+                <input
+                  type="time"
+                  name="time"
                   className="select-slection"
                   onChange={onChangeEndDate}
-                  value={timeInfo.end.day}
-                >
-                  {days}
-                </select>
-                <div className="host-create-ticket-start-text">일</div>
+                  value={timeInfo.end.time}
+                />
+                <div className="host-create-ticket-start-text">시간</div>
               </div>
-              <div className="host-create-date-end-dayOfWeek">
-                <select name="dayOfWeek-end" className="select-slection">
-                  {dayOfWeeks}
-                </select>
-                <div className="host-create-ticket-start-text">요일</div>
-              </div>
-              <input
-                type="text"
-                className="host-create-date-start-time"
-                placeholder="시간 입력(24:00)"
-                name="time"
-                onChange={onChangeEndDate}
-                value={timeInfo.end.time}
-              />
             </div>
             <div className="host-create-input-title">공연일정</div>
             <div className="event-function">
@@ -385,10 +242,8 @@ function CreateConcertForm() {
                 onClick={() => {
                   setScheduleCount(scheduleCount + 1);
                   const newScheduleItem = {
-                    year: 2023,
-                    month: 7,
-                    day: 15,
-                    time: "20:00",
+                    date: "",
+                    time: "",
                   };
                   const newSchedule = [...timeInfo.schedule, newScheduleItem];
                   const newTimeInfo = {
@@ -426,6 +281,24 @@ function CreateConcertForm() {
       </div>
     </div>
   );
+
+  async function register(e) {
+    try {
+      const res = await axios.post("http://localhost:3001/concerts", {
+        concert_title: newShowInfo.title,
+        concert_location: newShowInfo.place,
+        concert_price: newShowInfo.price,
+        concert_row: 5,
+        concert_col: 10,
+        concert_img: null,
+        concert_plot: newShowInfo.introduction,
+        user_id: "user2",
+      });
+      alert("success!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default CreateConcertForm;
