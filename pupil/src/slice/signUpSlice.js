@@ -7,6 +7,7 @@ const initialState = {
   email: "",
   phone: "",
   name: "",
+  isIdDup: true,
   isValidForm: false,
 };
 
@@ -49,6 +50,15 @@ const signUpSlice = createSlice({
         state.isValidForm = false;
       }
     },
+    resetAll(state) {
+      state.email = "";
+      state.id = "";
+      state.name = "";
+      state.password = "";
+      state.passwordChk = "";
+      state.phone = "";
+      state.isValidForm = false;
+    },
   },
 });
 
@@ -60,5 +70,6 @@ export const {
   setPhone,
   setIsValidForm,
   setName,
+  resetAll,
 } = signUpSlice.actions;
 export default signUpSlice.reducer;
