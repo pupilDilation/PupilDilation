@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+/**
+ * @author: hhaminlee
+ * @description: clubList에서 클릭 된 clubId를 통해서 해당 동아리 정보 출력
+ */
 function ClubDetail() {
   const { clubId } = useParams();
   const [club, setClub] = useState(null);

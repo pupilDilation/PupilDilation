@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+/**
+ * @author: hhaminlee
+ * @description: 모든 동아리 리스트 화면상에 출력
+ */
 function ClubList() {
   const [clubs, setClubs] = useState([]);
 
