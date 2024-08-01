@@ -273,7 +273,7 @@ input[type="file"]::file-selector-button {
 }
 
 .select-slection {
-  width: calc(100vw * 94 / 1440);
+  width: calc(100vw * 200 / 1440);
   height: calc(100vh * 46 / 820);
   border-radius: 7px;
   border: 1px solid rgba(0, 0, 0, 0.6);
@@ -398,7 +398,7 @@ input[type="file"]::file-selector-button {
   font-size: calc(100vw * 24 / 1440);
   flex-shrink: 0;
   border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 0px solid rgba(0, 0, 0, 0.6);
 }
 
 .host-create-date-start-time::placeholder {
@@ -417,7 +417,7 @@ input[type="file"]::file-selector-button {
   height: calc(100vh * 36 / 820);
   flex-shrink: 0;
   border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 0px solid rgba(0, 0, 0, 0.6);
 }
 
 .host-create-date-end-time::placeholder {
