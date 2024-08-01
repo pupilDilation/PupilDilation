@@ -63,8 +63,11 @@ export const {
 
 export const checkAuth = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:3001/auth/checkAuth");
+    const response = await axios.get("http://localhost:3001/auth/checkAuth", {
+      withCredentials: true,
+    });
     if (response.data.authenticated) {
+      console.log("auth");
       dispatch(loginSuccess({ userType: response.data.userType }));
     } else {
       dispatch(logout());

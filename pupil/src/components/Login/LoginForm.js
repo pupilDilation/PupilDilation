@@ -54,10 +54,14 @@ function LoginForm() {
 
   async function loginClicked() {
     try {
-      const res = await axios.post("http://localhost:3001/auth/login", {
-        userId: id,
-        password: password,
-      });
+      const res = await axios.post(
+        "http://localhost:3001/auth/login",
+        {
+          userId: id,
+          password: password,
+        },
+        { withCredentials: true } // cors 이슈로 withCredentials 옵션 추가
+      );
       console.log("success");
       dispatch(loginSuccess());
       dispatch(setId(""));

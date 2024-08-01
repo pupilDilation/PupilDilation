@@ -9,7 +9,7 @@ const path = require("path");
 const app = express();
 const port = 3001;
 const cors = require("cors");
-app.use(cors()); // cors 선언시점 변경
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 //mysql2 db configuration file
 const db = require("./config/dbConfig");
@@ -26,6 +26,12 @@ app.use(
     store: sessionStore, // 얘 필수
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      secure: false, // 개발할 때만 false setting
+      httpOnly: true,
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60 * 1000, // cookie 24시간동안 유지
+    },
   })
 );
 // session 준비완료 시 console.log 띄우기
