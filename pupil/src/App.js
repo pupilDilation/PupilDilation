@@ -32,7 +32,7 @@ function App() {
               <Route path="/seat" element={<Seat />}></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
-              <Route path="/clublist" element={<ClubList />}></Route>
+              <Route path="/club" element={<ClubList />}></Route>
               <Route path="/club/:clubId" element={<ClubDetail />}></Route>
             </Routes>
           </Wrapper>
