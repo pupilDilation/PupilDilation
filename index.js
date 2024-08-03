@@ -5,6 +5,7 @@ const concertRoutes = require("./routes/concertRoutes");
 const userRoutes = require("./routes/userRoutes");
 const clubRoutes = require("./routes/clubRoutes");
 const authRoutes = require("./routes/authRoutes");
+const seatRoutes = require("./routes/seatRoutes");
 
 const path = require("path");
 const app = express();
@@ -55,6 +56,7 @@ app.use("/concerts", concertRoutes);
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
 app.use("/club", clubRoutes);
+app.use("/seats", seatRoutes);
 
 // Routers
 // const userRouter = require("./routes/Users");
