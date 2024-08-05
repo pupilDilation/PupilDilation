@@ -56,7 +56,11 @@ function LoginForm() {
         { withCredentials: true } // cors 이슈로 withCredentials 옵션 추가
       );
       console.log(res);
-      console.log("success");
+
+      if (!res.data.success) {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다");
+      }
+
       dispatch(loginSuccess());
       dispatch(setUserType(res.data.userType));
       dispatch(setId(""));
