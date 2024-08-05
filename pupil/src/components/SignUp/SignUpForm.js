@@ -111,6 +111,7 @@ function SignUpForm() {
         className={SignUpFormStyles.signUpInputs}
         placeholder={"8~20자리 영문 대소문자, 숫자, 특수문자 포함"}
         value={pw}
+        type={"password"}
         onChange={(e) => {
           dispatch(setPassword(e.target.value));
           dispatch(setIsValidForm());
@@ -123,6 +124,7 @@ function SignUpForm() {
         className={SignUpFormStyles.signUpInputs}
         placeholder={"비밀번호 확인"}
         value={pwChk}
+        type={"password"}
         onChange={(e) => {
           dispatch(setPasswordChk(e.target.value));
           dispatch(setIsValidForm());
