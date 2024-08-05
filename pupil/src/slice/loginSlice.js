@@ -46,6 +46,7 @@ const loginSlice = createSlice({
     logout: (state) => {
       //로그아웃 시 로그인 상태 변경
       state.id = "";
+      state.password = "";
       state.userType = "";
       state.isLoggedIn = false;
     },
@@ -68,7 +69,8 @@ export const checkAuth = () => async (dispatch) => {
     });
     if (response.data.authenticated) {
       console.log("auth");
-      dispatch(loginSuccess({ userType: response.data.userType }));
+      dispatch(loginSuccess());
+      dispatch(setUserType(response.data.userType));
     } else {
       dispatch(logout());
     }
