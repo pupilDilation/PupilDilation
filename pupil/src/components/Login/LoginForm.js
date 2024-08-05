@@ -29,13 +29,6 @@ function LoginForm() {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    fetch("/dummyData/userData.json")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching the JSON data:", error));
-  }, []);
-
   const handleLoginClick = () => {
     const user = data.find(
       (user) => user.username === id && user.password === password
@@ -62,8 +55,10 @@ function LoginForm() {
         },
         { withCredentials: true } // cors 이슈로 withCredentials 옵션 추가
       );
+      console.log(res);
       console.log("success");
       dispatch(loginSuccess());
+      dispatch(setUserType(res.data.userType));
       dispatch(setId(""));
       dispatch(setPassword(""));
       navigate("/");

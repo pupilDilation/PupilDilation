@@ -19,7 +19,7 @@ router.post("/login", async (req, res) => {
       if (isPwMatch) {
         req.session.userId = user.user_id;
         req.session.userType = user.user_type;
-        return res.json({ success: true });
+        return res.json({ success: true, userType: user.user_type });
       }
       return res.status(401).json({
         success: false,
