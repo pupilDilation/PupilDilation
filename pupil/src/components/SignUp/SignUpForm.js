@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import ButtonStyles from "../Button/Button.module.css";
 import SignUpFormStyles from "../SignUp/SignUpForm.module.css";
@@ -29,6 +29,7 @@ function SignUpForm() {
   const pwChk = useSelector((state) => state.signUp.passwordChk);
   const isValidForm = useSelector((state) => state.signUp.isValidForm);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function register(e) {
     try {
@@ -39,8 +40,11 @@ function SignUpForm() {
         email: email,
         phone: phone,
       });
-      alert("register success!");
-      dispatch(resetAll());
+      if (res.data.success) {
+        alert("register success");
+        dispatch(resetAll());
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }
