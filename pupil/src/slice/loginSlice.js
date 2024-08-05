@@ -39,14 +39,14 @@ const loginSlice = createSlice({
       state.userType = action.payload;
     },
 
-    loginSuccess: (state, action) => {
+    loginSuccess: (state) => {
       //로그인 성공 시 로그인 상태 변경
       state.isLoggedIn = true;
-      state.userType = action.payload;
     },
     logout: (state) => {
       //로그아웃 시 로그인 상태 변경
       state.id = "";
+      state.password = "";
       state.userType = "";
       state.isLoggedIn = false;
     },
@@ -69,7 +69,8 @@ export const checkAuth = () => async (dispatch) => {
     });
     if (response.data.authenticated) {
       console.log("auth");
-      dispatch(loginSuccess(response.data.userType));
+      dispatch(loginSuccess());
+      dispatch(setUserType(response.data.userType));
     } else {
       dispatch(logout());
     }
