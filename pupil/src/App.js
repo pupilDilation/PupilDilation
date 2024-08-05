@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
-import Seat from "./components/Seat/SeatSelection";
+import SeatSelection from "./components/Seat/SeatSelection";
 import Scanner from "./pages/Scanner";
 import ClubList from "./components/Club/ClubList";
 import ClubDetail from "./components/Club/ClubDetail";
@@ -37,7 +37,11 @@ function App() {
               <Route path="/my-page" element={<MyPage />}></Route>
               <Route path="/detail" element={<DetailPage />}></Route>
               <Route path="/details/:concertId" element={<DetailPage />} />
-              <Route path="/seat" element={<Seat />}></Route>
+              <Route path="/seats" element={<SeatSelection />}></Route>
+              <Route
+                path="/seats/:concertId"
+                element={<SeatSelection />}
+              ></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
               <Route path="/club" element={<ClubList />}></Route>
