@@ -17,6 +17,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { checkAuth } from "./slice/loginSlice";
+import Policy from "./pages/Policy";
+import Terms from "./pages/Terms";
+import Announcement from "./pages/Announcement";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +49,9 @@ function App() {
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
               <Route path="/club" element={<ClubList />}></Route>
               <Route path="/club/:clubId" element={<ClubDetail />}></Route>
+              <Route path="/announcement" element={<Announcement />}></Route>
+              <Route path="/terms" element={<Terms />}></Route>
+              <Route path="/policy" element={<Policy />}></Route>
             </Routes>
           </Wrapper>
           <Footer />
