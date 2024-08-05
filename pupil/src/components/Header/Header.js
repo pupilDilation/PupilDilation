@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../slice/loginSlice";
 import { setUserType } from "../../slice/loginSlice";
+import axios from "axios";
 
 /**
  * @author: 248Kobe
@@ -20,11 +21,19 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLogoutClick = () => {
-    dispatch(logout());
-    dispatch(setUserType(""));
-    navigate("/");
-  };
+  async function logoutClicked() {
+    const res = await axios.post(
+      "http://localhost:3001/auth/logout",
+      {},
+      { withCredentials: true }
+    );
+    if (res.data.success) {
+      alert("successful logout");
+      dispatch(logout());
+      dispatch(setUserType(""));
+      navigate("/");
+    }
+  }
 
   return (
     <div className={HeaderStyles.headerContainer}>
@@ -37,10 +46,7 @@ function Header() {
       >
         {isLoggedIn ? (
           <div className={HeaderStyles.firstHeaderBtnContainer}>
-            <Button
-              className={ButtonStyles.headerBtn}
-              onClick={handleLogoutClick}
-            >
+            <Button className={ButtonStyles.headerBtn} onClick={logoutClicked}>
               로그아웃
             </Button>
           </div>
