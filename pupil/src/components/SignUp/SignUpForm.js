@@ -31,6 +31,29 @@ function SignUpForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // 전화번호와 비밀번호 일치여부를 판단해 메시지를 출력해주기
+  const [phoneError, setPhoneError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  // 전화번호 형식이 올바른지 체크해서 메시지 표시하는 함수
+  function isValidPhone(phoneNum) {
+    const phoneRegex = /^010-\d{4}-\d{4}$/;
+    if (!phoneRegex.test(phoneNum)) {
+      setPhoneError("올바른 전화번호 형식이 아닙니다!");
+    } else {
+      setPhoneError("");
+    }
+  }
+
+  // 비밀번호와 비밀번호 확인이 올바른지 체크해서 메시지 표시하는 함수
+  function isValidPassword(password, passwordCheck) {
+    if (password !== passwordCheck) {
+      setPasswordError("비밀번호가 일치하지 않습니다!");
+    } else {
+      setPasswordError("");
+    }
+  }
+
   async function register(e) {
     try {
       const res = await axios.post("http://localhost:3001/auth/register", {
