@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AnnouncementDesign.css"; // 추가된 부분
+import styles from "./AnnouncementDesign.module.css"; // 변경된 부분
 
 const AnnouncementForm = () => {
   const [notices, setNotices] = useState([
@@ -24,15 +24,15 @@ const AnnouncementForm = () => {
   ]);
 
   return (
-    <div className="container">
-      <h1>공지사항</h1>
+    <div className={styles.container}>
+      <h1 className={styles.h1}>공지사항</h1>
       {notices.map((notice) => (
-        <div key={notice.id} className="notice">
-          <h2>{notice.title}</h2>
+        <div key={notice.id} className={styles.notice}>
+          <h2 className={styles.h2}>{notice.title}</h2>
           <p>
-            <em>{notice.date}</em>
+            <em className={styles.em}>{notice.date}</em>
           </p>
-          <p>{notice.content}</p>
+          <p className={styles.p}>{notice.content}</p>
         </div>
       ))}
     </div>
