@@ -35,6 +35,14 @@ function SignUpForm() {
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  useEffect(() => {
+    isValidPhone(phone);
+  }, [phone]);
+
+  useEffect(() => {
+    isValidPassword(pw, pwChk);
+  }, [pw, pwChk]);
+
   // 전화번호 형식이 올바른지 체크해서 메시지 표시하는 함수
   function isValidPhone(phoneNum) {
     const phoneRegex = /^010-\d{4}-\d{4}$/;
@@ -89,7 +97,12 @@ function SignUpForm() {
         }}
       />
 
-      <div className={SignUpFormStyles.signUpLabels}>전화번호</div>
+      <div className={SignUpFormStyles.signUpLabels}>
+        <span>전화번호</span>
+        {phoneError && (
+          <span className={SignUpFormStyles.errorMessage}>{phoneError}</span>
+        )}
+      </div>
       <Input
         className={SignUpFormStyles.signUpInputs}
         placeholder={"010-1234-5678"}
@@ -146,7 +159,12 @@ function SignUpForm() {
         }}
       />
 
-      <div className={SignUpFormStyles.signUpLabels}>비밀번호 재입력</div>
+      <div className={SignUpFormStyles.signUpLabels}>
+        <span>비밀번호 재입력</span>{" "}
+        {passwordError && (
+          <span className={SignUpFormStyles.errorMessage}>{passwordError}</span>
+        )}
+      </div>
       <Input
         className={SignUpFormStyles.signUpInputs}
         placeholder={"비밀번호 확인"}
