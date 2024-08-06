@@ -25,7 +25,7 @@ const SeatSelection = () => {
     async function getSeatsByConcertId() {
       try {
         const response = await axios.get(
-          `http://localhost:3001/seats/${concertId}`
+          `http://localhost:3001/seats/concert/${concertId}`
         );
         const { concert_row, concert_col } = response.data;
 

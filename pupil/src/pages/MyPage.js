@@ -18,6 +18,7 @@ import axios from "axios";
  */
 function MyPage() {
   const [user, setUser] = useState("");
+  const [reservation, setReservation] = useState("");
   const [userId, setUserId] = useState(null);
   const [userType, setUserType] = useState(null);
 
@@ -49,13 +50,28 @@ function MyPage() {
         const response = await axios.get(
           `http://localhost:3001/users/${userId}`
         );
-        console.log(response.data);
         setUser(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
     fetchUser();
+  }, [userId]);
+
+  useEffect(() => {
+    if (!userId) return;
+
+    async function fetchReservationInfo() {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/reservations/${userId}`
+        );
+        setReservation(response.data.reservations[0]);
+      } catch (error) {
+        console.error("Error fetching reservation data:", error);
+      }
+    }
+    fetchReservationInfo();
   }, [userId]);
 
   return (
