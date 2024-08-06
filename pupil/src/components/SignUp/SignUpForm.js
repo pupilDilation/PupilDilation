@@ -34,6 +34,7 @@ function SignUpForm() {
   // 전화번호와 비밀번호 일치여부를 판단해 메시지를 출력해주기
   const [phoneError, setPhoneError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   useEffect(() => {
     isValidPhone(phone);
@@ -43,10 +44,14 @@ function SignUpForm() {
     isValidPassword(pw, pwChk);
   }, [pw, pwChk]);
 
+  useEffect(() => {
+    isValidEmail(email);
+  }, [email]);
+
   // 전화번호 형식이 올바른지 체크해서 메시지 표시하는 함수
   function isValidPhone(phoneNum) {
     const phoneRegex = /^010-\d{4}-\d{4}$/;
-    if (!phoneRegex.test(phoneNum)) {
+    if (!phoneRegex.test(phoneNum) && phoneNum != "") {
       setPhoneError("올바른 전화번호 형식이 아닙니다!");
     } else {
       setPhoneError("");
@@ -55,10 +60,20 @@ function SignUpForm() {
 
   // 비밀번호와 비밀번호 확인이 올바른지 체크해서 메시지 표시하는 함수
   function isValidPassword(password, passwordCheck) {
-    if (password !== passwordCheck) {
+    if (password !== passwordCheck && passwordCheck != "") {
       setPasswordError("비밀번호가 일치하지 않습니다!");
     } else {
       setPasswordError("");
+    }
+  }
+
+  // email 형식 체크
+  function isValidEmail(mail) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    if (!emailRegex.test(mail) && mail != "") {
+      setEmailError("올바른 이메일 형식이 아닙니다!");
+    } else {
+      setEmailError("");
     }
   }
 
@@ -118,11 +133,15 @@ function SignUpForm() {
                 )
             )
           );
-          console.log(phone);
         }}
       />
 
-      <div className={SignUpFormStyles.signUpLabels}>이메일</div>
+      <div className={SignUpFormStyles.signUpLabels}>
+        <span>이메일</span>{" "}
+        {emailError && (
+          <span className={SignUpFormStyles.errorMessage}>{emailError}</span>
+        )}
+      </div>
       <Input
         className={SignUpFormStyles.signUpInputs}
         placeholder={"EX) handong@example.com"}
@@ -130,7 +149,6 @@ function SignUpForm() {
         onChange={(e) => {
           dispatch(setEmail(e.target.value));
           dispatch(setIsValidForm());
-          console.log(email);
         }}
       />
 
@@ -142,7 +160,6 @@ function SignUpForm() {
         onChange={(e) => {
           dispatch(setId(e.target.value));
           dispatch(setIsValidForm());
-          console.log(id);
         }}
       />
 
@@ -155,7 +172,6 @@ function SignUpForm() {
         onChange={(e) => {
           dispatch(setPassword(e.target.value));
           dispatch(setIsValidForm());
-          console.log(pw);
         }}
       />
 
@@ -173,7 +189,6 @@ function SignUpForm() {
         onChange={(e) => {
           dispatch(setPasswordChk(e.target.value));
           dispatch(setIsValidForm());
-          console.log(pwChk, isValidForm);
         }}
       />
 
