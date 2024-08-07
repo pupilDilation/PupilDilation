@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCol, setRow } from "../../slice/seatSlice";
 import SeatSelectSection from "./SeatSelectSection";
@@ -8,6 +9,7 @@ import axios from "axios";
 
 const SeatSelection = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const concertId = useSelector((state) => state.concert.selectedConcertId);
   // const { concertId } = useParams();
   // console.log("concert id: ", concertId);
@@ -42,6 +44,14 @@ const SeatSelection = () => {
     return <div>Loading...</div>;
   }
 
+  const handlePaymentClick = () => {
+    alert("결제를 완료해야 합니다.");
+
+    //결제 로직 처리 및 데이터 베이스로 데이터 넘기는 부분!
+
+    navigate("/");
+  };
+
   return (
     <div className={SeatStyle.seatWrapper}>
       <div className={SeatStyle.seatTitle}>좌석 선택</div>
@@ -58,6 +68,7 @@ const SeatSelection = () => {
         <SeatSelectSection />
         <div className={SeatStyle.seatTypeGrid}></div>
       </div>
+      <button onClick={handlePaymentClick}>결제하기</button>
     </div>
   );
 };
