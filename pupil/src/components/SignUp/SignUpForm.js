@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button/Button";
 import ButtonStyles from "../Button/Button.module.css";
 import SignUpFormStyles from "../SignUp/SignUpForm.module.css";
@@ -29,6 +29,53 @@ function SignUpForm() {
   const pwChk = useSelector((state) => state.signUp.passwordChk);
   const isValidForm = useSelector((state) => state.signUp.isValidForm);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // 전화번호와 비밀번호 일치여부를 판단해 메시지를 출력해주기
+  const [phoneError, setPhoneError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  useEffect(() => {
+    isValidPhone(phone);
+  }, [phone]);
+
+  useEffect(() => {
+    isValidPassword(pw, pwChk);
+  }, [pw, pwChk]);
+
+  useEffect(() => {
+    isValidEmail(email);
+  }, [email]);
+
+  // 전화번호 형식이 올바른지 체크해서 메시지 표시하는 함수
+  function isValidPhone(phoneNum) {
+    const phoneRegex = /^010-\d{4}-\d{4}$/;
+    if (!phoneRegex.test(phoneNum) && phoneNum != "") {
+      setPhoneError("올바른 전화번호 형식이 아닙니다!");
+    } else {
+      setPhoneError("");
+    }
+  }
+
+  // 비밀번호와 비밀번호 확인이 올바른지 체크해서 메시지 표시하는 함수
+  function isValidPassword(password, passwordCheck) {
+    if (password !== passwordCheck && passwordCheck != "") {
+      setPasswordError("비밀번호가 일치하지 않습니다!");
+    } else {
+      setPasswordError("");
+    }
+  }
+
+  // email 형식 체크
+  function isValidEmail(mail) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    if (!emailRegex.test(mail) && mail != "") {
+      setEmailError("올바른 이메일 형식이 아닙니다!");
+    } else {
+      setEmailError("");
+    }
+  }
 
   async function register(e) {
     try {
@@ -39,8 +86,11 @@ function SignUpForm() {
         email: email,
         phone: phone,
       });
-      alert("register success!");
-      dispatch(resetAll());
+      if (res.data.success) {
+        alert("register success");
+        dispatch(resetAll());
+        navigate("/");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +112,12 @@ function SignUpForm() {
         }}
       />
 
-      <div className={SignUpFormStyles.signUpLabels}>전화번호</div>
+      <div className={SignUpFormStyles.signUpLabels}>
+        <span>전화번호</span>
+        {phoneError && (
+          <span className={SignUpFormStyles.errorMessage}>{phoneError}</span>
+        )}
+      </div>
       <Input
         className={SignUpFormStyles.signUpInputs}
         placeholder={"010-1234-5678"}
@@ -78,11 +133,15 @@ function SignUpForm() {
                 )
             )
           );
-          console.log(phone);
         }}
       />
 
-      <div className={SignUpFormStyles.signUpLabels}>이메일</div>
+      <div className={SignUpFormStyles.signUpLabels}>
+        <span>이메일</span>{" "}
+        {emailError && (
+          <span className={SignUpFormStyles.errorMessage}>{emailError}</span>
+        )}
+      </div>
       <Input
         className={SignUpFormStyles.signUpInputs}
         placeholder={"EX) handong@example.com"}
@@ -90,7 +149,6 @@ function SignUpForm() {
         onChange={(e) => {
           dispatch(setEmail(e.target.value));
           dispatch(setIsValidForm());
-          console.log(email);
         }}
       />
 
@@ -102,7 +160,6 @@ function SignUpForm() {
         onChange={(e) => {
           dispatch(setId(e.target.value));
           dispatch(setIsValidForm());
-          console.log(id);
         }}
       />
 
@@ -111,22 +168,27 @@ function SignUpForm() {
         className={SignUpFormStyles.signUpInputs}
         placeholder={"8~20자리 영문 대소문자, 숫자, 특수문자 포함"}
         value={pw}
+        type={"password"}
         onChange={(e) => {
           dispatch(setPassword(e.target.value));
           dispatch(setIsValidForm());
-          console.log(pw);
         }}
       />
 
-      <div className={SignUpFormStyles.signUpLabels}>비밀번호 재입력</div>
+      <div className={SignUpFormStyles.signUpLabels}>
+        <span>비밀번호 재입력</span>{" "}
+        {passwordError && (
+          <span className={SignUpFormStyles.errorMessage}>{passwordError}</span>
+        )}
+      </div>
       <Input
         className={SignUpFormStyles.signUpInputs}
         placeholder={"비밀번호 확인"}
         value={pwChk}
+        type={"password"}
         onChange={(e) => {
           dispatch(setPasswordChk(e.target.value));
           dispatch(setIsValidForm());
-          console.log(pwChk, isValidForm);
         }}
       />
 
@@ -137,6 +199,7 @@ function SignUpForm() {
             ButtonStyles.loginBtn
           )}
           onClick={register}
+          disabled={!isValidForm}
         >
           <div className={SignUpFormStyles.signUpCompleteText}>가입 완료</div>
         </Button>

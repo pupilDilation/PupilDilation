@@ -43,7 +43,9 @@ const signUpSlice = createSlice({
         state.password == state.passwordChk &&
         /^[A-Za-z0-9]([._%+-]?[A-Za-z0-9])*@[A-Za-z0-9]([.-]?[A-Za-z0-9])*\.[A-Za-z]{2,}$/i.test(
           state.email
-        )
+        ) &&
+        state.name != "" &&
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(state.email)
       ) {
         state.isValidForm = true;
       } else {
