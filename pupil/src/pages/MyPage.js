@@ -18,11 +18,13 @@ import axios from "axios";
  */
 function MyPage() {
   const [user, setUser] = useState({});
-  const [reservation, setReservation] = useState([]);
-  const [session, setSession] = useState([]);
-  const [concert, setConcert] = useState([]);
+  const [reservations, setReservations] = useState([]);
+  const [sessions, setSessions] = useState([]);
+  const [concerts, setConcerts] = useState([]);
   const [userId, setUserId] = useState(null);
   const [userType, setUserType] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -36,8 +38,11 @@ function MyPage() {
         if (response.data.authenticated) {
           setUserId(response.data.userId);
           setUserType(response.data.userType);
+        } else {
+          setError("User not authenticated");
         }
       } catch (error) {
+        setError("Error checking authentication");
         console.error("Error checking authentication", error);
       }
     }
@@ -54,6 +59,7 @@ function MyPage() {
         );
         setUser(response.data);
       } catch (error) {
+        setError("Error fetching user data");
         console.error("Error fetching user data:", error);
       }
     }
@@ -65,28 +71,36 @@ function MyPage() {
 
     async function fetchReservationInfo() {
       try {
+        setLoading(true);
         const response = await axios.get(
           `http://localhost:3001/reservations/${userId}`
         );
         const reservationData = response.data.reservations;
-        setReservation(reservationData);
+        setReservations(reservationData);
 
+        // Fetch session details
         const sessionRequests = reservationData.map((reservation) =>
           axios.get(`http://localhost:3001/sessions/${reservation.session_id}`)
         );
         const sessionResponses = await Promise.all(sessionRequests);
-        setSession(sessionResponses.map((response) => response.data));
+        const sessionsData = sessionResponses.map((response) => response.data);
+        setSessions(sessionsData);
 
-        const concertIds = sessionResponses.map(
-          (response) => response.data.concert_id
-        );
+        // Fetch concert details
+        const concertIds = sessionsData.map((session) => session.concert_id);
         const concertRequests = concertIds.map((concertId) =>
           axios.get(`http://localhost:3001/concerts/${concertId}`)
         );
         const concertResponses = await Promise.all(concertRequests);
-        setConcert(concertResponses.map((response) => response.data));
+        const concertsData = concertResponses.map(
+          (response) => response.data[0]
+        );
+        setConcerts(concertsData);
       } catch (error) {
+        setError("Error fetching reservation data");
         console.error("Error fetching reservation data:", error);
+      } finally {
+        setLoading(false);
       }
     }
     fetchReservationInfo();
@@ -107,16 +121,16 @@ function MyPage() {
       <Wrapper className={WrapperStyles.wrapper}>
         <h1>예매 내역</h1>
       </Wrapper>
-      {reservation.length === 0 && <p>No reservations found.</p>}
-      {session.map((session, index) => (
+      {reservations.length === 0 && <p>No reservations found.</p>}
+      {sessions.map((sessions, index) => (
         <Ticket
           key={index}
-          title={concert[index][0]?.concert_title || "제목"} // Assuming concert object contains title
-          date={session.session_date || "날짜"} // Assuming session object contains date
-          payment={reservation[index]?.payment_status || "결제상태"} // Adjust as necessary
-          location={concert[index][0].concert_location || "학관104호"} // Assuming session object contains location
-          seat={reservation[index]?.seat_id || "A열8번"} // Adjust as necessary
-          enterTime={session.session_date || "시작시간"} // Assuming session object contains enterTime
+          title={concerts[index]?.concert_title || "제목"} // Assuming concert object contains title
+          date={sessions.session_date || "날짜"} // Assuming session object contains date
+          payment={reservations[index]?.payment_status || "결제상태"} // Adjust as necessary
+          location={concerts[index]?.concert_location || "학관104호"} // Assuming session object contains location
+          seat={reservations[index]?.seat_id || "A열8번"} // Adjust as necessary
+          enterTime={sessions.session_date || "시작시간"} // Assuming session object contains enterTime
         />
       ))}
     </Wrapper>
