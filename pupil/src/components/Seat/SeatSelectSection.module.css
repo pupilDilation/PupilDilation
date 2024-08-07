@@ -1,18 +1,25 @@
-.reserveSection p {
-  margin: 5px 0;
-}
-
 .sectionWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   font-weight: bold;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-all;
   padding: 10px;
   box-sizing: border-box;
-  width: 200px;
-  height: 200px;
-  border: solid;
-  margin: 2em;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  min-height: 200px;
+  border: 1px solid #000;
+  margin: 1em 0;
+  overflow: auto;
+}
+
+.reserveSection p {
+  margin: 5px 0;
+  word-break: break-word;
+}
+
+@media (min-width: 768px) {
+  .sectionWrapper {
+    margin: 0 0 0 1em;
+  }
 }

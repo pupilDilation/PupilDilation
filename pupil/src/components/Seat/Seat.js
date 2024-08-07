@@ -3,7 +3,7 @@ import seatStyle from "./Seat.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSeat } from "../../slice/seatSlice";
 
-const Seat = ({ seatNumber }) => {
+const Seat = ({ seatNumber, style }) => {
   const dispatch = useDispatch();
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const isReserved = selectedSeats.includes(seatNumber);
@@ -18,6 +18,7 @@ const Seat = ({ seatNumber }) => {
         isReserved ? seatStyle.reserved : seatStyle.available
       }`}
       onClick={handleClick}
+      style={style}
     >
       {seatNumber}
     </div>
