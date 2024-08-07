@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Import useParams
 import styles from "./DetailContentMobile.module.css"; // Import CSS module
-import { useParams, useNavigate } from "react-router-dom"; // Import useParams
 import axios from "axios";
-import { selectedConcert } from "../../slice/concertSlice";
-import { useDispatch } from "react-redux";
 
 function DetailForm() {
   const { concertId } = useParams(); // Get concertId from URL parameters
@@ -13,9 +11,6 @@ function DetailForm() {
   const [error, setError] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
   const [performancePeriod, setPerformancePeriod] = useState("");
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchConcertDetails = async () => {
@@ -73,9 +68,7 @@ function DetailForm() {
   } = concert;
 
   const handleBookNow = () => {
-    // alert("Booking functionality is not implemented yet.");
-    dispatch(selectedConcert(concertId));
-    navigate(`/seats/concert/${concertId}`);
+    alert("Booking functionality is not implemented yet.");
   };
 
   return (
