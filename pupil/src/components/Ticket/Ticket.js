@@ -20,7 +20,7 @@ function Ticket(props) {
             src="img/loadImage.png"
             className={TicketStyles.showPoster}
           ></img>
-          <h1 className={TicketStyles.seatNumber}>A8</h1>
+          <h1 className={TicketStyles.seatNumber}>{props.seat}</h1>
         </div>
         <div className={TicketStyles.ticketInfo}>
           <div>
