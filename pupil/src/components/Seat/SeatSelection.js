@@ -16,11 +16,6 @@ const SeatSelection = () => {
   const col = useSelector((state) => state.seat.col);
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--row", row);
-    document.documentElement.style.setProperty("--col", col);
-  }, [row, col]);
-
-  useEffect(() => {
     async function getSeatsByConcertId() {
       try {
         const response = await axios.get(
@@ -37,6 +32,11 @@ const SeatSelection = () => {
     }
     getSeatsByConcertId();
   }, [concertId, dispatch]);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--row", row);
+    document.documentElement.style.setProperty("--col", col);
+  }, [row, col]);
 
   if (row === 0 && col === 0) {
     return <div>Loading...</div>;
