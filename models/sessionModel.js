@@ -44,10 +44,19 @@ const deleteSession = async (concertId, sessionId) => {
   return result;
 };
 
+const getSessionBySessionId = async (sessionId) => {
+  const [rows] = await db.query(
+    `SELECT * FROM session WHERE session_id = ? AND deleted_at IS NULL`,
+    [sessionId]
+  );
+  return rows[0];
+};
+
 module.exports = {
   getSessions,
   getSessionById,
   postSession,
   putSession,
   deleteSession,
+  getSessionBySessionId,
 };
