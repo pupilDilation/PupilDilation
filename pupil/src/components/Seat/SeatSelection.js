@@ -4,23 +4,16 @@ import SeatStyle from "./Seat.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCol, setRow } from "../../slice/seatSlice";
 import SeatSelectSection from "./SeatSelectSection";
-import { useParams } from "react-router";
 import axios from "axios";
 
 const SeatSelection = () => {
   const dispatch = useDispatch();
-  const { concertId } = useParams();
-  console.log("concert id: ", concertId);
-
-  // dispatch(setCol(10));
-  // dispatch(setRow(5));
-
-  // const selectedSeats = useSelector((state) => state.seat.selectedSeats);
+  const concertId = useSelector((state) => state.concert.selectedConcertId);
+  // const { concertId } = useParams();
+  // console.log("concert id: ", concertId);
 
   const row = useSelector((state) => state.seat.row);
   const col = useSelector((state) => state.seat.col);
-
-  console.log(row, col);
   useEffect(() => {
     async function getSeatsByConcertId() {
       try {

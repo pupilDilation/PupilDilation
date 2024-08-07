@@ -40,7 +40,7 @@ function App() {
               <Route path="/my-page" element={<MyPage />}></Route>
               <Route path="/details/:concertId" element={<DetailPage />} />
               <Route
-                path="/seats/:concertId"
+                path="/seats/concert/:concertId"
                 element={<SeatSelection />}
               ></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>
