@@ -14,6 +14,12 @@ const SeatSelection = () => {
 
   const row = useSelector((state) => state.seat.row);
   const col = useSelector((state) => state.seat.col);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--row", row);
+    document.documentElement.style.setProperty("--col", col);
+  }, [row, col]);
+
   useEffect(() => {
     async function getSeatsByConcertId() {
       try {
