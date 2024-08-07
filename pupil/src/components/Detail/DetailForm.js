@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // Import useParams
-import "./DetailContentMobile.css";
+import styles from "./DetailContentMobile.module.css"; // Import CSS module
 import axios from "axios";
 
 function DetailForm() {
@@ -72,45 +72,45 @@ function DetailForm() {
   };
 
   return (
-    <div className="detail-container-mobile">
-      <p className="event-title-mobile">{concert_title}</p>
+    <div className={styles.detailContainerMobile}>
+      <p className={styles.eventTitleMobile}>{concert_title}</p>
       <div>
-        <div className="first-detail-mobile">
+        <div className={styles.firstDetailMobile}>
           {concert_img ? (
             <img
-              className="event-image-mobile"
+              className={styles.eventImageMobile}
               src={concert_img}
               alt={concert_title}
             />
           ) : (
             <img src="hello.png" alt={concert_title} />
           )}
-          <div className="second-detail-mobile">
+          <div className={styles.secondDetailMobile}>
             <div>
-              <p className="content-title">가격</p>
-              <p className="content-text">{concert_price}원</p>
+              <p className={styles.contentTitle}>가격</p>
+              <p className={styles.contentText}>{concert_price}원</p>
             </div>
             <div>
-              <p className="content-title">장소</p>
-              <p className="content-text">{concert_location}</p>
+              <p className={styles.contentTitle}>장소</p>
+              <p className={styles.contentText}>{concert_location}</p>
             </div>
             <div>
-              <p className="content-title">공연기간</p>
-              <p className="content-text">
+              <p className={styles.contentTitle}>공연기간</p>
+              <p className={styles.contentText}>
                 {performancePeriod || "기간 정보 없음"}
               </p>
             </div>
           </div>
         </div>
-        <div className="third-detail-mobile">
+        <div className={styles.thirdDetailMobile}>
           <div>
-            <p className="content-intro">소개</p>
-            <p className="intro-text">{concert_plot}</p>
+            <p className={styles.contentIntro}>소개</p>
+            <p className={styles.introText}>{concert_plot}</p>
           </div>
-          <div className="schedule-container">
-            <p className="content-title">공연일정</p>
+          <div className={styles.scheduleContainer}>
+            <p className={styles.contentTitle}>공연일정</p>
             <select
-              className="schedule-dropdown"
+              className={styles.scheduleDropdown}
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
             >
@@ -128,8 +128,8 @@ function DetailForm() {
               )}
             </select>
           </div>
-          <div className="book-now-container">
-            <button className="book-now-button" onClick={handleBookNow}>
+          <div className={styles.bookNowContainer}>
+            <button className={styles.bookNowButton} onClick={handleBookNow}>
               예매하기
             </button>
           </div>
