@@ -1,26 +1,22 @@
 import React, { useEffect } from "react";
 import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCol, setRow } from "../../slice/seatSlice";
 import SeatSelectSection from "./SeatSelectSection";
-import { useParams } from "react-router";
 import axios from "axios";
 
 const SeatSelection = () => {
   const dispatch = useDispatch();
-  const { concertId } = useParams();
-  console.log("concert id: ", concertId);
-
-  // dispatch(setCol(10));
-  // dispatch(setRow(5));
-
-  // const selectedSeats = useSelector((state) => state.seat.selectedSeats);
+  const navigate = useNavigate();
+  const concertId = useSelector((state) => state.concert.selectedConcertId);
+  // const { concertId } = useParams();
+  // console.log("concert id: ", concertId);
 
   const row = useSelector((state) => state.seat.row);
   const col = useSelector((state) => state.seat.col);
 
-  console.log(row, col);
   useEffect(() => {
     async function getSeatsByConcertId() {
       try {
@@ -39,9 +35,22 @@ const SeatSelection = () => {
     getSeatsByConcertId();
   }, [concertId, dispatch]);
 
+  useEffect(() => {
+    document.documentElement.style.setProperty("--row", row);
+    document.documentElement.style.setProperty("--col", col);
+  }, [row, col]);
+
   if (row === 0 && col === 0) {
     return <div>Loading...</div>;
   }
+
+  const handlePaymentClick = () => {
+    alert("결제를 완료해야 합니다.");
+
+    //결제 로직 처리 및 데이터 베이스로 데이터 넘기는 부분!
+
+    navigate("/");
+  };
 
   return (
     <div className={SeatStyle.seatWrapper}>
@@ -59,6 +68,7 @@ const SeatSelection = () => {
         <SeatSelectSection />
         <div className={SeatStyle.seatTypeGrid}></div>
       </div>
+      <button onClick={handlePaymentClick}>결제하기</button>
     </div>
   );
 };

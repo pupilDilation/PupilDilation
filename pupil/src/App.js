@@ -39,9 +39,8 @@ function App() {
               <Route path="/signup" element={<SignUpPage />}></Route>
               <Route path="/my-page" element={<MyPage />}></Route>
               <Route path="/details/:concertId" element={<DetailPage />} />
-              <Route path="/seats" element={<SeatSelection />}></Route>
               <Route
-                path="/seats/:concertId"
+                path="/seats/concert/:concertId"
                 element={<SeatSelection />}
               ></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>

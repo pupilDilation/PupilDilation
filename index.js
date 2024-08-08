@@ -2,6 +2,7 @@
 const express = require("express");
 // Routes
 const concertRoutes = require("./routes/concertRoutes");
+const sessionRoutes = require("./routes/sessionRoutes");
 const userRoutes = require("./routes/userRoutes");
 const clubRoutes = require("./routes/clubRoutes");
 const authRoutes = require("./routes/authRoutes");
@@ -54,6 +55,7 @@ sessionStore
 app.use(express.json());
 // Routes 주소
 app.use("/concerts", concertRoutes);
+app.use("/sessions", sessionRoutes);
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
 app.use("/club", clubRoutes);

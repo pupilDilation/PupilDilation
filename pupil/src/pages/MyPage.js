@@ -17,10 +17,14 @@ import axios from "axios";
  * 회원 정보 수정, 예매 내역 취소 기능 포함
  */
 function MyPage() {
-  const [user, setUser] = useState("");
-  const [reservation, setReservation] = useState("");
+  const [user, setUser] = useState({});
+  const [reservations, setReservations] = useState([]);
+  const [sessions, setSessions] = useState([]);
+  const [concerts, setConcerts] = useState([]);
   const [userId, setUserId] = useState(null);
   const [userType, setUserType] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getUserInfo() {
@@ -34,8 +38,11 @@ function MyPage() {
         if (response.data.authenticated) {
           setUserId(response.data.userId);
           setUserType(response.data.userType);
+        } else {
+          setError("User not authenticated");
         }
       } catch (error) {
+        setError("Error checking authentication");
         console.error("Error checking authentication", error);
       }
     }
@@ -52,6 +59,7 @@ function MyPage() {
         );
         setUser(response.data);
       } catch (error) {
+        setError("Error fetching user data");
         console.error("Error fetching user data:", error);
       }
     }
@@ -63,12 +71,36 @@ function MyPage() {
 
     async function fetchReservationInfo() {
       try {
+        setLoading(true);
         const response = await axios.get(
           `http://localhost:3001/reservations/${userId}`
         );
-        setReservation(response.data.reservations[0]);
+        const reservationData = response.data.reservations;
+        setReservations(reservationData);
+
+        // Fetch session details
+        const sessionRequests = reservationData.map((reservation) =>
+          axios.get(`http://localhost:3001/sessions/${reservation.session_id}`)
+        );
+        const sessionResponses = await Promise.all(sessionRequests);
+        const sessionsData = sessionResponses.map((response) => response.data);
+        setSessions(sessionsData);
+
+        // Fetch concert details
+        const concertIds = sessionsData.map((session) => session.concert_id);
+        const concertRequests = concertIds.map((concertId) =>
+          axios.get(`http://localhost:3001/concerts/${concertId}`)
+        );
+        const concertResponses = await Promise.all(concertRequests);
+        const concertsData = concertResponses.map(
+          (response) => response.data[0]
+        );
+        setConcerts(concertsData);
       } catch (error) {
+        setError("Error fetching reservation data");
         console.error("Error fetching reservation data:", error);
+      } finally {
+        setLoading(false);
       }
     }
     fetchReservationInfo();
@@ -89,18 +121,20 @@ function MyPage() {
       <Wrapper className={WrapperStyles.wrapper}>
         <h1>예매 내역</h1>
       </Wrapper>
-      <Ticket //예매 티켓 컴포넌트
-        title="제목"
-        date="날짜"
-        payment="결제상태"
-        location="학관104호"
-        seat="A열8번"
-        enterTime="시작시간"
-      />
+      {reservations.length === 0 && <p>No reservations found.</p>}
+      {sessions.map((sessions, index) => (
+        <Ticket
+          key={index}
+          title={concerts[index]?.concert_title || "제목"} // Assuming concert object contains title
+          date={sessions.session_date || "날짜"} // Assuming session object contains date
+          payment={reservations[index]?.payment_status || "결제상태"} // Adjust as necessary
+          location={concerts[index]?.concert_location || "학관104호"} // Assuming session object contains location
+          seat={reservations[index]?.seat_id || "A열8번"} // Adjust as necessary
+          enterTime={sessions.session_date || "시작시간"} // Assuming session object contains enterTime
+        />
+      ))}
     </Wrapper>
   );
 }
-
-//Use .map() in the future
 
 export default MyPage;

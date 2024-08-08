@@ -17,7 +17,7 @@ const getSessionById = async (req, res) => {
     if (session) {
       res.json(session);
     } else {
-      res.status(404).json({ error: "Session not found." });
+      res.status(404).json({ error: error.message });
     }
   } catch (error) {
     res.status(500).json({
@@ -72,10 +72,25 @@ const deleteSession = async (req, res) => {
   }
 };
 
+const getSessionBySessionId = async (req, res) => {
+  const { session_id } = req.params;
+  try {
+    const session = await sessionModel.getSessionBySessionId(session_id);
+    if (session) {
+      res.json(session);
+    } else {
+      res.status(404).json({ error: "Session not found." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch session." });
+  }
+};
+
 module.exports = {
   getSessions,
   getSessionById,
   postSession,
   putSession,
   deleteSession,
+  getSessionBySessionId,
 };

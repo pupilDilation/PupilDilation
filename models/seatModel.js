@@ -16,7 +16,15 @@ const getSeatBySessionId = async (sessionId) => {
   return rows;
 };
 
+const updateSeatStatus = async (sessionId, seatNumber, seatStatus) => {
+  await db.query(
+    "UPDATE seat SET seat_status = ? WHERE session_id = ? AND seat_number = ?",
+    [seatStatus, sessionId, seatNumber]
+  );
+};
+
 module.exports = {
   getSeatByConcertId,
   getSeatBySessionId,
+  updateSeatStatus,
 };

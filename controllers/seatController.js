@@ -42,7 +42,28 @@ const getSeatBySessionId = async (req, res) => {
   }
 };
 
+const updateSeatStatus = async (req, res) => {
+  const { sessionId } = req.params;
+  console.log("Request body:", req.body);
+  const { seatStatus, seatNumber } = req.body;
+  try {
+    await seatModel.updateSeatStatus(sessionId, seatNumber, seatStatus);
+    return res.json({
+      success: true,
+      message: "Seat status updated successfully",
+      param: sessionId,
+      body: { seatNumber, seatStatus },
+    });
+  } catch (error) {
+    console.error("Error updating seat status:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Server error", detail: error.message });
+  }
+};
+
 module.exports = {
   getSeatByConcertId,
   getSeatBySessionId,
+  updateSeatStatus,
 };
