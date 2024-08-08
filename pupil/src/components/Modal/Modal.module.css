@@ -34,9 +34,14 @@
   display: flex;
   border-radius: 5px 5px 0 0;
   justify-content: space-between;
+  align-items: center;
 }
 
 .header button {
   background-color: transparent;
   border: 0;
+}
+
+.header h3 {
+  font-weight: bolder;
 }
