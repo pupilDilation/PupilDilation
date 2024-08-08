@@ -27,7 +27,7 @@ function DetailForm() {
         setConcert(concertResponse.data[0]);
 
         const sessionsResponse = await axios.get(
-          `http://localhost:3001/concerts/${concertId}/session`
+          `http://localhost:3001/sessions/${concertId}/session`
         );
         console.log("Sessions Response:", sessionsResponse.data);
         setSessions(sessionsResponse.data);
