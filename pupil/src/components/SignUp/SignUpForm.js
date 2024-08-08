@@ -19,6 +19,7 @@ import {
   resetAll,
 } from "../../slice/signUpSlice";
 import axios from "axios";
+import Modal from "../Modal/Modal";
 
 function SignUpForm() {
   const name = useSelector((state) => state.signUp.name);
@@ -36,6 +37,13 @@ function SignUpForm() {
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
 
+  // id 중복시 modal 띄우기
+  const [isOpened, setIsOpened] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  function closeModal() {
+    setIsOpened(false);
+  }
+
   useEffect(() => {
     isValidPhone(phone);
   }, [phone]);
@@ -51,7 +59,7 @@ function SignUpForm() {
   // 전화번호 형식이 올바른지 체크해서 메시지 표시하는 함수
   function isValidPhone(phoneNum) {
     const phoneRegex = /^010-\d{4}-\d{4}$/;
-    if (!phoneRegex.test(phoneNum) && phoneNum != "") {
+    if (!phoneRegex.test(phoneNum) && phoneNum !== "") {
       setPhoneError("올바른 전화번호 형식이 아닙니다!");
     } else {
       setPhoneError("");
@@ -60,7 +68,7 @@ function SignUpForm() {
 
   // 비밀번호와 비밀번호 확인이 올바른지 체크해서 메시지 표시하는 함수
   function isValidPassword(password, passwordCheck) {
-    if (password !== passwordCheck && passwordCheck != "") {
+    if (password !== passwordCheck && passwordCheck !== "") {
       setPasswordError("비밀번호가 일치하지 않습니다!");
     } else {
       setPasswordError("");
@@ -70,7 +78,7 @@ function SignUpForm() {
   // email 형식 체크
   function isValidEmail(mail) {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
-    if (!emailRegex.test(mail) && mail != "") {
+    if (!emailRegex.test(mail) && mail !== "") {
       setEmailError("올바른 이메일 형식이 아닙니다!");
     } else {
       setEmailError("");
@@ -90,15 +98,24 @@ function SignUpForm() {
         alert("register success");
         dispatch(resetAll());
         navigate("/");
+      } else if (res.status === 409) {
+        setModalMessage(res.data.message);
+        setIsOpened(true);
       }
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 409) {
+        setModalMessage("이미 존재하는 ID 입니다!");
+        setIsOpened(true);
+      }
     }
   }
 
   //가입완료 버튼 -> 조건 충족시 활성화 되도록
   return (
     <div className={SignUpFormStyles.signUpFormWrapper}>
+      <Modal title={"Alert"} isOpened={isOpened} onClose={closeModal}>
+        <h3>{modalMessage}</h3>
+      </Modal>
       <h5 className={SignUpFormStyles.signUpText}>회원가입</h5>
 
       <div className={SignUpFormStyles.signUpLabels}>이름</div>
