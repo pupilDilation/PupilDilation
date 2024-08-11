@@ -1,18 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setCol, setRow } from "../../slice/seatSlice";
+import {
+  setCol,
+  setRow,
+  clearSelectedSeats,
+  toggleSeat,
+} from "../../slice/seatSlice";
 import SeatSelectSection from "./SeatSelectSection";
 import axios from "axios";
 
-const SeatSelection = () => {
+function SeatSelection() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const concertId = useSelector((state) => state.concert.selectedConcertId);
-  // const { concertId } = useParams();
-  // console.log("concert id: ", concertId);
+  const selectedSeats = useSelector((state) => state.seat.selectedSeats);
+  const [seats, setSeats] = useState([]);
+  const { sessionId } = useParams();
 
   const row = useSelector((state) => state.seat.row);
   const col = useSelector((state) => state.seat.col);
@@ -21,35 +27,74 @@ const SeatSelection = () => {
     async function getSeatsByConcertId() {
       try {
         const response = await axios.get(
-          `http://localhost:3001/seats/concert/${concertId}`
+          `http://localhost:3001/seats/session/${sessionId}`
         );
-        const { concert_row, concert_col } = response.data;
+        const { success, seats, concert_row, concert_col } = response.data;
 
         //redux 상태 업데이트
-        dispatch(setRow(concert_row));
-        dispatch(setCol(concert_col));
+        if (success) {
+          dispatch(setRow(concert_row));
+          dispatch(setCol(concert_col));
+          setSeats(seats);
+        } else {
+          throw new Error("Failed to fetch seats data");
+        }
       } catch (error) {
         console.error("Error fetching seats data: ", error);
+        alert("좌석 정보를 불러오는데 실패했습니다.");
+        navigate("/");
       }
     }
-    getSeatsByConcertId();
-  }, [concertId, dispatch]);
+    //세션이 존재할 경우 콘서트 id를 이용하여 좌석 정보 불러옴
+    if (sessionId) {
+      getSeatsByConcertId();
+    }
+  }, [concertId, sessionId, dispatch]);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--row", row);
     document.documentElement.style.setProperty("--col", col);
   }, [row, col]);
 
-  if (row === 0 && col === 0) {
+  //세션 id값이 없거나 row col이 0이라 불러올 좌석 정보가 없을 경우
+  if (!sessionId || (row === 0 && col === 0)) {
     return <div>Loading...</div>;
   }
+  //좌석이 선택되었을 때
+  const handleSeatSelect = (seatNumber) => {
+    dispatch(toggleSeat(seatNumber));
+  };
+  //결제하기 버튼을 클릭했을 때
+  const handlePaymentClick = async () => {
+    if (selectedSeats.length === 0) {
+      alert("좌석을 선택해주세요.");
+      navigate("/");
+      return;
+    }
+    try {
+      for (const seatNumber of selectedSeats) {
+        await axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
+          seatNumber,
+          seatStatus: "reserved",
+        });
+      }
+      const response = await axios.get(
+        `http://localhost:3001/seats/session/${sessionId}`
+      );
+      const { success, seats } = response.data;
 
-  const handlePaymentClick = () => {
-    alert("결제를 완료해야 합니다.");
-
-    //결제 로직 처리 및 데이터 베이스로 데이터 넘기는 부분!
-
-    navigate("/");
+      if (success) {
+        setSeats(seats);
+        dispatch(clearSelectedSeats());
+        alert("결제가 완료되었습니다.");
+      } else {
+        throw new Error("Failed to update seat information");
+      }
+      navigate("/");
+    } catch (error) {
+      console.error("결제 처리 중 오류 발생:", error);
+      alert("결제 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+    }
   };
 
   return (
@@ -61,16 +106,25 @@ const SeatSelection = () => {
       </div>
       <div className={SeatStyle.seatSection}>
         <div className={SeatStyle.seatGrid}>
-          {Array.from({ length: row * col }, (_, index) => (
-            <Seat key={index + 1} seatNumber={index + 1} />
-          ))}
+          {Array.from({ length: row * col }, (_, index) => {
+            const seatNumber = index + 1;
+            const seatInfo =
+              seats.find((seat) => seat.seat_number === seatNumber) || {};
+            return (
+              <Seat
+                key={seatNumber}
+                seatNumber={seatNumber}
+                seatStatus={seatInfo.seat_status || "available"}
+                onSelect={handleSeatSelect}
+              />
+            );
+          })}
         </div>
         <SeatSelectSection />
-        <div className={SeatStyle.seatTypeGrid}></div>
       </div>
       <button onClick={handlePaymentClick}>결제하기</button>
     </div>
   );
-};
+}
 
 export default SeatSelection;
