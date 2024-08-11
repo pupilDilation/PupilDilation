@@ -29,8 +29,12 @@ const seatsSlice = createSlice({
         state.selectedSeats.push(seatNumber);
       }
     },
+    clearSelectedSeats: (state) => {
+      state.selectedSeats = [];
+    },
   },
 });
 
-export const { toggleSeat, setCol, setRow } = seatsSlice.actions;
+export const { toggleSeat, setCol, setRow, clearSelectedSeats } =
+  seatsSlice.actions;
 export default seatsSlice.reducer;
