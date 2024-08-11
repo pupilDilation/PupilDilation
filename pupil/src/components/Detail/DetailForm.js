@@ -20,16 +20,12 @@ function DetailForm() {
   useEffect(() => {
     const fetchConcertDetails = async () => {
       try {
-        const concertResponse = await axios.get(
-          `http://localhost:3001/concerts/${concertId}`
-        );
-        console.log("Concert Response:", concertResponse.data);
-        setConcert(concertResponse.data[0]);
+        const [concertResponse, sessionsResponse] = await Promise.all([
+          axios.get(`http://localhost:3001/concerts/${concertId}`),
+          axios.get(`http://localhost:3001/sessions/${concertId}/session`),
+        ]);
 
-        const sessionsResponse = await axios.get(
-          `http://localhost:3001/sessions/${concertId}/session`
-        );
-        console.log("Sessions Response:", sessionsResponse.data);
+        setConcert(concertResponse.data[0]);
         setSessions(sessionsResponse.data);
 
         if (sessionsResponse.data.length > 0) {
@@ -73,9 +69,17 @@ function DetailForm() {
   } = concert;
 
   const handleBookNow = () => {
-    // alert("Booking functionality is not implemented yet.");
+    const selectedSession = sessions.find(
+      (session) => session.session_date === selectedDate
+    );
+    if (!selectedSession) {
+      alert("유효한 날짜를 선택해주세요");
+      return;
+    }
     dispatch(selectedConcert(concertId));
-    navigate(`/seats/concert/${concertId}`);
+    navigate(
+      `/concert/${concertId}/sessions/${selectedSession.session_id}/seats`
+    );
   };
 
   return (
