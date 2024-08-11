@@ -25,9 +25,16 @@ const getSeatBySessionId = async (req, res) => {
   const { sessionId } = req.params;
 
   try {
-    const rows = await seatModel.getSeatBySessionId(sessionId);
-    if (rows.length > 0) {
-      return res.json({ success: true, seats: rows });
+    const seats = await seatModel.getSeatBySessionId(sessionId);
+    const concertInfo = await seatModel.getConcertInfoBySessionId(sessionId);
+
+    if (seats.length > 0 && concertInfo) {
+      return res.json({
+        success: true,
+        seats: seats,
+        concert_row: concertInfo.concert_row,
+        concert_col: concertInfo.concert_col,
+      });
     } else {
       return res.status(404).json({
         success: false,
@@ -44,13 +51,15 @@ const getSeatBySessionId = async (req, res) => {
 
 const updateSeatStatus = async (req, res) => {
   const { sessionId } = req.params;
-  console.log("Request body:", req.body);
+  // console.log("Request body:", req.body);
   const { seatStatus, seatNumber } = req.body;
+  const updatedSeats = await seatModel.getSeatBySessionId(sessionId);
   try {
     await seatModel.updateSeatStatus(sessionId, seatNumber, seatStatus);
     return res.json({
       success: true,
       message: "Seat status updated successfully",
+      seats: updatedSeats,
       param: sessionId,
       body: { seatNumber, seatStatus },
     });

@@ -43,8 +43,13 @@
   background-color: #727272;
 }
 
-.reserved {
+.selected {
   background-color: #fad744;
+}
+
+.reserved {
+  background-color: #ff0000;
+  cursor: not-allowed;
 }
 
 .screen {
