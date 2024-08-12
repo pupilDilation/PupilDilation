@@ -2,16 +2,30 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("../config/dbConfig");
 const { v4: uuidv4 } = require("uuid");
-const transporter = require("../config/emailConfig"); // email configuration file transporter
 const router = express.Router();
+
+const nodemailer = require("nodemailer");
+const { setDefaultHighWaterMark } = require("nodemailer/lib/xoauth2");
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  logger: true,
+  debug: true,
+  secure: true,
+  port: 465,
+  auth: {
+    user: "cra2024.2048@gmail.com",
+    pass: "yrmm nekh tejf rngy",
+  },
+});
 
 router.post("/sendmail", async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const [email] = await db.query("SELECT * FROM user WHERE user_email = ?", [
-      userId,
-    ]);
+    const [email] = await db.query(
+      "SELECT user_email FROM user WHERE user_id = ?",
+      [userId]
+    );
 
     if (email.length > 0) {
       const userEmail = email[0].user_email;
@@ -23,7 +37,6 @@ router.post("/sendmail", async (req, res) => {
         [userId, uuid]
       );
 
-      // email option
       const mailOption = {
         to: userEmail,
         subject: "[한동아리] 비밀번호 변경 이메일입니다.",
@@ -32,13 +45,15 @@ router.post("/sendmail", async (req, res) => {
         <h4>http://localhost:3000/changepw/${uuid}</h4>
         `,
       };
-      // email 전송
+
       await transporter.sendMail(mailOption);
+      return res.json({ success: true, message: "Email Successfully Sent" });
     } else {
       return res.json({ success: false, message: "No Email Found." });
     }
   } catch (error) {
-    console.log(error);
+    console.error("Error in /sendmail: ", error);
+    res.status(500).json({ success: false, message: error.message });
   }
 });
 
