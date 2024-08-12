@@ -50,8 +50,13 @@
 }
 
 .reserved {
-  background-color: #ff0000;
+  background-color: #2a3252;
   cursor: not-allowed;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: #ef5455;
 }
 
 .screen {
