@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "./slice/loginSlice";
 import signUpReducer from "./slice/signUpSlice";
 import seatReducer from "./slice/seatSlice";
+import concertReducer from "./slice/concertSlice";
 
 /**
  * @author: 248Kobe
@@ -12,5 +13,6 @@ export const store = configureStore({
     login: loginReducer,
     signUp: signUpReducer,
     seat: seatReducer,
+    concert: concertReducer,
   },
 });

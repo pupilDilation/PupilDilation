@@ -1,5 +1,4 @@
 import React from "react";
-import Seat from "./Seat";
 import SeatSelectionSectionStyle from "./SeatSelectSection.module.css";
 import { useSelector } from "react-redux";
 

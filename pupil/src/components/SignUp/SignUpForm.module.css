@@ -10,17 +10,12 @@
 }
 
 /*
-==== 회원가입 위쪽 박스(회원가입 텍스트) ====
-*/
-.signUpTopWrapper {
-  margin-left: calc(100vw * 120 / 400);
-}
-/*
 ==== 회원가입 텍스트 ====
 */
 .signUpText {
   color: black;
   font-size: calc(100vw * 30 / 400);
+  text-align: center;
 }
 
 /*
@@ -48,6 +43,8 @@
 */
 .signUpLabels {
   margin-bottom: 0.2em;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* 
@@ -57,4 +54,11 @@
   display: flex;
   flex-direction: column;
   align-items: end;
+}
+
+/* 
+==== span 스타일 ====
+*/
+.errorMessage {
+  color: #ef5455;
 }

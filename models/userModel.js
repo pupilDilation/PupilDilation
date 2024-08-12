@@ -13,7 +13,7 @@ const getUsers = async () => {
 /**
  * username으로 user 조회
  */
-async function getUserByUsername(user_id) {
+async function getUserById(user_id) {
   const [rows] = await db.query(
     `
     SELECT * FROM user WHERE user_id = ?
@@ -43,7 +43,7 @@ async function updateUser(user_id, username, password, phone, email) {
 
 module.exports = {
   getUsers,
-  getUserByUsername,
+  getUserById,
   createUser,
   updateUser,
 };
