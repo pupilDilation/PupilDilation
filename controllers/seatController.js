@@ -1,4 +1,3 @@
-// controllers/seatController.js
 const seatModel = require("../models/seatModel");
 
 const getSeatByConcertId = async (req, res) => {
@@ -51,7 +50,6 @@ const getSeatBySessionId = async (req, res) => {
 
 const updateSeatStatus = async (req, res) => {
   const { sessionId } = req.params;
-  // console.log("Request body:", req.body);
   const { seatStatus, seatNumber } = req.body;
   const updatedSeats = await seatModel.getSeatBySessionId(sessionId);
   try {
