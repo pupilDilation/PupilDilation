@@ -1,7 +1,26 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("../config/dbConfig");
+const { v4: uuidv4 } = require("uuid");
 const router = express.Router();
+
+router.post("/sendmail", async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const [rows] = await db.query("SELECT * FROM user WHERE user_email = ?", [
+      userId,
+    ]);
+
+    if (rows.length > 0) {
+      const userEmail = rows[0].user_email;
+    } else {
+      res.json({ success: false, message: "No Email Found." });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 router.post("/login", async (req, res) => {
   const { userId, password } = req.body;
