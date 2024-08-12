@@ -18,6 +18,25 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+router.post("/changepassword", async (req, res) => {
+  const { uuid, pw } = req.body;
+
+  try {
+    const [userId] = await db.query(
+      "SELECT user_id FROM change_password WHERE uuid = ? ",
+      [uuid]
+    );
+
+    if (userId.length < 1) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No User Found." });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.post("/sendmail", async (req, res) => {
   const { userId } = req.body;
 
