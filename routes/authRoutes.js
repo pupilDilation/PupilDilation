@@ -2,20 +2,40 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const db = require("../config/dbConfig");
 const { v4: uuidv4 } = require("uuid");
+const transporter = require("../config/emailConfig"); // email configuration file transporter
 const router = express.Router();
 
 router.post("/sendmail", async (req, res) => {
   const { userId } = req.body;
 
   try {
-    const [rows] = await db.query("SELECT * FROM user WHERE user_email = ?", [
+    const [email] = await db.query("SELECT * FROM user WHERE user_email = ?", [
       userId,
     ]);
 
-    if (rows.length > 0) {
-      const userEmail = rows[0].user_email;
+    if (email.length > 0) {
+      const userEmail = email[0].user_email;
+      const uuid = uuidv4();
+
+      // change_password 테이블에 비밀번호 변경 인증 uuid 넣기
+      await db.query(
+        `INSERT INTO change_password (user_id , uuid) VALUES (?,?)`,
+        [userId, uuid]
+      );
+
+      // email option
+      const mailOption = {
+        to: userEmail,
+        subject: "[한동아리] 비밀번호 변경 이메일입니다.",
+        html: `
+        <h2>이메일 메시지입니다.</h2>
+        <h4>http://localhost:3000/changepw/${uuid}</h4>
+        `,
+      };
+      // email 전송
+      await transporter.sendMail(mailOption);
     } else {
-      res.json({ success: false, message: "No Email Found." });
+      return res.json({ success: false, message: "No Email Found." });
     }
   } catch (error) {
     console.log(error);
