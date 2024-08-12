@@ -11,6 +11,7 @@ import {
 } from "../../slice/seatSlice";
 import SeatSelectSection from "./SeatSelectSection";
 import axios from "axios";
+import Button from "../Button/Button";
 
 function SeatSelection() {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ function SeatSelection() {
   const col = useSelector((state) => state.seat.col);
 
   useEffect(() => {
-    async function getSeatsByConcertId() {
+    async function getSeatsBySessionId() {
       try {
         const response = await axios.get(
           `http://localhost:3001/seats/session/${sessionId}`
@@ -45,9 +46,9 @@ function SeatSelection() {
         navigate("/");
       }
     }
-    //세션이 존재할 경우 콘서트 id를 이용하여 좌석 정보 불러옴
+    //세션이 존재할 경우 세션 id를 이용하여 좌석 정보 불러옴
     if (sessionId) {
-      getSeatsByConcertId();
+      getSeatsBySessionId();
     }
   }, [concertId, sessionId, dispatch]);
 
@@ -68,7 +69,6 @@ function SeatSelection() {
   const handlePaymentClick = async () => {
     if (selectedSeats.length === 0) {
       alert("좌석을 선택해주세요.");
-      navigate("/");
       return;
     }
     try {
@@ -122,7 +122,12 @@ function SeatSelection() {
         </div>
         <SeatSelectSection />
       </div>
-      <button onClick={handlePaymentClick}>결제하기</button>
+      <Button
+        className={SeatStyle.paymentClickBtn}
+        onClick={handlePaymentClick}
+      >
+        결제하기
+      </Button>
     </div>
   );
 }

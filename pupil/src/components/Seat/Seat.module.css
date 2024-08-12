@@ -14,14 +14,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 70%;
 }
 
 .seatGrid {
   display: grid;
   grid-template-rows: repeat(var(--row), 1fr);
   grid-template-columns: repeat(var(--col), 1fr);
-  gap: 5px;
+  gap: 10px;
   width: 100%;
   max-width: 800px;
   overflow: auto;
@@ -37,14 +37,16 @@
   border: 1px solid #000;
   cursor: pointer;
   font-size: 0.8em;
+  color: white;
 }
 
 .available {
-  background-color: #727272;
+  background-color: gray;
 }
 
 .selected {
   background-color: #fad744;
+  color: black;
 }
 
 .reserved {
@@ -88,4 +90,17 @@
   .screen h2 {
     font-size: 2em;
   }
+}
+
+.paymentClickBtn {
+  background-color: #ef5454b8;
+  color: #fff;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 16 / 400);
+  font-style: normal;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400);
+  cursor: pointer;
 }
