@@ -17,10 +17,14 @@ function ChangePassword() {
       <div className={passwordStyles.box}>
         <label htmlFor="currentPw">현재 비밀번호</label>
         <input id="currentPw" type="password" />
+        <br></br>
+        <br></br>
         <label htmlFor="changedPw">변경할 비밀번호</label>
         <input id="changedPw" type="password" />
+        <br></br>
         <label htmlFor="changedPwChk">비밀번호 재입력</label>
         <input id="changedPwChk" type="password" />
+        <br></br>
         <button>비밀번호 변경!</button>
       </div>
     </div>
