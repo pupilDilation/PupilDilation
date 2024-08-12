@@ -14,25 +14,6 @@ function ChangePassword() {
   const pw = useSelector((state) => state.changePw.pw);
   const pwChk = useSelector((state) => state.changePw.pwChk);
 
-  async function getUserId() {
-    try {
-      const res = await axios.get("http://localhost:3001/auth/checkAuth", {
-        withCredentials: true,
-      });
-      if (res.data.authenticated) {
-        setUserId(res.data.userId);
-      } else {
-        throw new Error("Not Valid User Error");
-      }
-    } catch (error) {
-      if (error.response.status === 404) {
-        alert("No such user (404 err)");
-        return;
-      }
-      alert(error.message);
-    }
-  }
-
   return (
     <div className={passwordStyles.container}>
       <div className={passwordStyles.box}>
