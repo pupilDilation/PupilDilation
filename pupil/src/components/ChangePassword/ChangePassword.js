@@ -21,8 +21,16 @@ function ChangePassword() {
       });
       if (res.data.authenticated) {
         setUserId(res.data.userId);
+      } else {
+        throw new Error("Not Valid User Error");
       }
-    } catch (error) {}
+    } catch (error) {
+      if (error.response.status === 404) {
+        alert("No such user (404 err)");
+        return;
+      }
+      alert(error.message);
+    }
   }
 
   return (
