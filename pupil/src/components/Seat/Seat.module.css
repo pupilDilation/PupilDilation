@@ -34,7 +34,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #000;
   cursor: pointer;
   font-size: 0.8em;
   color: white;
@@ -50,13 +49,15 @@
 }
 
 .reserved {
-  background-color: #2a3252;
-  cursor: not-allowed;
+  border: 1px solid #000;
+  background: #f2f2f2;
+  color: black;
 }
 
 .disabled {
   cursor: not-allowed;
-  background-color: #ef5455;
+  background-color: #d9d9d9;
+  color: black;
 }
 
 .screen {
