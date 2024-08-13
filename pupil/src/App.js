@@ -20,7 +20,7 @@ import { checkAuth } from "./slice/loginSlice";
 import Policy from "./pages/Policy";
 import Terms from "./pages/Terms";
 import Announcement from "./pages/Announcement";
-import ChangePassword from "./components/ChangePassword/ChangePassword";
+import PwChangePage from "./pages/PwChangePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,8 +52,8 @@ function App() {
               <Route path="/terms" element={<Terms />}></Route>
               <Route path="/policy" element={<Policy />}></Route>
               <Route
-                path="/changepw/:uuid"
-                element={<ChangePassword></ChangePassword>}
+                path="/changepw/*"
+                element={<PwChangePage></PwChangePage>}
               ></Route>
             </Routes>
           </Wrapper>
