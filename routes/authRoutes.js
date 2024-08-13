@@ -21,6 +21,8 @@ const transporter = nodemailer.createTransport({
 router.post("/changepassword", async (req, res) => {
   const { uuid, pw } = req.body;
 
+  const hashedPassword = await bcrypt.hash(pw, 10);
+
   try {
     const [userId] = await db.query(
       "SELECT user_id FROM change_password WHERE uuid = ? ",
@@ -32,8 +34,19 @@ router.post("/changepassword", async (req, res) => {
         .status(404)
         .json({ success: false, message: "No User Found." });
     }
+
+    const [result] = await db.query(
+      `UPDATE user SET user_pw = ? WHERE user_id = ?`,
+      [hashedPassword, userId[0].user_id]
+    );
+
+    if (result.affectedRows > 0) {
+      res.json({ success: true, message: "Password Successfully Changed." });
+    } else {
+      res.status(404).json({ success: false, message: "User Not Found." });
+    }
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ success: false, error: error });
   }
 });
 
