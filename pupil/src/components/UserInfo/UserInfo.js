@@ -34,11 +34,6 @@ function UserInfo(props) {
     <div className={UserInfoStyles.profileInfo}>
       <h1 className={UserInfoStyles.userTitle}>회원 정보</h1>
       <div className={UserInfoStyles.userInfo}>
-        <img
-          className={UserInfoStyles.img}
-          src="/img/logo/Icon_user.png"
-          alt="프로필사진"
-        />
         <div className={UserInfoStyles.profileContent}>
           <div className={UserInfoStyles.lineContent}>
             <h1>{props.name}</h1>
