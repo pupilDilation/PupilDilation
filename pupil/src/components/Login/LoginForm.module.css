@@ -43,6 +43,9 @@
   margin-bottom: 0.8em;
   font-size: calc(100vw * 20 / 400);
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: relative;
 }
 /*
@@ -87,4 +90,8 @@
   color: rgba(0, 0, 0, 0.55);
   font-size: calc(100vw * 25 / 400);
   font-family: Noto Sans KR;
+}
+
+.linkFont {
+  font-size: 15px;
 }

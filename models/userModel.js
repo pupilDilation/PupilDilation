@@ -23,6 +23,19 @@ async function getUserById(user_id) {
   return rows;
 }
 
+/**
+ * userId로 email 조회
+ */
+async function getEmailById(user_id) {
+  const [rows] = await db.query(
+    `
+    SELECT user_email FROM user WHERE user_id = ?
+    `,
+    [user_id]
+  );
+  return rows;
+}
+
 async function createUser(username, password, phone, email) {
   await db.query(
     `
