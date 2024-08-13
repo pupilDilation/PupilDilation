@@ -31,7 +31,22 @@ const getAnnounce3MonthDesc = async (req, res) => {
   }
 };
 
+const postAnnouncement = async (req, res) => {
+  const { title, content } = req.body;
+  try {
+    const result = await announceModel.postAnnouncement(title, content);
+    if (result.affectedRows > 0) {
+      res.json(result);
+    } else {
+      res.status(404).json({ error: "Announce Not Found." });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   getAllAnnounce,
   getAnnounce3MonthDesc,
+  postAnnouncement,
 };
