@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Main from "./pages/Main";
 import LoginPage from "./pages/Login";
 import MyPage from "./pages/MyPage";
@@ -8,14 +8,26 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
-import Seat from "./components/Seat/SeatSelection";
+import SeatSelection from "./components/Seat/SeatSelection";
 import Scanner from "./pages/Scanner";
-
+import ClubList from "./components/Club/ClubList";
+import ClubDetail from "./components/Club/ClubDetail";
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { checkAuth } from "./slice/loginSlice";
+import Policy from "./pages/Policy";
+import Terms from "./pages/Terms";
+import Announcement from "./pages/Announcement";
+import PwChangePage from "./pages/PwChangePage";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
   return (
     <div className="App">
       <Wrapper className={WrapperStyles.routerWrapper}>
@@ -27,11 +39,22 @@ function App() {
               <Route path="/login" element={<LoginPage />}></Route>
               <Route path="/signup" element={<SignUpPage />}></Route>
               <Route path="/my-page" element={<MyPage />}></Route>
-              <Route path="/detail" element={<DetailPage />}></Route>
               <Route path="/details/:concertId" element={<DetailPage />} />
-              <Route path="/seat" element={<Seat />}></Route>
+              <Route
+                path="/concert/:concertId/sessions/:sessionId/seats"
+                element={<SeatSelection />}
+              ></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
+              <Route path="/club" element={<ClubList />}></Route>
+              <Route path="/club/:clubId" element={<ClubDetail />}></Route>
+              <Route path="/announcement" element={<Announcement />}></Route>
+              <Route path="/terms" element={<Terms />}></Route>
+              <Route path="/policy" element={<Policy />}></Route>
+              <Route
+                path="/changepw/*"
+                element={<PwChangePage></PwChangePage>}
+              ></Route>
             </Routes>
           </Wrapper>
           <Footer />

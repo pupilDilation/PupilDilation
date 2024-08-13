@@ -1,27 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import seatStyle from "./Seat.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleSeat } from "../../slice/seatSlice";
+import { useSelector } from "react-redux";
 
-const Seat = ({ seatNumber }) => {
-  const dispatch = useDispatch();
+function Seat({ seatNumber, seatStatus, onSelect }) {
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
-  const isReserved = selectedSeats.includes(seatNumber);
+  const isSelected = selectedSeats.includes(seatNumber);
 
   const handleClick = () => {
-    dispatch(toggleSeat(seatNumber));
+    if (seatStatus !== "reserved" && seatStatus !== "disabled") {
+      onSelect(seatNumber);
+    }
   };
 
+  let seatClass = seatStyle.available;
+  if (seatStatus === "reserved") {
+    seatClass = seatStyle.reserved;
+  } else if (seatStatus === "disabled") {
+    seatClass = seatStyle.disabled;
+  } else if (isSelected) {
+    seatClass = seatStyle.selected;
+  }
+
   return (
-    <div
-      className={`${seatStyle.seat} ${
-        isReserved ? seatStyle.reserved : seatStyle.available
-      }`}
-      onClick={handleClick}
-    >
+    <div className={`${seatStyle.seat} ${seatClass}`} onClick={handleClick}>
       {seatNumber}
     </div>
   );
-};
+}
 
 export default Seat;

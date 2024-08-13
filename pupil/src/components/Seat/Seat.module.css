@@ -1,81 +1,112 @@
-/* 좌석 하나 속성 */
-.seat {
-  width: 40px;
-  height: 40px;
-  margin: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #000;
-  cursor: pointer;
-}
-
-/* 예매가능한 좌석 */
-.available {
-  background-color: #727272;
-  cursor: pointer;
-}
-/* 좌석 선택시 */
-.reserved {
-  background-color: #fad744;
-}
-
-/* seatSection */
 .seatWrapper {
-  margin-top: 1em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: auto;
-  margin: 10px;
+  padding: 1em;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .seatSection {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  width: 70%;
 }
 
-@media (min-width: 1024px) {
-  .seatSection {
-    flex-direction: row;
-  }
-  .reserveSection {
-    margin-left: 2em;
-  }
-  .seatGrid {
-    margin-bottom: 2em;
-  }
-}
-
-/* 좌석 부분 그리드 */
 .seatGrid {
   display: grid;
-  grid-template-columns: repeat(5, 50px);
-  gap: calc(100vw * 4 / 400);
-  flex-wrap: wrap;
-  position: relative;
+  grid-template-rows: repeat(var(--row), 1fr);
+  grid-template-columns: repeat(var(--col), 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 800px;
+  overflow: auto;
+  padding: 10px;
   box-sizing: border-box;
-  max-width: 100%;
 }
 
-/* 스테이지 부분 */
+.seat {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8em;
+  color: white;
+}
+
+.available {
+  background-color: gray;
+}
+
+.selected {
+  background-color: #fad744;
+  color: black;
+}
+
+.reserved {
+  border: 1px solid #000;
+  background: #f2f2f2;
+  color: black;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: #d9d9d9;
+  color: black;
+}
+
 .screen {
   background-color: gray;
-  height: 70px;
-  width: 50%;
+  height: 50px;
+  width: 80%;
+  max-width: 400px;
   margin: 15px 0;
   transform: rotateX(-45deg);
   box-shadow: 0 3px 10px rgba(2, 1, 1, 0.7);
-  justify-content: center;
-}
-
-h2 {
   display: flex;
   justify-content: center;
-  text-align: center;
-  font-size: 50px;
-  padding-top: 0.1em;
+  align-items: center;
+}
+
+.screen h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .seatSection {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .seatGrid {
+    max-width: 60%;
+  }
+
+  .seat {
+    font-size: 1em;
+  }
+
+  .screen h2 {
+    font-size: 2em;
+  }
+}
+
+.paymentClickBtn {
+  background-color: #ef5454b8;
+  color: #fff;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 16 / 400);
+  font-style: normal;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400);
+  cursor: pointer;
 }

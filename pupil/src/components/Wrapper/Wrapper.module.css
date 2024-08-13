@@ -17,4 +17,5 @@
 }
 .wrapper h1 {
   font-weight: bold;
+  padding: calc(100vw * 20 / 400);
 }

@@ -1,8 +1,8 @@
 .seatTypeWrapper {
   display: grid;
   gap: calc(1vw);
-  grid-template-columns: repeat(3, 1fr);
-  /* grid-template-rows: repeat(2, 1fr); */
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: repeat(2, 1fr);
 }
 /* 네모 크기 지정 */
 .boxCommon {
@@ -30,11 +30,6 @@
   align-items: center;
 }
 
-/* .unavailBox {
+.unavailBox {
   background: #d9d9d9;
 }
-.selectingBox {
-  border: 1px solid #000;
-  background: #f2f2f2;
-}
-*/

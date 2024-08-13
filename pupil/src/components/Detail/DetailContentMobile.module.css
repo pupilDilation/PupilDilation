@@ -1,61 +1,62 @@
-.detail-container-mobile {
+.detailContainerMobile {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding-bottom: calc(
-    100vw * 40 / 400
-  ); /* Increased padding to accommodate the button */
+  padding: calc(100vw * 40 / 400); /* Increased padding for overall spacing */
 }
 
-.event-title-mobile {
+.eventTitleMobile {
   display: flex;
   justify-content: start;
   width: calc(100vw * 350 / 400);
   height: calc(100vw * 51 / 400);
   flex-shrink: 0;
   color: #000;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 32 / 400);
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
 }
 
-.event-image-mobile {
+.eventImageMobile {
   width: calc(100vw * 169 / 400);
   height: calc(100vw * 238 / 400);
   margin-right: 16px;
   border-radius: 8px;
 }
 
-.first-detail-mobile {
+.firstDetailMobile {
   display: flex;
+  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
 }
 
-.second-detail-mobile {
+.secondDetailMobile {
   width: calc(100vw * 169 / 400);
   height: calc(100vw * 238 / 400);
 }
 
-.second-detail-mobile p {
+.secondDetailMobile p {
   display: flex;
   justify-content: start;
 }
 
-.content-title {
+.contentTitle {
   color: #000;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 20 / 400);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   margin-top: calc(100vw * 12 / 400);
+  margin-bottom: calc(100vw * 8 / 400); /* Added bottom margin for spacing */
 }
 
-.content-text {
+.contentText {
   color: #000;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 14 / 400);
   font-style: normal;
   font-weight: 300;
@@ -63,30 +64,32 @@
   letter-spacing: -0.63px;
   display: flex;
   text-align: left;
+  margin-bottom: calc(100vw * 12 / 400); /* Added bottom margin for spacing */
 }
 
-.third-detail-mobile p {
+.thirdDetailMobile p {
   display: flex;
   justify-content: start;
   text-align: left;
+  margin-bottom: calc(100vw * 12 / 400); /* Added bottom margin for spacing */
 }
 
-.content-intro {
+.contentIntro {
   color: #000;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 20 / 400);
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   margin-top: calc(100vw * 10 / 400); /* Increased margin for spacing */
-  margin-bottom: calc(100vw * 10 / 400); /* Added bottom margin for spacing */
+  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
 }
 
-.intro-text {
+.introText {
   width: calc(100vw * 353 / 400); /* Adjusted width */
   max-height: none; /* Remove fixed height */
   color: #000;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 14 / 400);
   font-style: normal;
   font-weight: 300;
@@ -95,19 +98,22 @@
   overflow-wrap: break-word; /* Ensure long words wrap */
   word-break: break-word; /* Break long words if necessary */
   text-align: left;
+  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
 }
 
-.schedule-container {
+.scheduleContainer {
   margin-top: calc(
     100vw * 20 / 400
   ); /* Add margin to space from previous content */
-  margin-bottom: calc(100vw * 20 / 400); /* Add margin to space from button */
+  margin-bottom: calc(
+    100vw * 40 / 400
+  ); /* Increased margin to create more space */
 }
 
-.schedule-dropdown {
+.scheduleDropdown {
   width: 100%;
   padding: calc(100vw * 8 / 400) calc(100vw * 12 / 400); /* Padding for dropdown */
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 14 / 400);
   font-style: normal;
   font-weight: 300;
@@ -118,16 +124,16 @@
   text-align: center;
 }
 
-.book-now-container {
+.bookNowContainer {
   display: flex;
   justify-content: center;
   margin-top: calc(100vw * 20 / 400); /* Add margin to space from dropdown */
 }
 
-.book-now-button {
+.bookNowButton {
   background-color: #ef5454b8;
   color: #fff;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: calc(100vw * 16 / 400);
   font-style: normal;
   font-weight: 600;
@@ -137,7 +143,7 @@
   cursor: pointer;
 }
 
-.book-now-button:hover {
+.bookNowButton:hover {
   background-color: #ef5455;
 }
 

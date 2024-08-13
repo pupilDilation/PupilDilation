@@ -7,6 +7,7 @@ const initialState = {
   email: "",
   phone: "",
   name: "",
+  isIdDup: true,
   isValidForm: false,
 };
 
@@ -42,12 +43,23 @@ const signUpSlice = createSlice({
         state.password == state.passwordChk &&
         /^[A-Za-z0-9]([._%+-]?[A-Za-z0-9])*@[A-Za-z0-9]([.-]?[A-Za-z0-9])*\.[A-Za-z]{2,}$/i.test(
           state.email
-        )
+        ) &&
+        state.name != "" &&
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i.test(state.email)
       ) {
         state.isValidForm = true;
       } else {
         state.isValidForm = false;
       }
+    },
+    resetAll(state) {
+      state.email = "";
+      state.id = "";
+      state.name = "";
+      state.password = "";
+      state.passwordChk = "";
+      state.phone = "";
+      state.isValidForm = false;
     },
   },
 });
@@ -60,5 +72,6 @@ export const {
   setPhone,
   setIsValidForm,
   setName,
+  resetAll,
 } = signUpSlice.actions;
 export default signUpSlice.reducer;
