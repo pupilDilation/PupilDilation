@@ -112,27 +112,57 @@ function MyPage() {
         <Button className={ButtonStyles.headerBtn}>회원정보 아이콘</Button>
         <Button className={ButtonStyles.headerBtn}>예매내역</Button>
       </div>
-      <UserInfo //회원 정보 컴포넌트
+      <UserInfo // 회원 정보 컴포넌트
         name={user.user_name}
         id={userId}
         email={user.user_email}
         phonenumber={user.user_phone}
       />
-      <Wrapper className={WrapperStyles.wrapper}>
-        <h1>예매 내역</h1>
-      </Wrapper>
-      {reservations.length === 0 && <p>No reservations found.</p>}
-      {sessions.map((sessions, index) => (
-        <Ticket
-          key={index}
-          title={concerts[index]?.concert_title || "제목"} // Assuming concert object contains title
-          date={sessions.session_date || "날짜"} // Assuming session object contains date
-          payment={reservations[index]?.payment_status || "결제상태"} // Adjust as necessary
-          location={concerts[index]?.concert_location || "학관104호"} // Assuming session object contains location
-          seat={reservations[index]?.seat_id || "A열8번"} // Adjust as necessary
-          enterTime={sessions.session_date || "시작시간"} // Assuming session object contains enterTime
-        />
-      ))}
+
+      {loading && <p>Loading...</p>}
+      {!loading && error && <p>{error}</p>}
+      {!loading &&
+        !error &&
+        userType === "user" &&
+        reservations.length === 0 && <p>No reservations found.</p>}
+      {!loading &&
+        !error &&
+        userType === "user" &&
+        reservations.length > 0 &&
+        sessions.map((session, index) => (
+          <Ticket
+            key={index} // key is needed to uniquely identify each item in a list and prevent rendering issues.
+            title={concerts[index]?.concert_title || "제목"}
+            date={session.session_date || "날짜"}
+            payment={reservations[index]?.payment_status || "결제상태"}
+            location={concerts[index]?.concert_location || "학관104호"}
+            seat={reservations[index]?.seat_id || "A열8번"}
+            enterTime={session.session_date || "시작시간"}
+          />
+        ))}
+      {!loading && !error && userType === "admin" && (
+        <div>
+          <h1>Concert Info</h1>
+          {concerts.length === 0 ? (
+            <p>No concert information found.</p>
+          ) : (
+            concerts.map((concert, index) => (
+              <ConcertInfo key={index} concert={concert} />
+            ))
+          )}
+        </div>
+      )}
+      {!loading && !error && userType === "super" && (
+        <div>
+          <h1>Admin List</h1>
+          <ul>
+            {/* Assuming you have an API to fetch the list of admins */}
+            <li>Admin 1</li>
+            <li>Admin 2</li>
+            <li>Admin 3</li>
+          </ul>
+        </div>
+      )}
     </Wrapper>
   );
 }

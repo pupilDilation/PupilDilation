@@ -29,21 +29,7 @@ function LoginForm() {
 
   const [data, setData] = useState([]);
 
-  const handleLoginClick = () => {
-    const user = data.find(
-      (user) => user.username === id && user.password === password
-    );
-    if (user) {
-      dispatch(loginSuccess()); //로그인 상태 변경
-      dispatch(setUserType(user.userType)); //유저 타입 설정
-      console.log(user.userType);
-      navigate("/"); //메인페이지로 이동
-      dispatch(setId(""));
-      dispatch(setPassword(""));
-    } else {
-      console.error("Invalid username or password");
-    }
-  };
+  // const { data, error, isPending } = useQuery(['auth/login'], () => {}, );
 
   async function loginClicked() {
     try {
@@ -110,6 +96,9 @@ function LoginForm() {
           </label>
         </div>
       </div>
+      {/* <Button className={clsx(aa, { bb: aState })} onClick={loginClicked}>
+        <div className={LoginFormStyles.loginBtnText}>로그인</div>
+      </Button> */}
       <Button
         className={useClassNameJoin(
           ButtonStyles.buttonCommon,

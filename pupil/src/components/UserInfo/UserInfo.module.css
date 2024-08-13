@@ -16,7 +16,6 @@
   height: 90%;
   /* flex-shrink: 0;
   color: #000;
-  text-align: start;
   font-size: calc(100vw * 36 / 1440);
   font-family: Noto Sans KR;
   font-style: normal;
@@ -33,16 +32,14 @@
 .profileContent {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   justify-content: space-between;
-  margin-left: calc(100vw * 5 / 400);
 }
 
 .lineContent {
   font-size: calc(100vw * 12 / 400);
   display: flex;
   justify-content: space-between;
-  padding-right: 5%;
 }
 
 .hr {
