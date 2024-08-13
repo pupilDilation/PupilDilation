@@ -12,6 +12,7 @@ import {
 import SeatSelectSection from "./SeatSelectSection";
 import axios from "axios";
 import Button from "../Button/Button";
+import SeatTypeInfo from "./SeatTypeInfo";
 
 function SeatSelection() {
   const dispatch = useDispatch();
@@ -122,6 +123,7 @@ function SeatSelection() {
         </div>
         <SeatSelectSection />
       </div>
+      <SeatTypeInfo />
       <Button
         className={SeatStyle.paymentClickBtn}
         onClick={handlePaymentClick}
