@@ -17,7 +17,9 @@ function ChangePassword() {
   const [userId, setUserId] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { params } = useParams();
+  const { uuid } = useParams();
+
+  console.log(uuid);
 
   const pw = useSelector((state) => state.changePw.pw);
   const pwChk = useSelector((state) => state.changePw.pwChk);
@@ -27,7 +29,7 @@ function ChangePassword() {
 
     try {
       const res = await axios.put("http://localhost:3001/auth/changepassword", {
-        uuid: params,
+        uuid: uuid,
         pw: pw,
       });
       if (res.data.success) {
@@ -39,6 +41,8 @@ function ChangePassword() {
     } catch (error) {
       if (error.response.status === 500) {
         alert("알 수 없는 오류!", error.response.message);
+      } else if (error.response.status === 404) {
+        console.log("404 Not Found");
       }
     }
   }
