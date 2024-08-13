@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./AnnouncementDesign.module.css"; // 변경된 부분
+import Announcement from "./Announcement";
 
 const AnnouncementForm = () => {
   const [notices, setNotices] = useState([
