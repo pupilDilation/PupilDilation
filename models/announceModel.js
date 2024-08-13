@@ -16,7 +16,18 @@ async function getAnnounce3MonthDesc() {
   return rows;
 }
 
+async function postAnnouncement(title, content) {
+  const [result] = await db.query(
+    `
+    INSERT INTO announcement (announce_title, announce_content)
+    VALUES (?, ?)`,
+    [title, content]
+  );
+  return result;
+}
+
 module.exports = {
   getAllAnnouncement,
   getAnnounce3MonthDesc,
+  postAnnouncement,
 };
