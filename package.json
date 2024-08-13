@@ -17,6 +17,7 @@
     "express-session": "^1.18.0",
     "mysql2": "^3.10.3",
     "nodemon": "^3.1.4",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "swiper": "^11.1.9"
   }
 }

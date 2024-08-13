@@ -1,12 +1,13 @@
+import ClubList from "../components/Club/ClubList";
 import Slider from "../components/Swiper/Slider";
 import Wrapper from "../components/Wrapper/Wrapper";
-import ClubList from "../components/Club/ClubList";
+import ClubSlider from "../components/Swiper/ClubSlider";
 
 function Main() {
   return (
     <Wrapper>
       <Slider></Slider>
-      <ClubList></ClubList>
+      <ClubSlider />
     </Wrapper>
   );
 }
