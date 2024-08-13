@@ -7,7 +7,7 @@ function Seat({ seatNumber, seatStatus, onSelect }) {
   const isSelected = selectedSeats.includes(seatNumber);
 
   const handleClick = () => {
-    if (seatStatus !== "reserved") {
+    if (seatStatus !== "reserved" && seatStatus !== "disabled") {
       onSelect(seatNumber);
     }
   };
@@ -15,6 +15,8 @@ function Seat({ seatNumber, seatStatus, onSelect }) {
   let seatClass = seatStyle.available;
   if (seatStatus === "reserved") {
     seatClass = seatStyle.reserved;
+  } else if (seatStatus === "disabled") {
+    seatClass = seatStyle.disabled;
   } else if (isSelected) {
     seatClass = seatStyle.selected;
   }
