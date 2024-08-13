@@ -11,7 +11,7 @@ import {
   setUserType,
 } from "../../slice/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 /**
@@ -97,17 +97,22 @@ function LoginForm() {
           placeholder={"비밀번호"}
         />
         <div className={LoginFormStyles.saveId}>
-          <input
-            type="checkbox"
-            id="saveIdCheckBox"
-            className={LoginFormStyles.saveIdCheckBox}
-          />
-          <label
-            htmlFor="saveIdCheckBox"
-            className={LoginFormStyles.saveIdCheckBoxText}
-          >
-            아이디 저장
-          </label>
+          <div>
+            <input
+              type="checkbox"
+              id="saveIdCheckBox"
+              className={LoginFormStyles.saveIdCheckBox}
+            />
+            <label
+              htmlFor="saveIdCheckBox"
+              className={LoginFormStyles.saveIdCheckBoxText}
+            >
+              아이디 저장
+            </label>
+          </div>
+          <Link className={LoginFormStyles.linkFont} to={"/changepw"}>
+            비밀번호를 잊어버리셨나요?
+          </Link>
         </div>
       </div>
       <Button

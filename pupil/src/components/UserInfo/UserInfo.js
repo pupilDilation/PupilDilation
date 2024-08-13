@@ -3,12 +3,32 @@ import Button from "../Button/Button";
 import ButtonStyles from "../Button/Button.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import UserInfoStyles from "./UserInfo.module.css";
+import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function UserInfo(props) {
   const navigate = useNavigate();
-  const changePasswordClick = () => {
-    navigate("/");
-  };
+  const userId = useSelector((state) => state.login.id);
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+
+  async function changePasswordClick(e) {
+    if (!isLoggedIn) {
+      // login 상태 아닐 시 이메일 전송하지 않음
+      return;
+    }
+    try {
+      const res = await axios.post("http://localhost:3001/auth/sendmail", {
+        userId: userId,
+      });
+      console.log(res.data);
+      if (res.data.success) {
+        alert("가입된 메일로 비밀번호 변경 링크가 전송되었습니다.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={UserInfoStyles.profileInfo}>

@@ -3,6 +3,7 @@ import loginReducer from "./slice/loginSlice";
 import signUpReducer from "./slice/signUpSlice";
 import seatReducer from "./slice/seatSlice";
 import concertReducer from "./slice/concertSlice";
+import changePwSlice from "./slice/changePwSlice";
 
 /**
  * @author: 248Kobe
@@ -14,5 +15,6 @@ export const store = configureStore({
     signUp: signUpReducer,
     seat: seatReducer,
     concert: concertReducer,
+    changePw: changePwSlice,
   },
 });

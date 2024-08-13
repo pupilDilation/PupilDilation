@@ -70,6 +70,7 @@ export const checkAuth = () => async (dispatch) => {
     if (response.data.authenticated) {
       console.log("auth");
       dispatch(loginSuccess());
+      dispatch(setId(response.data.userId));
       dispatch(setUserType(response.data.userType));
     } else {
       dispatch(logout());
