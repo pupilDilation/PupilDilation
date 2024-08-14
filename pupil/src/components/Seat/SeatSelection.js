@@ -32,11 +32,9 @@ function SeatSelection() {
         const response = await axios.get(
           `http://localhost:3001/seats/session/${sessionId}`
         );
-        console.log(response.data);
         const { success, seats, concert_row, concert_col, concert_location } =
           response.data;
 
-        //redux 상태 업데이트
         if (success) {
           dispatch(setRow(concert_row));
           dispatch(setCol(concert_col));
