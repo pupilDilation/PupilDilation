@@ -1,20 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SeatSelectionSectionStyle from "./SeatSelectSection.module.css";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { useParams } from "react-router";
 
 function SeatSelectSection() {
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const col = useSelector((state) => state.seat.col);
+  const { concertId } = useParams();
+  const [concertInfo, setConcertInfo] = useState(null);
 
-  //좌석 숫자 -=> 알파벳 + 숫자로 변경하는 로직
+  useEffect(() => {
+    const fetchConcertInfo = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/concerts/${concertId}`
+        );
+        if (response.data && response.data.length > 0) {
+          setConcertInfo(response.data[0]);
+        } else {
+          console.error("No concert data found");
+        }
+      } catch (error) {
+        console.error("Error fetching concert info: ", error);
+      }
+    };
+    fetchConcertInfo();
+  }, [concertId]);
+
   const formatSeatNumber = (seatNumber) => {
     const rowIndex = Math.floor((seatNumber - 1) / col);
     const colIndex = (seatNumber - 1) % col;
     const rowLetter = String.fromCharCode(65 + rowIndex);
     return `${rowLetter}${colIndex + 1}`;
   };
-  //선택된 좌석들을 한 줄로 모아서 출력하기 위한 변수
+
   const formattedSeats = selectedSeats.map(formatSeatNumber).join(", ");
+
   return (
     <div className={SeatSelectionSectionStyle.sectionWrapper}>
       <div className={SeatSelectionSectionStyle.reserveSection}>
@@ -25,7 +47,8 @@ function SeatSelectSection() {
           Selected Seats: {formattedSeats}
         </div>
         <div className={SeatSelectionSectionStyle.reserveRow}>
-          Total {selectedSeats.length * 12000}{" "}
+          Total{" "}
+          {concertInfo ? selectedSeats.length * concertInfo.concert_price : 0}
         </div>
       </div>
     </div>
