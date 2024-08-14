@@ -21,6 +21,7 @@ function SeatSelection() {
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const [seats, setSeats] = useState([]);
   const { sessionId } = useParams();
+  const [concert_location, setLocation] = useState("");
 
   const row = useSelector((state) => state.seat.row);
   const col = useSelector((state) => state.seat.col);
@@ -31,13 +32,16 @@ function SeatSelection() {
         const response = await axios.get(
           `http://localhost:3001/seats/session/${sessionId}`
         );
-        const { success, seats, concert_row, concert_col } = response.data;
+        console.log(response.data);
+        const { success, seats, concert_row, concert_col, concert_location } =
+          response.data;
 
         //redux 상태 업데이트
         if (success) {
           dispatch(setRow(concert_row));
           dispatch(setCol(concert_col));
           setSeats(seats);
+          setLocation(concert_location);
         } else {
           throw new Error("Failed to fetch seats data");
         }
@@ -101,7 +105,7 @@ function SeatSelection() {
   return (
     <div className={SeatStyle.seatWrapper}>
       <div className={SeatStyle.seatTitle}>좌석 선택</div>
-      <div className={SeatStyle.stageTitle}>ANH 오디토리움</div>
+      <div className={SeatStyle.stageTitle}>{concert_location}</div>
       <div className={SeatStyle.screen}>
         <h2>STAGE</h2>
       </div>

@@ -18,7 +18,7 @@ const getSeatBySessionId = async (sessionId) => {
 
 const getConcertInfoBySessionId = async (sessionId) => {
   const [rows] = await db.query(
-    `SELECT c.concert_row, c.concert_col 
+    `SELECT c.concert_row, c.concert_col, c.concert_location
      FROM concert c 
      JOIN session s ON c.concert_id = s.concert_id 
      WHERE s.session_id = ?`,
