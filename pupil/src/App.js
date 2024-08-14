@@ -21,6 +21,7 @@ import Policy from "./pages/Policy";
 import Terms from "./pages/Terms";
 import Announcement from "./pages/Announcement";
 import PwChangePage from "./pages/PwChangePage";
+import ClubDetailPage from "./pages/ClubDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,8 +47,7 @@ function App() {
               ></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>
               <Route path="/scanner" element={<Scanner></Scanner>}></Route>
-              <Route path="/club" element={<ClubList />}></Route>
-              <Route path="/club/:clubId" element={<ClubDetail />}></Route>
+              <Route path="/club/:clubId" Component={ClubDetailPage}></Route>
               <Route path="/announcement" element={<Announcement />}></Route>
               <Route path="/terms" element={<Terms />}></Route>
               <Route path="/policy" element={<Policy />}></Route>
