@@ -33,6 +33,7 @@ const getSeatBySessionId = async (req, res) => {
         seats: seats,
         concert_row: concertInfo.concert_row,
         concert_col: concertInfo.concert_col,
+        concert_location: concertInfo.concert_location,
       });
     } else {
       return res.status(404).json({
