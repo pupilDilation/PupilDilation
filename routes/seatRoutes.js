@@ -7,4 +7,5 @@ router.get("/concert/:concertId", seatController.getSeatByConcertId);
 router.get("/session/:sessionId", seatController.getSeatBySessionId);
 
 router.put("/session/:sessionId", seatController.updateSeatStatus);
+
 module.exports = router;
