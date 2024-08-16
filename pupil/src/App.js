@@ -46,7 +46,10 @@ function App() {
                 element={<SeatSelection />}
               ></Route>
               <Route path="/createdetail" element={<CreateConcert />}></Route>
-              <Route path="/scanner" element={<Scanner></Scanner>}></Route>
+              <Route
+                path="/scanner/:sessionId"
+                element={<Scanner></Scanner>}
+              ></Route>
               <Route path="/club/:clubId" Component={ClubDetailPage}></Route>
               <Route path="/announcement" element={<Announcement />}></Route>
               <Route path="/terms" element={<Terms />}></Route>
