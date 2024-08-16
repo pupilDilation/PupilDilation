@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import QrScanner from "qr-scanner";
 
 function Scanner(props) {
   const [data, setData] = useState("No result");
+  const { sessionId } = useParams();
   const videoRef = useRef(null);
 
   useEffect(() => {
