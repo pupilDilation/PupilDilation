@@ -7,18 +7,15 @@ import axios from "axios";
 function ClubDetailPage() {
   const { clubId } = useParams(0);
   const [club, setClub] = useState({});
-
-  useEffect(() => {
-    async function getClubById() {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/club/${clubId}`
-        );
-        setClub(response.data[0]);
-      } catch (error) {
-        console.error("Error fetching club data:", error);
-      }
+  async function getClubById() {
+    try {
+      const response = await axios.get(`http://localhost:3001/club/${clubId}`);
+      setClub(response.data[0]);
+    } catch (error) {
+      console.error("Error fetching club data:", error);
     }
+  }
+  useEffect(() => {
     getClubById();
   }, []);
   return (
