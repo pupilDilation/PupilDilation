@@ -27,7 +27,24 @@ async function getUserById(req, res) {
   }
 }
 
+async function getAdmins(req, res) {
+  try {
+    const admins = await userModel.getAdmins();
+    if (admins.length < 1) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Admin Not Found." });
+    } else {
+      res.json(admins);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+}
+
 module.exports = {
   getUsers,
   getUserById,
+  getAdmins,
 };
