@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
 
 function AdminAccountController() {
@@ -23,7 +24,15 @@ function AdminAccountController() {
         <div>
           {admins.map((item) => {
             console.log(item);
-            return <div key={item.user_id}>{item.user_id}</div>;
+            return (
+              <AdminCard
+                key={item.user_id}
+                id={item.user_id}
+                name={item.user_name}
+                email={item.user_email}
+                phone={item.user_phone}
+              ></AdminCard>
+            );
           })}
         </div>
       </div>
