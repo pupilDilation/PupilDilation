@@ -71,6 +71,35 @@ const getConcertById = async (concertId) => {
   return concert;
 };
 
+const getConcertsByUserId = async (userId) => {
+  const [rows] = await db.query(
+    `
+    SELECT 
+      concert_id,
+      concert_title, 
+      concert_location,
+      concert_price,
+      concert_row,
+      concert_col, 
+      concert_img,
+      concert_plot, 
+      created_at, 
+      updated_at, 
+      deleted_at, 
+      user_id
+    FROM 
+      concert
+    WHERE 
+      user_id = ?
+      AND deleted_at IS NULL
+    ORDER BY 
+      created_at;
+    `,
+    [userId]
+  );
+  return rows;
+};
+
 const postConcert = async (concertData) => {
   const {
     concert_title,
@@ -168,4 +197,5 @@ module.exports = {
   deleteConcert,
   getConcertById,
   getConcertsInRange,
+  getConcertsByUserId,
 };
