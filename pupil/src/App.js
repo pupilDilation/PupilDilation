@@ -22,6 +22,7 @@ import Terms from "./pages/Terms";
 import Announcement from "./pages/Announcement";
 import PwChangePage from "./pages/PwChangePage";
 import ClubDetailPage from "./pages/ClubDetailPage";
+import ReservationListPage from "./pages/ReservationListPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,10 @@ function App() {
               <Route
                 path="/changepw/*"
                 element={<PwChangePage></PwChangePage>}
+              ></Route>
+              <Route
+                path="/reservlist"
+                element={<ReservationListPage />}
               ></Route>
             </Routes>
           </Wrapper>
