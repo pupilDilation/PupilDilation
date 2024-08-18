@@ -4,10 +4,6 @@ import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
 
 function AdminAccountController() {
-  const [addBtnClicked, setAddBtnClicked] = useState(false);
-  const addAdminButtonToggle = () => {
-    setAddBtnClicked(!addBtnClicked);
-  };
   const [admins, setAdmins] = useState([]);
   async function getAdminUser() {
     try {
@@ -22,6 +18,12 @@ function AdminAccountController() {
   useEffect(() => {
     getAdminUser();
   }, []);
+
+  const [showInputBox, setShowInputBox] = useState(false);
+
+  const toggleInputBox = () => {
+    setShowInputBox((prev) => !prev);
+  };
 
   const adminCards = useMemo(() => {
     return admins.map((item) => {
@@ -40,9 +42,18 @@ function AdminAccountController() {
     <>
       <div className={styles.container}>
         <div className={styles.toolbox}>
-          <button onClick={addAdminButtonToggle}>
-            {addBtnClicked ? "✖︎" : "✚"}
-          </button>
+          <button onClick={toggleInputBox}>{showInputBox ? "✖︎" : "✚"}</button>
+        </div>
+        <div className={styles.inputBox}>
+          {showInputBox && (
+            <>
+              <input type="text" id="username" placeholder="username" />
+              <input type="text" id="id" placeholder="id" />
+              <input type="text" id="password" placeholder="password" />
+              <input type="text" id="phone" placeholder="phone" />
+              <input type="text" id="email" placeholder="email" />
+            </>
+          )}
         </div>
         <div>{adminCards}</div>
       </div>
