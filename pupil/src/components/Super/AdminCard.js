@@ -10,51 +10,60 @@ function AdminCard({ id, name, phone, email }) {
     email: email,
     password: "",
   });
+
+  const [showInputBox, setShowInputBox] = useState(false);
+
+  const toggleInputBox = () => {
+    setShowInputBox((prev) => !prev);
+  };
+
   return (
     <div className={styles.adminCardWrapper}>
-      <div className={styles.cardContainer}>
+      <div className={styles.cardContainer} onClick={toggleInputBox}>
         <p>
           <span>{id}</span>
           <span>{name}</span>
         </p>
       </div>
-      <div className={styles.inputBox}>
-        <input
-          type="text"
-          id="username"
-          placeholder="username"
-          value={inputForm.username}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          id="id"
-          placeholder="id"
-          value={inputForm.id}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          id="password"
-          placeholder="password"
-          value={inputForm.password}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          id="phone"
-          placeholder="phone"
-          value={inputForm.phone}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          id="email"
-          placeholder="email"
-          value={inputForm.email}
-          onChange={handleChange}
-        />
-      </div>
+      {showInputBox && (
+        <div className={styles.inputBox}>
+          <input
+            type="text"
+            id="username"
+            placeholder="username"
+            value={inputForm.username}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            id="id"
+            placeholder="id"
+            value={inputForm.id}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            id="password"
+            placeholder="password"
+            value={inputForm.password}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            id="phone"
+            placeholder="phone"
+            value={inputForm.phone}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            id="email"
+            placeholder="email"
+            value={inputForm.email}
+            onChange={handleChange}
+          />
+        </div>
+      )}
     </div>
   );
 }
