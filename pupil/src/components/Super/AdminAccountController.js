@@ -4,6 +4,10 @@ import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
 
 function AdminAccountController() {
+  const [addBtnClicked, setAddBtnClicked] = useState(false);
+  const addAdminButtonToggle = () => {
+    setAddBtnClicked(!addBtnClicked);
+  };
   const [admins, setAdmins] = useState([]);
   async function getAdminUser() {
     try {
@@ -21,6 +25,11 @@ function AdminAccountController() {
   return (
     <>
       <div className={styles.container}>
+        <div className={styles.toolbox}>
+          <button onClick={addAdminButtonToggle}>
+            {addBtnClicked ? "✖︎" : "✚"}
+          </button>
+        </div>
         <div>
           {admins.map((item) => {
             console.log(item);
