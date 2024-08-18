@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
 
@@ -22,6 +22,20 @@ function AdminAccountController() {
   useEffect(() => {
     getAdminUser();
   }, []);
+
+  const adminCards = useMemo(() => {
+    return admins.map((item) => {
+      return (
+        <AdminCard
+          key={item.user_id}
+          id={item.user_id}
+          name={item.user_name}
+          email={item.user_email}
+          phone={item.user_phone}
+        ></AdminCard>
+      );
+    });
+  }, [admins]);
   return (
     <>
       <div className={styles.container}>
@@ -30,20 +44,7 @@ function AdminAccountController() {
             {addBtnClicked ? "✖︎" : "✚"}
           </button>
         </div>
-        <div>
-          {admins.map((item) => {
-            console.log(item);
-            return (
-              <AdminCard
-                key={item.user_id}
-                id={item.user_id}
-                name={item.user_name}
-                email={item.user_email}
-                phone={item.user_phone}
-              ></AdminCard>
-            );
-          })}
-        </div>
+        <div>{adminCards}</div>
       </div>
     </>
   );
