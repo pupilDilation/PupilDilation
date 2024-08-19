@@ -187,6 +187,43 @@ router.post("/adminregister", async (req, res) => {
   }
 });
 
+router.delete("/admindelete/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  try {
+    const [ids] = await db.query(
+      `SELECT user_type FROM user WHERE user_id = ?`,
+      [id]
+    );
+    if (ids.length < 1) {
+      return res
+        .status(404)
+        .json({ success: false, message: "ID를 찾을 수 없습니다!" });
+    }
+    if (ids[0].user_type !== "admin") {
+      return res.json({ success: false, message: "ADMIN 계정이 아닙니다!" });
+    }
+    const [deleteResult] = await db.query(
+      `UPDATE user SET deleted_at = NOW() WHERE user_id = ?`,
+      [id]
+    );
+
+    if (deleteResult.affectedRows > 0) {
+      return res.json({
+        success: true,
+        message: "Admin Account Successfully Deleted",
+      });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "Admin Account Not Found" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, error: error });
+  }
+});
+
 router.get("/checkauth", (req, res) => {
   // userId 있는 경우 response 로 authenticated : true, 유저아이디 전달
   console.log(req.session);
