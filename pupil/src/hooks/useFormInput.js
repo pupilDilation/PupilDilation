@@ -17,5 +17,9 @@ export default function useFormInput(initialState) {
     }));
   };
 
-  return [formData, handleChange];
+  const resetForm = () => {
+    setFormData(initialState);
+  };
+
+  return [formData, handleChange, resetForm];
 }
