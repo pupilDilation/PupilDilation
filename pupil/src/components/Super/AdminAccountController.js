@@ -26,13 +26,27 @@ function AdminAccountController() {
     setShowInputBox((prev) => !prev);
   };
 
-  const [inputForm, handleChange] = useFormInput({
+  const [inputForm, handleChange, resetForm] = useFormInput({
     username: "",
     id: "",
     phone: "",
     email: "",
     password: "",
   });
+
+  function isBlank() {
+    if (
+      inputForm.username === "" ||
+      inputForm.password === "" ||
+      inputForm.id === "" ||
+      inputForm.email === "" ||
+      inputForm.phone === ""
+    ) {
+      alert("빈 칸 채워라.");
+      return false;
+    }
+    return true;
+  }
 
   function isValidPhone(phone) {
     const phoneRegex = /^010-\d{4}-\d{4}$/;
@@ -51,6 +65,40 @@ function AdminAccountController() {
       return false;
     }
     return true;
+  }
+
+  async function createAdmin() {
+    if (
+      !(
+        isBlank() &&
+        isValidPhone(inputForm.phone) &&
+        isValidEmail(inputForm.email)
+      )
+    ) {
+      return false;
+    }
+    try {
+      const res = await axios.post(
+        "http://localhost:3001/auth/adminregister",
+        {
+          id: inputForm.id,
+          password: inputForm.password,
+          name: inputForm.username,
+          email: inputForm.email,
+          phone: inputForm.phone,
+        },
+        { withCredentials: true }
+      );
+      if (res.data.success) {
+        alert(`${inputForm.id} 어드민 계정 생성 완료`);
+        resetForm();
+      } else if (res.status === 409) {
+        alert("이미 가입된 id임");
+        return false;
+      }
+    } catch (error) {
+      alert(error);
+    }
   }
 
   const adminCards = useMemo(() => {
@@ -110,7 +158,7 @@ function AdminAccountController() {
                 value={inputForm.email}
                 onChange={handleChange}
               />
-              <button>어드민 계정 생성!</button>
+              <button onClick={createAdmin}>어드민 계정 생성!</button>
             </div>
           )}
         </div>
