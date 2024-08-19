@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
+import useFormInput from "../../hooks/useFormInput";
 
 function AdminAccountController() {
   const [admins, setAdmins] = useState([]);
@@ -25,6 +26,14 @@ function AdminAccountController() {
     setShowInputBox((prev) => !prev);
   };
 
+  const [inputForm, handleChange] = useFormInput({
+    username: "",
+    id: "",
+    phone: "",
+    email: "",
+    password: "",
+  });
+
   const adminCards = useMemo(() => {
     return admins.map((item) => {
       return (
@@ -46,13 +55,44 @@ function AdminAccountController() {
         </div>
         <div className={styles.inputBox}>
           {showInputBox && (
-            <>
-              <input type="text" id="username" placeholder="username" />
-              <input type="text" id="id" placeholder="id" />
-              <input type="text" id="password" placeholder="password" />
-              <input type="text" id="phone" placeholder="phone" />
-              <input type="text" id="email" placeholder="email" />
-            </>
+            <div className={styles.inputBox}>
+              <input
+                type="text"
+                id="username"
+                placeholder="username"
+                value={inputForm.username}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                id="id"
+                placeholder="id"
+                value={inputForm.id}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                id="password"
+                placeholder="password"
+                value={inputForm.password}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                id="phone"
+                placeholder="phone"
+                value={inputForm.phone}
+                onChange={handleChange}
+              />
+              <input
+                type="text"
+                id="email"
+                placeholder="email"
+                value={inputForm.email}
+                onChange={handleChange}
+              />
+              <button>어드민 계정 생성!</button>
+            </div>
           )}
         </div>
         <div>{adminCards}</div>
