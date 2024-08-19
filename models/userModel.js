@@ -37,7 +37,9 @@ async function getEmailById(user_id) {
 }
 
 async function getAdmins() {
-  const [rows] = await db.query(`SELECT * FROM user WHERE user_type = 'admin'`);
+  const [rows] = await db.query(
+    `SELECT * FROM user WHERE user_type = 'admin' AND deleted_at IS NULL`
+  );
   return rows;
 }
 
