@@ -175,12 +175,12 @@ router.post("/adminregister", async (req, res) => {
       return res
         .status(409)
         .json({ success: false, message: "이미 가입된 ID입니다!" });
-      await db.query(
-        `INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)`,
-        [id, name, hashedPassword, email, phone, "admin"]
-      );
-      res.json({ success: true });
     }
+    await db.query(
+      `INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)`,
+      [id, name, hashedPassword, email, phone, "admin"]
+    );
+    res.json({ success: true });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
