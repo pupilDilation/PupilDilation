@@ -17,6 +17,11 @@ function AdminCard({ id, name, phone, email }) {
     setShowInputBox((prev) => !prev);
   };
 
+  // const deleteBtnClicked = () => {
+  //   if (confirm("진짜 삭제할거임???????")) {
+  //   }
+  // };
+
   return (
     <div className={styles.adminCardWrapper}>
       <div className={styles.cardContainer} onClick={toggleInputBox}>
@@ -26,43 +31,54 @@ function AdminCard({ id, name, phone, email }) {
         </p>
       </div>
       {showInputBox && (
-        <div className={styles.inputBox}>
-          <input
-            type="text"
-            id="username"
-            placeholder="username"
-            value={inputForm.username}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            id="id"
-            placeholder="id"
-            value={inputForm.id}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            id="password"
-            placeholder="password"
-            value={inputForm.password}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            id="phone"
-            placeholder="phone"
-            value={inputForm.phone}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            id="email"
-            placeholder="email"
-            value={inputForm.email}
-            onChange={handleChange}
-          />
-        </div>
+        <>
+          <div className={styles.inputBox}>
+            <input
+              type="text"
+              name="username"
+              id={`username-${id}`}
+              placeholder="username"
+              value={inputForm.username}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="id"
+              id={`id-${id}`}
+              placeholder="id"
+              value={inputForm.id}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="password"
+              id={`password-${id}`}
+              placeholder="password"
+              value={inputForm.password}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="phone"
+              id={`phone-${id}`}
+              placeholder="phone"
+              value={inputForm.phone}
+              onChange={handleChange}
+            />
+            <input
+              type="text"
+              name="email"
+              id={`email-${id}`}
+              placeholder="email"
+              value={inputForm.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.inputButtonBox}>
+            <button>삭제하기</button>
+            <button>수정하기</button>
+          </div>
+        </>
       )}
     </div>
   );
