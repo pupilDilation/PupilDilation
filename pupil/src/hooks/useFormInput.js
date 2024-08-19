@@ -10,10 +10,10 @@ export default function useFormInput(initialState) {
   const [formData, setFormData] = useState(initialState);
 
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [id]: value,
+      [name]: value,
     }));
   };
 
