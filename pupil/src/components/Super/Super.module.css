@@ -44,4 +44,22 @@
   input {
     margin: 0.3rem;
   }
+
+  button {
+    display: block;
+    width: auto;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+}
+
+.inputButtonBox {
+  display: flex;
+  justify-content: space-around;
+  button {
+    display: block;
+    width: auto;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
 }
