@@ -34,6 +34,25 @@ function AdminAccountController() {
     password: "",
   });
 
+  function isValidPhone(phone) {
+    const phoneRegex = /^010-\d{4}-\d{4}$/;
+    if (!phoneRegex.test(phone) && phone !== "") {
+      alert("전화번호 형식 맞춰라.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function isValidEmail(mail) {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+    if (!emailRegex.test(mail) && mail !== "") {
+      alert("이메일 형식 맞춰라.");
+      return false;
+    }
+    return true;
+  }
+
   const adminCards = useMemo(() => {
     return admins.map((item) => {
       return (
