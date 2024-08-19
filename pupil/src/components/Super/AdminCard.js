@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Super.module.css";
 import useFormInput from "../../hooks/useFormInput";
+import axios from "axios";
 
 function AdminCard({ id, name, phone, email }) {
   const [inputForm, handleChange] = useFormInput({
@@ -17,10 +18,29 @@ function AdminCard({ id, name, phone, email }) {
     setShowInputBox((prev) => !prev);
   };
 
-  // const deleteBtnClicked = () => {
-  //   if (confirm("진짜 삭제할거임???????")) {
-  //   }
-  // };
+  async function deleteAdmin() {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3001/auth/admindelete/${id}`
+      );
+      if (res.data.success) {
+        return true;
+      } else {
+        alert("삭제 실패!!");
+      }
+    } catch (error) {
+      console.log(error.message);
+      console.log(error.response);
+    }
+  }
+
+  const deleteBtnClicked = () => {
+    if (window.confirm("진짜 삭제할거임????")) {
+      if (deleteAdmin()) {
+        alert("삭제 성공!!");
+      }
+    }
+  };
 
   return (
     <div className={styles.adminCardWrapper}>
@@ -75,7 +95,7 @@ function AdminCard({ id, name, phone, email }) {
             />
           </div>
           <div className={styles.inputButtonBox}>
-            <button>삭제하기</button>
+            <button onClick={deleteBtnClicked}>삭제하기</button>
             <button>수정하기</button>
           </div>
         </>
