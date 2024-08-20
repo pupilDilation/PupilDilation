@@ -6,6 +6,7 @@ import Slide from "./Slide";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useQuery } from "@tanstack/react-query";
 
 /**
  * [Component] Slider : 공연 포스터 auto play 캐러셀
@@ -13,6 +14,18 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate
 function Slider() {
   const [concerts, setConcerts] = useState([]);
   const navigate = useNavigate(); // Initialize navigate
+
+  const authQuery = useQuery({
+    queryKey: ["auth"],
+    queryFn: async () => {
+      const response = await axios.get("http://localhost:3001/auth/checkAuth", {
+        withCredentials: true,
+      });
+      return response.data;
+    },
+  });
+
+  const userType = authQuery.data?.userType;
 
   useEffect(() => {
     async function fetchConcerts() {
@@ -31,7 +44,11 @@ function Slider() {
 
   // Handle slide click
   const handleSlideClick = (concertId) => {
-    navigate(`/details/${concertId}`); // Navigate to the DetailForm component with concertId
+    if (userType === "admin" || userType === "super") {
+      navigate(`/user/${userType}`);
+    } else {
+      navigate(`/details/${concertId}`); // Navigate to the DetailForm component with concertId
+    }
   };
 
   const SWIPER_STYLE = {
