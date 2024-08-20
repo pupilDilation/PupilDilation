@@ -6,6 +6,7 @@ import Wrapper from "../components/Wrapper/Wrapper";
 import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
 import Ticket from "../components/Ticket/Ticket";
 import ConcertInfo from "../components/ConcertInfo/ConcertInfo";
+import AdminAccountController from "../components/Super/AdminAccountController";
 import axios from "axios";
 
 function MyPage() {
@@ -182,13 +183,7 @@ function MyPage() {
         </div>
       )}
       {!loading && !error && userType === "super" && (
-        <div>
-          <ul>
-            <li>Admin 1</li>
-            <li>Admin 2</li>
-            <li>Admin 3</li>
-          </ul>
-        </div>
+        <AdminAccountController></AdminAccountController>
       )}
     </Wrapper>
   );
