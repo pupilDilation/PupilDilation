@@ -6,7 +6,7 @@ function SuperDetailForm() {
   const { userType } = useParams();
 
   return (
-    <Wrapper className={WrapperStyles.detailFormContainer}>
+    <Wrapper>
       <h1>관리자({userType}) 페이지</h1>
       <div>공연관리</div>
     </Wrapper>
