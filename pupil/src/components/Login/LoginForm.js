@@ -58,6 +58,13 @@ function LoginForm() {
     }
   }
 
+  // onKeyDown Event
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      loginClicked();
+    }
+  };
+
   return (
     <div className={LoginFormStyles.loginWrapper}>
       <div className={LoginFormStyles.loginText}>
@@ -81,6 +88,7 @@ function LoginForm() {
           }}
           className={LoginFormStyles.input1}
           placeholder={"비밀번호"}
+          onKeyDown={handleEnter}
         />
         <div className={LoginFormStyles.saveId}>
           <div>
