@@ -35,7 +35,7 @@ function SeatSelectSection() {
     return `${rowLetter}${colIndex + 1}`;
   };
 
-  const formattedSeats = selectedSeats.map(formatSeatNumber).join(", ");
+  const formattedSeats = selectedSeats.map(formatSeatNumber).sort().join(", ");
 
   return (
     <div className={SeatSelectionSectionStyle.sectionWrapper}>
