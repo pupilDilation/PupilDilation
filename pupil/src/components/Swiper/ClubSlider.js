@@ -37,10 +37,6 @@ function ClubSlider() {
     fetchClubs();
   }, []);
 
-  const handleClubListClick = (clubId) => {
-    navigate(`/club/${clubId}`);
-  };
-
   const SWIPER_STYLE = {
     width: "100%",
     marginTop: "15px",
@@ -61,11 +57,7 @@ function ClubSlider() {
         clubs.map((item) => {
           const randomColor = colors[Math.floor(Math.random() * colors.length)];
           return (
-            <SwiperSlide
-              key={item.club_id}
-              className={styles.swiperSlide}
-              onClick={() => handleClubListClick(item.club_id)}
-            >
+            <SwiperSlide key={item.club_id} className={styles.swiperSlide}>
               <ClubSlide item={item} bgColor={randomColor} />
             </SwiperSlide>
           );

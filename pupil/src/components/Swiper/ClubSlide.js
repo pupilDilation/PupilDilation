@@ -3,7 +3,7 @@ import styles from "./slider.module.css";
 
 function ClubSlide({ item, bgColor }) {
   return (
-    <Link to={"/club"} className={styles.sliderLink}>
+    <Link to={`/club/${item.club_id}`} className={styles.sliderLink}>
       <div className={styles.slideButtonContainer}>
         <button
           style={{ backgroundColor: bgColor }}
