@@ -1,6 +1,5 @@
 import { useParams } from "react-router";
 import Wrapper from "../Wrapper/Wrapper";
-import WrapperStyles from "../Wrapper/Wrapper.module.css";
 
 function SuperDetailForm() {
   const { userType } = useParams();

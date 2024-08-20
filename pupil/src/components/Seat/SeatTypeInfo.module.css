@@ -1,7 +1,6 @@
 .seatTypeWrapper {
   display: grid;
   gap: calc(1vw);
-  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-columns: repeat(2, 1fr);
 }
 /* 네모 크기 지정 */
