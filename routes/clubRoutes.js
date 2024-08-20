@@ -12,7 +12,7 @@ const router = express.Router();
  */
 router.get("/", clubController.getClubs);
 
-router.get("/:club_id", clubController.getClubById);
+router.get("/clubid/:club_id", clubController.getClubById);
 
 router.get("/:user_id", clubController.getConcertsByUserId);
 
