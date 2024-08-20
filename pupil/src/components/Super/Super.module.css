@@ -1,5 +1,6 @@
 .container {
-  padding: 2rem;
+  padding: 0.5rem;
+  width: 80%;
 
   button {
     display: flex;
