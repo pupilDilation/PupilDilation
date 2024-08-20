@@ -50,7 +50,6 @@ function App() {
                 ></Route>
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
                 <Route path="/scanner" element={<Scanner></Scanner>}></Route>
-                <Route path="/club" element={<ClubList />}></Route>
                 <Route path="/club/:clubId" element={<ClubDetail />}></Route>
                 <Route path="/announcement" element={<Announcement />}></Route>
                 <Route path="/terms" element={<Terms />}></Route>
