@@ -24,7 +24,7 @@
 }
 /* type 박스 + 텍스트 */
 .seatTypeContent {
-  justify-content: center;
+  justify-content: left;
   display: flex;
   flex-direction: row;
   align-items: center;
