@@ -60,12 +60,9 @@ function ClubSlider() {
       {clubs.length > 0 ? (
         clubs.map((item) => {
           const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          console.log(item);
           return (
-            <SwiperSlide
-              key={item.club_id}
-              className={styles.swiperSlide}
-              onClick={() => handleClubListClick(item.club_id)}
-            >
+            <SwiperSlide key={item.club_id} className={styles.swiperSlide}>
               <ClubSlide item={item} bgColor={randomColor} />
             </SwiperSlide>
           );
