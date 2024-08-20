@@ -36,6 +36,13 @@ async function getEmailById(user_id) {
   return rows;
 }
 
+async function getAdmins() {
+  const [rows] = await db.query(
+    `SELECT * FROM user WHERE user_type = 'admin' AND deleted_at IS NULL`
+  );
+  return rows;
+}
+
 async function createUser(username, password, phone, email) {
   await db.query(
     `
@@ -59,4 +66,5 @@ module.exports = {
   getUserById,
   createUser,
   updateUser,
+  getAdmins,
 };

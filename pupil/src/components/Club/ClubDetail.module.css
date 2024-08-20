@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  width: 80%;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.img {
+  width: 50%;
+}
+
+.descbox {
+  width: 50%;
+  padding: 2rem;
+}
+
+.descbox h1 {
+  font-size: 30px;
+  font-weight: bolder;
+  margin-bottom: 2rem;
+}

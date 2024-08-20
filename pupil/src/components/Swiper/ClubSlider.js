@@ -10,6 +10,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+const colors = [
+  "#FFADAD",
+  "#FFD6A5",
+  "#FDFFB6",
+  "#CAFFBF",
+  "#9BF6FF",
+  "#A0C4FF",
+  "#BDB2FF",
+  "#FFC6FF",
+];
+
 function ClubSlider() {
   const navigate = useNavigate();
   const [clubs, setClubs] = useState([]);
@@ -41,21 +52,24 @@ function ClubSlider() {
       modules={[Navigation, Pagination]}
       autoHeight
       spaceBetween={15}
-      slidesPerView={3}
+      slidesPerView={5}
       style={SWIPER_STYLE}
       navigation
       pagination={{ clickable: true }}
     >
       {clubs.length > 0 ? (
-        clubs.map((item) => (
-          <SwiperSlide
-            key={item.club_id}
-            className={styles.swiperSlide}
-            onClick={() => handleClubListClick(item.club_id)}
-          >
-            <ClubSlide item={item} />
-          </SwiperSlide>
-        ))
+        clubs.map((item) => {
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          return (
+            <SwiperSlide
+              key={item.club_id}
+              className={styles.swiperSlide}
+              onClick={() => handleClubListClick(item.club_id)}
+            >
+              <ClubSlide item={item} bgColor={randomColor} />
+            </SwiperSlide>
+          );
+        })
       ) : (
         <SwiperSlide>
           <div>No clubs available</div>
