@@ -7,8 +7,7 @@ function ConcertInfo(props) {
 
   return (
     <div className={ConcertInfoStyles.container}>
-      <h1>제목</h1>
-      <h1>날짜</h1>
+      <h1>{props.title}</h1>
     </div>
   );
 }

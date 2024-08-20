@@ -33,6 +33,16 @@ const getConcertById = async (req, res) => {
   }
 };
 
+const getConcertsByUserId = async (req, res) => {
+  const { user_id } = req.params;
+  try {
+    const concerts = await concertModel.getConcertsByUserId(user_id);
+    res.json(concerts);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch concerts for the user." });
+  }
+};
+
 const postConcert = async (req, res) => {
   const concertData = req.body;
   try {
@@ -85,4 +95,5 @@ module.exports = {
   deleteConcert,
   getConcertById,
   getConcertsInRange,
+  getConcertsByUserId,
 };

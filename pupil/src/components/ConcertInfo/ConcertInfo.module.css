@@ -1,6 +1,6 @@
 .container {
   width: calc(100vw * 330 / 400);
-  height: calc(100vw * 50 / 400);
+  height: calc(100vw * 20 / 400);
   padding: calc(100vw * 10 / 400);
   display: flex;
   align-items: center;
