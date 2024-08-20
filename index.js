@@ -64,13 +64,6 @@ app.use("/seats", seatRoutes);
 app.use("/reservations", reservationRoutes);
 app.use("/announcement", announceRoutes);
 
-// Routers
-// const userRouter = require("./routes/Users");
-// app.use("/users", userRouter);
-
-// const concertRouter = require("./routes/Concerts");
-// app.use("/concert", concertRouter);
-
 app.use(express.static(path.join(__dirname, "pupil/build")));
 
 app.get("/", function (req, res) {
