@@ -6,7 +6,7 @@ import styles from "./Search.module.css";
  */
 function Search(props) {
   return (
-    <div className={styles.overlay}>
+    <div className={styles.overlay} onClick={props.onClick}>
       <div className={styles.container}>
         <div className={styles.header}>
           <img
