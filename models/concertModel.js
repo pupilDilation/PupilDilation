@@ -100,6 +100,16 @@ const getConcertsByUserId = async (userId) => {
   return rows;
 };
 
+const getConcertsByConcertName = async (concertTitle) => {
+  const [rows] = await db.query(
+    `
+    SELECT * FROM concert WHERE concert_title LIKE ? ORDER BY concert_title
+    `,
+    [`%${concertTitle}%`]
+  );
+  return rows;
+};
+
 const postConcert = async (concertData) => {
   const {
     concert_title,
@@ -198,4 +208,5 @@ module.exports = {
   getConcertById,
   getConcertsInRange,
   getConcertsByUserId,
+  getConcertsByConcertName,
 };
