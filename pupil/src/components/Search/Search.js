@@ -15,7 +15,12 @@ function Search(props) {
             alt="arrow"
             onClick={props.onClick}
           />
+          <div className={styles.searchBox}>
+            <input type="text" />
+            <img src="/img/logo/search.png" alt="search" />
+          </div>
         </div>
+        <div className={styles.searchResearch}></div>
       </div>
     </div>
   );
