@@ -13,6 +13,7 @@ import Scanner from "./pages/Scanner";
 import ClubList from "./components/Club/ClubList";
 import ClubDetail from "./components/Club/ClubDetail";
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
+import EidtConcert from "./components/EditDetail/EditDetailForm";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -54,6 +55,7 @@ function App() {
                   element={<SeatSelection />}
                 ></Route>
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
+                <Route path="/editdetail" element={<EidtConcert />}></Route>
                 <Route path="/scanner" element={<Scanner></Scanner>}></Route>
                 <Route path="/club/:clubId" element={<ClubDetail />}></Route>
                 <Route path="/announcement" element={<Announcement />}></Route>
