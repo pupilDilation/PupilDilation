@@ -47,7 +47,6 @@ function EditDetailForm() {
         });
 
         // Set schedule data if available
-        // Here, you can set the start, end, and schedule info if available in your database
         setTimeInfo({
           start: {
             date: "", // Set this with your start date from database
@@ -116,7 +115,15 @@ function EditDetailForm() {
   };
 
   const onSubtractClick = () => {
-    if (scheduleCount > 1) setScheduleCount(scheduleCount - 1);
+    if (scheduleCount > 1) {
+      setScheduleCount(scheduleCount - 1);
+      const newSchedule = [...timeInfo.schedule];
+      newSchedule.pop();
+      setTimeInfo({
+        ...timeInfo,
+        schedule: newSchedule,
+      });
+    }
   };
 
   const onButtonClick = () => {
@@ -152,6 +159,32 @@ function EditDetailForm() {
         </div>
       </div>
     );
+  }
+
+  async function register() {
+    try {
+      const res = await axios.put("http://localhost:3001/concerts/1", {
+        concert_title: newShowInfo.title,
+        concert_location: newShowInfo.place,
+        concert_price: newShowInfo.price,
+        concert_row: 5, // Adjust as needed
+        concert_col: 10, // Adjust as needed
+        concert_img: null, // Handle image upload if needed
+        concert_plot: newShowInfo.introduction,
+        user_id: "user2", // Replace with actual user ID
+      });
+
+      if (res.status === 200 || res.status === 201) {
+        alert("성공적으로 업데이트되었습니다!");
+        navigate("/"); // Redirect to another page if needed
+      } else {
+        alert("업데이트에 실패했습니다.");
+        console.log(res.status);
+      }
+    } catch (error) {
+      console.error("업데이트 실패:", error.response?.data || error.message);
+      alert("업데이트에 실패했습니다.");
+    }
   }
 
   return (
@@ -320,25 +353,6 @@ function EditDetailForm() {
       </div>
     </div>
   );
-
-  async function register() {
-    try {
-      const res = await axios.post("http://localhost:3001/concerts", {
-        concert_title: newShowInfo.title,
-        concert_location: newShowInfo.place,
-        concert_price: newShowInfo.price,
-        concert_row: 5,
-        concert_col: 10,
-        concert_img: null,
-        concert_plot: newShowInfo.introduction,
-        user_id: "user2",
-      });
-      alert("성공적으로 등록되었습니다!");
-    } catch (error) {
-      console.log(error);
-      alert("등록에 실패했습니다.");
-    }
-  }
 }
 
 export default EditDetailForm;
