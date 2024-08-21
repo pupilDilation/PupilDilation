@@ -76,37 +76,20 @@ function Header() {
             className={HeaderStyles.secondHeaderLogo}
           />
         </Link>
-        {isLoggedIn ? (
-          <div className={HeaderStyles.secondHeaderBtnContainer}>
+        <div className={HeaderStyles.secondHeaderBtnContainer}>
+          <img
+            src="/img/logo/search.png"
+            alt="검색"
+            className={HeaderStyles.secondHeaderBtn}
+          />
+          <Link to={isLoggedIn ? "/my-page" : "/"}>
             <img
-              src="/img/logo/search.png"
-              alt="검색"
+              src="/img/logo/user.svg"
+              alt="유저"
               className={HeaderStyles.secondHeaderBtn}
             />
-            <Link to="/my-page">
-              <img
-                src="/img/logo/user.svg"
-                alt="유저"
-                className={HeaderStyles.secondHeaderBtn}
-              />
-            </Link>
-          </div>
-        ) : (
-          <div className={HeaderStyles.secondHeaderBtnContainer}>
-            <img
-              src="/img/logo/search.png"
-              alt="검색"
-              className={HeaderStyles.secondHeaderBtn}
-            />
-            <Link to="/">
-              <img
-                src="/img/logo/user.svg"
-                alt="유저"
-                className={HeaderStyles.secondHeaderBtn}
-              />
-            </Link>
-          </div>
-        )}
+          </Link>
+        </div>
       </div>
     </div>
   );
