@@ -34,6 +34,19 @@ const getClubById = async (clubId) => {
   return rows;
 };
 
+const getClubsByClubName = async (clubName) => {
+  const [rows] = await db.query(
+    `
+    SELECT * FROM club 
+    WHERE club_name LIKE ?
+    OR club_search LIKE ?
+    ORDER BY club_name
+    `,
+    [`%${clubName}%`, `%${clubName}%`]
+  );
+  return rows;
+};
+
 /**
  * 클럽에 공연 정보 추가하기
  */
@@ -103,4 +116,5 @@ module.exports = {
   getClubById,
   addConcertToClub,
   getConcertsByUserId,
+  getClubsByClubName,
 };

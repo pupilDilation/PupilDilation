@@ -1,4 +1,4 @@
-const clubModel = require("../models/ClubModel");
+const clubModel = require("../models/clubModel");
 
 // 모든 동아리 정보 가져오기
 const getClubs = async (req, res) => {
@@ -39,6 +39,24 @@ const getConcertsByUserId = async (req, res) => {
   }
 };
 
+const getClubsByClubName = async (req, res) => {
+  const { club_name } = req.query;
+  try {
+    const clubs = await clubModel.getClubsByClubName(club_name);
+    if (clubs.length < 1) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Clubs Not Found." });
+    }
+    res.json(clubs);
+  } catch (error) {
+    res.status(500).json({
+      error: "Failed to fetch clubs by club name",
+      detail: error.message,
+    });
+  }
+};
+
 //동아리에 공연 정보 추가하기
 const addConcertToClub = async (req, res) => {
   try {
@@ -58,4 +76,5 @@ module.exports = {
   getClubById,
   getConcertsByUserId,
   addConcertToClub,
+  getClubsByClubName,
 };
