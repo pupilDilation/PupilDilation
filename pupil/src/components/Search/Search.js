@@ -1,10 +1,15 @@
+import { useState } from "react";
 import styles from "./Search.module.css";
 
 /**
  * @author: Jangmyun
- * @param: searchToggle,
+ * @param: searchToggle
  */
 function Search(props) {
+  const [search, setSearch] = useState("");
+  const onChangeSearchInput = (e) => {
+    setSearch(e.target.value);
+  };
   return (
     <div className={styles.overlay} onClick={props.onClick}>
       <div className={styles.container} onClick={(e) => e.stopPropagation()}>
@@ -16,11 +21,16 @@ function Search(props) {
             onClick={props.onClick}
           />
           <div className={styles.searchBox}>
-            <input type="text" />
+            <input
+              type="text"
+              placeholder="공연/동아리 이름으로 검색"
+              value={search}
+              onChange={onChangeSearchInput}
+            />
             <img src="/img/logo/search.png" alt="search" />
           </div>
         </div>
-        <div className={styles.searchResearch}></div>
+        <div className={styles.searchResult}>{}</div>
       </div>
     </div>
   );
