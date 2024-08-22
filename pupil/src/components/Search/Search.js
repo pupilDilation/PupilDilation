@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import styles from "./Search.module.css";
+import ClubSearch from "./ClubSearch";
+import ConcertSearch from "./ConcertSearch";
 
 /**
  * @author: Jangmyun
@@ -7,9 +10,11 @@ import styles from "./Search.module.css";
  */
 function Search(props) {
   const [search, setSearch] = useState("");
-  const onChangeSearchInput = (e) => {
+  const handleSearch = (e) => {
     setSearch(e.target.value);
+    setSearch2(e.target.value);
   };
+
   return (
     <div className={styles.overlay} onClick={props.onClick}>
       <div className={styles.container} onClick={(e) => e.stopPropagation()}>
@@ -25,12 +30,15 @@ function Search(props) {
               type="text"
               placeholder="공연/동아리 이름으로 검색"
               value={search}
-              onChange={onChangeSearchInput}
+              onChange={handleSearch}
             />
             <img src="/img/logo/search.png" alt="search" />
           </div>
         </div>
-        <div className={styles.searchResult}>{}</div>
+        <div className={styles.searchResult}>
+          <ClubSearch clubName={search}></ClubSearch>
+          <ConcertSearch concertTitle={search}></ConcertSearch>
+        </div>
       </div>
     </div>
   );
