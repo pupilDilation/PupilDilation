@@ -19,3 +19,9 @@
   font-weight: bold;
   padding: calc(100vw * 20 / 400);
 }
+
+.paymentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
