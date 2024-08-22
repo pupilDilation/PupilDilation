@@ -12,7 +12,6 @@ function Search(props) {
   const [search, setSearch] = useState("");
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    setSearch2(e.target.value);
   };
 
   return (

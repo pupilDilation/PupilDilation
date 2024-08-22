@@ -17,6 +17,7 @@ function ClubSearch({ clubName }) {
     queryKey: ["clubs", clubName],
     queryFn: () => fetchClubs(clubName),
     enabled: clubName.length >= 2,
+    retry: false,
   });
 
   return (
