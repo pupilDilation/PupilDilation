@@ -60,6 +60,11 @@
   color: black;
 }
 
+.progress {
+  border: 1px solid #000;
+  background-color: #2c2c2c;
+}
+
 .screen {
   background-color: gray;
   height: 50px;
@@ -98,7 +103,7 @@
   }
 }
 
-.paymentClickBtn {
+.reserveClickBtn {
   background-color: #ef5454b8;
   color: #fff;
   font-family: "Noto Sans KR", sans-serif;
