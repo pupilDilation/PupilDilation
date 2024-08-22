@@ -48,7 +48,7 @@ const getClubsByClubName = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Clubs Not Found." });
     }
-    res.json(clubs);
+    return res.json(clubs);
   } catch (error) {
     res.status(500).json({
       error: "Failed to fetch clubs by club name",

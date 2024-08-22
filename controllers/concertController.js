@@ -48,7 +48,9 @@ const getConcertsByConcertName = async (req, res) => {
   try {
     const concerts = await concertModel.getConcertsByConcertName(concert_title);
     if (concerts.length < 1) {
-      res.status(404).json({ success: false, message: "Concerts Not Found." });
+      return res
+        .status(404)
+        .json({ success: false, message: "Concerts Not Found." });
     }
     res.json(concerts);
   } catch (error) {
