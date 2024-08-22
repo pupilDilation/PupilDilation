@@ -24,6 +24,7 @@ import Announcement from "./pages/Announcement";
 import PwChangePage from "./pages/PwChangePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SuperDetailForm from "./components/Detail/SuperDetailForm";
+import PaymentPage from "./pages/PaymentPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,10 @@ function App() {
                 <Route
                   path="/concert/:concertId/sessions/:sessionId/seats"
                   element={<SeatSelection />}
+                ></Route>
+                <Route
+                  path="/concert/:concertId/sessions/:sessionId/seats/payment"
+                  element={<PaymentPage />}
                 ></Route>
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
                 <Route path="/editdetail" element={<EidtConcert />}></Route>
