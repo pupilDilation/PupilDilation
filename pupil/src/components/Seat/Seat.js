@@ -19,6 +19,8 @@ function Seat({ seatNumber, seatStatus, onSelect }) {
     seatClass = seatStyle.disabled;
   } else if (isSelected) {
     seatClass = seatStyle.selected;
+  } else if (seatStatus === "progress") {
+    seatClass = seatStyle.progress;
   }
 
   return (

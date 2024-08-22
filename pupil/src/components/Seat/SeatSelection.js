@@ -3,12 +3,7 @@ import Seat from "./Seat";
 import SeatStyle from "./Seat.module.css";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setCol,
-  setRow,
-  clearSelectedSeats,
-  toggleSeat,
-} from "../../slice/seatSlice";
+import { setCol, setRow, toggleSeat } from "../../slice/seatSlice";
 import SeatSelectSection from "./SeatSelectSection";
 import axios from "axios";
 import Button from "../Button/Button";
@@ -69,16 +64,17 @@ function SeatSelection() {
     dispatch(toggleSeat(seatNumber));
   };
   //결제하기 버튼을 클릭했을 때
-  const handlePaymentClick = async () => {
+  const handleReserveClick = async () => {
     if (selectedSeats.length === 0) {
       alert("좌석을 선택해주세요.");
       return;
     }
     try {
+      //예매 완료했을 경우 disabled로 변경 -> 결제 완료시에 reserved로 변경
       for (const seatNumber of selectedSeats) {
         await axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
           seatNumber,
-          seatStatus: "reserved",
+          seatStatus: "progress",
         });
       }
       const response = await axios.get(
@@ -88,15 +84,16 @@ function SeatSelection() {
 
       if (success) {
         setSeats(seats);
-        dispatch(clearSelectedSeats());
-        alert("결제가 완료되었습니다.");
+        // dispatch(clearSelectedSeats());
+        navigate(`/concert/${concertId}/sessions/${sessionId}/seats/payment`);
+        alert("예매가 완료되었습니다.");
       } else {
         throw new Error("Failed to update seat information");
       }
-      navigate("/");
     } catch (error) {
-      console.error("결제 처리 중 오류 발생:", error);
-      alert("결제 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+      console.error("예매 처리 중 오류 발생:", error);
+      alert("예매 처리 중 오류가 발생했습니다. 다시 시도해주세요.");
+      navigate("/");
     }
   };
 
@@ -127,10 +124,10 @@ function SeatSelection() {
       </div>
       <SeatTypeInfo />
       <Button
-        className={SeatStyle.paymentClickBtn}
-        onClick={handlePaymentClick}
+        className={SeatStyle.reserveClickBtn}
+        onClick={handleReserveClick}
       >
-        결제하기
+        예매하기
       </Button>
     </div>
   );

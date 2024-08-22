@@ -72,3 +72,14 @@
   color: #666;
   cursor: not-allowed;
 }
+
+/*==== 결제하기 버튼 ====*/
+.paymentBtn {
+  border: none;
+  border-radius: 34px;
+  background-color: #ef5455;
+  width: calc(100vw * 320 / 400);
+  height: calc(100vh * 70 / 930);
+  color: white;
+  margin-top: 2em;
+}

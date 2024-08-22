@@ -28,6 +28,7 @@ function SeatSelectSection() {
     fetchConcertInfo();
   }, [concertId]);
 
+  //좌석 번호: 좌석 번호 + 알파벳으로 변환 로직
   const formatSeatNumber = (seatNumber) => {
     const rowIndex = Math.floor((seatNumber - 1) / col);
     const colIndex = (seatNumber - 1) % col;

@@ -41,6 +41,15 @@ function SeatTypeInfo() {
         ></div>
         <div>선택불가</div>
       </div>
+      <div className={SeatTypeStyle.seatTypeContent}>
+        <div
+          className={useClassNameJoin(
+            SeatTypeStyle.progressBox,
+            SeatTypeStyle.boxCommon
+          )}
+        ></div>
+        <div>예매 중</div>
+      </div>
     </div>
   );
 }
