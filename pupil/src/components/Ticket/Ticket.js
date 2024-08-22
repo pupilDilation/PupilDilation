@@ -17,7 +17,7 @@ function Ticket(props) {
       <div className={TicketStyles.secondLine}>
         <div className={TicketStyles.ticketPicture}>
           <img
-            src="img/loadImage.png"
+            src="/img/loadImage.png"
             className={TicketStyles.showPoster}
           ></img>
           <h1 className={TicketStyles.seatNumber}>{props.seat}</h1>
