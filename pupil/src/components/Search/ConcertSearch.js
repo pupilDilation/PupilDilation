@@ -25,7 +25,7 @@ function ConcertSearch({ concertTitle }) {
   return (
     <div className={styles.concertResult}>
       {isLoading ? (
-        <div>검색중...</div>
+        <div>공연 제목으로 검색중...</div>
       ) : data && data.length > 0 ? (
         data.map((item, index) => {
           // return <div key={item.concert_id}>{item.concert_title}</div>;
