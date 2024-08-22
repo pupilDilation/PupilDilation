@@ -22,7 +22,7 @@ function ClubSearch({ clubName }) {
   return (
     <div className={styles.clubResult}>
       {isLoading ? (
-        <div>검색중...</div>
+        <div>동아리 이름으로 검색중...</div>
       ) : data && data.length > 0 ? (
         data.map((item) => {
           return <div key={item.club_id}>{item.club_name}</div>;
