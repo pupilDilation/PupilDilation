@@ -54,26 +54,45 @@
 
 .searchResult {
   .clubResult {
+    display: flex;
     padding: 0 1rem 1rem 1rem;
+
+    .clubTag {
+      background-color: #ef5455;
+      padding: 0.5rem;
+      border-radius: 1rem;
+      color: white;
+
+      .link {
+        color: white;
+      }
+    }
+  }
+  .concertResult {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    .concertCardContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.4rem;
+
+      img {
+        width: 100%;
+        border-radius: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+        text-align: center;
+      }
+    }
   }
 }
 
-.concertResult {
-  padding: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  .concertCardContainer {
-    width: 30%;
-
-    img {
-      width: 100%;
-      border-radius: 1rem;
-    }
-
-    p {
-      font-size: 0.8rem;
-    }
-  }
+.link {
+  text-decoration: none;
+  color: black;
 }
