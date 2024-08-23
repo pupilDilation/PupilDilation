@@ -35,8 +35,11 @@ function Search(props) {
           </div>
         </div>
         <div className={styles.searchResult}>
-          <ClubSearch clubName={search}></ClubSearch>
-          <ConcertSearch concertTitle={search}></ConcertSearch>
+          <ClubSearch clubName={search} onClose={props.onClick}></ClubSearch>
+          <ConcertSearch
+            concertTitle={search}
+            onClose={props.onClick}
+          ></ConcertSearch>
         </div>
       </div>
     </div>
