@@ -16,6 +16,8 @@ router.get("/clubid/:club_id", clubController.getClubById);
 
 router.get("/:user_id", clubController.getConcertsByUserId);
 
+router.get("/get/clubbyname", clubController.getClubsByClubName);
+
 router.post("/:user_id", clubController.addConcertToClub);
 
 module.exports = router;

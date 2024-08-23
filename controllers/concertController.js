@@ -43,6 +43,22 @@ const getConcertsByUserId = async (req, res) => {
   }
 };
 
+const getConcertsByConcertName = async (req, res) => {
+  const { concert_title } = req.query;
+  try {
+    const concerts = await concertModel.getConcertsByConcertName(concert_title);
+    if (concerts.length < 1) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Concerts Not Found." });
+    }
+    res.json(concerts);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to fetch concerts." });
+  }
+};
+
 const postConcert = async (req, res) => {
   const concertData = req.body;
   try {
@@ -96,4 +112,5 @@ module.exports = {
   getConcertById,
   getConcertsInRange,
   getConcertsByUserId,
+  getConcertsByConcertName,
 };

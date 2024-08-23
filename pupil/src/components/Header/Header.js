@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Button/Button";
 import ButtonStyles from "../Button/Button.module.css";
 import HeaderStyles from "./Header.module.css";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../slice/loginSlice";
 import { setUserType } from "../../slice/loginSlice";
+import Search from "../Search/Search";
 import axios from "axios";
 
 /**
@@ -20,6 +21,12 @@ function Header() {
   const userType = useSelector((state) => state.login.userType);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [searchClicked, setSearchClicked] = useState(false);
+
+  const searchToggle = () => {
+    setSearchClicked((prev) => !prev);
+  };
 
   async function logoutClicked() {
     const res = await axios.post(
@@ -76,38 +83,25 @@ function Header() {
             className={HeaderStyles.secondHeaderLogo}
           />
         </Link>
-        {isLoggedIn ? (
-          <div className={HeaderStyles.secondHeaderBtnContainer}>
+        <div
+          className={HeaderStyles.secondHeaderBtnContainer}
+          onClick={searchToggle}
+        >
+          <img
+            src="/img/logo/search.png"
+            alt="검색"
+            className={HeaderStyles.secondHeaderBtn}
+          />
+          <Link to={isLoggedIn ? "/my-page" : "/"}>
             <img
-              src="/img/logo/search.png"
-              alt="검색"
+              src="/img/logo/user.svg"
+              alt="유저"
               className={HeaderStyles.secondHeaderBtn}
             />
-            <Link to="/my-page">
-              <img
-                src="/img/logo/user.svg"
-                alt="유저"
-                className={HeaderStyles.secondHeaderBtn}
-              />
-            </Link>
-          </div>
-        ) : (
-          <div className={HeaderStyles.secondHeaderBtnContainer}>
-            <img
-              src="/img/logo/search.png"
-              alt="검색"
-              className={HeaderStyles.secondHeaderBtn}
-            />
-            <Link to="/">
-              <img
-                src="/img/logo/user.svg"
-                alt="유저"
-                className={HeaderStyles.secondHeaderBtn}
-              />
-            </Link>
-          </div>
-        )}
+          </Link>
+        </div>
       </div>
+      {searchClicked ? <Search onClick={searchToggle}></Search> : null}
     </div>
   );
 }
