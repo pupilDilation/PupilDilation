@@ -3,9 +3,9 @@ import ConcertCard from "./ConcertCard";
 import styles from "./Search.module.css";
 import axios from "axios";
 
-function ConcertSearch({ concertTitle }) {
+function ConcertSearch({ concertTitle, onClose }) {
   console.log(concertTitle);
-  async function fetchClubs(concertTitle) {
+  async function fetchConcerts(concertTitle) {
     const { data } = await axios.get(
       "http://localhost:3001/concerts/get/concertbytitle",
       {
@@ -18,7 +18,7 @@ function ConcertSearch({ concertTitle }) {
 
   const { data, error, isLoading, isError } = useQuery({
     queryKey: ["concerts", concertTitle],
-    queryFn: () => fetchClubs(concertTitle),
+    queryFn: () => fetchConcerts(concertTitle),
     enabled: concertTitle.length >= 2,
   });
 
@@ -32,8 +32,10 @@ function ConcertSearch({ concertTitle }) {
           return (
             <ConcertCard
               key={index}
+              id={item.concert_id}
               title={item.concert_title}
               imgUrl={item.concert_img}
+              onClose={onClose}
             ></ConcertCard>
           );
         })
