@@ -1,8 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import styles from "./Search.module.css";
 import axios from "axios";
 
-function ClubSearch({ clubName }) {
+function ClubSearch({ clubName, onClose }) {
   async function fetchClubs(clubName) {
     const { data } = await axios.get(
       "http://localhost:3001/club/get/clubbyname",
@@ -26,7 +27,17 @@ function ClubSearch({ clubName }) {
         <div>동아리 이름으로 검색중...</div>
       ) : data && data.length > 0 ? (
         data.map((item) => {
-          return <div key={item.club_id}>{item.club_name}</div>;
+          return (
+            <div key={item.club_id} className={styles.clubTag}>
+              <Link
+                to={`/club/${item.club_id}`}
+                className={styles.link}
+                onClick={onClose}
+              >
+                {item.club_name}
+              </Link>
+            </div>
+          );
         })
       ) : null}
       {isError ? <div>동아리를 찾을 수 없습니다.</div> : null}
