@@ -44,11 +44,7 @@ function Slider() {
 
   // Handle slide click
   const handleSlideClick = (concertId) => {
-    if (userType === "admin" || userType === "super") {
-      navigate(`/user/${userType}`);
-    } else {
-      navigate(`/details/${concertId}`); // Navigate to the DetailForm component with concertId
-    }
+    navigate(`/details/${concertId}`);
   };
 
   const SWIPER_STYLE = {

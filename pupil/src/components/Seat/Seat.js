@@ -2,7 +2,7 @@ import React from "react";
 import seatStyle from "./Seat.module.css";
 import { useSelector } from "react-redux";
 
-function Seat({ seatNumber, seatStatus, onSelect }) {
+function Seat({ seatNumber, seatStatus, onSelect, isAdmin = false }) {
   const selectedSeats = useSelector((state) => state.seat.selectedSeats);
   const isSelected = selectedSeats.includes(seatNumber);
 
@@ -21,6 +21,10 @@ function Seat({ seatNumber, seatStatus, onSelect }) {
     seatClass = seatStyle.selected;
   } else if (seatStatus === "progress") {
     seatClass = seatStyle.progress;
+  }
+
+  if (isAdmin && isSelected) {
+    seatClass = `${seatClass} ${seatStyle.disabled}`;
   }
 
   return (

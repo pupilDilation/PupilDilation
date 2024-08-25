@@ -9,7 +9,7 @@ import axios from "axios";
 import Button from "../Button/Button";
 import SeatTypeInfo from "./SeatTypeInfo";
 
-function SeatSelection() {
+function SeatSelection({ isAdmin = false, onAdminSelect }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const concertId = useSelector((state) => state.concert.selectedConcertId);
@@ -20,7 +20,6 @@ function SeatSelection() {
 
   const row = useSelector((state) => state.seat.row);
   const col = useSelector((state) => state.seat.col);
-
   useEffect(() => {
     async function getSeatsBySessionId() {
       try {
@@ -48,21 +47,26 @@ function SeatSelection() {
     if (sessionId) {
       getSeatsBySessionId();
     }
-  }, [concertId, sessionId, dispatch]);
+  }, [concertId, sessionId, dispatch, navigate]);
 
   useEffect(() => {
     document.documentElement.style.setProperty("--row", row);
     document.documentElement.style.setProperty("--col", col);
   }, [row, col]);
 
+  //좌석이 선택되었을 때
+  const handleSeatSelect = async (seatNumber) => {
+    if (isAdmin) {
+      onAdminSelect(seatNumber);
+    } else {
+      dispatch(toggleSeat(seatNumber));
+    }
+  };
   //세션 id값이 없거나 row col이 0이라 불러올 좌석 정보가 없을 경우
   if (!sessionId || (row === 0 && col === 0)) {
     return <div>Loading...</div>;
   }
-  //좌석이 선택되었을 때
-  const handleSeatSelect = (seatNumber) => {
-    dispatch(toggleSeat(seatNumber));
-  };
+
   //결제하기 버튼을 클릭했을 때
   const handleReserveClick = async () => {
     if (selectedSeats.length === 0) {
@@ -99,36 +103,35 @@ function SeatSelection() {
 
   return (
     <div className={SeatStyle.seatWrapper}>
-      <div className={SeatStyle.seatTitle}>좌석 선택</div>
+      {!isAdmin && <div className={SeatStyle.seatTitle}>좌석 선택</div>}
       <div className={SeatStyle.stageTitle}>{concert_location}</div>
       <div className={SeatStyle.screen}>
         <h2>STAGE</h2>
       </div>
       <div className={SeatStyle.seatSection}>
         <div className={SeatStyle.seatGrid}>
-          {Array.from({ length: row * col }, (_, index) => {
-            const seatNumber = index + 1;
-            const seatInfo =
-              seats.find((seat) => seat.seat_number === seatNumber) || {};
-            return (
-              <Seat
-                key={seatNumber}
-                seatNumber={seatNumber}
-                seatStatus={seatInfo.seat_status || "available"}
-                onSelect={handleSeatSelect}
-              />
-            );
-          })}
+          {seats.map((seat) => (
+            <Seat
+              key={seat.seat_number}
+              seatNumber={seat.seat_number}
+              seatStatus={seat.seat_status}
+              onSelect={handleSeatSelect}
+              isAdmin={isAdmin}
+              isSelected={selectedSeats.includes(seat.seat_number)}
+            />
+          ))}
         </div>
-        <SeatSelectSection />
+        {!isAdmin && <SeatSelectSection />}
       </div>
       <SeatTypeInfo />
-      <Button
-        className={SeatStyle.reserveClickBtn}
-        onClick={handleReserveClick}
-      >
-        예매하기
-      </Button>
+      {!isAdmin && (
+        <Button
+          className={SeatStyle.reserveClickBtn}
+          onClick={handleReserveClick}
+        >
+          예매하기
+        </Button>
+      )}
     </div>
   );
 }

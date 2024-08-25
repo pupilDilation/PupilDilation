@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom"; // Import useParams
 import axios from "axios";
 import { selectedConcert } from "../../slice/concertSlice";
 import { useDispatch } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 
 function DetailForm() {
   const { concertId } = useParams(); // Get concertId from URL parameters
@@ -16,6 +17,17 @@ function DetailForm() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const authQuery = useQuery({
+    queryKey: ["auth"],
+    queryFn: async () => {
+      const response = await axios.get("http://localhost:3001/auth/checkAuth", {
+        withCredentials: true,
+      });
+      return response.data;
+    },
+  });
+
+  const userType = authQuery.data?.userType;
 
   useEffect(() => {
     const fetchConcertDetails = async () => {
@@ -77,9 +89,15 @@ function DetailForm() {
       return;
     }
     dispatch(selectedConcert(concertId));
-    navigate(
-      `/concert/${concertId}/sessions/${selectedSession.session_id}/seats`
-    );
+    if (userType === "super" || userType === "admin") {
+      navigate(
+        `/concert/${concertId}/sessions/${selectedSession.session_id}/seats/${userType}`
+      );
+    } else {
+      navigate(
+        `/concert/${concertId}/sessions/${selectedSession.session_id}/seats`
+      );
+    }
   };
 
   return (
@@ -141,7 +159,7 @@ function DetailForm() {
           </div>
           <div className={styles.bookNowContainer}>
             <button className={styles.bookNowButton} onClick={handleBookNow}>
-              예매하기
+              {userType === "user" ? "예매하기" : "좌석관리하기"}
             </button>
           </div>
         </div>

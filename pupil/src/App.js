@@ -10,13 +10,11 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
 import SeatSelection from "./components/Seat/SeatSelection";
 import Scanner from "./pages/Scanner";
-import ClubList from "./components/Club/ClubList";
 import ClubDetail from "./components/Club/ClubDetail";
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
 import EidtConcert from "./components/EditDetail/EditDetailForm";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import axios from "axios";
 import { checkAuth } from "./slice/loginSlice";
 import Policy from "./pages/Policy";
 import Terms from "./pages/Terms";
@@ -48,7 +46,7 @@ function App() {
                 <Route path="/my-page" element={<MyPage />}></Route>
                 <Route path="/details/:concertId" element={<DetailPage />} />
                 <Route
-                  path="/user/:userType"
+                  path="/concert/:concertId/sessions/:sessionId/seats/:userType"
                   element={<SuperDetailForm />}
                 ></Route>
                 <Route
