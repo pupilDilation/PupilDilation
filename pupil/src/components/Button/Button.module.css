@@ -83,3 +83,23 @@
   color: white;
   margin-top: 2em;
 }
+
+/*==== 변경사항 적용 버튼 ====*/
+.applyBtn {
+  border: none;
+  border-radius: 34px;
+  background-color: #ff5252;
+  color: white;
+  width: calc(100vw * 130 / 400);
+  height: calc(100vh * 40 / 930);
+}
+
+/*==== 초기화 버튼 ====*/
+.resetBtn {
+  border: none;
+  border-radius: 34px;
+  background-color: #8c8c8c;
+  color: white;
+  width: calc(100vw * 100 / 400);
+  height: calc(100vh * 40 / 930);
+}
