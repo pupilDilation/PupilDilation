@@ -1,9 +1,24 @@
 import React, { useState } from "react";
 import "./CreateConcert.css";
+import styles from "./CreateConcert.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import useFormInput from "../../hooks/useFormInput";
 
 function CreateConcertForm() {
+  const [inputForm, handleChange, resetForm] = useFormInput({
+    concert_title: "",
+    concert_location: "",
+    concert_price: 0,
+    concert_row: 0,
+    concert_col: 0,
+    concert_img: "",
+    concert_plot: "",
+    user_id: "",
+    rsv_start_at: "",
+    rsv_end_at: "",
+  });
+
   const [imageUpload, setImageUpload] = useState(null);
   const [newShowInfo, setNewShowInfo] = useState({
     title: "",
@@ -264,7 +279,7 @@ function CreateConcertForm() {
                 className="event-delete-button"
                 onClick={onSubtractClick}
               >
-                <img src="/images/Trash.svg" alt="열 삭제하기" />
+                <img src="/img/trashcan.svg" alt="열 삭제하기" width={30} />
               </button>
             </div>
           </div>
