@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./CreateConcert.css";
 import styles from "./CreateConcert.module.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -26,6 +25,7 @@ function CreateConcertForm() {
       ...prev,
       [name]: value,
     }));
+    console.log(inputForm);
   };
 
   const handleSessionDateChange = (index, value) => {
