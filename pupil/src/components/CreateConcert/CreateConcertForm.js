@@ -64,16 +64,53 @@ function CreateConcertForm() {
           <input id="imgInput" type="file" className={styles.imgInput} />
         </div>
         <div className={styles.leftInputBox}>
-          <input type="text" placeholder="공연 제목 입력" />
-          <input type="text" placeholder="장소 입력" />
-          <input type="number" placeholder="가격 입력 (원)" />
+          <input
+            type="text"
+            placeholder="공연 제목 입력"
+            name="concert_title"
+            value={inputForm.concert_title}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            placeholder="장소 입력"
+            name="concert_location"
+            value={inputForm.concert_location}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            placeholder="가격 입력 (원)"
+            name="concert_price"
+            value={inputForm.concert_price}
+            onChange={handleChange}
+          />
         </div>
       </div>
       <div className={styles.right}>
         <div className={styles.rightInputBox}>
-          <textarea cols="30" rows="10" placeholder="공연 설명 입력"></textarea>
-          <input type="datetime-local" name="rsv_start_at" />
-          <input type="datetime-local" name="rsv_end_at" />
+          <textarea
+            cols="30"
+            rows="10"
+            placeholder="공연 설명 입력"
+            name="concert_plot"
+            value={inputForm.concert_plot}
+            onChange={handleChange}
+          ></textarea>
+          <p>예매 시작 시간</p>
+          <input
+            type="datetime-local"
+            name="rsv_start_at"
+            value={inputForm.rsv_start_at}
+            onChange={handleChange}
+          />
+          <p>예매 종료 시간</p>
+          <input
+            type="datetime-local"
+            name="rsv_end_at"
+            value={inputForm.rsv_end_at}
+            onChange={handleChange}
+          />
           <div className={styles.sessionDates} id="sessionDateBox">
             <p>Session Dates</p>
             {inputForm.session_dates.map((date, index) => (
@@ -81,7 +118,14 @@ function CreateConcertForm() {
                 <label htmlFor={`session-datetime-${index}`}>
                   {index + 1} 공연
                 </label>
-                <input id={`session-datetime-${index}`} type="datetime-local" />
+                <input
+                  id={`session-datetime-${index}`}
+                  type="datetime-local"
+                  value={date}
+                  onChange={(e) =>
+                    handleSessionDateChange(index, e.target.value)
+                  }
+                />
                 <button onClick={() => removeSessionDate(index)}>
                   세션 제거
                 </button>
