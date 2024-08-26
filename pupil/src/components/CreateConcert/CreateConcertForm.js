@@ -4,8 +4,10 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function CreateConcertForm() {
+  // redux store에서 user id state 가져오기
   const userId = useSelector((state) => state.login.id);
 
+  // inputForm state로 concert detail data state를 한번에 관리
   const [inputForm, setInputForm] = useState({
     concert_title: "",
     concert_location: "",
@@ -20,6 +22,7 @@ function CreateConcertForm() {
     session_dates: [""],
   });
 
+  // input태그의 name props 이름을 통해서 inputForm obj의 해당 값 변경하도록 설정
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputForm((prev) => ({
@@ -28,6 +31,8 @@ function CreateConcertForm() {
     }));
   };
 
+  // session_dates의 경우 동적 할당을 위해 onChange 함수를 따로 설정
+  // session-dates의 배열을 복사하도록 함
   const handleSessionDateChange = (index, value) => {
     const newSessionDates = [...inputForm.session_dates];
     newSessionDates[index] = value;
@@ -37,13 +42,13 @@ function CreateConcertForm() {
     }));
   };
 
+  // session 추가, 삭제
   const addSessionDate = () => {
     setInputForm((prev) => ({
       ...prev,
       session_dates: [...prev.session_dates, ""],
     }));
   };
-
   const removeSessionDate = (index) => {
     const newSessionDates = inputForm.session_dates.filter(
       (_, i) => i !== index
@@ -54,6 +59,7 @@ function CreateConcertForm() {
     }));
   };
 
+  // js datetime format을 mysql의 datetime으로 변환하는 formatter
   function convertDateFormat(dateTime) {
     return dateTime.replace("T", " ") + ":00";
   }
