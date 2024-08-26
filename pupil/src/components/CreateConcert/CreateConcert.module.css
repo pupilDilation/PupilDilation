@@ -1,0 +1,114 @@
+input {
+  width: 100%;
+  outline: none;
+  border-radius: 1rem;
+  border: 1px solid lightgray;
+  padding-left: 1rem;
+  font-size: 3vw;
+}
+
+input:focus {
+  border: 2px solid #020202;
+}
+
+input[type="number"] {
+  padding-right: 0.5rem;
+}
+
+input[type="datetime-local"] {
+  height: 1.2rem;
+}
+
+textarea {
+  resize: none;
+  font-size: 3vw;
+  width: 80vw;
+}
+
+.container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  display: flex;
+  justify-content: space-between;
+
+  .imgInputBox {
+    .imgInput {
+      display: none;
+    }
+
+    .imgInputLabel {
+      img {
+        width: 20vw;
+      }
+    }
+  }
+
+  .leftInputBox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+
+    input {
+      width: 50vw;
+      height: 4vw;
+    }
+
+    input:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+
+  .rightInputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input[type="datetime-local"] {
+      width: 50%;
+      margin-top: 1rem;
+    }
+  }
+}
+
+.sessionDates {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  p {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+
+  .sessionDateBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    input[type="datetime-local"] {
+      margin-top: 0;
+    }
+
+    button {
+      height: 2rem;
+      width: 5rem;
+    }
+  }
+}
