@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import styles from "./CreateConcert.module.css";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import useFormInput from "../../hooks/useFormInput";
+import { useSelector } from "react-redux";
 
 function CreateConcertForm() {
+  const userId = useSelector((state) => state.login.id);
+
   const [inputForm, setInputForm] = useState({
     concert_title: "",
     concert_location: "",
-    concert_price: 0,
+    concert_price: "",
     concert_row: 0,
     concert_col: 0,
     concert_img: "",
@@ -25,7 +26,6 @@ function CreateConcertForm() {
       ...prev,
       [name]: value,
     }));
-    console.log(inputForm);
   };
 
   const handleSessionDateChange = (index, value) => {
@@ -53,6 +53,30 @@ function CreateConcertForm() {
       session_dates: newSessionDates,
     }));
   };
+
+  function convertDateFormat(dateTime) {
+    return dateTime.replace("T", " ") + ":00";
+  }
+
+  async function register(e) {
+    try {
+      const res = await axios.post("http://localhost:3001/concerts", {
+        concert_title: inputForm.concert_title,
+        concert_location: inputForm.concert_location,
+        concert_price: inputForm.concert_price,
+        concert_row: inputForm.concert_row,
+        concert_col: inputForm.concert_col,
+        concert_img: inputForm.concert_img,
+        concert_plot: inputForm.concert_plot,
+        user_id: userId,
+        rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
+        rsv_end_at: convertDateFormat(inputForm.rsv_end_at),
+      });
+      alert("success!");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -139,24 +163,6 @@ function CreateConcertForm() {
       </div>
     </div>
   );
-
-  //   async function register(e) {
-  //     try {
-  //       const res = await axios.post("http://localhost:3001/concerts", {
-  //         concert_title: newShowInfo.title,
-  //         concert_location: newShowInfo.place,
-  //         concert_price: newShowInfo.price,
-  //         concert_row: 5,
-  //         concert_col: 10,
-  //         concert_img: null,
-  //         concert_plot: newShowInfo.introduction,
-  //         user_id: "user2",
-  //       });
-  //       alert("success!");
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
 }
 
 export default CreateConcertForm;
