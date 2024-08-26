@@ -77,9 +77,12 @@ textarea {
     flex-direction: column;
     align-items: center;
 
+    p {
+      margin-top: 1rem;
+    }
+
     input[type="datetime-local"] {
       width: 50%;
-      margin-top: 1rem;
     }
   }
 }
