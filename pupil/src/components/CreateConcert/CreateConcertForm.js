@@ -8,6 +8,9 @@ function CreateConcertForm() {
   // redux store에서 user id state 가져오기
   const userId = useSelector((state) => state.login.id);
 
+  // SeatSetter 에 전달할 전체 좌석 배열 state
+  const [seats, setSeats] = useState([]);
+
   // inputForm state로 concert detail data state를 한번에 관리
   const [inputForm, setInputForm] = useState({
     concert_title: "",
@@ -169,7 +172,7 @@ function CreateConcertForm() {
             </div>
           </div>
           <div className={styles.seatSetter}>
-            <p>좌석 설정</p>
+            <p>비활성화 할 좌석 선택</p>
             <div className={styles.seatController}>
               <input
                 name="concert_row"
@@ -189,6 +192,8 @@ function CreateConcertForm() {
             <SeatSetter
               rows={inputForm.concert_row}
               cols={inputForm.concert_col}
+              seats={seats}
+              setSeats={setSeats}
             ></SeatSetter>
           </div>
           <button className={styles.submitBtn}>공연 추가!</button>
