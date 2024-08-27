@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./CreateConcert.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import SeatSetter from "./SeatSetter";
 
 function CreateConcertForm() {
   // redux store에서 user id state 가져오기
@@ -12,8 +13,8 @@ function CreateConcertForm() {
     concert_title: "",
     concert_location: "",
     concert_price: "",
-    concert_row: 0,
-    concert_col: 0,
+    concert_row: "",
+    concert_col: "",
     concert_img: "",
     concert_plot: "",
     user_id: "",
@@ -21,6 +22,8 @@ function CreateConcertForm() {
     rsv_end_at: "",
     session_dates: [""],
   });
+
+  const [disabledSeats, setDisabledSeats] = useState([]);
 
   // input태그의 name props 이름을 통해서 inputForm obj의 해당 값 변경하도록 설정
   const handleChange = (e) => {
@@ -164,6 +167,29 @@ function CreateConcertForm() {
             <div className={styles.sessionControlBox}>
               <button onClick={addSessionDate}>세션 추가</button>
             </div>
+          </div>
+          <div className={styles.seatSetter}>
+            <p>좌석 설정</p>
+            <div className={styles.seatController}>
+              <input
+                name="concert_row"
+                type="number"
+                value={inputForm.concert_row}
+                placeholder="rows"
+                onChange={handleChange}
+              />
+              <input
+                name="concert_col"
+                type="number"
+                value={inputForm.concert_col}
+                placeholder="cols"
+                onChange={handleChange}
+              />
+            </div>
+            <SeatSetter
+              rows={inputForm.concert_row}
+              cols={inputForm.concert_col}
+            ></SeatSetter>
           </div>
           <button className={styles.submitBtn}>공연 추가!</button>
         </div>
