@@ -115,3 +115,9 @@ textarea {
     }
   }
 }
+
+.submitBtn {
+  margin-top: 2rem;
+  width: 10rem;
+  height: 2rem;
+}
