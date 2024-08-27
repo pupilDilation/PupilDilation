@@ -165,6 +165,7 @@ function CreateConcertForm() {
               <button onClick={addSessionDate}>세션 추가</button>
             </div>
           </div>
+          <button className={styles.submitBtn}>공연 추가!</button>
         </div>
       </div>
     </div>
