@@ -48,9 +48,18 @@ const deleteReservationByUserId = async (userId, rsvId) => {
   return result;
 };
 
+const checkReservation = async (rsvId) => {
+  const [result] = await db.query(
+    "SELECT rsv_uuid FROM reservation WHERE rsv_id = ?",
+    [rsvId]
+  );
+  return result;
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
   putReservationByUserId,
   deleteReservationByUserId,
+  checkReservation,
 };

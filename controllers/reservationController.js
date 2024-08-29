@@ -92,9 +92,33 @@ const deleteReservationByUserId = async (req, res) => {
   }
 };
 
+const checkReservation = async (req, res) => {
+  const { rsv_uuid } = req.body;
+
+  try {
+    const checkReservation = await reservationModel.checkReservation(rsv_uuid);
+    if (checkReservation) {
+      return res.json({
+        success: true,
+        message: "Reservation QR code is vaild",
+      });
+    } else {
+      return res
+        .status(404)
+        .json({ success: false, message: "UUID not found" });
+    }
+  } catch (error) {
+    console.error("Error checking reservation:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Server error", detail: error.message });
+  }
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
   putReservationByUserId,
   deleteReservationByUserId,
+  checkReservation,
 };
