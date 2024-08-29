@@ -18,13 +18,45 @@ const getSeatBySessionId = async (sessionId) => {
 
 const getConcertInfoBySessionId = async (sessionId) => {
   const [rows] = await db.query(
-    `SELECT c.concert_row, c.concert_col, c.concert_location
-     FROM concert c 
-     JOIN session s ON c.concert_id = s.concert_id 
-     WHERE s.session_id = ?`,
+    `
+    SELECT c.concert_row, c.concert_col, c.concert_location
+    FROM concert c 
+    JOIN session s ON c.concert_id = s.concert_id 
+    WHERE s.session_id = ?
+    `,
     [sessionId]
   );
   return rows[0];
+};
+
+const postSeats = async (sessionId, seatArray) => {
+  // mysql transaction 을 통한 seat 배엻 처리
+  const transactionConnection = await db.beginTransaction();
+
+  try {
+    // seat post 전에 해당 session_id로 생성 되었던 seat rows를 제거
+    await transactionConnection.query("DELETE FROM seat WHERE session_id = ?", [
+      sessionId,
+    ]);
+
+    const seatsUpdate = seatArray.map((status, index) => {
+      return [sessionId, index + 1, status ? "disabled" : "available"];
+    });
+
+    // INSERT new seats
+    const [result] = await transactionConnection.query(
+      "INSERT INTO seat (session_id, seat_number, seat_status) VALUES ?",
+      [seatsUpdate]
+    );
+
+    await transactionConnection.commit();
+    return result;
+  } catch (error) {
+    await transactionConnection.rollback();
+    throw new Error("Error Occur");
+  } finally {
+    transactionConnection.release();
+  }
 };
 
 const updateSeatStatus = async (sessionId, seatNumber, seatStatus) => {
@@ -45,4 +77,5 @@ module.exports = {
   getSeatBySessionId,
   getConcertInfoBySessionId,
   updateSeatStatus,
+  postSeats,
 };
