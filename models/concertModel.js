@@ -120,6 +120,8 @@ const postConcert = async (concertData) => {
     concert_img,
     concert_plot,
     user_id,
+    rsv_start_at,
+    rsv_end_at,
   } = concertData;
   const [result] = await db.query(
     `
