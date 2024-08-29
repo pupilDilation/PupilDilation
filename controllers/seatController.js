@@ -49,6 +49,30 @@ const getSeatBySessionId = async (req, res) => {
   }
 };
 
+const postSeats = async (req, res) => {
+  const { session_id, seats_array } = req.body;
+  if (
+    !Array.isArray(seats_array) ||
+    !seats_array.every((item) => typeof item === "boolean") ||
+    !session_id
+  ) {
+    return res.status(400).json({
+      error:
+        "Invalid Request Body: seatsArray must be an array of boolean values.",
+    });
+  }
+  console.log(seats_array);
+  try {
+    const result = await seatModel.postSeats(session_id, seats_array);
+    if (result.affectedRows > 0) {
+      return res.json({ success: true, result: result.affectedRows });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(505).json({ success: false, error: error });
+  }
+};
+
 const updateSeatStatus = async (req, res) => {
   const { sessionId } = req.params;
   const { seatStatus, seatNumber } = req.body;
@@ -74,4 +98,5 @@ module.exports = {
   getSeatByConcertId,
   getSeatBySessionId,
   updateSeatStatus,
+  postSeats,
 };
