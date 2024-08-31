@@ -1,4 +1,7 @@
 const concertModel = require("../models/concertModel");
+const sessionModel = require("../models/sessionModel");
+const seatModel = require("../models/seatModel");
+const pool = require("../config/dbConfig");
 
 const getConcerts = async (req, res) => {
   try {
@@ -59,15 +62,34 @@ const getConcertsByConcertName = async (req, res) => {
   }
 };
 
-const postConcert = async (req, res) => {
-  const concertData = req.body;
+const createConcert = async (req, res) => {
+  console.log(req.body);
+  const connection = await pool.getConnection();
   try {
-    const result = await concertModel.postConcert(concertData);
-    res.status(201).json({ message: "Concert added successfully.", result });
+    await connection.beginTransaction(); // transaction을 이용
+
+    const { concertData, sessionsData, seatsData } = req.body;
+
+    // create concert
+    const concertId = await concertModel.createConcert(concertData);
+
+    // create sessions
+    const sessionIds = await sessionModel.createSessions(
+      concertId,
+      sessionsData
+    );
+
+    // create seats of each session
+    await seatModel.createSeats(sessionIds, seatsData);
+
+    await connection.commit();
+    res.status(201).json({ concertId, sessionIds });
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Failed to add concert.", details: error.message });
+    await connection.rollback();
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  } finally {
+    connection.release();
   }
 };
 
@@ -106,11 +128,11 @@ const deleteConcert = async (req, res) => {
 
 module.exports = {
   getConcerts,
-  postConcert,
   putConcert,
   deleteConcert,
   getConcertById,
   getConcertsInRange,
   getConcertsByUserId,
   getConcertsByConcertName,
+  createConcert,
 };

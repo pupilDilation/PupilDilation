@@ -110,7 +110,7 @@ const getConcertsByConcertName = async (concertTitle) => {
   return rows;
 };
 
-const postConcert = async (concertData) => {
+const createConcert = async (concertData) => {
   const {
     concert_title,
     concert_location,
@@ -120,11 +120,13 @@ const postConcert = async (concertData) => {
     concert_img,
     concert_plot,
     user_id,
+    rsv_start_at,
+    rsv_end_at,
   } = concertData;
   const [result] = await db.query(
     `
-    INSERT INTO concert (concert_title, concert_location, concert_price, concert_row, concert_col, concert_img, concert_plot, user_id)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    INSERT INTO concert (concert_title, concert_location, concert_price, concert_row, concert_col, concert_img, concert_plot, user_id, rsv_start_at, rsv_end_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       concert_title,
       concert_location,
@@ -134,9 +136,11 @@ const postConcert = async (concertData) => {
       concert_img,
       concert_plot,
       user_id,
+      rsv_start_at,
+      rsv_end_at,
     ]
   );
-  return result;
+  return result.insertId;
 };
 
 const putConcert = async (concertId, concertData) => {
@@ -202,7 +206,7 @@ const deleteConcert = async (concertId) => {
 
 module.exports = {
   getConcerts,
-  postConcert,
+  createConcert,
   putConcert,
   deleteConcert,
   getConcertById,
