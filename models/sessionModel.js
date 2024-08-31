@@ -65,6 +65,27 @@ const postSession = async (sessionData) => {
   }
 };
 
+/**
+ * @author:Jangmyun
+ * @description:session
+ */
+const createSessions = async (concertId, sessionsData) => {
+  console.log(sessionsData);
+  const sessionValues = sessionsData.map((session) => [concertId, session]);
+
+  const [result] = await db.query(
+    `INSERT INTO session (concert_id, session_date) VALUES ?`,
+    [sessionValues]
+  );
+
+  const sessionIds = [];
+  for (let i = 0; i < sessionsData.length; i++) {
+    sessionIds.push(result.insertId + i);
+  }
+
+  return sessionIds;
+};
+
 const putSession = async (concertId, sessionId, sessionData) => {
   const { session_date } = sessionData;
   const [result] = await db.query(
@@ -106,4 +127,5 @@ module.exports = {
   putSession,
   deleteSession,
   getSessionBySessionId,
+  createSessions,
 };
