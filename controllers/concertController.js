@@ -1,4 +1,7 @@
 const concertModel = require("../models/concertModel");
+const sessionModel = require("../models/sessionModel");
+const seatModel = require("../models/seatModel");
+const pool = require("../config/dbConfig");
 
 const getConcerts = async (req, res) => {
   try {
@@ -71,6 +74,37 @@ const postConcert = async (req, res) => {
   }
 };
 
+const createConcert = async (req, res) => {
+  console.log(req.body);
+  const connection = await pool.getConnection();
+  try {
+    await connection.beginTransaction(); // transaction을 이용
+
+    const { concertData, sessionsData, seatsData } = req.body;
+
+    // create concert
+    const concertId = await concertModel.createConcert(concertData);
+
+    // create sessions
+    const sessionIds = await sessionModel.createSessions(
+      concertId,
+      sessionsData
+    );
+
+    // create seats of each session
+    await seatModel.createSeats(sessionIds, seatsData);
+
+    await connection.commit();
+    res.status(201).json({ concertId, sessionIds });
+  } catch (error) {
+    await connection.rollback();
+    console.log(error);
+    res.status(500).json({ message: error.message });
+  } finally {
+    connection.release();
+  }
+};
+
 const putConcert = async (req, res) => {
   const concertId = req.params.concert_id;
   const concertData = req.body;
@@ -113,4 +147,5 @@ module.exports = {
   getConcertsInRange,
   getConcertsByUserId,
   getConcertsByConcertName,
+  createConcert,
 };
