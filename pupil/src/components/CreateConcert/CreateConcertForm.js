@@ -26,8 +26,6 @@ function CreateConcertForm() {
     session_dates: [""],
   });
 
-  const [disabledSeats, setDisabledSeats] = useState([]);
-
   // input태그의 name props 이름을 통해서 inputForm obj의 해당 값 변경하도록 설정
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -73,18 +71,22 @@ function CreateConcertForm() {
   async function register(e) {
     try {
       const res = await axios.post("http://localhost:3001/concerts", {
-        concert_title: inputForm.concert_title,
-        concert_location: inputForm.concert_location,
-        concert_price: inputForm.concert_price,
-        concert_row: inputForm.concert_row,
-        concert_col: inputForm.concert_col,
-        concert_img: inputForm.concert_img,
-        concert_plot: inputForm.concert_plot,
-        user_id: userId,
-        rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
-        rsv_end_at: convertDateFormat(inputForm.rsv_end_at),
+        concertData: {
+          concert_title: inputForm.concert_title,
+          concert_location: inputForm.concert_location,
+          concert_price: inputForm.concert_price,
+          concert_row: inputForm.concert_row,
+          concert_col: inputForm.concert_col,
+          concert_img: inputForm.concert_img,
+          concert_plot: inputForm.concert_plot,
+          user_id: userId,
+          rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
+          rsv_end_at: convertDateFormat(inputForm.rsv_end_at),
+        },
+        sessionsData: inputForm.session_dates,
+        seatsData: seats,
       });
-      alert("success!");
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -196,7 +198,9 @@ function CreateConcertForm() {
               setSeats={setSeats}
             ></SeatSetter>
           </div>
-          <button className={styles.submitBtn}>공연 추가!</button>
+          <button className={styles.submitBtn} onClick={register}>
+            공연 추가!
+          </button>
         </div>
       </div>
     </div>
