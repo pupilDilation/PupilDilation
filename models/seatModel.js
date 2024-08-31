@@ -59,6 +59,21 @@ const postSeats = async (sessionId, seatArray) => {
   }
 };
 
+const createSeats = async (sessionIds, seatsData) => {
+  for (const sessionId of sessionIds) {
+    const seatValues = seatsData.map((seat, index) => [
+      sessionId,
+      index + 1,
+      seat ? "disabled" : "available",
+    ]);
+
+    await db.query(
+      `INSERT INTO seat (session_id, seat_number, seat_status) VALUES ?`,
+      [seatValues]
+    );
+  }
+};
+
 const updateSeatStatus = async (sessionId, seatNumber, seatStatus) => {
   await db.query(
     "UPDATE seat SET seat_status = ? WHERE session_id = ? AND seat_number = ?",
@@ -78,4 +93,5 @@ module.exports = {
   getConcertInfoBySessionId,
   updateSeatStatus,
   postSeats,
+  createSeats,
 };
