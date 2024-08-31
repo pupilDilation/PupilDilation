@@ -62,18 +62,6 @@ const getConcertsByConcertName = async (req, res) => {
   }
 };
 
-const postConcert = async (req, res) => {
-  const concertData = req.body;
-  try {
-    const result = await concertModel.postConcert(concertData);
-    res.status(201).json({ message: "Concert added successfully.", result });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Failed to add concert.", details: error.message });
-  }
-};
-
 const createConcert = async (req, res) => {
   console.log(req.body);
   const connection = await pool.getConnection();
@@ -140,7 +128,6 @@ const deleteConcert = async (req, res) => {
 
 module.exports = {
   getConcerts,
-  postConcert,
   putConcert,
   deleteConcert,
   getConcertById,
