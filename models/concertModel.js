@@ -110,7 +110,7 @@ const getConcertsByConcertName = async (concertTitle) => {
   return rows;
 };
 
-const postConcert = async (concertData) => {
+const createConcert = async (concertData) => {
   const {
     concert_title,
     concert_location,
@@ -140,7 +140,7 @@ const postConcert = async (concertData) => {
       rsv_end_at,
     ]
   );
-  return result;
+  return result.insertId;
 };
 
 const putConcert = async (concertId, concertData) => {
@@ -206,7 +206,7 @@ const deleteConcert = async (concertId) => {
 
 module.exports = {
   getConcerts,
-  postConcert,
+  createConcert,
   putConcert,
   deleteConcert,
   getConcertById,
