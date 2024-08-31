@@ -8,7 +8,7 @@ router.get("/range", concertController.getConcertsInRange);
 router.get("/:concert_id", concertController.getConcertById);
 router.get("/user/:user_id", concertController.getConcertsByUserId);
 router.get("/get/concertbytitle", concertController.getConcertsByConcertName);
-router.post("/", concertController.postConcert);
+router.post("/", concertController.createConcert);
 router.put("/:concert_id", concertController.putConcert);
 router.delete("/:concert_id", concertController.deleteConcert);
 
