@@ -3,7 +3,7 @@ import styles from "./DetailContentMobile.module.css"; // Import CSS module
 import { useParams, useNavigate } from "react-router-dom"; // Import useParams
 import axios from "axios";
 import { selectedConcert } from "../../slice/concertSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 
 function DetailForm() {
@@ -17,17 +17,7 @@ function DetailForm() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const authQuery = useQuery({
-    queryKey: ["auth"],
-    queryFn: async () => {
-      const response = await axios.get("http://localhost:3001/auth/checkAuth", {
-        withCredentials: true,
-      });
-      return response.data;
-    },
-  });
-
-  const userType = authQuery.data?.userType;
+  const userType = useSelector((state) => state.login.userType);
 
   useEffect(() => {
     const fetchConcertDetails = async () => {
@@ -84,6 +74,10 @@ function DetailForm() {
     const selectedSession = sessions.find(
       (session) => session.session_date === selectedDate
     );
+    if (userType === "") {
+      alert("로그인 후 이용해주세요");
+      return;
+    }
     if (!selectedSession) {
       alert("유효한 날짜를 선택해주세요");
       return;
@@ -159,7 +153,9 @@ function DetailForm() {
           </div>
           <div className={styles.bookNowContainer}>
             <button className={styles.bookNowButton} onClick={handleBookNow}>
-              {userType === "user" ? "예매하기" : "좌석관리하기"}
+              {userType === "user" || userType === ""
+                ? "예매하기"
+                : "좌석관리하기"}
             </button>
           </div>
         </div>
