@@ -1,156 +1,153 @@
+/* Container for the entire detail section */
 .detailContainerMobile {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; /* Center align content horizontally */
   text-align: center;
-  padding: calc(100vw * 40 / 400); /* Increased padding for overall spacing */
+  padding: calc(
+    100vw * 40 / 400
+  ); /* Consistent padding based on viewport width */
+  background-color: #f8f9fa; /* Light background for better contrast */
+  width: 100%; /* Ensure full width on mobile */
+  box-sizing: border-box; /* Include padding in width */
 }
 
+/* Title of the event */
 .eventTitleMobile {
-  display: flex;
-  justify-content: start;
-  width: calc(100vw * 350 / 400);
-  height: calc(100vw * 51 / 400);
-  flex-shrink: 0;
+  width: calc(100vw * 350 / 400); /* Responsive width */
+  height: calc(100vw * 51 / 400); /* Responsive height */
   color: #000;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 32 / 400);
-  font-style: normal;
+  font-size: calc(100vw * 32 / 400); /* Responsive font size */
   font-weight: 700;
-  line-height: normal;
-  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
+  margin-bottom: calc(100vw * 20 / 400); /* Margin for spacing */
+  text-align: left; /* Align text to the left */
 }
 
+/* Image of the event */
 .eventImageMobile {
-  width: calc(100vw * 169 / 400);
-  height: calc(100vw * 238 / 400);
-  margin-right: 16px;
-  border-radius: 8px;
+  width: calc(100vw * 169 / 400); /* Responsive width */
+  height: calc(100vw * 238 / 400); /* Responsive height */
+  margin-right: calc(100vw * 16 / 400); /* Right margin for spacing */
+  border-radius: 8px; /* Rounded corners */
+  object-fit: cover; /* Ensure the image covers its container */
 }
 
+/* First detail section containing the image and other details */
 .firstDetailMobile {
   display: flex;
-  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
+  flex-direction: column; /* Stack items vertically on small screens */
+  align-items: center; /* Center items */
+  margin-bottom: calc(100vw * 20 / 400); /* Margin for spacing */
+  gap: calc(100vw * 20 / 400); /* Gap between elements */
 }
 
+/* Second detail section for additional information */
 .secondDetailMobile {
-  width: calc(100vw * 169 / 400);
-  height: calc(100vw * 238 / 400);
-}
-
-.secondDetailMobile p {
+  width: 100%; /* Full width */
   display: flex;
-  justify-content: start;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  gap: calc(100vw * 8 / 400); /* Gap between text items */
 }
 
+/* General title styling for content sections */
 .contentTitle {
   color: #000;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 20 / 400);
-  font-style: normal;
+  font-size: calc(100vw * 20 / 400); /* Responsive font size */
   font-weight: 600;
-  line-height: normal;
-  margin-top: calc(100vw * 12 / 400);
-  margin-bottom: calc(100vw * 8 / 400); /* Added bottom margin for spacing */
+  margin-top: calc(100vw * 12 / 400); /* Top margin for spacing */
+  margin-bottom: calc(100vw * 8 / 400); /* Bottom margin for spacing */
+  text-align: left; /* Align text to the left */
 }
 
+/* General text styling for content sections */
 .contentText {
   color: #000;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 14 / 400);
-  font-style: normal;
+  font-size: calc(100vw * 14 / 400); /* Responsive font size */
   font-weight: 300;
-  line-height: normal;
-  letter-spacing: -0.63px;
-  display: flex;
-  text-align: left;
-  margin-bottom: calc(100vw * 12 / 400); /* Added bottom margin for spacing */
+  text-align: left; /* Align text to the left */
+  margin-bottom: calc(100vw * 12 / 400); /* Bottom margin for spacing */
 }
 
-.thirdDetailMobile p {
-  display: flex;
-  justify-content: start;
-  text-align: left;
-  margin-bottom: calc(100vw * 12 / 400); /* Added bottom margin for spacing */
-}
-
+/* Container for the concert introduction text */
 .contentIntro {
   color: #000;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 20 / 400);
-  font-style: normal;
+  font-size: calc(100vw * 20 / 400); /* Responsive font size */
   font-weight: 600;
-  line-height: normal;
-  margin-top: calc(100vw * 10 / 400); /* Increased margin for spacing */
-  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
+  margin-top: calc(100vw * 10 / 400); /* Top margin for spacing */
+  margin-bottom: calc(100vw * 20 / 400); /* Bottom margin for spacing */
+  text-align: left; /* Align text to the left */
 }
 
+/* Introduction text styling */
 .introText {
-  width: calc(100vw * 353 / 400); /* Adjusted width */
-  max-height: none; /* Remove fixed height */
+  width: calc(100vw * 353 / 400); /* Responsive width */
   color: #000;
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 14 / 400);
-  font-style: normal;
+  font-size: calc(100vw * 14 / 400); /* Responsive font size */
   font-weight: 300;
-  line-height: normal;
-  letter-spacing: -0.63px;
-  overflow-wrap: break-word; /* Ensure long words wrap */
-  word-break: break-word; /* Break long words if necessary */
-  text-align: left;
-  margin-bottom: calc(100vw * 20 / 400); /* Added bottom margin for spacing */
+  text-align: left; /* Align text to the left */
+  margin-bottom: calc(100vw * 20 / 400); /* Bottom margin for spacing */
+  word-break: break-word; /* Ensure long words break appropriately */
 }
 
+/* Schedule container for dropdown */
 .scheduleContainer {
-  margin-top: calc(
-    100vw * 20 / 400
-  ); /* Add margin to space from previous content */
-  margin-bottom: calc(
-    100vw * 40 / 400
-  ); /* Increased margin to create more space */
+  margin-top: calc(100vw * 20 / 400); /* Top margin for spacing */
+  margin-bottom: calc(100vw * 40 / 400); /* Bottom margin for spacing */
+  width: 100%; /* Full width */
 }
 
+/* Dropdown styling for selecting a session */
 .scheduleDropdown {
-  width: 100%;
-  padding: calc(100vw * 8 / 400) calc(100vw * 12 / 400); /* Padding for dropdown */
+  width: 100%; /* Full width */
+  padding: calc(100vw * 8 / 400) calc(100vw * 12 / 400); /* Padding for spacing */
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 14 / 400);
-  font-style: normal;
-  font-weight: 300;
+  font-size: calc(100vw * 14 / 400); /* Responsive font size */
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 4px; /* Rounded corners */
   background-color: #fff;
   color: #000;
   text-align: center;
+  box-sizing: border-box; /* Include padding in width */
 }
 
+/* Container for the 'Book Now' button */
 .bookNowContainer {
   display: flex;
-  justify-content: center;
-  margin-top: calc(100vw * 20 / 400); /* Add margin to space from dropdown */
+  justify-content: center; /* Center align the button */
+  margin-top: calc(100vw * 20 / 400); /* Top margin for spacing */
+  width: 100%; /* Full width */
 }
 
+/* 'Book Now' button styling */
 .bookNowButton {
-  background-color: #ef5454b8;
-  color: #fff;
+  background-color: #ef5454b8; /* Button background color */
+  color: #fff; /* Text color */
   font-family: "Noto Sans KR", sans-serif;
-  font-size: calc(100vw * 16 / 400);
-  font-style: normal;
+  font-size: calc(100vw * 16 / 400); /* Responsive font size */
   font-weight: 600;
-  border: none;
-  border-radius: 4px;
-  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400);
-  cursor: pointer;
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400); /* Padding for spacing */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
 }
 
 .bookNowButton:hover {
-  background-color: #ef5455;
+  background-color: #ef5455; /* Darker background on hover */
 }
 
+/* Footer styling */
 .footer {
-  margin-top: calc(100vw * 40 / 400); /* Adjusted to make space for button */
-  padding: calc(100vw * 20 / 400);
-  background-color: #f8f8f8;
-  text-align: center;
-  color: #000;
+  margin-top: calc(100vw * 40 / 400); /* Top margin for spacing */
+  padding: calc(100vw * 20 / 400); /* Padding for spacing */
+  background-color: #f8f8f8; /* Light background */
+  text-align: center; /* Center align text */
+  color: #000; /* Text color */
 }
