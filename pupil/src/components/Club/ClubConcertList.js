@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import styles from "./ClubDetail.module.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
@@ -6,7 +7,6 @@ import { useParams } from "react-router";
 function ClubConcertList() {
   const { clubId } = useParams();
 
-  const { data, setData } = useState([]);
   async function getConcertsByClubId() {
     try {
       const res = await axios.get(
@@ -22,23 +22,23 @@ function ClubConcertList() {
     }
   }
 
-  // const { data, error, isLoading, isError } = useQuery({
-  //   queryKey: ["clubId", clubId],
-  //   queryFn: () => getConcertsByClubId(),
-  // });
-
-  useEffect(() => {
-    getConcertsByClubId();
-  }, []);
+  const { data, error, isLoading, isError } = useQuery({
+    queryKey: ["clubId", clubId],
+    queryFn: () => getConcertsByClubId(),
+  });
 
   return (
-    <div>
+    <div className={styles.clubConcertListContainer}>
       {!data ? (
         <div>No Concerts</div>
       ) : (
-        data.map((concert, index) => (
-          <div key={index}>{concert.concert_title}</div>
-        ))
+        <div className={styles.concertListGridContainer}>
+          {data.map((concert, index) => (
+            <div key={index} className={styles.concertCard}>
+              {concert.concert_title}
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );
