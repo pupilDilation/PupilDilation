@@ -1,4 +1,5 @@
 const concertModel = require("../models/concertModel");
+const clubModel = require("../models/clubModel");
 const sessionModel = require("../models/sessionModel");
 const seatModel = require("../models/seatModel");
 const pool = require("../config/dbConfig");
@@ -22,6 +23,27 @@ const getConcertsInRange = async (req, res) => {
   }
 };
 
+const getConcertsByClubId = async (req, res) => {
+  const { club_id } = req.params;
+  try {
+    const userId = await clubModel.getUserByClubId(club_id);
+    if (userId.affectedRows < 1) {
+      return res.json({
+        success: false,
+        message: "Club Connected with User Not Found.",
+      });
+    }
+    console.log(userId);
+    const concerts = await concertModel.getConcertsByUserId(userId);
+    if (concerts.affectedRows < 1) {
+      return res.json({ success: false, message: "Concerts Not Found." });
+    }
+    res.json(concerts);
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
 const getConcertById = async (req, res) => {
   const concertId = req.params.concert_id;
   try {
@@ -40,6 +62,9 @@ const getConcertsByUserId = async (req, res) => {
   const { user_id } = req.params;
   try {
     const concerts = await concertModel.getConcertsByUserId(user_id);
+    if (concerts.affectedRows < 1) {
+      return res.json({ success: false, message: "Concerts Not Found." });
+    }
     res.json(concerts);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch concerts for the user." });
@@ -135,4 +160,5 @@ module.exports = {
   getConcertsByUserId,
   getConcertsByConcertName,
   createConcert,
+  getConcertsByClubId,
 };

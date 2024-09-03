@@ -111,10 +111,19 @@ const getConcertsByUserId = async (userId) => {
   return rows;
 };
 
+const getUserByClubId = async (clubId) => {
+  const [rows] = await db.query(`SELECT user_id FROM club WHERE club_id = ?`, [
+    clubId,
+  ]);
+
+  return rows;
+};
+
 module.exports = {
   getClubs,
   getClubById,
   addConcertToClub,
   getConcertsByUserId,
   getClubsByClubName,
+  getUserByClubId,
 };
