@@ -25,6 +25,7 @@ import PwChangePage from "./pages/PwChangePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SuperDetailForm from "./components/Detail/SuperDetailForm";
 import PaymentPage from "./pages/PaymentPage";
+import ClubDetailPage from "./pages/ClubDetailPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -62,7 +63,10 @@ function App() {
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
                 <Route path="/editdetail" element={<EidtConcert />}></Route>
                 <Route path="/scanner" element={<Scanner></Scanner>}></Route>
-                <Route path="/club/:clubId" element={<ClubDetail />}></Route>
+                <Route
+                  path="/club/:clubId"
+                  element={<ClubDetailPage></ClubDetailPage>}
+                ></Route>
                 <Route path="/announcement" element={<Announcement />}></Route>
                 <Route path="/terms" element={<Terms />}></Route>
                 <Route path="/policy" element={<Policy />}></Route>
