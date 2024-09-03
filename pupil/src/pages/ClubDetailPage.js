@@ -3,9 +3,10 @@ import { useParams } from "react-router-dom";
 import Wrapper from "../components/Wrapper/Wrapper";
 import ClubDetail from "../components/Club/ClubDetail";
 import axios from "axios";
+import ClubConcertList from "../components/Club/ClubConcertList";
 
 function ClubDetailPage() {
-  const { clubId } = useParams(0);
+  const { clubId } = useParams();
   const [club, setClub] = useState({});
   async function getClubById() {
     try {
@@ -20,11 +21,8 @@ function ClubDetailPage() {
   }, []);
   return (
     <Wrapper>
-      <ClubDetail
-        clubName={club.club_name}
-        clubDesc={club.club_description}
-        clubId={clubId}
-      ></ClubDetail>
+      <ClubDetail></ClubDetail>
+      <ClubConcertList clubId={clubId}></ClubConcertList>
     </Wrapper>
   );
 }
