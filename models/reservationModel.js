@@ -12,11 +12,12 @@ const postReservationByUserId = async (
   userId,
   sessionId,
   seatId,
-  paymentStatus
+  paymentStatus,
+  rsv_uuid
 ) => {
   const [result] = await db.query(
-    "INSERT INTO reservation (user_id, session_id, seat_id, payment_status) VALUES (?, ?, ?, ?)",
-    [userId, sessionId, seatId, paymentStatus]
+    "INSERT INTO reservation (user_id, session_id, seat_id, payment_status, rsv_uuid ) VALUES (?, ?, ?, ?, ?)",
+    [userId, sessionId, seatId, paymentStatus, rsv_uuid]
   );
   return {
     user_id: userId,
