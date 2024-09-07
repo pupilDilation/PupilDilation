@@ -4,7 +4,6 @@ import { useParams, useNavigate } from "react-router-dom"; // Import useParams
 import axios from "axios";
 import { selectedConcert } from "../../slice/concertSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
 
 function DetailForm() {
   const { concertId } = useParams(); // Get concertId from URL parameters
