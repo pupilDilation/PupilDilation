@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import QrScanner from "qr-scanner";
+import styles from "./Scanner.module.css";
 
 function Scanner(props) {
   const [data, setData] = useState("No result");
+  const [scanSuccess, setScanSuccess] = useState(false);
   const { sessionId } = useParams();
   const videoRef = useRef(null);
 
@@ -24,12 +26,13 @@ function Scanner(props) {
     };
   }, []);
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <div style={{ width: "300px", margin: "auto" }}>
+    <div className={styles.scannerContainer}>
+      <p>{}</p>
+      <div className={styles.videoBox}>
         {QrScanner.hasCamera() ? (
-          <video ref={videoRef} style={{ width: "100%" }} />
+          <video ref={videoRef} className={styles.video} />
         ) : (
-          <div>No Camera Detected.</div>
+          <div className={styles.noCameraDetected}>No Camera Detected.</div>
         )}
       </div>
       <p>스캔 결과: {data}</p>
