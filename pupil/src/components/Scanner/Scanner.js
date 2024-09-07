@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import QrScanner from "qr-scanner";
 import styles from "./Scanner.module.css";
 
-function Scanner(props) {
+function Scanner({ sessionId }) {
   const [data, setData] = useState("No result");
   const [scanSuccess, setScanSuccess] = useState(false);
-  const { sessionId } = useParams();
+
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function Scanner(props) {
   }, []);
   return (
     <div className={styles.scannerContainer}>
-      <p>{}</p>
+      <p>{sessionId}</p>
       <div className={styles.videoBox}>
         {QrScanner.hasCamera() ? (
           <video ref={videoRef} className={styles.video} />
