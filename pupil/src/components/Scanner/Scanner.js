@@ -25,9 +25,12 @@ function Scanner(props) {
   }, []);
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>QR 코드 스캐너</h1>
       <div style={{ width: "300px", margin: "auto" }}>
-        <video ref={videoRef} style={{ width: "100%" }} />
+        {QrScanner.hasCamera() ? (
+          <video ref={videoRef} style={{ width: "100%" }} />
+        ) : (
+          <div>No Camera Detected.</div>
+        )}
       </div>
       <p>스캔 결과: {data}</p>
     </div>
