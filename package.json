@@ -18,7 +18,7 @@
     "express-session": "^1.18.0",
     "lucide-react": "^0.439.0",
     "mysql2": "^3.10.3",
-    "nodemailer": "^6.9.14",
+    "nodemailer": "^6.9.15",
     "nodemon": "^3.1.4",
     "sequelize": "^6.37.3",
     "swiper": "^11.1.9",
