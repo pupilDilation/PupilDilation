@@ -1,4 +1,5 @@
 const reservationModel = require("../models/reservationModel");
+const { v4: uuidv4 } = require("uuid");
 
 const getReservationByUserId = async (req, res) => {
   const { user_id } = req.params;
@@ -26,11 +27,15 @@ const postReservationByUserId = async (req, res) => {
   const { session_id, seat_id, payment_status } = req.body;
 
   try {
+    const rsv_uuid = uuidv4();
+    console.log(rsv_uuid);
+
     const newReservation = await reservationModel.postReservationByUserId(
       user_id,
       session_id,
       seat_id,
-      payment_status
+      payment_status,
+      rsv_uuid
     );
     return res.status(201).json({ success: true, reservation: newReservation });
   } catch (error) {

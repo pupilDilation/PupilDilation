@@ -9,8 +9,6 @@ import Footer from "./components/Footer/Footer";
 import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
 import SeatSelection from "./components/Seat/SeatSelection";
-import Scanner from "./pages/Scanner";
-import ClubDetail from "./components/Club/ClubDetail";
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
 import EidtConcert from "./components/EditDetail/EditDetailForm";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -24,6 +22,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SuperDetailForm from "./components/Detail/SuperDetailForm";
 import PaymentPage from "./pages/PaymentPage";
 import ClubDetailPage from "./pages/ClubDetailPage";
+import ScannerPage from "./pages/ScannerPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,7 +59,10 @@ function App() {
                 ></Route>
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
                 <Route path="/editdetail" element={<EidtConcert />}></Route>
-                <Route path="/scanner" element={<Scanner></Scanner>}></Route>
+                <Route
+                  path="/scanner/:sessionId"
+                  element={<ScannerPage></ScannerPage>}
+                ></Route>
                 <Route
                   path="/club/:clubId"
                   element={<ClubDetailPage></ClubDetailPage>}
