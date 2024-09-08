@@ -83,22 +83,19 @@ function Header() {
             className={HeaderStyles.secondHeaderLogo}
           />
         </Link>
-        <div
-          className={HeaderStyles.secondHeaderBtnContainer}
-          onClick={searchToggle}
-        >
+        <div className={HeaderStyles.secondHeaderBtnContainer}>
           <img
             src="/img/logo/search.png"
             alt="검색"
             className={HeaderStyles.secondHeaderBtn}
+            onClick={searchToggle}
           />
-          <Link to={isLoggedIn ? "/my-page" : "/"}>
-            <img
-              src="/img/logo/user.svg"
-              alt="유저"
-              className={HeaderStyles.secondHeaderBtn}
-            />
-          </Link>
+          <img
+            src="/img/logo/user.svg"
+            alt="유저"
+            className={HeaderStyles.secondHeaderBtn}
+            onClick={() => navigate(isLoggedIn ? "/my-page" : "/")}
+          />
         </div>
       </div>
       {searchClicked ? <Search onClick={searchToggle}></Search> : null}

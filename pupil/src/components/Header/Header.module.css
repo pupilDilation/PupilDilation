@@ -57,8 +57,8 @@
 }
 
 .secondHeaderBtn {
-  width: 24px;
-  height: 24px;
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
   padding: 0.5rem;
   transition: transform 0.3s ease; /* 부드러운 hover 애니메이션 */

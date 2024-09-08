@@ -3,7 +3,7 @@
 
 /* Container for the profile information */
 .profileInfo {
-  width: 85%;
+  width: 90%;
   max-width: 400px;
   background: #f7f9fc;
   border-radius: 15px;
@@ -73,7 +73,7 @@
   background-color: #2980b9;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments
 @media (max-width: 768px) {
   .profileInfo {
     width: 90%;
@@ -91,4 +91,4 @@
     font-size: 14px;
     padding: 6px 12px;
   }
-}
+} */

@@ -1,97 +1,101 @@
-/*
-==== 모바일 버전 input (아이디, 비밀번호) ====
-*/
+/* ==== 모바일 버전 input (아이디, 비밀번호) ==== */
 .input1 {
-  padding: 5px;
+  padding: 10px;
   width: calc(100vw * 350 / 400);
-  margin-top: 0.8em;
-  font-size: calc(100vw * 32 / 400);
-  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
-  border-radius: 7px;
+  margin-top: 1.2em;
+  font-size: calc(100vw * 28 / 400);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  transition: all 0.3s ease;
 }
 
-/*
-==== 로그인 페이지 전체 wrapper====
-*/
+.input1:focus {
+  border-color: #ef5455;
+  outline: none;
+}
+
+/* ==== 로그인 페이지 전체 wrapper ==== */
 .loginWrapper {
   margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
-/*
-==== 로그인 텍스트 ====
-*/
-.loginText {
-  color: black;
-  font-size: calc(100vw * 30 / 400);
+/* ==== 로그인 텍스트 ==== */
+.loginText h5 {
+  color: #333;
+  font-size: calc(100vw * 35 / 400);
+  font-family: "Poppins", sans-serif;
   text-align: center;
-  margin-bottom: 0.5em;
+  font-weight: 600;
 }
 
-/*
-==== 아이디, 비밀번호, 아이디 저장 wrapper ====
-*/
+/* ==== 아이디, 비밀번호, 아이디 저장 wrapper ==== */
 .inputWrapper {
-  margin-left: calc(100vw * 10 / 400);
-  margin-right: calc(100vw * 20 / 400);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 400px;
 }
 
-/*
-==== 아이디 확인 체크박스 ====
-*/
+/* ==== 아이디 확인 체크박스 ==== */
 .saveId {
-  margin-top: 1em;
-  margin-bottom: 0.8em;
-  font-size: calc(100vw * 20 / 400);
-  box-sizing: border-box;
+  margin-top: 1.2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
+  font-size: calc(100vw * 18 / 400);
 }
-/*
-==== 아이디저장 텍스트 ====
-*/
-.saveIdCheckBoxText {
-  position: absolute;
-  top: 15%;
-}
-/*
-==== 아이디저장 체크박스 ====
-*/
+
 .saveIdCheckBox {
-  border: none;
-  width: calc(100vw * 25 / 400);
-  height: calc(100vw * 25 / 400);
+  width: calc(100vw * 20 / 400);
+  height: calc(100vw * 20 / 400);
   border-radius: 4px;
   background-color: #fff;
-  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
-}
-/*
-==== 로그인 회원가입 버튼 텍스트 ====
-*/
-.loginBtnText {
-  color: var(--theme-red, #ef5455);
-  font-size: calc(100vw * 30 / 400);
-  font-family: Noto Sans KR;
-  font-weight: 700;
-  text-shadow: 6px 2px 6px rgb(224, 171, 171);
-}
-.signUpBtnText {
-  color: var(--theme-yellow, #fad744);
-  font-size: calc(100vw * 30 / 400);
-  font-family: Noto Sans KR;
-  text-shadow: 6px 2px 6px rgb(146, 150, 111);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
-/*
-==== placeholder 스타일 설정 ====
-*/
+.saveIdCheckBoxText {
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  font-size: calc(100vw * 18 / 400);
+}
+
+/* ==== 링크 스타일 ==== */
+.linkFont {
+  font-size: calc(100vw * 15 / 400);
+  color: #ef5455;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.linkFont:hover {
+  color: #c0392b;
+}
+
+/* ==== 로그인 회원가입 버튼 텍스트 ==== */
+.loginBtnText {
+  color: #fff;
+  font-size: calc(100vw * 28 / 400);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+.signUpBtnText {
+  color: #fff;
+  font-size: calc(100vw * 28 / 400);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
+
+/* ==== placeholder 스타일 설정 ==== */
 .input1::placeholder {
   color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 25 / 400);
-  font-family: Noto Sans KR;
-}
-
-.linkFont {
-  font-size: 15px;
+  font-size: calc(100vw * 20 / 400);
+  font-family: "Poppins", sans-serif;
 }

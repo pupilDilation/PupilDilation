@@ -25,29 +25,43 @@
   align-items: left;
   margin-right: calc(100vw * 60 / 400);
 }
+
 /*
 버튼 공통요소 묶음 (loginForm)
-*/
+/* ==== 버튼 공통요소 묶음 (loginForm) ==== */
 .buttonCommon {
-  margin-top: 1em;
+  margin-top: 1.5em;
   border: none;
-  border-radius: 34px;
+  border-radius: 30px;
   width: calc(100vw * 320 / 400);
   height: calc(100vh * 70 / 930);
-  margin-left: calc(100vw * 40 / 400);
-  margin-right: calc(100vw * 40 / 400);
-}
-/*
-==== 로그인 회원가입 버튼 (loginForm)====
-*/
-.loginBtn {
-  background-color: #fad744;
-  font-family: Noto Sans KR;
+  background-color: #ef5455;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: calc(100vw * 24 / 400);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
 }
 
+.buttonCommon:hover {
+  background-color: #d43f3f;
+  transform: translateY(-2px);
+}
+
+/* ==== 로그인 버튼 (loginForm) ==== */
+.loginBtn {
+  background-color: #ef5455;
+}
+
+/* ==== 회원가입 버튼 (loginForm) ==== */
 .signUpBtn {
-  background: #2b3252;
-  flex-shrink: 0;
+  background-color: #2b3252;
+}
+
+.signUpBtn:hover {
+  background-color: #1c263b;
 }
 
 /*
