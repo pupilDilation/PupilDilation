@@ -1,64 +1,113 @@
-/*
-==== 회원가입 전체 wrapper ====
-*/
+/* ==== 회원가입 전체 wrapper ==== */
 .signUpFormWrapper {
-  margin: 2em 0;
-  margin-left: calc(100vw * 15 / 400);
-  margin-right: calc(100vw * 20 / 400);
+  padding: 0 20px;
+  margin: 2rem;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
 }
 
-/*
-==== 회원가입 텍스트 ====
-*/
+/* ==== 회원가입 텍스트 ==== */
 .signUpText {
-  color: black;
-  font-size: calc(100vw * 30 / 400);
+  color: #333;
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-weight: 600;
+}
+
+/* ==== input 박스 스타일 ==== */
+.signUpInputs {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 1.2em;
+  font-size: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signUpInputs:focus {
+  border-color: #ef5455;
+  box-shadow: 0 0 8px rgba(239, 84, 85, 0.3);
+  outline: none;
+}
+
+/* ==== placeholder 스타일 ==== */
+.signUpInputs::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.9rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==== label 스타일 ==== */
+.signUpLabels {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5em;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ==== 에러 메시지 스타일 ==== */
+.errorMessage {
+  color: #ef5455;
+  font-size: 0.8rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ==== 버튼 스타일 ==== */
+/* ==== 버튼 스타일 ==== */
+.signUpBtns {
+  display: flex;
+  justify-content: center;
+}
+
+.signUpCompleteText {
+  color: white;
+  font-size: 1.2rem; /* 텍스트 크기 키움 */
+  font-weight: 700; /* 텍스트를 더 굵게 */
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  letter-spacing: 0.05rem; /* 약간의 자간 추가 */
+}
+
+.completeBtn {
+  width: 100%;
+}
+
+/* ==== 모달 스타일 ==== */
+.modalContent {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
   text-align: center;
 }
 
-/*
-==== input 박스 스타일 ====
-*/
-.signUpInputs {
-  padding: 5px;
-  width: calc(100vw * 350 / 400);
-  margin-bottom: 0.8em;
-  font-size: calc(100vw * 20 / 400);
-  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25) inset;
-  border-radius: 7px;
-}
-/*
-==== placeholder 스타일 ====
-*/
-.signUpInputs::placeholder {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 15 / 400);
-  font-family: Noto Sans KR;
-}
+/* ==== 모바일 반응형 스타일 ==== */
+@media (max-width: 600px) {
+  .signUpFormWrapper {
+    margin: 1em auto;
+    padding: 20px;
+  }
 
-/*
-==== label 스타일 ====
-*/
-.signUpLabels {
-  margin-bottom: 0.2em;
-  display: flex;
-  justify-content: space-between;
-}
+  .signUpText {
+    font-size: 1.3rem;
+  }
 
-/* 
-==== 버튼 스타일 ====
-*/
-.completeBtn {
-  display: flex;
-  flex-direction: column;
-  align-items: end;
-}
+  .signUpInputs {
+    font-size: 0.9rem;
+  }
 
-/* 
-==== span 스타일 ====
-*/
-.errorMessage {
-  color: #ef5455;
+  .signUpLabels {
+    font-size: 0.8rem;
+  }
+
+  .signUpCompleteText {
+    font-size: 0.9rem;
+  }
 }

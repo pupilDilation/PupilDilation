@@ -154,7 +154,6 @@ function MyPage() {
         style={{
           textAlign: "center", // Center-aligns the text
           padding: "20px", // Adds padding around the text
-          margin: "10", // Optionally removes default margin if needed
         }}
       >
         {informationHeading}
@@ -181,6 +180,7 @@ function MyPage() {
               }
               location={concertQueries[index]?.data?.concert_location || "위치"}
               seat={reservationsQuery.data[index]?.seat_id || "좌석"}
+              col={concertQueries[index]?.data?.concert_col || "col"}
               enterTime={formattedTime}
             />
           );

@@ -2,18 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 .ticketContainer {
-  width: 85%;
+  width: 90%; /* width 값을 % 단위로 수정 */
   max-width: 400px;
   background: #f7f9fc;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  padding: 20px;
+  margin-bottom: 20px;
+  padding: 15px; /* 패딩을 15px로 조정 */
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px; /* 요소 간의 간격을 8px로 조정 */
   transition: transform 0.3s ease;
-  font-family: "Poppins", sans-serif; /* Apply Poppins font */
+  font-family: "Poppins", sans-serif; /* Poppins 폰트 적용 */
 }
 
 .ticketContainer:hover {

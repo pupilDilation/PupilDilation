@@ -4,7 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import TicketStyles from "./Ticket.module.css";
 
 function Ticket(props) {
-  const navigate = useNavigate();
+  const seatnum = props.seat;
+  const column = props.col;
+
+  const formatSeatNumber = () => {
+    const rowIndex = Math.floor((seatnum - 1) / column);
+    const colIndex = (seatnum - 1) % column;
+    const rowLetter = String.fromCharCode(65 + rowIndex);
+    return `${rowLetter}${colIndex + 1}`;
+  };
+  console.log(formatSeatNumber);
 
   return (
     <div className={TicketStyles.ticketContainer}>
@@ -35,7 +44,7 @@ function Ticket(props) {
           </div>
           <div>
             <h1 className={TicketStyles.labels}>좌석번호</h1>
-            <h1>{props.seat}</h1>
+            <h1>{formatSeatNumber()}</h1>
           </div>
           <div>
             <h1 className={TicketStyles.labels}>입장시작</h1>
