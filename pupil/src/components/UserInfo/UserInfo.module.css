@@ -1,53 +1,94 @@
-.img {
-  width: 25%;
-  height: 55%;
-  padding: calc(100vw * 5 / 400);
-}
+/* Import Poppins font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/* Container for the profile information */
 .profileInfo {
-  width: calc(100vw * 320 / 400);
-  height: calc(100vw * 150 / 400);
-  padding: calc(100vw * 15 / 400);
+  width: 85%;
+  max-width: 400px;
+  background: #f7f9fc;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  margin-top: 10px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  gap: 20px;
+  font-family: "Poppins", sans-serif; /* Apply Poppins font */
 }
+
+/* Title styling */
+.userTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+  border-bottom: 2px solid #e5e5e5;
+  padding-bottom: 10px;
+}
+
+/* Container for user info */
 .userInfo {
   display: flex;
-  height: 90%;
-  /* flex-shrink: 0;
-  color: #000;
-  font-size: calc(100vw * 36 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal; */
+  flex-direction: column;
+  gap: 15px;
 }
 
-.userTitle {
-  font-size: calc(100vw * 12 / 400);
-  margin-bottom: 5%;
-  font-weight: 900;
-}
-
+/* Content inside the profile */
 .profileContent {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  justify-content: space-between;
+  gap: 10px;
 }
 
 .lineContent {
-  font-size: calc(100vw * 12 / 400);
   display: flex;
   justify-content: space-between;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
 }
 
+/* Divider line */
 .hr {
-  display: block;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
+  width: 100%;
   height: 1px;
-  border: none;
-  background-color: black;
+  background-color: #ddd;
+  margin: 10px 0;
+}
+
+/* Button for changing password */
+.changePasswordBtn {
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.changePasswordBtn:hover {
+  background-color: #2980b9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profileInfo {
+    width: 90%;
+  }
+
+  .lineContent {
+    font-size: 14px;
+  }
+
+  .userTitle {
+    font-size: 16px;
+  }
+
+  .changePasswordBtn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
 }
