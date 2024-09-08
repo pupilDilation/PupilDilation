@@ -16,6 +16,7 @@
     "express": "^4.19.2",
     "express-mysql-session": "^3.0.3",
     "express-session": "^1.18.0",
+    "lucide-react": "^0.439.0",
     "mysql2": "^3.10.3",
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",

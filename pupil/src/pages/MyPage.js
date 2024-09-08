@@ -99,6 +99,22 @@ function MyPage() {
         : [], // Empty array for 'super' userType
   });
 
+  function formatDateTime(dateString) {
+    const date = new Date(dateString);
+    const formattedDate = date.toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const formattedTime = date.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return { formattedDate, formattedTime };
+  }
+
   // Determine loading and error states
   const loading =
     authQuery.isLoading ||
@@ -128,10 +144,6 @@ function MyPage() {
 
   return (
     <Wrapper className={WrapperStyles.myPageContainer}>
-      <div className={ButtonStyles.myPageBtnContainer}>
-        <Button className={ButtonStyles.headerBtn}>회원정보 아이콘</Button>
-        <Button className={ButtonStyles.headerBtn}>예매내역</Button>
-      </div>
       <UserInfo
         name={userQuery.data?.user_name}
         id={userId}
@@ -148,29 +160,32 @@ function MyPage() {
         {informationHeading}
       </h1>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error.message}</p>}
-      {!loading &&
-        !error &&
-        userType === "user" &&
-        reservationsQuery.data.length === 0 && <p>No reservations found.</p>}
       {!loading &&
         !error &&
         userType === "user" &&
         reservationsQuery.data.length > 0 &&
-        sessionQueries.map((sessionQuery, index) => (
-          <Ticket
-            key={index}
-            title={concertQueries[index]?.data?.concert_title || "제목"}
-            date={sessionQuery?.data?.session_date || "날짜"}
-            payment={
-              reservationsQuery.data[index]?.payment_status || "결제상태"
-            }
-            location={concertQueries[index]?.data?.concert_location || "위치"}
-            seat={reservationsQuery.data[index]?.seat_id || "좌석"}
-            enterTime={sessionQuery?.data?.session_date || "시작시간"}
-          />
-        ))}
+        sessionQueries.map((sessionQuery, index) => {
+          const session = sessionQuery.data;
+          const { formattedDate, formattedTime } = session
+            ? formatDateTime(session.session_date)
+            : { formattedDate: "날짜", formattedTime: "시간" };
+
+          return (
+            <Ticket
+              key={index}
+              title={concertQueries[index]?.data?.concert_title || "제목"}
+              date={formattedDate}
+              time={formattedTime}
+              payment={
+                reservationsQuery.data[index]?.payment_status || "결제상태"
+              }
+              location={concertQueries[index]?.data?.concert_location || "위치"}
+              seat={reservationsQuery.data[index]?.seat_id || "좌석"}
+              enterTime={formattedTime}
+            />
+          );
+        })}
+
       {!loading && !error && userType === "admin" && (
         <div>
           {concertQueries?.data?.length === 0 ? (
