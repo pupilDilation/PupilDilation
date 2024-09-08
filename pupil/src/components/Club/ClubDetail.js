@@ -39,8 +39,8 @@ function ClubDetail() {
       )}
 
       <div className={styles.descbox}>
-        <h1>{clubDetail.club_name}</h1>
-        <p>{clubDetail.club_description}</p>
+        <h1 className={styles.clubName}>{clubDetail.club_name}</h1>
+        <p className={styles.clubDescription}>{clubDetail.club_description}</p>
       </div>
     </div>
   );
