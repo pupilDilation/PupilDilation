@@ -49,10 +49,10 @@ const deleteReservationByUserId = async (userId, rsvId) => {
   return result;
 };
 
-const checkReservation = async (rsvId) => {
+const checkReservation = async (rsvUUID) => {
   const [result] = await db.query(
-    "SELECT rsv_uuid FROM reservation WHERE rsv_id = ?",
-    [rsvId]
+    "SELECT rsv_id FROM reservation WHERE rsv_uuid = ?",
+    [rsvUUID]
   );
   return result;
 };
