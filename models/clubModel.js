@@ -128,6 +128,15 @@ async function createClubAccount(connection, id, name, pw, email, phone) {
   return result;
 }
 
+async function connectAdmin(connection, id, name, description, search) {
+  const [result] = await connection.query(
+    "INSERT INTO club (club_name, club_description, user_id, club_search) VALUES (?,?,?,?)",
+    [name, description, id, search]
+  );
+
+  return result;
+}
+
 module.exports = {
   getClubs,
   getClubById,
@@ -136,4 +145,5 @@ module.exports = {
   getClubsByClubName,
   getUserByClubId,
   createClubAccount,
+  connectAdmin,
 };
