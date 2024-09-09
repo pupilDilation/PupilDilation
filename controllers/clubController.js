@@ -82,7 +82,7 @@ const createClub = async (req, res) => {
     const { id, password, name, email, phone, description, search } = req.body;
     const hashedPassword = await bcrypt.hash(password);
 
-    const result = await clubModel.createClubAccount(
+    const createAccountResult = await clubModel.createClubAccount(
       connection,
       id,
       name,
@@ -90,9 +90,20 @@ const createClub = async (req, res) => {
       email,
       phone
     );
-    if (result.affectedRows < 1) {
+    if (createAccountResult.affectedRows < 1) {
       throw new Error("error occurred: creating club account is canceled.");
     }
+
+    const connectionResult = await clubModel.connectAdmin(
+      connection,
+      id,
+      name,
+      description,
+      search
+    );
+
+    await connection.commit();
+    res.status(201).json({ clubId: connectionResult.insertId });
   } catch (error) {
     await connection.rollback();
     res.status(500).json({ success: false, message: error.message });
