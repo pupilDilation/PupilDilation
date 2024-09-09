@@ -83,6 +83,7 @@ const createClub = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password);
 
     const result = await clubModel.createClubAccount(
+      connection,
       id,
       name,
       password,
