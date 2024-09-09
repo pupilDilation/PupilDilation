@@ -74,6 +74,11 @@
   transition: border-color 0.3s ease;
 }
 
+.inputBox textarea {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
 .inputBox input:focus {
   border-color: #2a3252;
   outline: none;
