@@ -119,8 +119,8 @@ const getUserByClubId = async (clubId) => {
   return rows;
 };
 
-async function createClubAccount(id, name, pw, email, phone) {
-  const [result] = await db.query(
+async function createClubAccount(connection, id, name, pw, email, phone) {
+  const [result] = await connection.query(
     "INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)",
     [id, name, pw, email, phone, "admin"]
   );
