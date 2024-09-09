@@ -180,7 +180,7 @@ function AdminAccountController() {
                 type="text"
                 name="search"
                 id="search"
-                placeholder="검색 태그 (ex 즉새두 ㅈㅅㄷ 즉각적...)"
+                placeholder="검색 키워드 (띄어쓰기로 구분)"
                 value={inputForm.search}
                 onChange={handleChange}
               />
