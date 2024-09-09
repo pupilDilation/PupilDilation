@@ -119,6 +119,15 @@ const getUserByClubId = async (clubId) => {
   return rows;
 };
 
+async function createClubAccount(id, name, pw, email, phone) {
+  const [result] = await db.query(
+    "INSERT INTO user (user_id, user_name, user_pw, user_email, user_phone, user_type) VALUES (?,?,?,?,?,?)",
+    [id, name, pw, email, phone, "admin"]
+  );
+
+  return result;
+}
+
 module.exports = {
   getClubs,
   getClubById,
@@ -126,4 +135,5 @@ module.exports = {
   getConcertsByUserId,
   getClubsByClubName,
   getUserByClubId,
+  createClubAccount,
 };
