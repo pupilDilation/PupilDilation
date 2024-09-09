@@ -80,7 +80,7 @@ const createClub = async (req, res) => {
   try {
     await connection.beginTransaction(); // transaction 사용하여 club과 admin account 동시 세팅
     const { id, password, name, email, phone, description, search } = req.body;
-    const hashedPassword = await bcrypt.hash(password);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const createAccountResult = await clubModel.createClubAccount(
       connection,
@@ -106,6 +106,7 @@ const createClub = async (req, res) => {
     res.status(201).json({ clubId: connectionResult.insertId });
   } catch (error) {
     await connection.rollback();
+    console.log(error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
