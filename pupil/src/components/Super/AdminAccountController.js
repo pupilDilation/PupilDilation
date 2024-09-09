@@ -83,13 +83,15 @@ function AdminAccountController() {
     }
     try {
       const res = await axios.post(
-        "http://localhost:3001/auth/adminregister",
+        "http://localhost:3001/club/create/club",
         {
           id: inputForm.id,
           password: inputForm.password,
           name: inputForm.username,
           email: inputForm.email,
           phone: inputForm.phone,
+          description: inputForm.description,
+          search: inputForm.search,
         },
         { withCredentials: true }
       );
