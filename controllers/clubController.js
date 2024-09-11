@@ -86,7 +86,7 @@ const createClub = async (req, res) => {
       connection,
       id,
       name,
-      password,
+      hashedPassword,
       email,
       phone
     );
