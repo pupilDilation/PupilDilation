@@ -32,6 +32,8 @@ function AdminAccountController() {
     phone: "",
     email: "",
     password: "",
+    description: "",
+    search: "",
   });
 
   function isBlank() {
@@ -40,7 +42,9 @@ function AdminAccountController() {
       inputForm.password === "" ||
       inputForm.id === "" ||
       inputForm.email === "" ||
-      inputForm.phone === ""
+      inputForm.phone === "" ||
+      inputForm.description === "" ||
+      inputForm.search === ""
     ) {
       alert("빈 칸 채워라.");
       return false;
@@ -79,13 +83,15 @@ function AdminAccountController() {
     }
     try {
       const res = await axios.post(
-        "http://localhost:3001/auth/adminregister",
+        "http://localhost:3001/club/create/club",
         {
           id: inputForm.id,
           password: inputForm.password,
           name: inputForm.username,
           email: inputForm.email,
           phone: inputForm.phone,
+          description: inputForm.description,
+          search: inputForm.search,
         },
         { withCredentials: true }
       );
@@ -125,13 +131,15 @@ function AdminAccountController() {
             <div className={styles.inputBox}>
               <input
                 type="text"
+                name="username"
                 id="username"
-                placeholder="username"
+                placeholder="username / 동아리 이름"
                 value={inputForm.username}
                 onChange={handleChange}
               />
               <input
                 type="text"
+                name="id"
                 id="id"
                 placeholder="id"
                 value={inputForm.id}
@@ -139,6 +147,7 @@ function AdminAccountController() {
               />
               <input
                 type="text"
+                name="password"
                 id="password"
                 placeholder="password"
                 value={inputForm.password}
@@ -146,6 +155,7 @@ function AdminAccountController() {
               />
               <input
                 type="text"
+                name="phone"
                 id="phone"
                 placeholder="phone"
                 value={inputForm.phone}
@@ -153,12 +163,30 @@ function AdminAccountController() {
               />
               <input
                 type="text"
+                name="email"
                 id="email"
                 placeholder="email"
                 value={inputForm.email}
                 onChange={handleChange}
               />
-              <button onClick={createAdmin}>어드민 계정 생성!</button>
+              <textarea
+                id="description"
+                name="description"
+                cols="15"
+                rows="5"
+                placeholder="동아리 설명"
+                value={inputForm.description}
+                onChange={handleChange}
+              ></textarea>
+              <input
+                type="text"
+                name="search"
+                id="search"
+                placeholder="검색 키워드 (띄어쓰기로 구분)"
+                value={inputForm.search}
+                onChange={handleChange}
+              />
+              <button onClick={createAdmin}>어드민(동아리) 계정 생성!</button>
             </div>
           )}
         </div>
