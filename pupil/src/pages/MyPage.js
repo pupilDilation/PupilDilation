@@ -206,7 +206,12 @@ function MyPage() {
             <p>No concert information found.</p>
           ) : (
             concertQueries[0]?.data?.map((concert, index) => (
-              <ConcertInfo key={index} title={concert.concert_title} />
+              <ConcertInfo
+                key={index}
+                title={concert.concert_title}
+                concert={concert}
+                id={concert.concert_id}
+              />
             ))
           )}
         </div>
