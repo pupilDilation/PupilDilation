@@ -1,6 +1,4 @@
 import { useQuery, useQueries } from "@tanstack/react-query";
-import Button from "../components/Button/Button";
-import ButtonStyles from "../components/Button/Button.module.css";
 import UserInfo from "../components/UserInfo/UserInfo";
 import Wrapper from "../components/Wrapper/Wrapper";
 import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
