@@ -11,8 +11,8 @@ function CreateConcertForm() {
   // SeatSetter 에 전달할 전체 좌석 배열 state
   const [seats, setSeats] = useState([]);
 
-  // inputForm state로 concert detail data state를 한번에 관리
-  const [inputForm, setInputForm] = useState({
+  //initial state
+  const initialState = {
     concert_title: "",
     concert_location: "",
     concert_price: "",
@@ -24,7 +24,10 @@ function CreateConcertForm() {
     rsv_start_at: "",
     rsv_end_at: "",
     session_dates: [""],
-  });
+  };
+
+  // inputForm state로 concert detail data state를 한번에 관리
+  const [inputForm, setInputForm] = useState(initialState);
 
   // input태그의 name props 이름을 통해서 inputForm obj의 해당 값 변경하도록 설정
   const handleChange = (e) => {
@@ -86,7 +89,6 @@ function CreateConcertForm() {
         sessionsData: inputForm.session_dates,
         seatsData: seats,
       });
-      console.log(res);
     } catch (error) {
       console.log(error);
     }
