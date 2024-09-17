@@ -174,9 +174,7 @@ function CreateConcertForm() {
                     handleSessionDateChange(index, e.target.value)
                   }
                 />
-                <button onClick={() => removeSessionDate(index)}>
-                  세션 제거
-                </button>
+                <button onClick={() => removeSessionDate(index)}>제거</button>
               </div>
             ))}
             <div className={styles.sessionControlBox}>
