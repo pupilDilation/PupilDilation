@@ -89,8 +89,16 @@ function CreateConcertForm() {
         sessionsData: inputForm.session_dates,
         seatsData: seats,
       });
+      if (res.status === 500) {
+        alert("공연 생성 실패");
+      }
+      if (res.status === 201) {
+        alert(`${inputForm.concert_title} 생성 성공!`);
+        setInputForm(initialState);
+      }
     } catch (error) {
       console.log(error);
+      alert("공연생성 실패 : " + error);
     }
   }
 
