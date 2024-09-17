@@ -6,6 +6,7 @@ import Ticket from "../components/Ticket/Ticket";
 import ConcertInfo from "../components/ConcertInfo/ConcertInfo";
 import AdminAccountController from "../components/Super/AdminAccountController";
 import CreateConcertForm from "../components/CreateConcert/CreateConcertForm";
+import styles from "./MyPageAdmin.module.css";
 import axios from "axios";
 import { useState } from "react";
 
@@ -193,10 +194,12 @@ function MyPage() {
         })}
 
       {!loading && !error && userType === "admin" && (
-        <div>
-          <button onClick={toggleCreateClub}>
-            {isCreateConcertClicked ? "✖︎" : "✚"}
-          </button>
+        <div className={styles.container}>
+          <div className={styles.buttonBox}>
+            <button onClick={toggleCreateClub}>
+              {isCreateConcertClicked ? "✖︎" : "✚"}
+            </button>
+          </div>
           {isCreateConcertClicked ? (
             <CreateConcertForm></CreateConcertForm>
           ) : null}
