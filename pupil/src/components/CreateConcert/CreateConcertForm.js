@@ -3,6 +3,7 @@ import styles from "./CreateConcert.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import SeatSetter from "./SeatSetter";
+import ImgInput from "../ImgInput/ImgInput";
 
 function CreateConcertForm() {
   // redux store에서 user id state 가져오기
@@ -11,6 +12,9 @@ function CreateConcertForm() {
   // SeatSetter 에 전달할 전체 좌석 배열 state
   const [seats, setSeats] = useState([]);
 
+  // img input에 전달할 img url state
+  const [imgUrl, setImgUrl] = useState("");
+
   //initial state
   const initialState = {
     concert_title: "",
@@ -18,7 +22,6 @@ function CreateConcertForm() {
     concert_price: "",
     concert_row: "",
     concert_col: "",
-    concert_img: "",
     concert_plot: "",
     user_id: "",
     rsv_start_at: "",
@@ -80,7 +83,7 @@ function CreateConcertForm() {
           concert_price: inputForm.concert_price,
           concert_row: inputForm.concert_row,
           concert_col: inputForm.concert_col,
-          concert_img: inputForm.concert_img,
+          concert_img: imgUrl,
           concert_plot: inputForm.concert_plot,
           user_id: userId,
           rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
@@ -105,12 +108,8 @@ function CreateConcertForm() {
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <div className={styles.imgInputBox}>
-          <label htmlFor="imgInput" className={styles.imgInputLabel}>
-            <img src="/img/upload-image.png" alt="업로드" />
-          </label>
-          <input id="imgInput" type="file" className={styles.imgInput} />
-        </div>
+        <ImgInput imgUrl={imgUrl} setImgUrl={setImgUrl}></ImgInput>
+
         <div className={styles.leftInputBox}>
           <input
             type="text"
