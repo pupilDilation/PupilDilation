@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"; // Import useParams
-import "./DetailContentMobile.css";
+import styles from "./DetailContentMobile.module.css"; // Import CSS module
+import { useParams, useNavigate } from "react-router-dom"; // Import useParams
 import axios from "axios";
+import { selectedConcert } from "../../slice/concertSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function DetailForm() {
   const { concertId } = useParams(); // Get concertId from URL parameters
@@ -12,19 +14,19 @@ function DetailForm() {
   const [selectedDate, setSelectedDate] = useState("");
   const [performancePeriod, setPerformancePeriod] = useState("");
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const userType = useSelector((state) => state.login.userType);
+
   useEffect(() => {
     const fetchConcertDetails = async () => {
       try {
-        const concertResponse = await axios.get(
-          `http://localhost:3001/concerts/${concertId}`
-        );
-        console.log("Concert Response:", concertResponse.data);
-        setConcert(concertResponse.data[0]);
+        const [concertResponse, sessionsResponse] = await Promise.all([
+          axios.get(`http://localhost:3001/concerts/${concertId}`),
+          axios.get(`http://localhost:3001/sessions/${concertId}/session`),
+        ]);
 
-        const sessionsResponse = await axios.get(
-          `http://localhost:3001/concerts/${concertId}/session`
-        );
-        console.log("Sessions Response:", sessionsResponse.data);
+        setConcert(concertResponse.data[0]);
         setSessions(sessionsResponse.data);
 
         if (sessionsResponse.data.length > 0) {
@@ -68,49 +70,69 @@ function DetailForm() {
   } = concert;
 
   const handleBookNow = () => {
-    alert("Booking functionality is not implemented yet.");
+    const selectedSession = sessions.find(
+      (session) => session.session_date === selectedDate
+    );
+    if (userType === "") {
+      alert("로그인 후 이용해주세요");
+      return;
+    }
+    if (!selectedSession) {
+      alert("유효한 날짜를 선택해주세요");
+      return;
+    }
+    dispatch(selectedConcert(concertId));
+    if (userType === "super" || userType === "admin") {
+      navigate(
+        `/concert/${concertId}/sessions/${selectedSession.session_id}/seats/${userType}`
+      );
+    } else {
+      navigate(
+        `/concert/${concertId}/sessions/${selectedSession.session_id}/seats`
+      );
+    }
   };
 
   return (
-    <div className="detail-container-mobile">
-      <p className="event-title-mobile">{concert_title}</p>
+    <div className={styles.detailContainerMobile}>
+      <p className={styles.eventTitleMobile}>{concert_title}</p>
       <div>
-        <div className="first-detail-mobile">
+        <div className={styles.firstDetailMobile}>
           {concert_img ? (
             <img
-              className="event-image-mobile"
+              className={styles.eventImageMobile}
               src={concert_img}
               alt={concert_title}
             />
           ) : (
             <img src="hello.png" alt={concert_title} />
           )}
-          <div className="second-detail-mobile">
+          <div className={styles.secondDetailMobile}>
             <div>
-              <p className="content-title">가격</p>
-              <p className="content-text">{concert_price}원</p>
+              <p className={styles.contentTitle}>가격</p>
+              <p className={styles.contentText}>{concert_price}원</p>
             </div>
             <div>
-              <p className="content-title">장소</p>
-              <p className="content-text">{concert_location}</p>
+              <p className={styles.contentTitle}>장소</p>
+              <p className={styles.contentText}>{concert_location}</p>
             </div>
             <div>
-              <p className="content-title">공연기간</p>
-              <p className="content-text">
+              <p className={styles.contentTitle}>공연기간</p>
+              <p className={styles.contentText}>
                 {performancePeriod || "기간 정보 없음"}
               </p>
             </div>
           </div>
         </div>
-        <div className="third-detail-mobile">
+        <div className={styles.thirdDetailMobile}>
           <div>
-            <p className="content-intro">소개</p>
-            <p className="intro-text">{concert_plot}</p>
+            <p className={styles.contentIntro}>소개</p>
+            <p className={styles.introText}>{concert_plot}</p>
           </div>
-          <div className="schedule-container">
-            <p className="content-title">공연일정</p>
+          <div className={styles.scheduleContainer}>
+            <p className={styles.contentTitle}>공연일정</p>
             <select
-              className="schedule-dropdown"
+              className={styles.scheduleDropdown}
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
             >
@@ -128,9 +150,11 @@ function DetailForm() {
               )}
             </select>
           </div>
-          <div className="book-now-container">
-            <button className="book-now-button" onClick={handleBookNow}>
-              예매하기
+          <div className={styles.bookNowContainer}>
+            <button className={styles.bookNowButton} onClick={handleBookNow}>
+              {userType === "user" || userType === ""
+                ? "예매하기"
+                : "좌석관리하기"}
             </button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./slider.module.css";
 
-function Slide({ item }) {
+function Slide({ item, sessionId }) {
   return (
     <Link to={"/detail"} className={styles.sliderLink}>
       <div className={styles.sliderContainer}>

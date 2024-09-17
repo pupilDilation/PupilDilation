@@ -1,40 +1,39 @@
 .seatTypeWrapper {
   display: grid;
-  gap: calc(1vw);
-  grid-template-columns: repeat(3, 1fr);
-  /* grid-template-rows: repeat(2, 1fr); */
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 1.5em;
 }
-/* 네모 크기 지정 */
+
 .boxCommon {
-  width: 20px;
-  height: 20px;
-  box-sizing: border-box;
-  margin: 10px 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 4px;
 }
-/* 좌석 별 색 지정 */
+
 .selectedBox {
   background: #fad744;
 }
+
 .availableBox {
-  background: #727272;
+  background: #8a8a8a;
 }
+
 .completeBox {
-  border: 1px solid #000;
-  background: #f2f2f2;
+  background: #e0e0e0;
 }
-/* type 박스 + 텍스트 */
+
+.progressBox {
+  background: #2c2c2c;
+}
+
+.unavailBox {
+  background: #d9d9d9;
+}
+
 .seatTypeContent {
-  justify-content: center;
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 10px;
 }
-
-/* .unavailBox {
-  background: #d9d9d9;
-}
-.selectingBox {
-  border: 1px solid #000;
-  background: #f2f2f2;
-}
-*/

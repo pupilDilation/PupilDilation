@@ -1,0 +1,55 @@
+.ticketerHeader {
+  display: flex;
+  margin-top: calc(100vw * 50 / 1440);
+  margin-left: calc(100vw * 140 / 1440);
+  align-items: end;
+  justify-content: space-between;
+  width: calc(100vw * 1150 / 1440);
+}
+
+.titleMain {
+  font-size: calc(100vw * 40 / 1440);
+}
+
+.titleSub {
+  font-size: calc(100vw * 20 / 1440);
+}
+
+.ticketerListContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tablet {
+  width: calc(100vw * 1150 / 1440);
+  margin: auto;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+th,
+td {
+  padding: calc(100vw * 6 / 1440) calc(100vw * 15 / 1440);
+  font-size: calc(100vw * 16 / 1440);
+}
+
+th {
+  background: #42444e;
+  color: #fff;
+  justify-content: center;
+}
+
+td {
+  justify-content: center;
+  border-right: 1px solid rgba(66, 68, 78, 0.2);
+  border-bottom: 1px solid rgba(66, 68, 78, 0.2);
+}
+
+tr:nth-child(even) td {
+  background: rgba(43, 50, 82, 0.2);
+}

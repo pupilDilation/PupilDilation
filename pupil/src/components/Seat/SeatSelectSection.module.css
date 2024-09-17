@@ -1,18 +1,45 @@
-.reserveSection p {
-  margin: 5px 0;
-}
-
 .sectionWrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-all;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
-  width: 200px;
-  height: 200px;
-  border: solid;
-  margin: 2em;
+  width: 100%;
+  max-width: 400px;
+  background-color: #f7f9fc;
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.reserveSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+}
+
+.reserveRow {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  .sectionWrapper {
+    margin: 0 1em;
+    max-width: 500px;
+  }
+
+  .reserveRow {
+    font-size: 1.2rem;
+  }
 }

@@ -1,0 +1,279 @@
+/* General input styles */
+input,
+textarea {
+  width: 100%;
+  outline: none;
+  border-radius: 8px; /* Softer rounded corners */
+  border: 1px solid lightgray;
+  padding: 0.8rem;
+  font-size: 1rem; /* Fixed font size for consistency */
+  transition: border-color 0.3s ease; /* Smooth transition for focus effect */
+  box-sizing: border-box; /* Ensure padding does not affect width */
+}
+
+input:focus,
+textarea:focus {
+  border: 2px solid #007bff; /* Blue border on focus for better visibility */
+}
+
+input[type="number"] {
+  padding-right: 0.5rem;
+}
+
+input[type="datetime-local"] {
+  height: 2.5rem; /* Increased height for better usability */
+  font-size: 1rem; /* Adjusted font size */
+}
+
+textarea {
+  resize: none;
+  font-size: 1rem; /* Fixed font size for better consistency */
+  width: 100%; /* Full width for better layout */
+  height: 6rem; /* Fixed height for text area */
+  padding: 0.8rem; /* Padding for comfortable typing */
+}
+
+/* Container for the whole form */
+.container {
+  width: 90%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  gap: 2rem; /* Space between sections */
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 15px; /* Rounded corners for the form container */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for form */
+  max-width: 800px; /* Limit width for better readability */
+  margin: 0 auto; /* Center form on page */
+}
+
+/* Left side styling */
+.left {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center align items */
+  gap: 1rem; /* Space between items */
+  width: 100%; /* Full width */
+}
+
+/* Image upload input styling */
+.imgInputBox {
+  position: relative; /* Relative positioning for upload button */
+  width: 100%; /* Full width */
+  text-align: center; /* Center align content */
+}
+
+.imgInput {
+  display: none; /* Hide the file input */
+}
+
+.imgInputLabel {
+  cursor: pointer; /* Cursor indicates clickable element */
+}
+
+.imgInputLabel img {
+  width: 150px; /* Fixed width for image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners for image */
+  transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.imgInputLabel:hover img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Input box styling */
+.leftInputBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Space between input fields */
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%; /* Full width */
+  height: 2.5rem; /* Fixed height for inputs */
+}
+
+/* Right side styling */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align content */
+  gap: 1rem; /* Space between items */
+  width: 100%; /* Full width */
+}
+
+/* Right input box styling */
+.rightInputBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items */
+  gap: 1rem; /* Space between input fields */
+  width: 100%; /* Full width */
+  padding: 1rem; /* Padding inside box */
+  background-color: #ffffff; /* White background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for card effect */
+}
+
+.rightInputBox p {
+  margin-top: 0.5rem; /* Small margin for spacing */
+  font-size: 1.1rem; /* Slightly larger font for labels */
+  color: #555; /* Gray color for labels */
+}
+
+/* Session dates styling */
+.sessionDates {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem; /* Space between session items */
+  width: 100%; /* Full width */
+}
+
+.sessionDateBox {
+  display: flex;
+  align-items: center; /* Center align content */
+  gap: 0.5rem; /* Space between items */
+  width: 100%; /* Full width */
+}
+
+.sessionDateBox label {
+  font-size: 1rem; /* Adjusted font size */
+  color: #333; /* Darker text color */
+}
+
+.sessionDateBox input {
+  width: 70%; /* Adjust width for better layout */
+}
+
+.sessionDateBox button {
+  padding: 0.4rem 0.8rem; /* Padding for buttons */
+  background-color: #ff4d4f; /* Red background color for remove button */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor indicates clickable element */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.sessionDateBox button:hover {
+  background-color: #e63946; /* Darker red on hover */
+}
+
+/* Add session button styling */
+.sessionControlBox button {
+  padding: 0.6rem 1rem; /* Padding for button */
+  background-color: #007bff; /* Primary blue background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Cursor indicates clickable element */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.sessionControlBox button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Submit button styling */
+.submitBtn {
+  margin-top: 2rem; /* Space above button */
+  padding: 0.8rem 1.2rem; /* Padding for button */
+  width: 100%; /* Full width */
+  background-color: #28a745; /* Green background */
+  color: #fff; /* White text */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 1.2rem; /* Larger font size for prominence */
+  cursor: pointer; /* Cursor indicates clickable element */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.submitBtn:hover {
+  background-color: #218838; /* Darker green on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* SeatSetter component styles */
+.seatSetter {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align content */
+  width: 100%; /* Full width */
+  margin-top: 1rem; /* Space above seat setter */
+}
+
+.seatController {
+  display: flex;
+  justify-content: space-between; /* Space between controls */
+  width: 80%; /* Adjusted width for better layout */
+  gap: 1rem; /* Space between inputs */
+}
+
+.seatContainer {
+  width: 100%; /* Full width */
+  margin-top: 1rem; /* Space above container */
+  max-height: 200px; /* Fixed max height for scrolling */
+  overflow-y: auto; /* Enable vertical scroll */
+  padding: 0.5rem; /* Padding inside container */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.seatGrid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(20px, 1fr)
+  ); /* Responsive grid layout */
+  gap: 5px; /* Space between seats */
+  margin-bottom: 1rem; /* Space below grid */
+}
+
+.seatGrid .seat {
+  width: 20px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  background-color: #ccc; /* Default seat color */
+  border-radius: 3px; /* Rounded corners for seats */
+  cursor: pointer; /* Cursor indicates clickable element */
+}
+
+.seatGrid .seat.selected {
+  background-color: #ffc107; /* Highlight color for selected seats */
+}
+
+.seatGrid .seat.disabled {
+  background-color: #6c757d; /* Disabled seat color */
+  cursor: not-allowed; /* Cursor indicates non-clickable element */
+}
+
+@media (max-width: 768px) {
+  /* Responsive adjustments for smaller screens */
+  .container {
+    padding: 1rem; /* Reduced padding */
+  }
+
+  input,
+  textarea {
+    font-size: 2vw; /* Smaller font size for inputs */
+  }
+
+  .left,
+  .right {
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center; /* Center align sections */
+  }
+
+  .imgInputLabel img {
+    width: 30vw; /* Adjusted width for responsiveness */
+  }
+
+  .leftInputBox,
+  .rightInputBox {
+    width: 90%; /* Adjusted width for better layout */
+  }
+}

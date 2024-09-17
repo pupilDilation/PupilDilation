@@ -4,11 +4,15 @@ import LoginFormStyles from "../Login/LoginForm.module.css";
 import Button from "../Button/Button";
 import ButtonStyles from "../Button/Button.module.css";
 import useClassNameJoin from "../../hooks/useClassNameJoin";
-import { loginSuccess, setId, setPassword } from "../../slice/loginSlice";
+import {
+  loginSuccess,
+  setId,
+  setPassword,
+  setUserType,
+} from "../../slice/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setUserType } from "../../slice/loginSlice";
-// import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 /**
  * @author: 248Kobe
@@ -25,37 +29,39 @@ function LoginForm() {
 
   const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/users")
-  //     .then((response) => {
-  //       console.log("Fetched data: ", response.data);
-  //       setData(response.data);
-  //     })
-  //     .catch((error) => console.error("Error fetching the JSON data:", error));
-  //   console.log(data);
-  // }, []);
+  // const { data, error, isPending } = useQuery(['auth/login'], () => {}, );
 
-  useEffect(() => {
-    fetch("/dummyData/userData.json")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching the JSON data:", error));
-  }, []);
+  async function loginClicked() {
+    try {
+      const res = await axios.post(
+        "http://localhost:3001/auth/login",
+        {
+          userId: id,
+          password: password,
+        },
+        { withCredentials: true } // cors 이슈로 withCredentials 옵션 추가
+      );
+      console.log(res);
 
-  const handleLoginClick = () => {
-    const user = data.find(
-      (user) => user.username === id && user.password === password
-    );
-    if (user) {
-      dispatch(loginSuccess()); //로그인 상태 변경
-      dispatch(setUserType(user.userType)); //유저 타입 설정
-      console.log(user.userType);
-      navigate("/"); //메인페이지로 이동
+      if (!res.data.success) {
+        alert("아이디 또는 비밀번호가 일치하지 않습니다");
+      }
+
+      dispatch(loginSuccess());
+      dispatch(setUserType(res.data.userType));
       dispatch(setId(""));
       dispatch(setPassword(""));
-    } else {
-      console.error("Invalid username or password");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      console.log("Invalid Login req");
+    }
+  }
+
+  // onKeyDown Event
+  const handleEnter = (e) => {
+    if (e.key === "Enter") {
+      loginClicked();
     }
   };
 
@@ -82,27 +88,36 @@ function LoginForm() {
           }}
           className={LoginFormStyles.input1}
           placeholder={"비밀번호"}
+          onKeyDown={handleEnter}
         />
         <div className={LoginFormStyles.saveId}>
-          <input
-            type="checkbox"
-            id="saveIdCheckBox"
-            className={LoginFormStyles.saveIdCheckBox}
-          />
-          <label
-            htmlFor="saveIdCheckBox"
-            className={LoginFormStyles.saveIdCheckBoxText}
-          >
-            아이디 저장
-          </label>
+          <div>
+            <input
+              type="checkbox"
+              id="saveIdCheckBox"
+              className={LoginFormStyles.saveIdCheckBox}
+            />
+            <label
+              htmlFor="saveIdCheckBox"
+              className={LoginFormStyles.saveIdCheckBoxText}
+            >
+              아이디 저장
+            </label>
+          </div>
+          <Link className={LoginFormStyles.linkFont} to={"/changepw"}>
+            비밀번호를 잊어버리셨나요?
+          </Link>
         </div>
       </div>
+      {/* <Button className={clsx(aa, { bb: aState })} onClick={loginClicked}>
+        <div className={LoginFormStyles.loginBtnText}>로그인</div>
+      </Button> */}
       <Button
         className={useClassNameJoin(
           ButtonStyles.buttonCommon,
           ButtonStyles.loginBtn
         )}
-        onClick={handleLoginClick}
+        onClick={loginClicked}
       >
         <div className={LoginFormStyles.loginBtnText}>로그인</div>
       </Button>

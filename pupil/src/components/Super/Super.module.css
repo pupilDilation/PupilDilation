@@ -1,0 +1,132 @@
+/* 전체 컨테이너 */
+.container {
+  padding: 1rem;
+  width: 80%;
+  margin: 0 auto;
+  font-family: "Poppins", sans-serif; /* Poppins 폰트 적용 */
+}
+
+/* 상단 도구 박스 */
+.toolbox {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: end;
+}
+
+.toolbox button {
+  background-color: #2a3252;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toolbox button:hover {
+  background-color: #394266;
+}
+
+/* 어드민 카드 */
+.adminCardWrapper {
+  margin-bottom: 1.5rem;
+}
+
+.cardContainer {
+  padding: 1.2rem;
+  border: 2px solid #2a3252;
+  border-radius: 1rem;
+  background-color: #f4f4f4;
+  transition: box-shadow 0.3s ease;
+}
+
+.cardContainer:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cardContainer p {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* 입력 박스 */
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.inputBox input {
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: border-color 0.3s ease;
+}
+
+.inputBox textarea {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.inputBox input:focus {
+  border-color: #2a3252;
+  outline: none;
+}
+
+/* 입력 버튼 박스 */
+.inputButtonBox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.inputButtonBox button {
+  background-color: #2a3252;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.inputButtonBox button:hover {
+  background-color: #394266;
+}
+
+.inputButtonBox button:first-child {
+  background-color: #e74c3c;
+}
+
+.inputButtonBox button:first-child:hover {
+  background-color: #c0392b;
+}
+
+/* 입력 폼 토글 버튼 */
+.inputBox button {
+  background-color: #2a3252;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.inputBox button:hover {
+  background-color: #394266;
+}

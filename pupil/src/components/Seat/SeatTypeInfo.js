@@ -32,20 +32,24 @@ function SeatTypeInfo() {
         ></div>
         <div>예매 완료</div>
       </div>
-      {/* <div className={SeatTypeStyle.seatTypeContent}>
+      <div className={SeatTypeStyle.seatTypeContent}>
         <div
-          useClassNameJoin={(SeatTypeStyle.unavailBox, SeatTypeStyle.boxCommon)}
+          className={useClassNameJoin(
+            SeatTypeStyle.unavailBox,
+            SeatTypeStyle.boxCommon
+          )}
         ></div>
         <div>선택불가</div>
       </div>
       <div className={SeatTypeStyle.seatTypeContent}>
         <div
-          useClassNameJoin={
-            (SeatTypeStyle.selectingBox, SeatTypeStyle.boxCommon)
-          }
+          className={useClassNameJoin(
+            SeatTypeStyle.progressBox,
+            SeatTypeStyle.boxCommon
+          )}
         ></div>
-        <div>예매중</div>
-      </div> */}
+        <div>예매 중</div>
+      </div>
     </div>
   );
 }

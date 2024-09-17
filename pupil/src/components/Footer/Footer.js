@@ -8,16 +8,13 @@ function Footer() {
       <div className={FooterStyles.footerMenu}>
         <ul className={FooterStyles.footerMenuList}>
           <li>
-            <a href="">이용약관</a>
+            <a href="/terms">이용약관</a>
           </li>
           <li>
-            <a href="">개인정보처리방침</a>
+            <a href="/policy">개인정보처리방침</a>
           </li>
           <li>
-            <a href="">공지사항</a>
-          </li>
-          <li>
-            <a href="">로그인</a>
+            <a href="/announcement">공지사항</a>
           </li>
         </ul>
       </div>

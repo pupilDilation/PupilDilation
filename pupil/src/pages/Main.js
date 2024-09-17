@@ -1,12 +1,12 @@
 import Slider from "../components/Swiper/Slider";
-import useClassNameJoin from "../hooks/useClassNameJoin";
 import Wrapper from "../components/Wrapper/Wrapper";
-import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
+import ClubSlider from "../components/Swiper/ClubSlider";
 
 function Main() {
   return (
     <Wrapper>
       <Slider></Slider>
+      <ClubSlider />
     </Wrapper>
   );
 }

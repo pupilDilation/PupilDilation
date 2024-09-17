@@ -1,68 +1,69 @@
 .headerContainer {
-  width: calc(100vw * 400 / 400);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 헤더에 섀도우 추가 */
+  margin: 0;
+  padding: 0;
+}
+
+.firstUserHeader,
+.firstAdminHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* 버튼이 수직으로 가운데 정렬되도록 */
+  padding: 0.5rem 1rem; /* 패딩을 rem 단위로 변경하여 유연성 증가 */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* 하단에 경계선 추가 */
 }
 
 .firstUserHeader {
-  display: flex;
-  width: calc(100vw * 370 / 400);
-  height: calc(100vw * 20 / 400);
-  background: var(--theme-red, #ef5455);
-  padding: calc(100vw * 8 / 400) calc(100vw * 15 / 400);
-  justify-content: flex-end;
+  background-color: var(--theme-red, #ef5455);
 }
 
 .firstAdminHeader {
-  display: flex;
-  width: calc(100vw * 370 / 400);
-  height: calc(100vw * 20 / 400);
-  background: var(--theme-blue, #2b3252);
-  padding: calc(100vw * 8 / 400) calc(100vw * 15 / 400);
-  justify-content: flex-end;
+  background-color: var(--theme-blue, #2b3252);
 }
 
 .firstHeaderBtnContainer {
   display: flex;
+  gap: 0.5rem; /* 버튼 간격을 일정하게 설정 */
 }
 
 .secondHeader {
   display: flex;
-  width: 100vw;
-  height: calc(100vw * 70 / 400);
-
   justify-content: space-between;
   align-items: center;
-
-  background: #fff;
-  border-bottom: solid rgba(0, 0, 0, 0.25);
+  padding: 1rem; /* 상하좌우 여백을 일정하게 설정 */
+  background-color: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* 하단에 경계선 추가 */
 }
 
 .secondHeaderLogoContainer {
-  width: calc(100vw * 93 / 400);
-  height: calc(100vw * 27 / 400);
   display: flex;
   align-items: center;
-  margin-left: calc(100vw * 10 / 400);
+  margin-left: 1rem; /* 마진을 rem 단위로 변경 */
 }
 
 .secondHeaderLogo {
-  width: calc(100vw * 93 / 400);
-  height: calc(100vw * 27 / 400);
+  width: 100px; /* 로고 크기 고정 */
+  height: auto; /* 비율 유지 */
 }
 
 .secondHeaderBtnContainer {
-  width: calc(100vw * 50 / 400);
-  height: calc(100vw * 25 / 400);
   display: flex;
   align-items: center;
-  margin-right: calc(100vw * 60 / 400);
+  gap: 1rem; /* 버튼 간격 일정하게 설정 */
 }
 
 .secondHeaderBtn {
-  width: calc(100vw * 20 / 400);
-  height: calc(100vw * 20 / 400);
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
-  padding: calc(100vw * 10 / 400) calc(100vw * 15 / 400);
+  padding: 0.5rem;
+  transition: transform 0.3s ease; /* 부드러운 hover 애니메이션 */
+}
+
+.secondHeaderBtn:hover {
+  transform: scale(1.1); /* 살짝 확대 효과 */
 }

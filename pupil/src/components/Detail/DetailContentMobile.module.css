@@ -1,0 +1,153 @@
+/* Container for the entire detail section */
+.detailContainerMobile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Center align content horizontally */
+  text-align: center;
+  padding: calc(
+    100vw * 40 / 400
+  ); /* Consistent padding based on viewport width */
+  background-color: #f8f9fa; /* Light background for better contrast */
+  width: 100%; /* Ensure full width on mobile */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Title of the event */
+.eventTitleMobile {
+  width: calc(100vw * 350 / 400); /* Responsive width */
+  height: calc(100vw * 51 / 400); /* Responsive height */
+  color: #000;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 32 / 400); /* Responsive font size */
+  font-weight: 700;
+  margin-bottom: calc(100vw * 20 / 400); /* Margin for spacing */
+  text-align: left; /* Align text to the left */
+}
+
+/* Image of the event */
+.eventImageMobile {
+  width: calc(100vw * 169 / 400); /* Responsive width */
+  height: calc(100vw * 238 / 400); /* Responsive height */
+  margin-right: calc(100vw * 16 / 400); /* Right margin for spacing */
+  border-radius: 8px; /* Rounded corners */
+  object-fit: cover; /* Ensure the image covers its container */
+}
+
+/* First detail section containing the image and other details */
+.firstDetailMobile {
+  display: flex;
+  flex-direction: column; /* Stack items vertically on small screens */
+  align-items: center; /* Center items */
+  margin-bottom: calc(100vw * 20 / 400); /* Margin for spacing */
+  gap: calc(100vw * 20 / 400); /* Gap between elements */
+}
+
+/* Second detail section for additional information */
+.secondDetailMobile {
+  width: 100%; /* Full width */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align text to the left */
+  gap: calc(100vw * 8 / 400); /* Gap between text items */
+}
+
+/* General title styling for content sections */
+.contentTitle {
+  color: #000;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 20 / 400); /* Responsive font size */
+  font-weight: 600;
+  margin-top: calc(100vw * 12 / 400); /* Top margin for spacing */
+  margin-bottom: calc(100vw * 8 / 400); /* Bottom margin for spacing */
+  text-align: left; /* Align text to the left */
+}
+
+/* General text styling for content sections */
+.contentText {
+  color: #000;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 14 / 400); /* Responsive font size */
+  font-weight: 300;
+  text-align: left; /* Align text to the left */
+  margin-bottom: calc(100vw * 12 / 400); /* Bottom margin for spacing */
+}
+
+/* Container for the concert introduction text */
+.contentIntro {
+  color: #000;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 20 / 400); /* Responsive font size */
+  font-weight: 600;
+  margin-top: calc(100vw * 10 / 400); /* Top margin for spacing */
+  margin-bottom: calc(100vw * 20 / 400); /* Bottom margin for spacing */
+  text-align: left; /* Align text to the left */
+}
+
+/* Introduction text styling */
+.introText {
+  width: calc(100vw * 353 / 400); /* Responsive width */
+  color: #000;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 14 / 400); /* Responsive font size */
+  font-weight: 300;
+  text-align: left; /* Align text to the left */
+  margin-bottom: calc(100vw * 20 / 400); /* Bottom margin for spacing */
+  word-break: break-word; /* Ensure long words break appropriately */
+}
+
+/* Schedule container for dropdown */
+.scheduleContainer {
+  margin-top: calc(100vw * 20 / 400); /* Top margin for spacing */
+  margin-bottom: calc(100vw * 40 / 400); /* Bottom margin for spacing */
+  width: 100%; /* Full width */
+}
+
+/* Dropdown styling for selecting a session */
+.scheduleDropdown {
+  width: 100%; /* Full width */
+  padding: calc(100vw * 8 / 400) calc(100vw * 12 / 400); /* Padding for spacing */
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 14 / 400); /* Responsive font size */
+  border: 1px solid #ddd;
+  border-radius: 4px; /* Rounded corners */
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  box-sizing: border-box; /* Include padding in width */
+}
+
+/* Container for the 'Book Now' button */
+.bookNowContainer {
+  display: flex;
+  justify-content: center; /* Center align the button */
+  margin-top: calc(100vw * 20 / 400); /* Top margin for spacing */
+  width: 100%; /* Full width */
+}
+
+/* 'Book Now' button styling */
+.bookNowButton {
+  background-color: #ef5454b8; /* Button background color */
+  color: #fff; /* Text color */
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: calc(100vw * 16 / 400); /* Responsive font size */
+  font-weight: 600;
+  border: none; /* No border */
+  border-radius: 4px; /* Rounded corners */
+  padding: calc(100vw * 10 / 400) calc(100vw * 20 / 400); /* Padding for spacing */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+.bookNowButton:hover {
+  background-color: #ef5455; /* Darker background on hover */
+}
+
+/* Footer styling */
+.footer {
+  margin-top: calc(100vw * 40 / 400); /* Top margin for spacing */
+  padding: calc(100vw * 20 / 400); /* Padding for spacing */
+  background-color: #f8f8f8; /* Light background */
+  text-align: center; /* Center align text */
+  color: #000; /* Text color */
+}

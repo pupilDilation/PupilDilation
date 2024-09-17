@@ -13,16 +13,38 @@ const getUsers = async (req, res) => {
   }
 };
 
-async function getUserByUsername(req, res) {
+async function getUserById(req, res) {
   try {
-    const users = await userModel.getUserByUsername();
+    const user_id = req.params.user_id;
+    const users = await userModel.getUserById(user_id);
     if (users.length < 1) {
-      throw new Error("No such user.");
+      return res.status(404).json({ error: "No such user." });
     }
     res.json(users[0]);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    res.status(500).json({ error });
+  }
+}
+
+async function getAdmins(req, res) {
+  try {
+    const admins = await userModel.getAdmins();
+    if (admins.length < 1) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Admin Not Found." });
+    } else {
+      res.json(admins);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 }
 
 module.exports = {
   getUsers,
+  getUserById,
+  getAdmins,
 };
