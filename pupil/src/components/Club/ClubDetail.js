@@ -19,6 +19,7 @@ function ClubDetail() {
       } else {
         setClubDetail(res.data[0]);
       }
+      console.log(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -28,8 +29,8 @@ function ClubDetail() {
   }, []);
   return (
     <div className={styles.container}>
-      {!clubDetail.club_img === "" || !clubDetail.club_img === null ? (
-        <img src={clubDetail.club_img} alt="club img" />
+      {clubDetail.club_img ? (
+        <img className={styles.img} src={clubDetail.club_img} alt="club-img" />
       ) : (
         <img
           className={styles.img}
