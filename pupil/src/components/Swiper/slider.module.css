@@ -63,10 +63,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 1rem;
+  border-radius: 2rem;
   text-align: center;
-  height: 2rem;
-  width: 10rem;
+  height: 3rem;
+  width: 15rem;
   border: none;
   cursor: pointer;
 }

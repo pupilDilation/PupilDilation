@@ -12,11 +12,11 @@ import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
 
 function PaymentPage() {
   const { sessionId, concertId } = useParams();
-  const col = useSelector((state) => state.seat.col);
-  const selectedSeats = useSelector((state) => state.seat.selectedSeats);
+  const selectedSeats = useSelector((state) => state.seat.selectedSeats); // Seat numbers selected by the user
+  const col = useSelector((state) => state.seat.col); // Number of columns for seat arrangement
   const navigate = useNavigate();
 
-  // 유저 인증 정보를 가져오는 useQuery
+  // Fetch authenticated user info
   const { data: authData } = useQuery({
     queryKey: ["auth"],
     queryFn: async () => {
@@ -29,7 +29,7 @@ function PaymentPage() {
 
   const userId = authData?.userId;
 
-  // 세션 정보를 가져오는 useQuery
+  // Fetch session information
   const { data: sessionInfo } = useQuery({
     queryKey: ["sessionInfo", sessionId],
     queryFn: async () => {
@@ -41,7 +41,7 @@ function PaymentPage() {
     enabled: !!sessionId,
   });
 
-  // 콘서트 정보를 가져오는 useQuery
+  // Fetch concert information
   const { data: concertInfo } = useQuery({
     queryKey: ["concertInfo", concertId],
     queryFn: async () => {
@@ -53,20 +53,19 @@ function PaymentPage() {
     enabled: !!concertId,
   });
 
-  // 예약 정보를 가져오는 useQuery
+  // Fetch reservation information
   const { data: reservationInfo } = useQuery({
     queryKey: ["reservationInfo", userId],
     queryFn: async () => {
       const response = await axios.get(
         `http://localhost:3001/reservations/${userId}`
       );
-      console.log(response.data);
       return response.data;
     },
     enabled: !!userId,
   });
 
-  // 날짜 및 시간 포맷팅
+  // Format the date and time using moment.js
   const formattedDate = useMemo(() => {
     if (sessionInfo?.session_date) {
       const date = new Date(sessionInfo.session_date);
@@ -83,20 +82,9 @@ function PaymentPage() {
     return "";
   }, [sessionInfo]);
 
-  // 좌석 번호 포맷팅
-  const formatSeatNumber = (seatNumber) => {
-    const rowIndex = Math.floor((seatNumber - 1) / col);
-    const colIndex = (seatNumber - 1) % col;
-    const rowLetter = String.fromCharCode(65 + rowIndex);
-    return `${rowLetter}${colIndex + 1}`;
-  };
-
-  const formattedSeats = selectedSeats.map(formatSeatNumber).sort().join(", ");
-  const status = reservationInfo?.reservations?.[0]?.payment_status;
-
   const handlePaymentClick = async () => {
     try {
-      // Update seat status to "reserved"
+      // Reserve each selected seat
       const seatPromises = selectedSeats.map((seatNumber) =>
         axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
           seatNumber,
@@ -105,26 +93,25 @@ function PaymentPage() {
       );
       await Promise.all(seatPromises);
 
-      // Fetch the updated seat status to ensure it's successful
+      // Fetch the updated seat status
       const seatResponse = await axios.get(
         `http://localhost:3001/seats/session/${sessionId}`
       );
-      const { success, seats } = seatResponse.data;
+      const { success } = seatResponse.data;
 
       if (success) {
-        // For each seat, make a POST request to add the reservation
+        // For each seat, create a reservation entry
         const reservationPromises = selectedSeats.map(async (seatNumber) => {
           await axios.post(
-            `http://localhost:3001/reservations/${userId}`, // POST request to add reservation
+            `http://localhost:3001/reservations/${userId}`, // Create a reservation
             {
               session_id: sessionId,
-              seat_id: seatNumber, // Send each selected seat individually
-              payment_status: "결제완료", // Set payment status to "paid"
+              seat_id: seatNumber,
+              payment_status: "결제완료", // Payment completed
             }
           );
         });
 
-        // Wait for all reservation requests to complete
         await Promise.all(reservationPromises);
 
         alert("결제가 완료되었습니다.");
@@ -133,20 +120,21 @@ function PaymentPage() {
         throw new Error("Payment error");
       }
     } catch (error) {
-      console.error("Payment fetching error", error);
+      console.error("Payment error:", error);
       alert("결제 처리 중 오류가 발생했습니다.");
-      navigate("/"); // 오류 시 리디렉션
+      navigate("/"); // Redirect on error
     }
   };
 
   return (
     <Wrapper className={WrapperStyles.paymentWrapper}>
-      <h1>예매페이지</h1>
+      <h1>예매 페이지</h1>
       <Ticket
         title={concertInfo?.concert_title}
         date={formattedDate}
         location={concertInfo?.concert_location}
-        seat={formattedSeats}
+        seat={selectedSeats} // Pass the selected seat numbers array
+        col={col} // Pass the number of columns
         enterTime={formattedTime}
         payment={reservationInfo?.reservations?.[0]?.payment_status}
       />

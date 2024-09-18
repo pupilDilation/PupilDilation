@@ -189,6 +189,7 @@ function MyPage() {
               seat={reservationsQuery.data[index]?.seat_id || "좌석"}
               col={concertQueries[index]?.data?.concert_col || "col"}
               enterTime={formattedTime}
+              concertId={concertQueries[index]?.data?.concert_id}
             />
           );
         })}

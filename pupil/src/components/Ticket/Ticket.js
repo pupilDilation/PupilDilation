@@ -70,7 +70,10 @@ function Ticket(props) {
               onClick={toggleQR}
             ></QRCodeSVG>
             <Button className={TicketStyles.refundButton}>환불</Button>
-            <Link to="/concert-info" className={TicketStyles.showInfoLink}>
+            <Link
+              to={`/details/${props.concertId}`}
+              className={TicketStyles.showInfoLink}
+            >
               공연정보
             </Link>
           </div>

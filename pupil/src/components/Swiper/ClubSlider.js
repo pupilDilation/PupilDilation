@@ -40,15 +40,16 @@ function ClubSlider() {
   const SWIPER_STYLE = {
     width: "100%",
     marginTop: "15px",
-    height: "auto",
+    height: "200px",
+    display: "flex",
   };
 
   return (
     <Swiper
       modules={[Navigation, Pagination]}
       autoHeight
-      spaceBetween={15}
-      slidesPerView={5}
+      spaceBetween={20}
+      slidesPerView={3}
       style={SWIPER_STYLE}
     >
       {clubs.length > 0 ? (
