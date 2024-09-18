@@ -1,6 +1,4 @@
 import { useQuery, useQueries } from "@tanstack/react-query";
-import Button from "../components/Button/Button";
-import ButtonStyles from "../components/Button/Button.module.css";
 import UserInfo from "../components/UserInfo/UserInfo";
 import Wrapper from "../components/Wrapper/Wrapper";
 import WrapperStyles from "../components/Wrapper/Wrapper.module.css";
@@ -8,6 +6,7 @@ import Ticket from "../components/Ticket/Ticket";
 import ConcertInfo from "../components/ConcertInfo/ConcertInfo";
 import AdminAccountController from "../components/Super/AdminAccountController";
 import CreateConcertForm from "../components/CreateConcert/CreateConcertForm";
+import styles from "./MyPageAdmin.module.css";
 import axios from "axios";
 import { useState } from "react";
 
@@ -195,10 +194,12 @@ function MyPage() {
         })}
 
       {!loading && !error && userType === "admin" && (
-        <div>
-          <button onClick={toggleCreateClub}>
-            {isCreateConcertClicked ? "✖︎" : "✚"}
-          </button>
+        <div className={styles.container}>
+          <div className={styles.buttonBox}>
+            <button onClick={toggleCreateClub}>
+              {isCreateConcertClicked ? "✖︎" : "✚"}
+            </button>
+          </div>
           {isCreateConcertClicked ? (
             <CreateConcertForm></CreateConcertForm>
           ) : null}
@@ -206,7 +207,12 @@ function MyPage() {
             <p>No concert information found.</p>
           ) : (
             concertQueries[0]?.data?.map((concert, index) => (
-              <ConcertInfo key={index} title={concert.concert_title} />
+              <ConcertInfo
+                key={index}
+                title={concert.concert_title}
+                concert={concert}
+                id={concert.concert_id}
+              />
             ))
           )}
         </div>

@@ -3,6 +3,7 @@ import styles from "./CreateConcert.module.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import SeatSetter from "./SeatSetter";
+import ImgInput from "../ImgInput/ImgInput";
 
 function CreateConcertForm() {
   // redux store에서 user id state 가져오기
@@ -11,20 +12,25 @@ function CreateConcertForm() {
   // SeatSetter 에 전달할 전체 좌석 배열 state
   const [seats, setSeats] = useState([]);
 
-  // inputForm state로 concert detail data state를 한번에 관리
-  const [inputForm, setInputForm] = useState({
+  // img input에 전달할 img url state
+  const [imgUrl, setImgUrl] = useState("");
+
+  //initial state
+  const initialState = {
     concert_title: "",
     concert_location: "",
     concert_price: "",
     concert_row: "",
     concert_col: "",
-    concert_img: "",
     concert_plot: "",
     user_id: "",
     rsv_start_at: "",
     rsv_end_at: "",
     session_dates: [""],
-  });
+  };
+
+  // inputForm state로 concert detail data state를 한번에 관리
+  const [inputForm, setInputForm] = useState(initialState);
 
   // input태그의 name props 이름을 통해서 inputForm obj의 해당 값 변경하도록 설정
   const handleChange = (e) => {
@@ -77,7 +83,7 @@ function CreateConcertForm() {
           concert_price: inputForm.concert_price,
           concert_row: inputForm.concert_row,
           concert_col: inputForm.concert_col,
-          concert_img: inputForm.concert_img,
+          concert_img: imgUrl,
           concert_plot: inputForm.concert_plot,
           user_id: userId,
           rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
@@ -86,21 +92,24 @@ function CreateConcertForm() {
         sessionsData: inputForm.session_dates,
         seatsData: seats,
       });
-      console.log(res);
+      if (res.status === 500) {
+        alert("공연 생성 실패");
+      }
+      if (res.status === 201) {
+        alert(`${inputForm.concert_title} 생성 성공!`);
+        setInputForm(initialState);
+      }
     } catch (error) {
       console.log(error);
+      alert("공연생성 실패 : " + error);
     }
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <div className={styles.imgInputBox}>
-          <label htmlFor="imgInput" className={styles.imgInputLabel}>
-            <img src="/img/upload-image.png" alt="업로드" />
-          </label>
-          <input id="imgInput" type="file" className={styles.imgInput} />
-        </div>
+        <ImgInput imgUrl={imgUrl} setImgUrl={setImgUrl}></ImgInput>
+
         <div className={styles.leftInputBox}>
           <input
             type="text"
@@ -164,9 +173,7 @@ function CreateConcertForm() {
                     handleSessionDateChange(index, e.target.value)
                   }
                 />
-                <button onClick={() => removeSessionDate(index)}>
-                  세션 제거
-                </button>
+                <button onClick={() => removeSessionDate(index)}>제거</button>
               </div>
             ))}
             <div className={styles.sessionControlBox}>
