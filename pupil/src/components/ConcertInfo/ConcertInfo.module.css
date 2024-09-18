@@ -1,7 +1,7 @@
 .container {
   width: 90%; /* Full width */
   max-width: 800px; /* Limit the max width */
-  padding: 20px; /* Better padding for readability */
+  padding: 1rem; /* Better padding for readability */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10,7 +10,7 @@
   margin-top: 20px;
   background-color: #ffffff; /* Light background color */
   transition: box-shadow 0.3s ease; /* Add transition for hover */
-  margin-bottom: 40px; /* Adds space between this component and the next or footer */
+  margin-bottom: 2rem; /* Adds space between this component and the next or footer */
 }
 
 .container:hover {
