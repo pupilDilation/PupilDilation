@@ -96,22 +96,39 @@ function PaymentPage() {
 
   const handlePaymentClick = async () => {
     try {
-      const promises = selectedSeats.map((seatNumber) =>
+      // Update seat status to "reserved"
+      const seatPromises = selectedSeats.map((seatNumber) =>
         axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
           seatNumber,
           seatStatus: "reserved",
         })
       );
-      await Promise.all(promises);
+      await Promise.all(seatPromises);
 
-      const response = await axios.get(
+      // Fetch the updated seat status to ensure it's successful
+      const seatResponse = await axios.get(
         `http://localhost:3001/seats/session/${sessionId}`
       );
-      const { success, seats } = response.data;
+      const { success, seats } = seatResponse.data;
 
       if (success) {
+        // For each seat, make a POST request to add the reservation
+        const reservationPromises = selectedSeats.map(async (seatNumber) => {
+          await axios.post(
+            `http://localhost:3001/reservations/${userId}`, // POST request to add reservation
+            {
+              session_id: sessionId,
+              seat_id: seatNumber, // Send each selected seat individually
+              payment_status: "결제완료", // Set payment status to "paid"
+            }
+          );
+        });
+
+        // Wait for all reservation requests to complete
+        await Promise.all(reservationPromises);
+
         alert("결제가 완료되었습니다.");
-        // navigate("/"); // 결제 완료 후 리디렉션
+        navigate("/my-page");
       } else {
         throw new Error("Payment error");
       }
