@@ -50,8 +50,6 @@ function ClubSlider() {
       spaceBetween={15}
       slidesPerView={5}
       style={SWIPER_STYLE}
-      navigation
-      pagination={{ clickable: true }}
     >
       {clubs.length > 0 ? (
         clubs.map((item) => {
