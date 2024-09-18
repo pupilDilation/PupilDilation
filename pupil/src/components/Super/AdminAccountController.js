@@ -3,9 +3,12 @@ import { useEffect, useMemo, useState } from "react";
 import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
 import useFormInput from "../../hooks/useFormInput";
+import ImgInput from "../ImgInput/ImgInput";
 
 function AdminAccountController() {
   const [admins, setAdmins] = useState([]);
+  const [imgUrl, setImgUrl] = useState("");
+
   async function getAdminUser() {
     try {
       const res = await axios.get("http://localhost:3001/users/admins/get");
@@ -92,6 +95,7 @@ function AdminAccountController() {
           phone: inputForm.phone,
           description: inputForm.description,
           search: inputForm.search,
+          img: imgUrl,
         },
         { withCredentials: true }
       );
@@ -129,6 +133,7 @@ function AdminAccountController() {
         <div className={styles.inputBox}>
           {showInputBox && (
             <div className={styles.inputBox}>
+              <ImgInput imgUrl={imgUrl} setImgUrl={setImgUrl}></ImgInput>
               <input
                 type="text"
                 name="username"
