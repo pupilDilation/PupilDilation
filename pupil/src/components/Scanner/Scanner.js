@@ -4,7 +4,7 @@ import QrScanner from "qr-scanner";
 import styles from "./Scanner.module.css";
 import axios from "axios";
 
-function Scanner({ sessionId }) {
+function Scanner({ concertId }) {
   const [data, setData] = useState("No result");
   const [scanSuccess, setScanSuccess] = useState(false);
 
@@ -41,7 +41,7 @@ function Scanner({ sessionId }) {
   }, []);
   return (
     <div className={styles.scannerContainer}>
-      <p>{sessionId}번 세션</p>
+      <p>{concertId}번</p>
       <div className={styles.videoBox}>
         {QrScanner.hasCamera() ? (
           <video ref={videoRef} className={styles.video} />
