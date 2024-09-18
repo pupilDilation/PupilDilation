@@ -29,7 +29,7 @@ function AdminAccountController() {
     setShowInputBox((prev) => !prev);
   };
 
-  const [inputForm, handleChange, resetForm] = useFormInput({
+  const initialState = {
     username: "",
     id: "",
     phone: "",
@@ -37,7 +37,9 @@ function AdminAccountController() {
     password: "",
     description: "",
     search: "",
-  });
+  };
+
+  const [inputForm, handleChange, resetForm] = useFormInput(initialState);
 
   function isBlank() {
     if (
@@ -100,8 +102,8 @@ function AdminAccountController() {
         { withCredentials: true }
       );
       if (res.data.success) {
-        alert(`${inputForm.id} 어드민 계정 생성 완료`);
         resetForm();
+        alert(`${inputForm.id} 어드민 계정 생성 완료`);
       } else if (res.status === 409) {
         alert("이미 가입된 id임");
         return false;
