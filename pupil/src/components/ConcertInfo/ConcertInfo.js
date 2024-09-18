@@ -1,16 +1,19 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./ConcertInfo.module.css";
 
-function ConcertInfo({ title, concert, id }) {
+function ConcertInfo({ title, id }) {
   const navigate = useNavigate();
 
+  const handleReservationListClick = () => {
+    // Navigate to the ReservationListPage with the concertId as a route parameter
+    navigate(`/reservations/${id}`);
+  };
+
   return (
-    <div className={styles.container}>
-      <h1>{title}</h1>
-      <button className={styles.scannerButton}>
-        <Link to={`/scanner/${id}`}>Go to Scanner</Link>
-      </button>
+    <div className={styles.container} onClick={handleReservationListClick}>
+      <h1 className={styles.title}>{title}</h1>
+      <button className={styles.scannerButton}>Show Reservations</button>
     </div>
   );
 }
