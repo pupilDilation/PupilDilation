@@ -1,5 +1,5 @@
 .container {
-  width: 100%; /* Full width */
+  width: 90%; /* Full width */
   max-width: 800px; /* Limit the max width */
   padding: 20px; /* Better padding for readability */
   display: flex;
@@ -18,27 +18,38 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #333; /* Darker font color for contrast */
 }
 
-.scannerButton {
+.showReservationBtn {
   background-color: #4caf50; /* Primary button color */
   color: white;
-  padding: 10px 20px;
+  padding: 5px 20px;
   font-size: 1rem;
   border: none;
   border-radius: 8px; /* Softer corners */
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
 }
 
-.scannerButton:hover {
+.showReservationBtn:hover {
   background-color: #45a049; /* Darker green on hover */
   transform: scale(1.05); /* Slight zoom on hover */
 }
 
-.scannerButton:focus {
+.showReservationBtn:focus {
   outline: none;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
