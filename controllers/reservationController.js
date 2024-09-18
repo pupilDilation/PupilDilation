@@ -120,10 +120,36 @@ const checkReservation = async (req, res) => {
   }
 };
 
+const getReservationBySessionId = async (req, res) => {
+  const { session_id } = req.params;
+
+  try {
+    const reservations = await reservationModel.getReservationBySessionId(
+      session_id
+    );
+    if (reservations.length > 0) {
+      return res.json({ success: true, reservations });
+    } else {
+      return res.status(404).json({
+        success: false,
+        message: "No reservations found for the given session ID",
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching reservations:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      detail: error.message,
+    });
+  }
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
   putReservationByUserId,
   deleteReservationByUserId,
   checkReservation,
+  getReservationBySessionId,
 };

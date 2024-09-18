@@ -57,10 +57,19 @@ const checkReservation = async (rsvUUID) => {
   return result;
 };
 
+const getReservationBySessionId = async (sessionId) => {
+  const [rows] = await db.query(
+    "SELECT rsv_id, user_id, seat_id, payment_status FROM reservation WHERE session_id = ?",
+    [sessionId]
+  );
+  return rows;
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
   putReservationByUserId,
   deleteReservationByUserId,
   checkReservation,
+  getReservationBySessionId,
 };

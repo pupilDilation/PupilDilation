@@ -12,5 +12,9 @@ router.delete(
   "/:user_id/:rsv_id",
   reservationController.deleteReservationByUserId
 );
+router.get(
+  "/session/:session_id",
+  reservationController.getReservationBySessionId
+);
 
 module.exports = router;

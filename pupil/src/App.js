@@ -23,6 +23,7 @@ import SuperDetailForm from "./components/Detail/SuperDetailForm";
 import PaymentPage from "./pages/PaymentPage";
 import ClubDetailPage from "./pages/ClubDetailPage";
 import ScannerPage from "./pages/ScannerPage";
+import ReservationListPage from "./pages/ReservationListPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function App() {
                 <Route path="/login" element={<LoginPage />}></Route>
                 <Route path="/signup" element={<SignUpPage />}></Route>
                 <Route path="/my-page" element={<MyPage />}></Route>
+                <Route
+                  path="/reservations/:concertId"
+                  element={<ReservationListPage />}
+                />
                 <Route path="/details/:concertId" element={<DetailPage />} />
                 <Route
                   path="/concert/:concertId/sessions/:sessionId/seats/:userType"
