@@ -1,19 +1,19 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./ConcertInfo.module.css";
 
 function ConcertInfo({ title, id }) {
-  const navigate = useNavigate();
-
-  const handleReservationListClick = () => {
-    // Navigate to the ReservationListPage with the concertId as a route parameter
-    navigate(`/reservations/${id}`);
-  };
-
   return (
-    <div className={styles.container} onClick={handleReservationListClick}>
+    <div className={styles.container}>
       <h1 className={styles.title}>{title}</h1>
-      <button className={styles.scannerButton}>Show Reservations</button>
+      <div className={styles.buttonBox}>
+        <Link to={`/reservations/${id}`}>
+          <button className={styles.showReservationBtn}>예매 현황</button>
+        </Link>
+        <Link to={`/scanner/${id}`}>
+          <button className={styles.showReservationBtn}>Scanner</button>
+        </Link>
+      </div>
     </div>
   );
 }
