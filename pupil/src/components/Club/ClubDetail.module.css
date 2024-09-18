@@ -1,40 +1,149 @@
+/* ClubDetail.module.css */
 .container {
   display: flex;
-  padding: 20px;
-  margin: 1rem auto;
-  max-width: 500px;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  margin: 20px auto;
+  max-width: 900px;
   width: 90%;
   background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
 }
 
-.img {
-  width: 50%;
-  height: auto;
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.2;
+  animation: float 6s ease-in-out infinite;
 }
 
-.descbox {
-  width: 50%;
-  padding: 2rem;
-}
-
-.descbox h1 {
-  font-size: 30px;
-  font-weight: bolder;
-  margin-bottom: 2rem;
-}
-
-/* club concerts list */
-.clubConcertListContainer {
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
-
-  .concertListGridContainer {
-    display: grid;
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }
 
+.img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.img:hover {
+  transform: scale(1.1);
+}
+
+.descbox {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.clubName {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.clubDescription {
+  text-align: left;
+  white-space: pre-wrap;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  line-height: 1.7;
+  margin: 0 10px;
+}
+
+.clubConcertListContainer {
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px;
+  background: #f0f8ff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.concertListGridContainer {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
 .concertCard {
+  padding: 20px;
+  background: linear-gradient(135deg, #e0e0e0, #f8f8f8);
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.concertCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #d4fc79, #96e6a1);
+}
+
+.concertCard h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #34495e;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 12px;
+}
+
+.concertCard p {
+  font-size: 1.1rem;
+  color: #95a5a6;
+  line-height: 1.6;
+  margin-top: 10px;
+  word-wrap: break-word;
+}
+
+.concertCard:hover h2 {
+  color: #27ae60;
+}
+
+.concertCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.concertCard:hover::before {
+  opacity: 1;
 }
