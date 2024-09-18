@@ -1,4 +1,6 @@
 const clubModel = require("../models/clubModel");
+const pool = require("../config/dbConfig");
+const bcrypt = require("bcrypt");
 
 // 모든 동아리 정보 가져오기
 const getClubs = async (req, res) => {
@@ -71,10 +73,51 @@ const addConcertToClub = async (req, res) => {
   }
 };
 
+const createClub = async (req, res) => {
+  console.log(req.body);
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction(); // transaction 사용하여 club과 admin account 동시 세팅
+    const { id, password, name, email, phone, description, search, img } =
+      req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const createAccountResult = await clubModel.createClubAccount(
+      connection,
+      id,
+      name,
+      hashedPassword,
+      email,
+      phone
+    );
+    if (createAccountResult.affectedRows < 1) {
+      throw new Error("error occurred: creating club account is canceled.");
+    }
+
+    const connectionResult = await clubModel.connectAdmin(
+      connection,
+      id,
+      name,
+      description,
+      search,
+      img
+    );
+
+    await connection.commit();
+    res.status(201).json({ clubId: connectionResult.insertId });
+  } catch (error) {
+    await connection.rollback();
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   getClubs,
   getClubById,
   getConcertsByUserId,
   addConcertToClub,
   getClubsByClubName,
+  createClub,
 };

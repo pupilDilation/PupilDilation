@@ -10,3 +10,9 @@
   margin-top: calc(100vw * 15 / 400);
   background-color: transparent;
 }
+
+.scannerButton {
+  background-color: transparent;
+  outline: none;
+  border: none;
+}

@@ -20,4 +20,6 @@ router.get("/get/clubbyname", clubController.getClubsByClubName);
 
 router.post("/:user_id", clubController.addConcertToClub);
 
+router.post("/create/club", clubController.createClub);
+
 module.exports = router;

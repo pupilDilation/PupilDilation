@@ -1,0 +1,22 @@
+.imgInputBox {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.imgInput {
+  display: none;
+}
+
+.imgInputLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  cursor: pointer;
+
+  img {
+    width: 50%;
+    height: auto;
+  }
+}
