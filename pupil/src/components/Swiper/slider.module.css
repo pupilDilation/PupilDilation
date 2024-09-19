@@ -17,10 +17,28 @@
   margin-top: 10px;
 }
 
+.sectionTitle::after {
+  content: "";
+  width: 60px; /* 선의 너비를 적절하게 설정 */
+  height: 2px; /* 선을 더 얇게 설정 */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.8
+  ); /* 검은색 계열로 설정하되 약간 투명하게 */
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px; /* 모서리를 둥글게 만들어 부드러운 느낌 유지 */
+}
+
 /* SwiperSlide styles */
 .swiperSlide {
   width: 40%;
   height: auto;
+  margin: 0 10px;
 }
 .sliderContainer img {
   width: 100%;
@@ -37,6 +55,7 @@
   flex-direction: column;
   align-items: center;
   transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
 .sliderContainer:hover {
@@ -49,6 +68,7 @@
   border-radius: 15px;
   height: 200px;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
 .slideInfo {
@@ -92,7 +112,7 @@
 
 .clubSliderImgContainer img {
   width: 80px;
-  height: 80px;
+  height: auto;
   object-fit: cover;
   border-radius: 50%; /* 둥근 모양으로 설정 */
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
