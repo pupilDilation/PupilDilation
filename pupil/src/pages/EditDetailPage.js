@@ -1,13 +1,13 @@
+// EditDetailPage.js
 import React from "react";
-import EditDetailForm from "../components/EditDetail/EditDetailForm";
-import Wrapper from "../components/Wrapper/Wrapper";
+import { useParams } from "react-router-dom"; // useParams to get URL parameters
+import EditDetailForm from "../components/EditDetail/EditDetailForm"; // Import the EditDetailForm
 
 function EditDetailPage() {
-  return (
-    <Wrapper>
-      <EditDetailForm />
-    </Wrapper>
-  );
+  const { concertId } = useParams(); // Extract the concertId from the URL
+
+  // Pass the concertId as a prop to EditDetailForm
+  return <EditDetailForm concertId={concertId} />;
 }
 
 export default EditDetailPage;

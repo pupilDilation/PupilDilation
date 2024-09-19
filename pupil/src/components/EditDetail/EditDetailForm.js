@@ -2,354 +2,248 @@ import React, { useState, useEffect } from "react";
 import "./EditDetailDesign.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ImgInput from "../ImgInput/ImgInput"; // Import the ImgInput component
 
-function EditDetailForm() {
-  const [imageUpload, setImageUpload] = useState(null);
+function EditDetailForm({ concertId }) {
   const [newShowInfo, setNewShowInfo] = useState({
     title: "",
     introduction: "",
     place: "",
     price: "",
+    concert_row: "",
+    concert_col: "",
   });
-  const [scheduleCount, setScheduleCount] = useState(1);
-  const [timeInfo, setTimeInfo] = useState({
-    start: {
-      date: "",
-      time: "",
-    },
-    end: {
-      date: "",
-      time: "",
-    },
-    schedule: [
-      {
-        date: "",
-        time: "",
-      },
-    ],
-  });
+
+  const [imgUrl, setImgUrl] = useState(""); // State to manage the image URL
+  const [sessionDates, setSessionDates] = useState([]);
+  const [deletedSessions, setDeletedSessions] = useState([]);
+  const [userData, setUserData] = useState("");
 
   const navigate = useNavigate();
 
-  // Fetch data from API when the component is mounted
   useEffect(() => {
     async function fetchConcertData() {
       try {
-        const res = await axios.get("http://localhost:3001/concerts/1");
-        const concertData = res.data[0];
+        const concertRes = await axios.get(
+          `http://localhost:3001/concerts/${concertId}`
+        );
+        const concertData = concertRes.data[0];
 
-        // Update state with fetched data
+        const sessionRes = await axios.get(
+          `http://localhost:3001/sessions/${concertId}/session`
+        );
+        const fetchedSessions = sessionRes.data.map((session) => ({
+          session_id: session.session_id,
+          session_date: session.session_date.replace(" ", "T").slice(0, 16),
+        }));
+
         setNewShowInfo({
-          title: concertData.concert_title,
-          introduction: concertData.concert_plot,
-          place: concertData.concert_location,
-          price: concertData.concert_price,
+          title: concertData.concert_title || "",
+          introduction: concertData.concert_plot || "",
+          place: concertData.concert_location || "",
+          price: concertData.concert_price || "",
+          concert_row: concertData.concert_row || "",
+          concert_col: concertData.concert_col || "",
         });
 
-        // Set schedule data if available
-        setTimeInfo({
-          start: {
-            date: "", // Set this with your start date from database
-            time: "", // Set this with your start time from database
-          },
-          end: {
-            date: "", // Set this with your end date from database
-            time: "", // Set this with your end time from database
-          },
-          schedule: [
-            {
-              date: "2024-05-28", // Replace this with actual schedule date from database
-              time: "09:00", // Replace this with actual schedule time from database
-            },
-          ],
-        });
+        setImgUrl(concertData.concert_img || ""); // Set the image URL if available
+        setSessionDates(fetchedSessions);
+        setUserData(concertData.user_id);
       } catch (error) {
         console.error("Failed to fetch concert data:", error);
       }
     }
 
     fetchConcertData();
-  }, []);
+  }, [concertId]);
 
-  const onChangeAccount = (e) => {
-    setNewShowInfo({
-      ...newShowInfo,
-      [e.target.name]: e.target.value,
-    });
+  const handleInputChange = (e) => {
+    setNewShowInfo({ ...newShowInfo, [e.target.name]: e.target.value });
   };
 
-  const onChangeStartDate = (e) => {
-    const newTimeInfo = {
-      ...timeInfo,
-      start: {
-        ...timeInfo.start,
-        [e.target.name]: e.target.value,
-      },
-    };
-
-    setTimeInfo(newTimeInfo);
+  const handleSessionDateChange = (index, value) => {
+    const updatedSessions = [...sessionDates];
+    updatedSessions[index].session_date = value;
+    setSessionDates(updatedSessions);
   };
 
-  const onChangeEndDate = (e) => {
-    const newTimeInfo = {
-      ...timeInfo,
-      end: {
-        ...timeInfo.end,
-        [e.target.name]: e.target.value,
-      },
-    };
-    setTimeInfo(newTimeInfo);
+  const addSessionDate = () => {
+    setSessionDates([...sessionDates, { session_date: "", session_id: null }]);
   };
 
-  const onChangeSchedule = (e) => {
-    const newSchedule = timeInfo.schedule;
-    newSchedule[Number(e.target.id)] = {
-      ...newSchedule[Number(e.target.id)],
-      [e.target.name]: e.target.value,
-    };
+  const removeSessionDate = (index) => {
+    const updatedSessions = [...sessionDates];
+    const removedSession = updatedSessions.splice(index, 1)[0];
 
-    setTimeInfo({
-      ...timeInfo,
-      schedule: newSchedule,
-    });
-  };
-
-  const onSubtractClick = () => {
-    if (scheduleCount > 1) {
-      setScheduleCount(scheduleCount - 1);
-      const newSchedule = [...timeInfo.schedule];
-      newSchedule.pop();
-      setTimeInfo({
-        ...timeInfo,
-        schedule: newSchedule,
-      });
+    if (removedSession.session_id) {
+      setDeletedSessions([...deletedSessions, removedSession.session_id]);
     }
+
+    setSessionDates(updatedSessions);
   };
 
-  const onButtonClick = () => {
-    register();
-  };
+  const convertDateFormat = (dateTime) => dateTime.replace("T", " ") + ":00";
 
-  const schedules = [];
-  for (let i = 0; i < scheduleCount; i += 1) {
-    schedules.push(
-      <div className="host-create-ticket-date-end" id={i} key={i}>
-        <div className="host-create-ticket-start-text2">
-          {i + 1}공&nbsp;&nbsp;
-        </div>
-        <div className="host-create-date-end-month">
-          <input
-            type="date"
-            name="date"
-            className="select-slection"
-            onChange={onChangeSchedule}
-            id={i}
-            value={timeInfo.schedule[i]?.date || ""}
-          />
-        </div>
-        <div className="host-create-date-end-time">
-          <input
-            type="time"
-            name="time"
-            className="select-slection"
-            onChange={onChangeSchedule}
-            id={i}
-            value={timeInfo.schedule[i]?.time || ""}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  async function register() {
+  // Function to handle updating the concert and session details separately
+  const updateConcertAndSessions = async () => {
     try {
-      const res = await axios.put("http://localhost:3001/concerts/1", {
+      // Update concert details
+      await axios.put(`http://localhost:3001/concerts/${concertId}`, {
         concert_title: newShowInfo.title,
         concert_location: newShowInfo.place,
         concert_price: newShowInfo.price,
-        concert_row: 5, // Adjust as needed
-        concert_col: 10, // Adjust as needed
-        concert_img: null, // Handle image upload if needed
         concert_plot: newShowInfo.introduction,
-        user_id: "user2", // Replace with actual user ID
+        concert_row: newShowInfo.concert_row,
+        concert_col: newShowInfo.concert_col,
+        concert_img: imgUrl, // Include the image URL when updating concert
+        user_id: userData,
       });
 
-      if (res.status === 200 || res.status === 201) {
-        alert("성공적으로 업데이트되었습니다!");
-        navigate("/"); // Redirect to another page if needed
-      } else {
-        alert("업데이트에 실패했습니다.");
-        console.log(res.status);
+      // Update existing sessions, add new sessions, and delete marked sessions
+      for (const session of sessionDates) {
+        if (session.session_id) {
+          await axios.put(
+            `http://localhost:3001/sessions/${concertId}/${session.session_id}`,
+            { session_date: convertDateFormat(session.session_date) }
+          );
+        } else {
+          await axios.post(
+            `http://localhost:3001/sessions/${concertId}/session`,
+            { session_date: convertDateFormat(session.session_date) }
+          );
+        }
       }
+
+      // Delete sessions that are marked for deletion
+      for (const sessionId of deletedSessions) {
+        await axios.delete(
+          `http://localhost:3001/sessions/${concertId}/${sessionId}`
+        );
+      }
+
+      alert("성공적으로 업데이트되었습니다!");
+      navigate("/");
     } catch (error) {
       console.error("업데이트 실패:", error.response?.data || error.message);
-      alert("업데이트에 실패했습니다.");
+      alert(
+        `업데이트에 실패했습니다. 오류 메시지: ${
+          error.response?.data?.message || error.message
+        }`
+      );
     }
-  }
+  };
 
   return (
     <div className="host-create-container">
-      <div className="host-create-left">
-        <input
-          type="file"
-          className="img-get"
-          onChange={(event) => {
-            setImageUpload(event.target.files[0]);
-          }}
-          accept="image/*"
-          multiple
-        />
-        <img
-          src="/images/upload-image.png"
-          alt="업로드"
-          className="upload-image"
-        />
-      </div>
       <div className="host-create-right">
-        <div className="host-create-right-1">
-          <input
-            className="host-create-title"
-            type="text"
-            name="title"
-            placeholder="공연 제목 입력"
-            onChange={onChangeAccount}
-            value={newShowInfo.title}
-          />
-        </div>
-        <div className="host-create-right-2">
-          <div className="host-create-right-2-left">
-            <div className="host-create-input-title">소개</div>
-            <textarea
-              className="host-create-introduction-content"
-              placeholder="소개 입력"
-              name="introduction"
-              onChange={onChangeAccount}
-              value={newShowInfo.introduction}
-            />
-          </div>
-          <div className="host-create-right-2-right">
-            <div className="host-create-place">
-              <div className="host-create-input-title">장소</div>
-              <input
-                type="text"
-                name="place"
-                className="host-create-price-content"
-                placeholder="장소 입력"
-                onChange={onChangeAccount}
-                value={newShowInfo.place}
-              />
-            </div>
-            <div className="host-create-price">
-              <div className="host-create-input-title">가격</div>
-              <input
-                className="host-create-price-content"
-                type="number"
-                step="500"
-                placeholder="가격 입력"
-                name="price"
-                onChange={onChangeAccount}
-                value={newShowInfo.price}
-              />
-            </div>
-          </div>
-        </div>
-        <div className="host-create-right-3">
-          <div className="host-create-ticket-date">
-            <div className="host-create-input-title">예매일정</div>
-            <div className="host-create-ticket-date-end">
-              <div className="host-create-ticket-start-text2">시작</div>
-              <div className="host-create-date-start">
-                <input
-                  type="date"
-                  name="date"
-                  className="select-slection"
-                  onChange={onChangeStartDate}
-                  value={timeInfo.start.date}
-                />
-                <div className="host-create-ticket-start-text">날짜</div>
-              </div>
-              <div className="host-create-date-start-time">
-                <input
-                  type="time"
-                  name="time"
-                  className="select-slection"
-                  onChange={onChangeStartDate}
-                  value={timeInfo.start.time}
-                />
-                <div className="host-create-ticket-start-text">시간</div>
-              </div>
-            </div>
-            <div className="host-create-ticket-date-end">
-              <div className="host-create-ticket-start-text2">마감</div>
-              <div className="host-create-date-end">
-                <input
-                  type="date"
-                  name="date"
-                  className="select-slection"
-                  onChange={onChangeEndDate}
-                  value={timeInfo.end.date}
-                />
-                <div className="host-create-ticket-start-text">날짜</div>
-              </div>
-              <div className="host-create-date-end-time">
-                <input
-                  type="time"
-                  name="time"
-                  className="select-slection"
-                  onChange={onChangeEndDate}
-                  value={timeInfo.end.time}
-                />
-                <div className="host-create-ticket-start-text">시간</div>
-              </div>
-            </div>
-            <div className="host-create-input-title">공연일정</div>
-            <div className="event-function">
-              <div className="event-schedules">{schedules}</div>
-            </div>
-          </div>
-          <div className="host-create-add-buttons">
-            <div className="event-add-button-div">
-              <button
-                type="button"
-                onClick={() => {
-                  setScheduleCount(scheduleCount + 1);
-                  const newScheduleItem = {
-                    date: "",
-                    time: "",
-                  };
-                  const newSchedule = [...timeInfo.schedule, newScheduleItem];
-                  const newTimeInfo = {
-                    ...timeInfo,
-                    schedule: newSchedule,
-                  };
+        <label htmlFor="title" className="host-create-input-title">
+          공연 제목
+        </label>
+        <input
+          className="host-create-title"
+          type="text"
+          name="title"
+          placeholder="공연 제목 입력"
+          value={newShowInfo.title}
+          onChange={handleInputChange}
+        />
 
-                  setTimeInfo(newTimeInfo);
-                }}
-                className="event-add-button"
-              >
-                +&nbsp;&nbsp;&nbsp;&nbsp;열 추가하기
-              </button>
-            </div>
-            <div className="delete-button-space">
+        <label htmlFor="introduction" className="host-create-input-title">
+          공연 소개
+        </label>
+        <textarea
+          className="host-create-introduction-content"
+          name="introduction"
+          placeholder="소개 입력"
+          value={newShowInfo.introduction}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="place" className="host-create-input-title">
+          공연 장소
+        </label>
+        <input
+          className="select-place"
+          type="text"
+          name="place"
+          placeholder="장소 입력"
+          value={newShowInfo.place}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="price" className="host-create-input-title">
+          공연 가격
+        </label>
+        <input
+          className="host-create-price-content"
+          type="number"
+          name="price"
+          placeholder="가격 입력"
+          value={newShowInfo.price}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="concert_row" className="host-create-input-title">
+          공연 Row 수
+        </label>
+        <input
+          className="host-create-row-content"
+          type="number"
+          name="concert_row"
+          placeholder="Rows"
+          value={newShowInfo.concert_row}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="concert_col" className="host-create-input-title">
+          공연 Column 수
+        </label>
+        <input
+          className="host-create-col-content"
+          type="number"
+          name="concert_col"
+          placeholder="Columns"
+          value={newShowInfo.concert_col}
+          onChange={handleInputChange}
+        />
+
+        <label htmlFor="concert_img" className="host-create-input-title">
+          공연 이미지
+        </label>
+        <ImgInput imgUrl={imgUrl} setImgUrl={setImgUrl} />
+
+        <div className="session-dates">
+          <p>세션 날짜</p>
+          {sessionDates.map((session, index) => (
+            <div className="session-date" key={index}>
+              <label htmlFor={`session-datetime-${index}`}>
+                {index + 1} 공연
+              </label>
+              <input
+                id={`session-datetime-${index}`}
+                type="datetime-local"
+                value={session.session_date}
+                onChange={(e) => handleSessionDateChange(index, e.target.value)}
+              />
               <button
-                type="button"
-                onClick={onSubtractClick}
                 className="delete-button"
+                onClick={() => removeSessionDate(index)}
               >
-                삭제
+                제거
               </button>
             </div>
-          </div>
-        </div>
-        <div className="host-create-button-div">
-          <button
-            type="button"
-            className="host-create-button"
-            onClick={onButtonClick}
-          >
-            등록하기
+          ))}
+          <button className="event-add-button" onClick={addSessionDate}>
+            세션 추가
           </button>
         </div>
+
+        <button
+          onClick={updateConcertAndSessions}
+          className="host-create-button"
+        >
+          업데이트 하기
+        </button>
       </div>
     </div>
   );

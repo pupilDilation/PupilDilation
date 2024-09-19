@@ -1,498 +1,173 @@
+/* Container for the entire form */
 .host-create-container {
   width: 100%;
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
-.host-create-left {
-  margin-top: calc(100vw * 41 / 1440);
-  width: 30%;
-}
-
-.upload-image {
-  width: calc(100vw * 280 / 1440);
-  height: calc(100vw * 380 / 1440);
-  position: absolute;
-  left: calc(100vw * 80 / 1440);
-  z-index: 2;
-  cursor: pointer;
-}
-
-input[type="file"]::file-selector-button {
-  width: calc(100vw * 280 / 1440);
-  height: calc(100vw * 380 / 1440);
-  opacity: 0;
-  cursor: pointer;
-  background-color: skyblue;
-  z-index: 3;
-}
-
-.img-get {
-  position: absolute;
-  width: calc(100vw * 280 / 1440);
-  height: calc(100vw * 380 / 1440);
-  left: calc(100vw * 80 / 1440);
-  z-index: 5;
-}
-
+/* Main form container with right-aligned layout */
 .host-create-right {
   display: flex;
   flex-direction: column;
   width: 70%;
-  margin-top: calc(100vw * 44 / 1440);
 }
 
-.host-create-right-1 {
-  display: flex;
-}
-
-.host-create-title {
-  font-size: calc(100vw * 36 / 1440);
-  width: calc(100vw * 448 / 1440);
-  height: calc(100vh * 48 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-}
-
-.host-create-title::placeholder {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 30 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.host-create-right-2 {
-  display: flex;
-  margin-top: calc(100vw * 10 / 1440);
-}
-
-.host-create-input-title {
-  display: flex;
-  color: #000;
-  font-size: calc(100vw * 28 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.host-create-introduction-content:focus {
-  outline-width: 2px;
-  outline-color: var(—theme-red, #ef5455);
-}
-
-.host-create-container input {
-  text-indent: calc(100vw * 10 / 1440);
-}
-
-.host-create-container input:hover {
-  border-width: 2px;
-  border-color: rgba(239, 84, 85, 0.25);
-}
-
-.host-create-container input:focus {
-  outline-width: 2px;
-  outline-color: var(--theme-red, #ef5455);
-}
-
-.host-create-container select {
-  text-indent: calc(100vw * 10 / 1440);
-}
-
-.host-create-container select:hover {
-  border-width: 2px;
-  border-color: rgba(239, 84, 85, 0.25);
-  cursor: pointer;
-}
-
-.host-create-container button:hover {
-  cursor: pointer;
-}
-
-.host-create-container select:focus {
-  outline-width: 2px;
-  outline-color: var(--theme-red, #ef5455);
-}
-
-.host-create-container textarea {
-  text-indent: clac(100vw * 10 / 1440);
-}
-
-.host-create-container textarea:focus {
-  outline-width: 2px;
-  outline-color: var(--theme-red, #ef5455);
-}
-
-.host-create-container textarea:hover {
-  border-width: 2px;
-  border-color: rgba(239, 84, 85, 0.25);
-}
-
-.host-create-introduction-content {
-  width: calc(100vw * 448 / 1440);
-  height: calc(100vh * 306 / 820);
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  font-size: calc(100vw * 24 / 1440);
-  font-family: Noto Sans KR;
-}
-
-.host-create-introduction-content::placeholder {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 24 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -1.08px;
-}
-
-.host-create-right-2-right {
-  margin-left: calc(100vw * 40 / 1440);
-}
-
-.host-create-place {
-  margin-bottom: calc(100vh * 20 / 820);
-}
-
-.host-create-place-title {
-  display: flex;
-}
-
-.host-create-price {
-  margin-bottom: calc(100vh * 20 / 820);
-}
-
+/* Input fields styling */
+.host-create-title,
+.select-place,
 .host-create-price-content {
-  width: calc(100vw * 329 / 1440);
-  height: calc(100vh * 48 / 820);
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 24 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -1.08px;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.host-create-bank {
-  margin-bottom: calc(100vh * 20 / 820);
+.host-create-title::placeholder,
+.select-place::placeholder,
+.host-create-price-content::placeholder {
+  color: rgba(0, 0, 0, 0.5);
 }
 
-.host-create-bank-set {
-  display: flex;
-  flex-direction: column;
+/* Focus effect for input fields */
+.host-create-title:focus,
+.select-place:focus,
+.host-create-price-content:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-.host-create-bank-name {
-  margin-bottom: calc(100vh * 8 / 820);
-  width: calc(100vw * 329 / 1440);
-  height: calc(100vh * 48 / 820);
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 24 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -1.08px;
-}
-
-.host-create-place-title {
-  display: flex;
-  color: #000;
-  font-size: calc(100vw * 32 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
+/* Title styling for input labels */
+.host-create-input-title {
+  font-size: 18px;
   font-weight: 500;
-  line-height: normal;
+  margin-bottom: 5px;
 }
 
-.host-create-price-title {
-  display: flex;
-  color: #000;
-  font-size: calc(100vw * 32 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+/* Textarea styling for introductions */
+.host-create-introduction-content {
+  width: 100%;
+  padding: 10px;
+  height: 100px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.host-create-ticket-date-start {
-  display: flex;
-  margin-bottom: calc(100vh * 8 / 820);
+/* Focus effect for textarea */
+.host-create-introduction-content:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-.host-create-date-start-month {
-  margin-left: calc(100vw * 25 / 1440);
-  display: flex;
+/* Section for ticket dates */
+.host-create-ticket-date {
+  margin-top: 20px;
 }
 
-.host-create-ticket-start-text2 {
-  width: calc(100vw * 100 / 1440);
-  height: calc(100vh * 36 / 820);
-  display: flex;
-  align-items: center;
-  color: #000;
-  font-size: calc(100vw * 22 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.host-create-date {
-  margin-top: calc(100vw * 15 / 1440);
-  display: flex;
-  width: 270px;
-  height: 48px;
-  flex-shrink: 0;
-  color: #000;
-  font-size: calc(100vw * 32 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.host-create-ticket-start-text {
-  height: calc(100vh * 36 / 820);
-  width: calc(100vw * 40 / 1440);
-  margin-right: calc(100vw * 15 / 1440);
-  font-size: calc(100vw * 17 / 1440);
-  display: flex;
-  align-items: center;
-}
-
-.select-slection {
-  width: calc(100vw * 200 / 1440);
-  height: calc(100vh * 46 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 17 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.select-day-start {
-  width: calc(100vw * 80 / 1440);
-  height: clac(100vh * 36 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 20 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.select-dayOfWeek-start {
-  width: calc(100vw * 80 / 1440);
-  height: calc(100vh * 36 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 20 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.select-month-end {
-  width: calc(100vw * 80 / 1440);
-  height: calc(100vh * 36 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 20 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.select-place {
-  width: calc(100vw * 330 / 1440);
-  height: calc(100vh * 48 / 820);
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 24 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -1.08px;
-}
-
-.select-day-end {
-  width: calc(100vw * 80 / 1440);
-  height: calc(100vh * 36 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 20 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.select-dayOfWeek-end {
-  width: calc(100vw * 80 / 1440);
-  height: calc(100vh * 36 / 820);
-  border-radius: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  color: #000;
-  font-size: calc(100vw * 20 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.host-create-date-start-day {
-  display: flex;
-}
-
-.host-create-date-start-dayOfWeek {
-  display: flex;
-}
-
+/* Styling for ticket date inputs */
 .host-create-ticket-date-end {
   display: flex;
-  margin-bottom: calc(100vh * 8 / 820);
-}
-
-.host-create-date-end-month {
-  margin-left: calc(100vw * 25 / 1440);
-  display: flex;
-}
-
-.host-create-date-end-day {
-  display: flex;
-}
-
-.host-create-date-end-dayOfWeek {
-  display: flex;
-}
-
-.host-create-date-start-time {
-  margin-left: calc(100vw * 20 / 1440);
-  width: calc(100vw * 265 / 1440);
-  height: calc(100vh * 36 / 820);
-  font-size: calc(100vw * 24 / 1440);
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 0px solid rgba(0, 0, 0, 0.6);
-}
-
-.host-create-date-start-time::placeholder {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 20 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -1.08px;
-}
-
-.host-create-date-end-time {
-  margin-left: calc(100vw * 20 / 1440);
-  width: calc(100vw * 250 / 1440);
-  height: calc(100vh * 36 / 820);
-  flex-shrink: 0;
-  border-radius: 7px;
-  border: 0px solid rgba(0, 0, 0, 0.6);
-}
-
-.host-create-date-end-time::placeholder {
-  color: rgba(0, 0, 0, 0.55);
-  font-size: calc(100vw * 24 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  letter-spacing: -1.08px;
-}
-
-.host-create-add-buttons {
-  display: flex;
-}
-
-.host-create-button {
-  margin-left: calc(100vw * 190 / 1440);
-  margin-top: calc(100vh * 24 / 820);
-  margin-bottom: calc(100vw * 28 / 1440);
-  width: calc(100vw * 448 / 1440);
-  height: calc(100vh * 82 / 820);
-  flex-shrink: 0;
-  color: #fad744;
-  text-align: center;
-  font-size: calc(100vw * 32 / 1440);
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  background-color: #2b3252;
-  border-radius: 45px;
-}
-
-.event-add-button {
-  display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: calc(100vw * 212 / 1440);
-  height: calc(100vh * 48 / 820);
-  flex-shrink: 0;
-  border-radius: 7px;
-  background: #231f20;
+  margin-bottom: 10px;
+}
+
+.host-create-ticket-date-end input {
+  width: 48%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect for date inputs */
+.host-create-ticket-date-end input:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Button for adding sessions */
+.event-add-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
   color: white;
-  font-family: Noto Sans KR;
-  font-weight: 400;
-  font-size: calc(100vw * 18 / 1440);
-  line-height: normal;
-}
-
-.event-add-button-div {
-  width: 50%;
-  display: flex;
-  justify-content: start;
-}
-
-.event-delete-button {
-  display: flex;
-  text-align: end;
   border: none;
-  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
-.delete-button-space {
-  display: flex;
-  margin-left: calc(100vw * 285 / 1440);
-  justify-content: end;
+.event-add-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.event-schedules {
-  display: flex;
-  flex-direction: column;
+.event-add-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.5);
 }
 
-.event-function {
-  display: flex;
-  height: auto;
+/* Main submit button styling */
+.host-create-button {
+  padding: 15px;
+  background-color: #2b3252;
+  color: #fad744;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.host-create-button:hover {
+  background-color: #1f2842;
+  transform: scale(1.05);
+}
+
+/* Delete button with pastel styling */
+.delete-button {
+  padding: 8px 12px;
+  background-color: #f8d7da;
+  color: #d9534f;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.delete-button:hover {
+  background-color: #f5c6cb;
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.delete-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.5);
+}
+
+/* General button styling to remove outlines and apply disabled styles */
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
 }

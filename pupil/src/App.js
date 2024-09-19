@@ -10,7 +10,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
 import SeatSelection from "./components/Seat/SeatSelection";
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
-import EidtConcert from "./components/EditDetail/EditDetailForm";
+import EditDetailPage from "./pages/EditDetailPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "./slice/loginSlice";
@@ -63,7 +63,10 @@ function App() {
                   element={<PaymentPage />}
                 ></Route>
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
-                <Route path="/editdetail" element={<EidtConcert />}></Route>
+                <Route
+                  path="/editdetail/:concertId"
+                  element={<EditDetailPage />}
+                ></Route>
                 <Route
                   path="/scanner/:sessionId"
                   element={<ScannerPage></ScannerPage>}
