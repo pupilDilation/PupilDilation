@@ -45,28 +45,32 @@ function ClubSlider() {
   };
 
   return (
-    <Swiper
-      modules={[Navigation, Pagination]}
-      autoHeight
-      spaceBetween={20}
-      slidesPerView={3}
-      style={SWIPER_STYLE}
-    >
-      {clubs.length > 0 ? (
-        clubs.map((item) => {
-          const randomColor = colors[Math.floor(Math.random() * colors.length)];
-          return (
-            <SwiperSlide key={item.club_id} className={styles.swiperSlide}>
-              <ClubSlide item={item} bgColor={randomColor} />
-            </SwiperSlide>
-          );
-        })
-      ) : (
-        <SwiperSlide>
-          <div>No clubs available</div>
-        </SwiperSlide>
-      )}
-    </Swiper>
+    <div>
+      <h2 className={styles.sectionTitle}>동아리 목록</h2>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        autoHeight
+        spaceBetween={20}
+        slidesPerView={3}
+        style={SWIPER_STYLE}
+      >
+        {clubs.length > 0 ? (
+          clubs.map((item) => {
+            const randomColor =
+              colors[Math.floor(Math.random() * colors.length)];
+            return (
+              <SwiperSlide key={item.club_id} className={styles.swiperSlide}>
+                <ClubSlide item={item} bgColor={randomColor} />
+              </SwiperSlide>
+            );
+          })
+        ) : (
+          <SwiperSlide>
+            <div>No clubs available</div>
+          </SwiperSlide>
+        )}
+      </Swiper>
+    </div>
   );
 }
 
