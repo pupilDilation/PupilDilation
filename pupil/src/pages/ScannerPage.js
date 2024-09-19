@@ -5,7 +5,7 @@ function ScannerPage({}) {
   const { concertId } = useParams();
   return (
     <>
-      <Scanner sessionId={concertId}></Scanner>
+      <Scanner concertId={concertId}></Scanner>
     </>
   );
 }
