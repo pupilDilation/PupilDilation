@@ -1,3 +1,4 @@
+const session = require("express-session");
 const reservationModel = require("../models/reservationModel");
 const { v4: uuidv4 } = require("uuid");
 
@@ -145,6 +146,35 @@ const getReservationBySessionId = async (req, res) => {
   }
 };
 
+const scannerCheck = async (req, res) => {
+  const { concert_id, rsv_uuid } = req.params;
+  const concertIdNumber = Number(concert_id);
+  try {
+    const { session_id } = await reservationModel.getSessionByUUID(rsv_uuid);
+    if (!session_id) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Session id Not Found." });
+    }
+    const { concert_id: concertId } =
+      await reservationModel.getConcertBySessionId(session_id);
+
+    if (concertIdNumber === concertId) {
+      return res.json({
+        success: true,
+        concert_id: concertId,
+        message: "ConcertId Fetching Success.",
+      });
+    }
+    res.status(404).json({ success: false, message: "Conceert id Not Found." });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: error, message: "Internal Server Error: " + error });
+    console.log(error);
+  }
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
@@ -152,4 +182,5 @@ module.exports = {
   deleteReservationByUserId,
   checkReservation,
   getReservationBySessionId,
+  scannerCheck,
 };

@@ -18,12 +18,15 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px; /* Add space below the title */
 }
 
+.showReservationBtn {
+  background-color: #4caf50; /* Primary button color */
+}
 .buttonContainer {
   display: flex;
   gap: 10px; /* Add spacing between buttons */
@@ -34,12 +37,22 @@
 .editButton {
   background-color: #4caf50;
   color: white;
-  padding: 10px 20px;
+  padding: 5px 20px;
   font-size: 1rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.showReservationBtn:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 .scannerButton:hover,
@@ -51,4 +64,10 @@
 .scannerButton:focus,
 .editButton:focus {
   outline: none;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

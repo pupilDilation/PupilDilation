@@ -68,7 +68,7 @@ function App() {
                   element={<EditDetailPage />}
                 ></Route>
                 <Route
-                  path="/scanner/:sessionId"
+                  path="/scanner/:concertId"
                   element={<ScannerPage></ScannerPage>}
                 ></Route>
                 <Route
