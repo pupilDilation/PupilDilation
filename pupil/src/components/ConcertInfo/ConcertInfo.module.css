@@ -26,6 +26,7 @@
 
 .showReservationBtn {
   background-color: #4caf50; /* Primary button color */
+}
 .buttonContainer {
   display: flex;
   gap: 10px; /* Add spacing between buttons */
@@ -54,7 +55,6 @@
   transform: scale(1.05); /* Slight zoom on hover */
 }
 
-.showReservationBtn:focus {
 .scannerButton:hover,
 .editButton:hover {
   background-color: #45a049;
