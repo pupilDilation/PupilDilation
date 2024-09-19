@@ -42,7 +42,6 @@
 .secondHeaderLogoContainer {
   display: flex;
   align-items: center;
-  margin-left: 1rem; /* 마진을 rem 단위로 변경 */
 }
 
 .secondHeaderLogo {
