@@ -5,13 +5,22 @@
   margin-left: 15px;
 }
 
+/* title */
+.sectionTitle {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* 타이틀 색상 */
+  letter-spacing: 2px;
+  position: relative;
+  margin-top: 10px;
+}
+
 /* SwiperSlide styles */
 .swiperSlide {
   width: 40%;
   height: auto;
-}
-.sliderContainer {
-  width: 100%;
 }
 .sliderContainer img {
   width: 100%;
@@ -23,19 +32,28 @@
 
 /* SwiperSlide content styles */
 .sliderContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.sliderContainer:hover {
+  transform: scale(1.05);
 }
 
 .sliderImgContainer img {
+  object-fit: cover;
   width: 100%;
   border-radius: 15px;
+  height: 200px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .slideInfo {
-  padding: 0 4px 0 4px;
+  /* padding: 0 4px 0 4px; */
+  padding: 10px 10px;
   width: 100%;
   text-align: left;
 }
@@ -54,19 +72,41 @@
   color: gray;
 }
 
-.slideButtonContainer {
+.clubSliderContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  transition: transform 0.3s ease;
 }
-.slideButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2rem;
+
+.clubSliderContainer:hover {
+  transform: scale(1.05);
+}
+
+.clubName {
+  font-size: 14px; /* 동아리 이름을 작게 표시 */
+  font-weight: bold;
+  margin-bottom: 4px;
   text-align: center;
-  height: 3rem;
-  width: 15rem;
-  border: none;
-  cursor: pointer;
+}
+
+.clubSliderImgContainer img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%; /* 둥근 모양으로 설정 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .clubName {
+    font-size: 12px; /* 모바일에서 글자 크기 조정 */
+  }
+}
+
+.divider {
+  width: 100%;
+  height: 4px;
+  background-color: #e0e0e0; /* 두꺼운 회색선 */
+  margin: 0 15px 0 0;
 }

@@ -48,27 +48,30 @@ function Slider() {
   };
 
   return (
-    <Swiper
-      modules={[Navigation, Pagination]}
-      autoHeight
-      spaceBetween={15}
-      slidesPerView={3}
-      style={SWIPER_STYLE}
-    >
-      {concerts.length > 0 ? (
-        concerts.map((item) => (
-          <SwiperSlide
-            key={item.concert_id}
-            className={styles.swiperSlide}
-            onClick={() => handleSlideClick(item.concert_id, item.user_id)} // Add click handler
-          >
-            <Slide item={item} />
-          </SwiperSlide>
-        ))
-      ) : (
-        <div>No concerts available</div>
-      )}
-    </Swiper>
+    <div>
+      <h2 className={styles.sectionTitle}>공연 목록</h2>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        autoHeight
+        spaceBetween={20}
+        slidesPerView={3}
+        style={SWIPER_STYLE}
+      >
+        {concerts.length > 0 ? (
+          concerts.map((item) => (
+            <SwiperSlide
+              key={item.concert_id}
+              className={styles.swiperSlide}
+              onClick={() => handleSlideClick(item.concert_id, item.user_id)} // Add click handler
+            >
+              <Slide item={item} />
+            </SwiperSlide>
+          ))
+        ) : (
+          <div>No concerts available</div>
+        )}
+      </Swiper>
+    </div>
   );
 }
 
