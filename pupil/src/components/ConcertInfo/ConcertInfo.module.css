@@ -1,44 +1,54 @@
+/* ConcertInfo.module.css */
 .container {
-  width: 100%; /* Full width */
-  max-width: 800px; /* Limit the max width */
-  padding: 20px; /* Better padding for readability */
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 12px; /* Softer border */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  margin-top: 20px;
-  background-color: #ffffff; /* Light background color */
-  transition: box-shadow 0.3s ease; /* Add transition for hover */
-  margin-bottom: 40px; /* Adds space between this component and the next or footer */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align items to the start */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Center the container and add spacing */
+  background-color: #ffffff;
+  transition: box-shadow 0.3s ease;
 }
 
 .container:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #333; /* Darker font color for contrast */
+  color: #333;
+  margin-bottom: 10px; /* Add space below the title */
 }
 
-.scannerButton {
-  background-color: #4caf50; /* Primary button color */
+.buttonContainer {
+  display: flex;
+  gap: 10px; /* Add spacing between buttons */
+  margin-top: 10px; /* Add spacing between title and buttons */
+}
+
+.scannerButton,
+.editButton {
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   font-size: 1rem;
   border: none;
-  border-radius: 8px; /* Softer corners */
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.scannerButton:hover {
-  background-color: #45a049; /* Darker green on hover */
-  transform: scale(1.05); /* Slight zoom on hover */
+.scannerButton:hover,
+.editButton:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
 }
 
-.scannerButton:focus {
+.scannerButton:focus,
+.editButton:focus {
   outline: none;
 }

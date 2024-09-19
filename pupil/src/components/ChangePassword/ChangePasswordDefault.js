@@ -29,12 +29,15 @@ function ChangePasswordDefault() {
         <input
           id="id"
           type="text"
+          className={passwordStyles.input}
           value={id}
           onChange={(e) => {
             setId(e.target.value);
           }}
         />
-        <button onClick={changePasswordClick}>이메일 전송!</button>
+        <button className={passwordStyles.button} onClick={changePasswordClick}>
+          이메일 전송!
+        </button>
       </div>
     </div>
   );
