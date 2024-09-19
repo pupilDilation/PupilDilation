@@ -11,7 +11,7 @@ function Scanner({ concertId }) {
   const videoRef = useRef(null);
 
   const handleScan = async (result) => {
-    setData(result);
+    setData(result.data);
     try {
       const response = await axios.get("http://localhost:3001/reservations", {
         rsv_uuid: data,
@@ -27,8 +27,35 @@ function Scanner({ concertId }) {
     }
   };
 
+  const handleScan2 = async (result) => {
+    setData(result.data);
+  };
+
+  const checkScanner = async (uuid) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3001/reservations/scanner/${concertId}/${uuid}`
+      );
+      if (res.data.concert_id) {
+        setScanSuccess(
+          res.data.concert_id === Number(concertId) ? true : false
+        );
+        return;
+      } else {
+        setScanSuccess(false);
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const qrScanner = new QrScanner(videoRef.current, handleScan, {
+    checkScanner(data);
+  }, [data]);
+
+  useEffect(() => {
+    const qrScanner = new QrScanner(videoRef.current, handleScan2, {
       onDecodeError: (error) => console.error(error),
       highlightScanRegion: true,
     });
@@ -50,7 +77,11 @@ function Scanner({ concertId }) {
         )}
       </div>
       <p>스캔 결과: {data}</p>
-      {scanSuccess ? <div>success!</div> : <div>failed!</div>}
+      {scanSuccess ? (
+        <div className={styles.successMessage}>success!</div>
+      ) : (
+        <div>공연정보가 일치하지 않거나 존재하지 않는 티켓입니다.</div>
+      )}
     </div>
   );
 }
