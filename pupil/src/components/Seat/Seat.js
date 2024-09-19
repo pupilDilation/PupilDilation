@@ -7,7 +7,11 @@ function Seat({ seatNumber, seatStatus, onSelect, isAdmin = false }) {
   const isSelected = selectedSeats.includes(seatNumber);
 
   const handleClick = () => {
-    if (seatStatus !== "reserved" && seatStatus !== "disabled") {
+    if (
+      seatStatus !== "reserved" &&
+      seatStatus !== "disabled" &&
+      seatStatus !== "progress"
+    ) {
       onSelect(seatNumber);
     }
   };

@@ -11,6 +11,7 @@ function ReservationListPage() {
   const [selectedSessionId, setSelectedSessionId] = useState(null); // New state for session ID
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [noReservations, setNoReservations] = useState(false); // New state for empty reservations
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -49,12 +50,26 @@ function ReservationListPage() {
         const reservationResponse = await axios.get(
           `http://localhost:3001/reservations/session/${selectedSessionId}`
         );
-        setReservations(reservationResponse.data.reservations);
 
+        // Check if there are no reservations
+        if (reservationResponse.data.reservations.length === 0) {
+          setNoReservations(true); // Set the no reservations flag
+        } else {
+          setNoReservations(false);
+        }
+
+        setReservations(reservationResponse.data.reservations);
         setLoading(false);
       } catch (error) {
-        setLoading(false);
-        setError(error.message || "An error occurred while fetching data");
+        if (error.response?.status === 404) {
+          // Handle 404 error as "no reservations" rather than a failure
+          setNoReservations(true);
+          setReservations([]);
+          setLoading(false);
+        } else {
+          setLoading(false);
+          setError(error.message || "An error occurred while fetching data");
+        }
       }
     };
 
@@ -88,7 +103,11 @@ function ReservationListPage() {
         </select>
       </div>
 
-      <ReservationListForm reservations={reservations} />
+      {noReservations ? (
+        <p className={styles.noReservationsMessage}>예약이 아직 없습니다.</p>
+      ) : (
+        <ReservationListForm reservations={reservations} />
+      )}
     </div>
   );
 }
