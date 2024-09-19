@@ -32,7 +32,7 @@ function SeatTypeInfo() {
         ></div>
         <div>예매 완료</div>
       </div>
-      <div className={SeatTypeStyle.seatTypeContent}>
+      {/* <div className={SeatTypeStyle.seatTypeContent}>
         <div
           className={useClassNameJoin(
             SeatTypeStyle.unavailBox,
@@ -40,7 +40,7 @@ function SeatTypeInfo() {
           )}
         ></div>
         <div>선택불가</div>
-      </div>
+      </div> */}
       <div className={SeatTypeStyle.seatTypeContent}>
         <div
           className={useClassNameJoin(
