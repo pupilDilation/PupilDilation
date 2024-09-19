@@ -65,6 +65,22 @@ const getReservationBySessionId = async (sessionId) => {
   return rows;
 };
 
+const getSessionByUUID = async (uuid) => {
+  const [rows] = await db.query(
+    "SELECT session_id FROM reservation WHERE rsv_uuid = ?",
+    [uuid]
+  );
+  return rows[0];
+};
+
+const getConcertBySessionId = async (sessionId) => {
+  const [rows] = await db.query(
+    "SELECT concert_id FROM session WHERE session_id = ?",
+    [sessionId]
+  );
+  return rows[0];
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
@@ -72,4 +88,6 @@ module.exports = {
   deleteReservationByUserId,
   checkReservation,
   getReservationBySessionId,
+  getSessionByUUID,
+  getConcertBySessionId,
 };
