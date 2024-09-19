@@ -68,6 +68,7 @@ function Ticket(props) {
             <QRCodeSVG
               className={TicketStyles.qrCode}
               onClick={toggleQR}
+              value={props.uuid}
             ></QRCodeSVG>
             <Button className={TicketStyles.refundButton}>환불</Button>
             <Link
@@ -82,7 +83,10 @@ function Ticket(props) {
       {isQRCodeExpanded && (
         <div className={TicketStyles.qrOverlay} onClick={handleCloseQr}>
           <div className={TicketStyles.qrCodeExpanded}>
-            <QRCodeSVG className={TicketStyles.qrCode2}></QRCodeSVG>
+            <QRCodeSVG
+              value={props.uuid}
+              className={TicketStyles.qrCode2}
+            ></QRCodeSVG>
           </div>
         </div>
       )}
