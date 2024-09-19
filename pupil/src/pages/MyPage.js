@@ -182,6 +182,7 @@ function MyPage() {
               title={concertQueries[index]?.data?.concert_title || "제목"}
               date={formattedDate}
               time={formattedTime}
+              uuid={reservationsQuery.data[index].rsv_uuid}
               payment={
                 reservationsQuery.data[index]?.payment_status || "결제상태"
               }
