@@ -11,7 +11,9 @@ function AdminAccountController() {
 
   async function getAdminUser() {
     try {
-      const res = await axios.get("http://localhost:3001/users/admins/get");
+      const res = await axios.get(
+        "http://cndlsrb2739.iptime.org:3000/users/admins/get"
+      );
       if (res.data.length > 0) {
         setAdmins(res.data);
       }
@@ -88,7 +90,7 @@ function AdminAccountController() {
     }
     try {
       const res = await axios.post(
-        "http://localhost:3001/club/create/club",
+        "http://cndlsrb2739.iptime.org:3000/club/create/club",
         {
           id: inputForm.id,
           password: inputForm.password,

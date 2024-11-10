@@ -21,7 +21,7 @@ function AdminCard({ id, name, phone, email }) {
   async function deleteAdmin() {
     try {
       const res = await axios.delete(
-        `http://localhost:3001/auth/admindelete/${id}`
+        `http://cndlsrb2739.iptime.org:3000/auth/admindelete/${id}`
       );
       if (res.data.success) {
         return true;

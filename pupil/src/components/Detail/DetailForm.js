@@ -22,8 +22,10 @@ function DetailForm() {
     const fetchConcertDetails = async () => {
       try {
         const [concertResponse, sessionsResponse] = await Promise.all([
-          axios.get(`http://localhost:3001/concerts/${concertId}`),
-          axios.get(`http://localhost:3001/sessions/${concertId}/session`),
+          axios.get(`http://cndlsrb2739.iptime.org:3000/concerts/${concertId}`),
+          axios.get(
+            `http://cndlsrb2739.iptime.org:3000/sessions/${concertId}/session`
+          ),
         ]);
 
         setConcert(concertResponse.data[0]);

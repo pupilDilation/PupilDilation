@@ -11,7 +11,7 @@ function ClubDetail() {
   async function getClubDetail() {
     try {
       const res = await axios.get(
-        `http://localhost:3001/club/clubid/${clubId}`
+        `http://cndlsrb2739.iptime.org:3000/club/clubid/${clubId}`
       );
       if (res.status === 404) {
         alert("존재하지 않는 club입니다!");

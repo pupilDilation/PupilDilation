@@ -21,9 +21,12 @@ function MyPage() {
   const authQuery = useQuery({
     queryKey: ["auth"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:3001/auth/checkAuth", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "http://cndlsrb2739.iptime.org:3000/auth/checkAuth",
+        {
+          withCredentials: true,
+        }
+      );
       return response.data;
     },
   });
@@ -35,7 +38,9 @@ function MyPage() {
   const userQuery = useQuery({
     queryKey: ["user", userId],
     queryFn: async () => {
-      const response = await axios.get(`http://localhost:3001/users/${userId}`);
+      const response = await axios.get(
+        `http://cndlsrb2739.iptime.org:3000/users/${userId}`
+      );
       return response.data;
     },
     enabled: !!userId,
@@ -47,7 +52,7 @@ function MyPage() {
     queryFn: async () => {
       if (userType === "user") {
         const response = await axios.get(
-          `http://localhost:3001/reservations/${userId}`
+          `http://cndlsrb2739.iptime.org:3000/reservations/${userId}`
         );
         return response.data.reservations;
       }
@@ -64,7 +69,7 @@ function MyPage() {
             queryKey: ["session", reservation.session_id],
             queryFn: async () => {
               const response = await axios.get(
-                `http://localhost:3001/sessions/${reservation.session_id}`
+                `http://cndlsrb2739.iptime.org:3000/sessions/${reservation.session_id}`
               );
               return response.data;
             },
@@ -82,7 +87,7 @@ function MyPage() {
               queryKey: ["concerts", userId],
               queryFn: async () => {
                 const response = await axios.get(
-                  `http://localhost:3001/concerts/user/${userId}`
+                  `http://cndlsrb2739.iptime.org:3000/concerts/user/${userId}`
                 );
                 return response.data;
               },
@@ -92,7 +97,7 @@ function MyPage() {
         : userType === "user"
         ? sessionQueries.map((sessionQuery, index) => {
             const session = sessionQuery.data;
-            const url = `http://localhost:3001/concerts/${session?.concert_id}`;
+            const url = `http://cndlsrb2739.iptime.org:3000/concerts/${session?.concert_id}`;
 
             return {
               queryKey: ["concert", session?.concert_id],

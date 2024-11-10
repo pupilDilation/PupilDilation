@@ -20,9 +20,12 @@ function PaymentPage() {
   const { data: authData } = useQuery({
     queryKey: ["auth"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:3001/auth/checkAuth", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "http://cndlsrb2739.iptime.org:3000/auth/checkAuth",
+        {
+          withCredentials: true,
+        }
+      );
       return response.data;
     },
   });
@@ -34,7 +37,7 @@ function PaymentPage() {
     queryKey: ["sessionInfo", sessionId],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:3001/sessions/${sessionId}`
+        `http://cndlsrb2739.iptime.org:3000/sessions/${sessionId}`
       );
       return response.data;
     },
@@ -46,7 +49,7 @@ function PaymentPage() {
     queryKey: ["concertInfo", concertId],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:3001/concerts/${concertId}`
+        `http://cndlsrb2739.iptime.org:3000/concerts/${concertId}`
       );
       return response.data[0];
     },
@@ -58,7 +61,7 @@ function PaymentPage() {
     queryKey: ["reservationInfo", userId],
     queryFn: async () => {
       const response = await axios.get(
-        `http://localhost:3001/reservations/${userId}`
+        `http://cndlsrb2739.iptime.org:3000/reservations/${userId}`
       );
       return response.data;
     },
@@ -86,16 +89,19 @@ function PaymentPage() {
     try {
       // Reserve each selected seat
       const seatPromises = selectedSeats.map((seatNumber) =>
-        axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
-          seatNumber,
-          seatStatus: "reserved",
-        })
+        axios.put(
+          `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`,
+          {
+            seatNumber,
+            seatStatus: "reserved",
+          }
+        )
       );
       await Promise.all(seatPromises);
 
       // Fetch the updated seat status
       const seatResponse = await axios.get(
-        `http://localhost:3001/seats/session/${sessionId}`
+        `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`
       );
       const { success } = seatResponse.data;
 
@@ -103,7 +109,7 @@ function PaymentPage() {
         // For each seat, create a reservation entry
         const reservationPromises = selectedSeats.map(async (seatNumber) => {
           await axios.post(
-            `http://localhost:3001/reservations/${userId}`, // Create a reservation
+            `http://cndlsrb2739.iptime.org:3000/reservations/${userId}`, // Create a reservation
             {
               session_id: sessionId,
               seat_id: seatNumber,

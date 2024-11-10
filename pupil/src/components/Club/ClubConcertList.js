@@ -10,7 +10,7 @@ function ClubConcertList() {
   async function getConcertsByClubId() {
     try {
       const res = await axios.get(
-        `http://localhost:3001/concerts/club/${clubId}`
+        `http://cndlsrb2739.iptime.org:3000/concerts/club/${clubId}`
       );
       console.log(res);
       if (res.data.success) {

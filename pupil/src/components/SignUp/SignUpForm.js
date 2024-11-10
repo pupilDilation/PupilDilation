@@ -87,13 +87,16 @@ function SignUpForm() {
 
   async function register(e) {
     try {
-      const res = await axios.post("http://localhost:3001/auth/register", {
-        id: id,
-        password: pw,
-        name: name,
-        email: email,
-        phone: phone,
-      });
+      const res = await axios.post(
+        "http://cndlsrb2739.iptime.org:3000/auth/register",
+        {
+          id: id,
+          password: pw,
+          name: name,
+          email: email,
+          phone: phone,
+        }
+      );
       if (res.data.success) {
         alert("register success");
         dispatch(resetAll());

@@ -28,10 +28,13 @@ function ChangePassword() {
     if (pw != pwChk) return;
 
     try {
-      const res = await axios.put("http://localhost:3001/auth/changepassword", {
-        uuid: uuid,
-        pw: pw,
-      });
+      const res = await axios.put(
+        "http://cndlsrb2739.iptime.org:3000/auth/changepassword",
+        {
+          uuid: uuid,
+          pw: pw,
+        }
+      );
       if (res.data.success) {
         alert("비밀번호가 성공적으로 변경되었습니다!");
         navigate("/");

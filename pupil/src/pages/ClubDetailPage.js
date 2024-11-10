@@ -10,7 +10,9 @@ function ClubDetailPage() {
   const [club, setClub] = useState({});
   async function getClubById() {
     try {
-      const response = await axios.get(`http://localhost:3001/club/${clubId}`);
+      const response = await axios.get(
+        `http://cndlsrb2739.iptime.org:3000/club/${clubId}`
+      );
       setClub(response.data[0]);
     } catch (error) {
       console.error("Error fetching club data:", error);

@@ -34,7 +34,7 @@ function LoginForm() {
   async function loginClicked() {
     try {
       const res = await axios.post(
-        "http://localhost:3001/auth/login",
+        "http://cndlsrb2739.iptime.org:3000/auth/login",
         {
           userId: id,
           password: password,

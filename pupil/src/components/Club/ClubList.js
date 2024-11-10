@@ -8,7 +8,9 @@ function ClubList() {
   useEffect(() => {
     async function getClubs() {
       try {
-        const response = await axios.get("http://localhost:3001/club");
+        const response = await axios.get(
+          "http://cndlsrb2739.iptime.org:3000/club"
+        );
         setClubs(response.data);
       } catch (error) {
         console.error(error);
