@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const db = require("../config/dbConfig");
 const { v4: uuidv4 } = require("uuid");
 const router = express.Router();
+require("dotenv").config();
 
 const nodemailer = require("nodemailer");
 const { setDefaultHighWaterMark } = require("nodemailer/lib/xoauth2");
@@ -13,8 +14,8 @@ const transporter = nodemailer.createTransport({
   secure: true,
   port: 465,
   auth: {
-    user: "cra2024.2048@gmail.com",
-    pass: "yrmm nekh tejf rngy",
+    user: process.env.EMAIL_ID,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
