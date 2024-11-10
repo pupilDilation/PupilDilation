@@ -2,7 +2,7 @@ const db = require("../config/dbConfig");
 
 const getReservationByUserId = async (userId) => {
   const [rows] = await db.query(
-    "SELECT rsv_id, user_id, session_id, seat_id, payment_status FROM reservation WHERE user_id = ?",
+    "SELECT rsv_id, user_id, session_id, seat_id, payment_status, rsv_uuid FROM reservation WHERE user_id = ?",
     [userId]
   );
   return rows;
@@ -57,10 +57,37 @@ const checkReservation = async (rsvUUID) => {
   return result;
 };
 
+const getReservationBySessionId = async (sessionId) => {
+  const [rows] = await db.query(
+    "SELECT rsv_id, user_id, seat_id, payment_status FROM reservation WHERE session_id = ?",
+    [sessionId]
+  );
+  return rows;
+};
+
+const getSessionByUUID = async (uuid) => {
+  const [rows] = await db.query(
+    "SELECT session_id FROM reservation WHERE rsv_uuid = ?",
+    [uuid]
+  );
+  return rows[0];
+};
+
+const getConcertBySessionId = async (sessionId) => {
+  const [rows] = await db.query(
+    "SELECT concert_id FROM session WHERE session_id = ?",
+    [sessionId]
+  );
+  return rows[0];
+};
+
 module.exports = {
   getReservationByUserId,
   postReservationByUserId,
   putReservationByUserId,
   deleteReservationByUserId,
   checkReservation,
+  getReservationBySessionId,
+  getSessionByUUID,
+  getConcertBySessionId,
 };

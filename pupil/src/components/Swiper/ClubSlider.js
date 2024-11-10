@@ -40,34 +40,37 @@ function ClubSlider() {
   const SWIPER_STYLE = {
     width: "100%",
     marginTop: "15px",
-    height: "auto",
+    height: "200px",
+    display: "flex",
   };
 
   return (
-    <Swiper
-      modules={[Navigation, Pagination]}
-      autoHeight
-      spaceBetween={15}
-      slidesPerView={5}
-      style={SWIPER_STYLE}
-      navigation
-      pagination={{ clickable: true }}
-    >
-      {clubs.length > 0 ? (
-        clubs.map((item) => {
-          const randomColor = colors[Math.floor(Math.random() * colors.length)];
-          return (
-            <SwiperSlide key={item.club_id} className={styles.swiperSlide}>
-              <ClubSlide item={item} bgColor={randomColor} />
-            </SwiperSlide>
-          );
-        })
-      ) : (
-        <SwiperSlide>
-          <div>No clubs available</div>
-        </SwiperSlide>
-      )}
-    </Swiper>
+    <div>
+      <h2 className={styles.sectionTitle}>동아리 목록</h2>
+      <Swiper
+        modules={[Navigation, Pagination]}
+        autoHeight
+        spaceBetween={20}
+        slidesPerView={3}
+        style={SWIPER_STYLE}
+      >
+        {clubs.length > 0 ? (
+          clubs.map((item) => {
+            const randomColor =
+              colors[Math.floor(Math.random() * colors.length)];
+            return (
+              <SwiperSlide key={item.club_id} className={styles.swiperSlide}>
+                <ClubSlide item={item} bgColor={randomColor} />
+              </SwiperSlide>
+            );
+          })
+        ) : (
+          <SwiperSlide>
+            <div>No clubs available</div>
+          </SwiperSlide>
+        )}
+      </Swiper>
+    </div>
   );
 }
 

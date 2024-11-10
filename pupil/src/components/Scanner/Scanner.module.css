@@ -19,3 +19,7 @@
     border-radius: 4px;
   }
 }
+
+.successMessage {
+  font-size: 30px;
+}

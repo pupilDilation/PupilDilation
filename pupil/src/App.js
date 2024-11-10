@@ -10,7 +10,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import WrapperStyles from "./components/Wrapper/Wrapper.module.css";
 import SeatSelection from "./components/Seat/SeatSelection";
 import CreateConcert from "./components/CreateConcert/CreateConcertForm";
-import EidtConcert from "./components/EditDetail/EditDetailForm";
+import EditDetailPage from "./pages/EditDetailPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "./slice/loginSlice";
@@ -23,6 +23,7 @@ import SuperDetailForm from "./components/Detail/SuperDetailForm";
 import PaymentPage from "./pages/PaymentPage";
 import ClubDetailPage from "./pages/ClubDetailPage";
 import ScannerPage from "./pages/ScannerPage";
+import ReservationListPage from "./pages/ReservationListPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function App() {
                 <Route path="/login" element={<LoginPage />}></Route>
                 <Route path="/signup" element={<SignUpPage />}></Route>
                 <Route path="/my-page" element={<MyPage />}></Route>
+                <Route
+                  path="/reservations/:concertId"
+                  element={<ReservationListPage />}
+                />
                 <Route path="/details/:concertId" element={<DetailPage />} />
                 <Route
                   path="/concert/:concertId/sessions/:sessionId/seats/:userType"
@@ -58,9 +63,12 @@ function App() {
                   element={<PaymentPage />}
                 ></Route>
                 <Route path="/createdetail" element={<CreateConcert />}></Route>
-                <Route path="/editdetail" element={<EidtConcert />}></Route>
                 <Route
-                  path="/scanner/:sessionId"
+                  path="/editdetail/:concertId"
+                  element={<EditDetailPage />}
+                ></Route>
+                <Route
+                  path="/scanner/:concertId"
                   element={<ScannerPage></ScannerPage>}
                 ></Route>
                 <Route

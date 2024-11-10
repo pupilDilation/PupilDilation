@@ -3,9 +3,12 @@ import { useEffect, useMemo, useState } from "react";
 import AdminCard from "./AdminCard";
 import styles from "./Super.module.css";
 import useFormInput from "../../hooks/useFormInput";
+import ImgInput from "../ImgInput/ImgInput";
 
 function AdminAccountController() {
   const [admins, setAdmins] = useState([]);
+  const [imgUrl, setImgUrl] = useState("");
+
   async function getAdminUser() {
     try {
       const res = await axios.get("http://localhost:3001/users/admins/get");
@@ -26,7 +29,7 @@ function AdminAccountController() {
     setShowInputBox((prev) => !prev);
   };
 
-  const [inputForm, handleChange, resetForm] = useFormInput({
+  const initialState = {
     username: "",
     id: "",
     phone: "",
@@ -34,7 +37,9 @@ function AdminAccountController() {
     password: "",
     description: "",
     search: "",
-  });
+  };
+
+  const [inputForm, handleChange, resetForm] = useFormInput(initialState);
 
   function isBlank() {
     if (
@@ -92,12 +97,13 @@ function AdminAccountController() {
           phone: inputForm.phone,
           description: inputForm.description,
           search: inputForm.search,
+          img: imgUrl,
         },
         { withCredentials: true }
       );
       if (res.data.success) {
-        alert(`${inputForm.id} 어드민 계정 생성 완료`);
         resetForm();
+        alert(`${inputForm.id} 어드민 계정 생성 완료`);
       } else if (res.status === 409) {
         alert("이미 가입된 id임");
         return false;
@@ -129,6 +135,7 @@ function AdminAccountController() {
         <div className={styles.inputBox}>
           {showInputBox && (
             <div className={styles.inputBox}>
+              <ImgInput imgUrl={imgUrl} setImgUrl={setImgUrl}></ImgInput>
               <input
                 type="text"
                 name="username"
@@ -146,7 +153,7 @@ function AdminAccountController() {
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="password"

@@ -128,10 +128,10 @@ async function createClubAccount(connection, id, name, pw, email, phone) {
   return result;
 }
 
-async function connectAdmin(connection, id, name, description, search) {
+async function connectAdmin(connection, id, name, description, search, img) {
   const [result] = await connection.query(
-    "INSERT INTO club (club_name, club_description, user_id, club_search) VALUES (?,?,?,?)",
-    [name, description, id, search]
+    "INSERT INTO club (club_name, club_description, user_id, club_search, club_img) VALUES (?,?,?,?,?)",
+    [name, description, id, search, img]
   );
 
   return result;

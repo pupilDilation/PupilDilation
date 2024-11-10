@@ -1,55 +1,117 @@
-.ticketerHeader {
+/* Header styling */
+.header {
   display: flex;
-  margin-top: calc(100vw * 50 / 1440);
-  margin-left: calc(100vw * 140 / 1440);
-  align-items: end;
   justify-content: space-between;
-  width: calc(100vw * 1150 / 1440);
+  align-items: center;
+  padding: 20px;
 }
 
-.titleMain {
-  font-size: calc(100vw * 40 / 1440);
+.header h1 {
+  font-size: 22px;
+  font-weight: bold;
 }
 
-.titleSub {
-  font-size: calc(100vw * 20 / 1440);
+.header h2 {
+  font-size: 16px;
 }
 
-.ticketerListContainer {
+/* Table container */
+.tableContainer {
+  overflow-x: auto; /* Make the table scrollable on small screens */
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* Table rows */
+.tableRow:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.tableRow:hover {
+  background-color: #f1f1f1;
+  transition: background-color 0.2s ease;
+}
+
+.tableCell {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 13px;
+  }
+
+  .header h1 {
+    font-size: 18px;
+  }
+
+  .header h2 {
+    font-size: 14px;
+  }
+}
+
+.pageWrapper {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  height: 80vh;
+}
+
+.pageTitle {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sessionSelectContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-bottom: 20px;
 }
 
-.tablet {
-  width: calc(100vw * 1150 / 1440);
-  margin: auto;
+.label {
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
+.select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  outline: none;
 }
 
-th,
-td {
-  padding: calc(100vw * 6 / 1440) calc(100vw * 15 / 1440);
-  font-size: calc(100vw * 16 / 1440);
-}
-
-th {
-  background: #42444e;
-  color: #fff;
-  justify-content: center;
-}
-
-td {
-  justify-content: center;
-  border-right: 1px solid rgba(66, 68, 78, 0.2);
-  border-bottom: 1px solid rgba(66, 68, 78, 0.2);
-}
-
-tr:nth-child(even) td {
-  background: rgba(43, 50, 82, 0.2);
+.select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }

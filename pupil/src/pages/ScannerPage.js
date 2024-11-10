@@ -2,10 +2,10 @@ import Scanner from "../components/Scanner/Scanner";
 import { useParams } from "react-router";
 
 function ScannerPage({}) {
-  const { sessionId } = useParams();
+  const { concertId } = useParams();
   return (
     <>
-      <Scanner sessionId={sessionId}></Scanner>
+      <Scanner concertId={concertId}></Scanner>
     </>
   );
 }
