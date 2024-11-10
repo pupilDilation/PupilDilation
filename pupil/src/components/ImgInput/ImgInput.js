@@ -15,10 +15,10 @@ function ImgInput({ imgUrl, setImgUrl }) {
 
     try {
       const res = await axios.post(
-        "http://118.41.71.215:3001/upload",
+        "http://cndlsrb2739.iptime.org:3001/upload",
         formData
       );
-      setImgUrl(rebuildUrl(res.data.imageUrl));
+      setImgUrl(res.data.imageUrl);
       console.log(imgUrl);
     } catch (error) {
       console.error("Error uploading image: ", error);

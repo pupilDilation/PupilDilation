@@ -37,27 +37,21 @@ const getConcertsInRange = async (endDays) => {
       c.concert_col, 
       c.concert_img,
       c.concert_plot, 
-      c.created_at, 
-      c.updated_at, 
-      c.deleted_at, 
       c.user_id,
-      MIN(s.session_date) as earliest_session_date
+      MIN(s.session_date) AS earliest_session_date
     FROM 
-        concert c
+      concert c
     JOIN 
-        session s ON c.concert_id = s.concert_id
+      session s ON c.concert_id = s.concert_id
     WHERE 
-        s.session_date >= NOW()
-        AND s.session_date <= DATE_ADD(NOW(), INTERVAL ? DAY)
-        AND c.deleted_at IS NULL
-        AND s.deleted_at IS NULL
+      s.session_date BETWEEN NOW() AND DATE_ADD(NOW(), INTERVAL ? DAY)
+      AND c.deleted_at IS NULL
+      AND s.deleted_at IS NULL
     GROUP BY 
-        c.concert_id
-    HAVING 
-        MAX(s.session_date) <= DATE_ADD(NOW(), INTERVAL ? DAY)
+      c.concert_id
     ORDER BY 
-        earliest_session_date;
-  `,
+      earliest_session_date;
+    `,
     [endDays, endDays]
   );
   return rows;

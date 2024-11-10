@@ -153,7 +153,7 @@ function AdminAccountController() {
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="password"

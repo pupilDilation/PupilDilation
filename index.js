@@ -24,10 +24,12 @@ const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const sessionStore = new MySQLStore({}, db);
 
+require("dotenv").config();
+
 app.use(
   session({
     key: "sid",
-    secret: "dnwnchlrkd206",
+    secret: process.env.SESSION_SECRET,
     store: sessionStore, // 얘 필수
     resave: false,
     saveUninitialized: true,
