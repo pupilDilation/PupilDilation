@@ -9,7 +9,10 @@ function ImgInput({ imgUrl, setImgUrl }) {
     formData.append("image", file);
 
     try {
-      const res = await axios.post("http://172.30.1.21:3001/upload", formData);
+      const res = await axios.post(
+        "http://cndlsrb2739.iptime.org:3001/upload",
+        formData
+      );
       setImgUrl(res.data.imageUrl);
       console.log(imgUrl);
     } catch (error) {
