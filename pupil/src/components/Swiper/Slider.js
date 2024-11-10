@@ -20,7 +20,7 @@ function Slider() {
     async function fetchConcerts() {
       try {
         const response = await axios.get(
-          "http://localhost:3001/concerts/range?endDays=60"
+          "http://cndlsrb2739.iptime.org:3000/concerts/range?endDays=60"
         );
         setConcerts(response.data || []); // Adjust based on actual response structure
       } catch (error) {

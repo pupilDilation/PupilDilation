@@ -8,7 +8,9 @@ const AnnouncementForm = () => {
 
   async function getCurrentAnnounce() {
     try {
-      const res = await axios.get("http://localhost:3001/announcement/3month");
+      const res = await axios.get(
+        "http://cndlsrb2739.iptime.org:3000/announcement/3month"
+      );
       setNotices(res.data);
     } catch (error) {
       console.log(error);

@@ -64,9 +64,12 @@ export const {
 
 export const checkAuth = () => async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:3001/auth/checkAuth", {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      "http://cndlsrb2739.iptime.org:3000/auth/checkAuth",
+      {
+        withCredentials: true,
+      }
+    );
     if (response.data.authenticated) {
       console.log("auth");
       dispatch(loginSuccess());

@@ -22,7 +22,7 @@ function SuperDetailForm() {
     const fetchSeats = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/seats/session/${sessionId}`
+          `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`
         );
         if (response.data.success) {
           setSeats(response.data.seats);
@@ -45,16 +45,19 @@ function SuperDetailForm() {
   const handleApplyChanges = async () => {
     try {
       const promises = selectedSeats.map((seatNumber) =>
-        axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
-          seatNumber,
-          seatStatus: "disabled",
-        })
+        axios.put(
+          `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`,
+          {
+            seatNumber,
+            seatStatus: "disabled",
+          }
+        )
       );
 
       await Promise.all(promises);
 
       const response = await axios.get(
-        `http://localhost:3001/seats/session/${sessionId}`
+        `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`
       );
       if (response.data.success) {
         setSeats(response.data.seats);

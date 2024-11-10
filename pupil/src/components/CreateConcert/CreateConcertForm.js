@@ -76,22 +76,25 @@ function CreateConcertForm() {
 
   async function register(e) {
     try {
-      const res = await axios.post("http://localhost:3001/concerts", {
-        concertData: {
-          concert_title: inputForm.concert_title,
-          concert_location: inputForm.concert_location,
-          concert_price: inputForm.concert_price,
-          concert_row: inputForm.concert_row,
-          concert_col: inputForm.concert_col,
-          concert_img: imgUrl,
-          concert_plot: inputForm.concert_plot,
-          user_id: userId,
-          rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
-          rsv_end_at: convertDateFormat(inputForm.rsv_end_at),
-        },
-        sessionsData: inputForm.session_dates,
-        seatsData: seats,
-      });
+      const res = await axios.post(
+        "http://cndlsrb2739.iptime.org:3000/concerts",
+        {
+          concertData: {
+            concert_title: inputForm.concert_title,
+            concert_location: inputForm.concert_location,
+            concert_price: inputForm.concert_price,
+            concert_row: inputForm.concert_row,
+            concert_col: inputForm.concert_col,
+            concert_img: imgUrl,
+            concert_plot: inputForm.concert_plot,
+            user_id: userId,
+            rsv_start_at: convertDateFormat(inputForm.rsv_start_at),
+            rsv_end_at: convertDateFormat(inputForm.rsv_end_at),
+          },
+          sessionsData: inputForm.session_dates,
+          seatsData: seats,
+        }
+      );
       if (res.status === 500) {
         alert("공연 생성 실패");
       }

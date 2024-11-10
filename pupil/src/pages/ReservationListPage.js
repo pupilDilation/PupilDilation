@@ -20,7 +20,7 @@ function ReservationListPage() {
 
         // Fetch the sessions for the concert
         const sessionResponse = await axios.get(
-          `http://localhost:3001/sessions/${concertId}/session`
+          `http://cndlsrb2739.iptime.org:3000/sessions/${concertId}/session`
         );
         setSessions(sessionResponse.data);
 
@@ -48,7 +48,7 @@ function ReservationListPage() {
 
         // Fetch reservations for the selected session
         const reservationResponse = await axios.get(
-          `http://localhost:3001/reservations/session/${selectedSessionId}`
+          `http://cndlsrb2739.iptime.org:3000/reservations/session/${selectedSessionId}`
         );
 
         // Check if there are no reservations

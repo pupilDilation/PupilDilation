@@ -6,7 +6,7 @@ import axios from "axios";
 function ClubSearch({ clubName, onClose }) {
   async function fetchClubs(clubName) {
     const { data } = await axios.get(
-      "http://localhost:3001/club/get/clubbyname",
+      "http://cndlsrb2739.iptime.org:3000/club/get/clubbyname",
       {
         params: { club_name: clubName },
       }

@@ -7,7 +7,7 @@ function ConcertSearch({ concertTitle, onClose }) {
   console.log(concertTitle);
   async function fetchConcerts(concertTitle) {
     const { data } = await axios.get(
-      "http://localhost:3001/concerts/get/concertbytitle",
+      "http://cndlsrb2739.iptime.org:3000/concerts/get/concertbytitle",
       {
         params: { concert_title: concertTitle },
       }

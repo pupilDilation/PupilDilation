@@ -13,9 +13,12 @@ function Scanner({ concertId }) {
   const handleScan = async (result) => {
     setData(result.data);
     try {
-      const response = await axios.get("http://localhost:3001/reservations", {
-        rsv_uuid: data,
-      });
+      const response = await axios.get(
+        "http://cndlsrb2739.iptime.org:3000/reservations",
+        {
+          rsv_uuid: data,
+        }
+      );
       if (response.data.success) {
         setScanSuccess(true);
       }
@@ -34,7 +37,7 @@ function Scanner({ concertId }) {
   const checkScanner = async (uuid) => {
     try {
       const res = await axios.get(
-        `http://localhost:3001/reservations/scanner/${concertId}/${uuid}`
+        `http://cndlsrb2739.iptime.org:3000/reservations/scanner/${concertId}/${uuid}`
       );
       if (res.data.concert_id) {
         setScanSuccess(

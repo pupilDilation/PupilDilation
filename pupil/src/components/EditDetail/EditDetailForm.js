@@ -25,12 +25,12 @@ function EditDetailForm({ concertId }) {
     async function fetchConcertData() {
       try {
         const concertRes = await axios.get(
-          `http://localhost:3001/concerts/${concertId}`
+          `http://cndlsrb2739.iptime.org:3000/concerts/${concertId}`
         );
         const concertData = concertRes.data[0];
 
         const sessionRes = await axios.get(
-          `http://localhost:3001/sessions/${concertId}/session`
+          `http://cndlsrb2739.iptime.org:3000/sessions/${concertId}/session`
         );
         const fetchedSessions = sessionRes.data.map((session) => ({
           session_id: session.session_id,
@@ -88,27 +88,30 @@ function EditDetailForm({ concertId }) {
   const updateConcertAndSessions = async () => {
     try {
       // Update concert details
-      await axios.put(`http://localhost:3001/concerts/${concertId}`, {
-        concert_title: newShowInfo.title,
-        concert_location: newShowInfo.place,
-        concert_price: newShowInfo.price,
-        concert_plot: newShowInfo.introduction,
-        concert_row: newShowInfo.concert_row,
-        concert_col: newShowInfo.concert_col,
-        concert_img: imgUrl, // Include the image URL when updating concert
-        user_id: userData,
-      });
+      await axios.put(
+        `http://cndlsrb2739.iptime.org:3000/concerts/${concertId}`,
+        {
+          concert_title: newShowInfo.title,
+          concert_location: newShowInfo.place,
+          concert_price: newShowInfo.price,
+          concert_plot: newShowInfo.introduction,
+          concert_row: newShowInfo.concert_row,
+          concert_col: newShowInfo.concert_col,
+          concert_img: imgUrl, // Include the image URL when updating concert
+          user_id: userData,
+        }
+      );
 
       // Update existing sessions, add new sessions, and delete marked sessions
       for (const session of sessionDates) {
         if (session.session_id) {
           await axios.put(
-            `http://localhost:3001/sessions/${concertId}/${session.session_id}`,
+            `http://cndlsrb2739.iptime.org:3000/sessions/${concertId}/${session.session_id}`,
             { session_date: convertDateFormat(session.session_date) }
           );
         } else {
           await axios.post(
-            `http://localhost:3001/sessions/${concertId}/session`,
+            `http://cndlsrb2739.iptime.org:3000/sessions/${concertId}/session`,
             { session_date: convertDateFormat(session.session_date) }
           );
         }
@@ -117,7 +120,7 @@ function EditDetailForm({ concertId }) {
       // Delete sessions that are marked for deletion
       for (const sessionId of deletedSessions) {
         await axios.delete(
-          `http://localhost:3001/sessions/${concertId}/${sessionId}`
+          `http://cndlsrb2739.iptime.org:3000/sessions/${concertId}/${sessionId}`
         );
       }
 

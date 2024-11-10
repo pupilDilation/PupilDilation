@@ -24,7 +24,7 @@ function SeatSelection({ isAdmin = false, onAdminSelect }) {
     async function getSeatsBySessionId() {
       try {
         const response = await axios.get(
-          `http://localhost:3001/seats/session/${sessionId}`
+          `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`
         );
         const { success, seats, concert_row, concert_col, concert_location } =
           response.data;
@@ -76,13 +76,16 @@ function SeatSelection({ isAdmin = false, onAdminSelect }) {
     try {
       //예매 완료했을 경우 disabled로 변경 -> 결제 완료시에 reserved로 변경
       for (const seatNumber of selectedSeats) {
-        await axios.put(`http://localhost:3001/seats/session/${sessionId}`, {
-          seatNumber,
-          seatStatus: "progress",
-        });
+        await axios.put(
+          `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`,
+          {
+            seatNumber,
+            seatStatus: "progress",
+          }
+        );
       }
       const response = await axios.get(
-        `http://localhost:3001/seats/session/${sessionId}`
+        `http://cndlsrb2739.iptime.org:3000/seats/session/${sessionId}`
       );
       const { success, seats } = response.data;
 

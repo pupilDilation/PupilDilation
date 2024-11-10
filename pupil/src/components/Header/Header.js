@@ -30,7 +30,7 @@ function Header() {
 
   async function logoutClicked() {
     const res = await axios.post(
-      "http://localhost:3001/auth/logout",
+      "http://cndlsrb2739.iptime.org:3000/auth/logout",
       {},
       { withCredentials: true }
     );

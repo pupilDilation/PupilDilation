@@ -16,9 +16,12 @@ function UserInfo(props) {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:3001/auth/sendmail", {
-        userId: userId,
-      });
+      const res = await axios.post(
+        "http://cndlsrb2739.iptime.org:3000/auth/sendmail",
+        {
+          userId: userId,
+        }
+      );
       if (res.data.success) {
         alert("가입된 메일로 비밀번호 변경 링크가 전송되었습니다.");
       }

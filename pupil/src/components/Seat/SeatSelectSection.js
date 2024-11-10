@@ -14,7 +14,7 @@ function SeatSelectSection() {
     const fetchConcertInfo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/concerts/${concertId}`
+          `http://cndlsrb2739.iptime.org:3000/concerts/${concertId}`
         );
         if (response.data && response.data.length > 0) {
           setConcertInfo(response.data[0]);
